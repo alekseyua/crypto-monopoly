@@ -256,7 +256,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 				};
 			}
 
-			if (player.current_move && player.status === 'end_move'){ // показывает кнопку конца хода
+			if (player.current_move && player.status === 'end_move' && !(isAuctions || isChoose)){ // показывает кнопку конца хода
 				return {
 					key: 'end_move',
 					cardId: 0
