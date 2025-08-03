@@ -1,0 +1,17 @@
+.authContent {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+    padding: 60px 0;
+}
+
+.authContent .authInfo {
+    grid-column: 1 / 8;
+}
+
+.authInfotext {
+    font-size: 25px;
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 45px;
+}

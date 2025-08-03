@@ -1,0 +1,50 @@
+.ruleCards {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 34px;
+	margin-bottom: 60px;
+}
+
+.icon {
+	max-width: 50px;
+	filter: drop-shadow(0 4px 25px #0000001a);
+}
+
+.quickGameCard {
+	display: grid;
+	grid-template-columns: 5fr 2fr;
+	align-items: center;
+	gap: 50px;
+}
+
+.ruleCardHeader {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	margin-bottom: 35px;
+}
+
+.ruleCardHeader h3 {
+	font-size: 25px;
+	font-weight: 600;
+}
+
+.info {
+	font-size: 20px;
+	padding-left: 88px;
+	display: grid;
+	gap: 30px;
+}
+
+.ruleCardImgCont {
+	position: relative;
+}
+
+.ruleCardImgCont a {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	padding: 15px;
+	top: 50%;
+	transform: translateY(-50%) translateX(-30%);
+}

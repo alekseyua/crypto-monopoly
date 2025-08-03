@@ -1,0 +1,17 @@
+.label {
+	/* padding: 10px; */
+	border: 0.5px solid var(--border-color);
+	border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: var(--fill-color);
+    position: relative;
+}
+
+@media (max-height: 800px) {
+    .label {
+        padding: 7px;
+    }
+}

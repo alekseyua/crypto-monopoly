@@ -1,0 +1,13 @@
+.Block {
+	--bg-color: linear-gradient(to right, #726ced, #9d80f4);
+	--drop-shadow-color: #726ced40;
+	--inner-shadow-color: #f0efff40;
+	background: var(--bg-color);
+	box-shadow: 0 10px 25px 0 var(--drop-shadow-color),
+		3px 3px 5px 0 var(--inner-shadow-color) inset;
+	border-radius: 10px;
+	padding: 5px;
+	height: 81px;
+	display: grid;
+	place-content: center;
+}

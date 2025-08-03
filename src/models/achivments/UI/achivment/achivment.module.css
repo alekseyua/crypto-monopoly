@@ -1,0 +1,47 @@
+.Achivment {
+	display: grid;
+	grid-template-columns: minmax(80px, 1fr) 4fr;
+	align-items: center;
+	gap: 15px;
+    border-bottom: 1.5px solid #E4E4E4;
+    padding-bottom: 10px;
+}
+
+.achivmentInfo {
+	display: grid;
+	gap: 3px;
+}
+
+.blockText {
+	color: white;
+	text-align: center;
+}
+
+.achivmentInfo {
+	display: grid;
+	gap: 5px;
+}
+
+.achivmentInfo h3 {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.achivmentInfo p {
+	font-size: 14px;
+}
+
+.range {
+	height: 12px;
+	border-radius: 10px;
+	border-radius: 99px;
+	background: #e9ecff;
+}
+
+.rangeValue {
+	--range-bg: linear-gradient(to right, #726ced 0%, #9d80f4 30%, #70dcf1 100%);
+	background: var(--range-bg);
+	height: 100%;
+	border-radius: 99px;
+	width: var(--range-width);
+}

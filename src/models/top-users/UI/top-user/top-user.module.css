@@ -1,0 +1,97 @@
+.topUser {
+	display: grid;
+	grid-template-columns: minmax(50px, 80px) 1fr;
+	gap: 20px;
+}
+
+.placeIcon {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	background: linear-gradient(to right, #e4863f, #fad660);
+	border-radius: 99px;
+	padding: 10px;
+}
+
+.placeIcon.secondPLace {
+	background: #b0c0d2;
+}
+
+.placeIcon.thirdPlace {
+	background: #cb8349;
+}
+
+.placeIcon::after {
+	content: attr(data-place);
+	position: absolute;
+	color: #d08431;
+	font-size: 18px;
+	bottom: 0;
+	left: 0;
+	font-weight: 800;
+	display: grid;
+	place-content: center;
+	width: 100%;
+	aspect-ratio: 3 / 1;
+	border-radius: 99px;
+	background: linear-gradient(to right, #e4863f, #fad660);
+}
+
+.placeIcon.secondPLace::after {
+	background: #b0c0d2;
+	color: #8b9cae;
+}
+
+.placeIcon.thirdPlace::after {
+	background: linear-gradient(to right, #e4863f, #efc393);
+	color: #cb8349;
+}
+
+.placeIcon img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 99px;
+}
+
+.userImgCont {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	position: relative;
+}
+
+.userInfo {
+	display: grid;
+	gap: 4px;
+}
+
+.matchCount {
+	display: flex;
+	justify-content: space-between;
+	gap: 5px;
+}
+
+.userName {
+	font-size: 16px;
+	font-weight: 300;
+}
+
+.matchCount p {
+	font-size: 16px;
+	font-weight: 300;
+}
+
+.matchCount b {
+	font-weight: 600;
+}
+
+.banner {
+	font-size: 13px;
+	font-weight: 500;
+	padding: 7px;
+	background: #e9ecff;
+	width: max-content;
+	border-radius: 99px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}

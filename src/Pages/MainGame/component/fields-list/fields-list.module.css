@@ -1,0 +1,10 @@
+.side {
+	align-self: start;
+	width: 100%;
+}
+
+.allFields {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}

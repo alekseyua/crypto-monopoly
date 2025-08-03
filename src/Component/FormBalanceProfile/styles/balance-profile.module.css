@@ -1,0 +1,26 @@
+.containerBalanceProfile{
+    position: relative;
+    background-color: #fff;
+    border-radius: 22px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+.rowBalanceProfile{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    gap: 14px;
+}
+
+.btnWithdrawBalanceProfile{
+    padding: 10px;
+}
+
+.btnAddBalanceProfile{
+    padding: 10px;
+    background: #726CED !important;
+    color: #fff;
+}

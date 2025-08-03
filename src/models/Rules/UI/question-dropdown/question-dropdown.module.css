@@ -1,0 +1,19 @@
+.dropdown {
+	padding: 28px;
+	background: #f6f8ff;
+	border-radius: 25px;
+	border: 1px solid #ffffff;
+}
+
+.dropdown button {
+	font-size: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+    text-align: left;
+}
+
+.dropdownContent {
+	overflow: hidden;
+}

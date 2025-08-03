@@ -1,0 +1,44 @@
+.labels {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.authController{
+	display: flex;
+	gap: 20px;
+}
+
+.cardBody {
+	display: grid;
+	gap: 12px;
+    margin-top: 25px;
+}
+.registerCont {
+	grid-column: 9 / 13;
+    gap: 15px;
+    display: grid;
+}
+.inputIcon{
+	position: absolute;
+	right: 10px;
+	top: 58%;
+	&:hover{
+		cursor: pointer;
+	}		
+}
+
+.error > path {
+	fill: red;
+}
+
+.inputIcon{
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	transform: translate(0,-50%);
+}
+
+.loginButtonLabel{
+	text-align: center;
+	margin-bottom: 20px;
+}

@@ -1,0 +1,26 @@
+.Questions {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 34px;
+}
+
+.title {
+	font-size: 25px;
+	font-weight: 600;
+	margin-bottom: 25px;
+}
+
+.questionsCont {
+	display: grid;
+	gap: 15px;
+}
+
+.question {
+	gap: 35px;
+	display: grid;
+}
+
+.question p {
+	font-weight: 200;
+	font-size: 16px;
+}

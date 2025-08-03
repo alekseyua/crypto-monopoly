@@ -1,0 +1,112 @@
+/* миксин для адаптивного изменения свойств */
+/* $property -- название свойства которое будит изменятся например padding*/
+/* $startSize - начальный размер по задоном расширении по макету */
+/* $minSize - конечный размер до какого уменьшится при изменениях экрана до 320px */
+/* $type - параметр условия по которому выполнятся миксину*/
+ /* adaptiv-value(width, 10, */
+  $maxWidthContainer: 1400;
+  $maxWidth: 1920;
+  $minWidth: 320px;
+
+@mixin adaptiv-value($property,$startSize,$minSize,$type) {
+	$addSize: $startSize - $minSize;
+	@if $type == 1 {
+		//только если меньше контейнера
+		#{$property}: $startSize + px;
+		@media (max-width: #{$maxWidthContainer + px}) {
+			#{$property}: calc(#{$minSize+px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320})) !important;
+		}
+	} @else if $type == 2 {
+		//только больше контейнера
+		#{$property}: $startSize + px;
+		@media (max-width: #{$maxWidthContainer + px}) {
+			#{$property}: calc(#{$minSize+px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})) !important;
+		}
+	} @else if $type == 3 { 
+		//только % 
+		// Адаптивное значение в процентах
+		// Адаптивное значение в процентах
+		#{$property}: calc(#{ $startSize + '%'});
+		@media (max-width: #{$maxWidthContainer}px) {
+			#{$property}: calc(#{ $minSize + '%'} + #{$addSize} * ((100vw - 320px) / #{ $maxWidth - 320 })) !important;
+		}
+	}
+	@else {
+		//всегда
+		#{$property}: calc(#{$minSize+px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})) !important;
+	}
+}
+
+
+@function truncate($string, $length: 5) {
+  @if str-length($string) > $length {
+    @return str-slice($string, 1, $length) + "...";
+  } @else {
+    @return $string;
+  }
+}
+
+/* $pcSize - макетный размер шрифта */
+/* $mobSize - ожидаемый размер шрифта */
+@mixin adaptiv-font($pcSize, $mobSize){
+	$addSize: $pcSize - $mobSize;
+	$addMobsize: $addSize + $addSize * 0.7;
+	@media (max-width: 767px) {
+		font-size: calc(#{$mobSize + px} + #{$addMobsize} * ((100vw - 320px) / #{$maxWidth})) !important;
+	}
+	@media (min-width: 767px) {
+		font-size: calc(#{$mobSize + px} + #{$addSize} * (100vw / #{$maxWidth}))!important;
+	}
+
+}
+
+@mixin line-clamp($lines, $orientation) {
+  display: -webkit-box;
+  -webkit-box-orient: $orientation;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $lines;
+
+  // Optional standard property (for future compatibility)
+  line-clamp: $lines;
+}
+
+@mixin resize($size){
+	@if($size == mid-mobile){
+		@media (max-width: 480.1px) {
+			@content;
+		}
+	// } @else if($size == mobile) {
+	// 	@media (max-width: 600.1px) {
+	// 		@content;
+		// }
+	} @else if($size == mobile) {
+		@media (max-width: 600.1px) {
+			@content;
+		}
+	} @else if($size == landscape){
+		@media (max-width: 767.1px) {
+			@content;
+		}
+	} @else if($size == big-landscape){
+		@media (max-width: 992.1px) {
+			@content;
+		}
+	} @else if($size == desktop){
+		@media (max-width: 1200.1px) {
+			@content;
+		}
+	} @else if($size == mid-desktop){
+		@media (max-width: 1400.1px) {
+			@content;
+		}
+	} @else if($size == big-desktop){
+		@media (max-width: 1600.1px) {
+			@content;
+		}
+	} @else if($size == desktop1700){
+		@media (max-width: 1700.1px) {
+			@content;
+		}
+	}
+}

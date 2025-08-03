@@ -1,0 +1,17 @@
+@import '../../../../styles/mixin.scss';
+
+.ib{
+    //ib__info-container
+    &__info-container{
+        display: grid;
+            grid-template-columns: 1fr;
+            position: relative;
+            font-family: Manrope;
+            font-weight: 300;
+            font-style: Light;
+            @include adaptiv-font(16, 8);
+            line-height: 100%;
+            letter-spacing: 0%;
+            vertical-align: middle;
+    }
+}

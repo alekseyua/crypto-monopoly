@@ -1,0 +1,30 @@
+.cardLabels {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 30px;
+	gap: 10px;
+}
+
+.blockText {
+	text-align: center;
+	color: white;
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.AllAchievements {
+	display: grid;
+	gap: 15px;
+	overflow: hidden;
+	position: relative;
+}
+
+.AllAchievementsGradient {
+	background: linear-gradient(to bottom, #f6f8ff00, #f6f8ff);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+	height: 20%;
+	width: 100%;
+}

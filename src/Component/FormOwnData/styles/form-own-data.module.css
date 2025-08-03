@@ -1,0 +1,63 @@
+.containerOwnCard{
+    position: relative;
+    display: grid;
+    background-color: #fff;
+    border-radius: 22px;
+    padding: 26px;
+    grid-template-areas: "photo data data"
+                         "photo data data"
+                         "info info info";
+    height: fit-content;
+}
+
+.conAvatar{
+    grid-area: photo;
+    width: 167px;
+    height: 167px;
+    overflow: hidden;
+    border-radius: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(49.158077239990234px);
+    background-color: #F9F9F9CC;
+
+}
+.conAvatar>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.containerFormInfoUser{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formshowInfoUser{
+    border-radius: 9px;
+    border: 0.88px solid #D6DBF5;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+}
+.formshowInfoUser>span{
+    color: #969FCE;
+}
+
+.formshowInfoUserPhone{
+    border-radius: 9px;
+    padding: 12px;
+    background-color: #E9ECFF;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.infoHowJoinService{
+    grid-area: info;
+    text-align: center;
+    margin: 26px 0 0;
+}

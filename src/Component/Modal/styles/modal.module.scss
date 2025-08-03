@@ -1,0 +1,10 @@
+.modal{
+    //modal__container
+    &__container{
+        position: absolute;
+        // background-color: #F6F8FF99;
+        z-index: 9999;
+        padding: 5px;
+        min-width: 250px;
+    }
+}

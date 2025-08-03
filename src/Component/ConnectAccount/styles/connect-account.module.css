@@ -1,0 +1,58 @@
+.containerConnectAccount{
+    position: relative;
+    display: grid;
+    background-color: #fff;
+    border-radius: 22px;
+    padding: 26px;
+    height: fit-content;
+    gap: 10px;
+}
+
+.titleConnectAccount{
+    font-family: Manrope;
+    line-height: 24.03px;
+    background-color: transparent;
+    padding: 0;
+    font-size: 18px;
+}
+
+.descConnectAccount{
+    background-color: transparent;
+    padding: 0;
+    font-weight: 400;
+    font-size: 14px;
+    text-wrap: wrap;
+    font-family: Manrope;
+    line-height: 19.35px;
+    text-align: left;
+    max-width: 400px;
+}
+
+.bindAccount{
+    background: #E9ECFF;
+    border-radius: 13px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.disBindAccount{
+    border: 1px solid #E6DBF5;
+    border-radius: 13px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.containerAccounts{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.containerWithBindTitleConnectAccount{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

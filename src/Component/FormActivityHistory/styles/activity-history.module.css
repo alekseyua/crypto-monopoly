@@ -1,0 +1,26 @@
+.containerActivityHistory{
+    position: relative;
+    display: grid;
+    background-color: #fff;
+    border-radius: 22px;
+    padding: 26px;
+    height: fit-content;
+    gap: 18px;
+}
+
+.rowActivityHistory{
+    background-color: #F8D6DC;
+    padding: 18px;
+    border-radius: 9px;
+
+}
+
+
+.btnActivityHistory{
+    padding: 10px;
+}
+
+.btnItemActivityHistory{
+    padding: 7px;
+    background-color: #fff !important;
+}

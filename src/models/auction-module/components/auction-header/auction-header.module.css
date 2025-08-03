@@ -1,0 +1,41 @@
+.header {
+	background: #f8f9ff;
+	border-radius: 99px;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	padding: 12px;
+	margin-bottom: 30px;
+}
+
+.headerTitle {
+	display: grid;
+	grid-template-columns: auto auto 1fr;
+	align-items: center;
+	gap: 25px;
+}
+
+.header .backBtn {
+	width: 48px;
+	height: 48px;
+	display: grid;
+	padding: 0;
+	place-content: center;
+	flex-shrink: 0;
+}
+
+.auctionFilterBtns {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(0, 195px));
+	gap: 10px;
+}
+
+.btns {
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	gap: 10px;
+}
+
+.btns > * {
+	width: max-content;
+}

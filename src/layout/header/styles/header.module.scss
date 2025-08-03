@@ -1,0 +1,47 @@
+@import '../../../styles/mixin.scss';
+
+.header {
+    background: #F8F9FF;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    max-width: 100%;
+    /* margin: 0 auto; */
+    /* border-radius: 48px; */
+}
+
+.headerCont {
+    display: flex;
+    /* grid-template-columns: auto auto; */
+    /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.navHeader{
+    display: flex;
+    align-items: center;
+    flex: 1 1;
+    /* min-width: 650px; */
+    @include adaptiv-value('min-width', 650, 100, 2);
+
+}
+
+.logo {
+    max-height: 43px;
+    width: auto;
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    align-items: center;
+}
+
+.nav button {
+    white-space: nowrap;
+}

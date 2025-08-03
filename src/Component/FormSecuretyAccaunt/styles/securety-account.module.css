@@ -1,0 +1,66 @@
+.containerFormSecuretyAccaunt{
+    padding: 26px;
+    background-color: #fff;
+    height: fit-content;
+    display: grid;
+    gap: 20px;
+    grid-template-areas: "desc desc desc"
+                         "google sms email"   ;
+}
+
+
+.descSecuretyAccount{
+    grid-area: desc;
+}
+
+.titleBtnSecuretyAccount{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btnSecuretyAccountGoogle{
+    grid-area: google;
+    background-color: transparent !important;
+    border: 0.88px solid #D6DBF5;
+    padding: 22px;
+    border-radius: 13px;
+    cursor: pointer;    
+}
+.btnSecuretyAccountSms{
+    grid-area: sms;
+    background-color: transparent !important;
+    border: 0.88px solid #D6DBF5;
+    padding: 22px;
+    border-radius: 13px;
+    cursor: pointer;    
+}
+.btnSecuretyAccountEmail{
+    grid-area: email;
+    background-color: transparent !important;
+    border: 0.88px solid #D6DBF5;
+    padding: 22px;
+    border-radius: 13px;
+    cursor: pointer;    
+}
+.btnSecuretyAccountGoogle.active{
+    background-color: #E9ECFF !important;
+    >:last-child{
+        background-color: #726CED;
+
+    }
+}
+.btnSecuretyAccountSms.active{
+    background-color: #E9ECFF !important;
+    >:last-child{
+        background-color: #726CED;
+
+    }
+}
+.btnSecuretyAccountEmail.active{
+    background-color: #E9ECFF !important;
+    >:last-child{
+        background-color: #726CED;
+        color: #fff;
+    }
+}

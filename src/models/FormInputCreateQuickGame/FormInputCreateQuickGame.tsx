@@ -1,0 +1,70 @@
+import React from 'react'
+import styles from './styles/form-input-create-quick-game.module.scss';
+import { Button, Input, Label } from '../../shared/UI';
+
+// name: 'test-create-v2',
+// bet_amount: 51,
+// turn_time: 61,
+// start_money: 101,
+// max_players: 2,
+interface IFormInputCreateQG{
+  handleChangeInput: (e: string, key: string)=> void;
+  handleSubmit: ()=> void;
+}
+const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
+  handleSubmit,
+  handleChangeInput,
+}: IFormInputCreateQG) => {
+  return (
+    <div className={styles['form-input-create-quick-game__container']}>
+        <div className={styles['form-input-create-quick-game__container-wrap']}>
+          <Input 
+            label='Название игры'
+            className={styles['form-input-create-quick-game__container-wrap']}
+            onChange={(e:string) =>handleChangeInput(e, 'name')}
+            type='text'
+            id='name'
+            placeholder='Введите название игры например Империя'            
+          />
+          <Input 
+            label='Ставка'
+            className={styles['form-input-create-quick-game__container-wrap']}
+            onChange={(e: string) => handleChangeInput(e, 'bet_amount')}
+            type='number'
+            id='name'
+            placeholder='Введите ставку'
+          />
+          <Input 
+            label='Время на ход'
+            className={styles['form-input-create-quick-game__container-wrap']}
+            onChange={(e: string) => handleChangeInput(e, 'turn_time')}
+            type='number'
+            id='name'
+            placeholder='Введите время на ход в секундах'
+          />
+          <Input 
+            label='Сумма входа'
+            className={styles['form-input-create-quick-game__container-wrap']}
+            onChange={(e: string) => handleChangeInput(e, 'start_money')}
+            type='number'
+            id='name'
+            placeholder='Введите сумму для хвода в игру'
+          />
+          <Input 
+            label='Количество игроков'
+            className={styles['form-input-create-quick-game__container-wrap']}
+            onChange={(e: string) => handleChangeInput(e, 'max_players')}
+            type='number'
+            id='name'
+          placeholder='Введите количество игроков от 2 до 10'
+          />
+          <div className={styles['form-input-create-quick-game__container-wrap-submit']}>
+          {/* variant?: 'primary' | 'secondary' | 'tertiary' | 'gradient' | any | undefined; */}
+          <Button variant='gradient' gradientColors={['#E4863F', '#FAD660']} onClick={handleSubmit}>Создать игру</Button>
+          </div>
+        </div>
+    </div>
+  )
+}
+
+export default FormInputCreateQG;
