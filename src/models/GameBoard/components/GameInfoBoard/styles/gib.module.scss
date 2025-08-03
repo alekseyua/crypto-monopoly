@@ -129,6 +129,7 @@
 			inset: 0;
 			display: grid;
 			grid-template-rows: auto 1fr;
+			padding-bottom: 10px;
 
 		}
 	}
@@ -210,21 +211,22 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-
 		color: #8D764B;
-		padding: 10px 20px;
+		padding: 10px;
 		border-radius: 7px;
 		font-size: 16px;
 		font-weight: 500;
 		cursor: pointer;
 		z-index: 2;
+		max-height: 40px;
+		margin-top: 15px;
 	}
 
 	//gib__input-bet-auction
 	&__input-bet-auction {
 		position: relative;
 		width: 100%;
-
+		margin-top: 15px;
 		& input {
 			width: 100%;
 			min-height: 35px;
@@ -326,6 +328,7 @@
 					align-items: center;
 					// text-wrap: wrap;
 					font-family: Manrope;
+					@include adaptiv-font(12, 6);
 					
 					font-weight: 500;
 					width: 100%;
@@ -345,7 +348,7 @@
 
 					// gib__info-card-info-desc-labe--houses
 					&--houses {
-						width: 15ch;
+						// width: 15ch;
 						white-space: nowrap;
 						overflow: hidden;
 						text-overflow: ellipsis;
@@ -362,7 +365,8 @@
 					//gib__info-card-info-desc-label--auction
 					&--auction {
 						font-family: Manrope;
-						font-size: 14px;
+						@include adaptiv-font(12, 6);
+
 						font-weight: 500;
 						display: block; // или flex/inline-flex, если нужно выравнивание
 						white-space: normal; // разрешить перенос текста
@@ -474,6 +478,15 @@
 		&-container {
 			position: relative;
 			z-index: 9;
+			//gib__btns-container--btn-back
+			&--btn-back{
+				display: flex;
+				&> button {
+					display: flex;
+					gap: 5px;
+				}
+
+			}
 			//gib__btns-container--btn-two
 			&--btn-two {
 				grid-template-columns: 50% 50%;
@@ -512,7 +525,7 @@
 					padding: 15px;
 					border-radius: 7px;
 				}
-			}
+			}		
 		}
 		//gib__btns--btn-action
 		&--btn-action {
@@ -547,7 +560,22 @@
 			position: relative;
 			padding: 10px;
 			margin: 0 15px;
-			
+			//gib__body-container--auction
+			&--auction{
+				background: #f9c874;
+				width: 100%;
+				left: -15px;
+				// border-radius: 10px;
+				// height: calc(100% - 75px);
+				display: flex;
+				flex-direction: column;
+				overflow-y: auto;
+				overflow-x: hidden;
+				flex-grow: 1;
+				position: relative;
+				padding: 10px;
+				margin: 0 15px;
+			}
 			//gib__body-container--full 
 			&--full{
 				border-radius: 10px;

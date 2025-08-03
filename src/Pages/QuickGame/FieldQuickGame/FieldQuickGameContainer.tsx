@@ -458,6 +458,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					<GameInfoBoardAuctionQGStackScreen
 						handleCard={handleCard}
 						game_id={quickGame.id}
+						cards={quickGame.cards}
 						card_id={dataAction.cardId}
 						startPrice={+dataActionCardQG[profile.id].auction_data?.start_price}
 						cardInfo={dataActionCardQG[profile.id].auction_data?.card_info}

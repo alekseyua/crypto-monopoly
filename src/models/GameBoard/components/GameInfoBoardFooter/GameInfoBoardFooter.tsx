@@ -9,15 +9,23 @@ interface IProps{
     balance: number;
     currentPosition: number;
     handleClickRate:()=> void;
+    bgc?: string;
+    bgcBtn?: string;
 }
 const GameInfoBoardFooter:React.FC<IProps> = ({
     balance,
     capital,
+    bgc,
+    bgcBtn,
     currentPosition,
     handleClickRate,
 }) => {
   return (
-   <div className={styles['gib-footer__container']}>
+   <div className={styles['gib-footer__container']}
+    style={{
+			background: bgc? bgc : '#E9ECFF',
+    }}
+   >
         <div className={styles['gib-footer__desc-container']}> 
             <div className={styles['gib-footer__desc-item']}>
                 Баланс: {balance}
@@ -32,7 +40,7 @@ const GameInfoBoardFooter:React.FC<IProps> = ({
             <Button 
                 className={styles['gib-footer__btns-btn--position']}
                 style={{
-                    backgroundColor: '#D6DBF5'
+                    backgroundColor: bgcBtn ? bgcBtn : '#D6DBF5'
                 }}
                 iconRight={<Icon src={RightArrowIcon} width='15px' height='10px' />}
                 onClick={handleClickRate}

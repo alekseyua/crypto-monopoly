@@ -1,5 +1,8 @@
+import { ICards } from "../../../../../store/quick-game/quick-game";
+
 export interface IGameInfoBoardAuctionQGProps {
 	game_id: number;
+	cards: ICards[];
 	card_id: number;
 	startPrice: number;
 	cardInfo: ICardAuctionDataContainer;

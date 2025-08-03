@@ -7,6 +7,7 @@ const GameInfoBoardAuctionQGStackScreen: React.FC<IGameInfoBoardAuctionQGProps> 
   handleCard,
   game_id,
   card_id,
+  cards,
   startPrice,
   cardInfo,
   property,
@@ -25,6 +26,7 @@ const GameInfoBoardAuctionQGStackScreen: React.FC<IGameInfoBoardAuctionQGProps> 
       <GameInfoBoardPlaceBetAuctionQG 
         handleCard={handleCard}
         game_id={game_id}
+        cards={cards}
         card_id={card_id}
         startPrice={startPrice}
         cardInfo={cardInfo}
@@ -44,6 +46,7 @@ const GameInfoBoardAuctionQGStackScreen: React.FC<IGameInfoBoardAuctionQGProps> 
       handleCard = {handleCard}
       game_id = {game_id}
       card_id = {card_id}
+      cards={cards}
       startPrice = {startPrice}
       cardInfo = {cardInfo}
       property = {property}

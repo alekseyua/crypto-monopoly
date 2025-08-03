@@ -3,7 +3,16 @@ import GameInfoBoardFooter from './GameInfoBoardFooter'
 import { useStoreon } from 'storeon/react'
 import { GET_RATE_LIST_PLAYERS } from '../../../../store/quick-game/quick-game';
 
-const GameInfoBoardFooterContainer = () => {
+interface IProps {
+  bgc?: string;
+  bgcBtn?: string;
+}
+
+const GameInfoBoardFooterContainer:React.FC<IProps> = ({
+  bgc,
+  bgcBtn
+
+}) => {
     const {dataPlayerQG, dispatch} = useStoreon('dataPlayerQG');
 
     const handleClickRate = function (){
@@ -12,6 +21,8 @@ const GameInfoBoardFooterContainer = () => {
 
   return (
     <GameInfoBoardFooter 
+        bgc={bgc}
+        bgcBtn={bgcBtn}
         capital={dataPlayerQG.bill_data.capital}
         balance={dataPlayerQG.bill_data.balance}
         currentPosition={dataPlayerQG.bill_data.rank}
