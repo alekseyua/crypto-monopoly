@@ -81,6 +81,7 @@ export const icons = {
   qgCurrencyPng,
   checkMarkerWhite,
   qgCurrencySvgWhite,
+  chance: ChanceIcon
 }
 
 export {

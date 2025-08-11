@@ -17,10 +17,12 @@ import { GameInfoBoardJoil } from '../../../models/GameBoard/components/GameInfo
 import { GameInfoBoardActions } from '../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardActions';
 import { GameInfoBoardActionsExchange } from '../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardActionsExchange';
 import { GameInfoBoardShowExchange } from '../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardShowExchange';
+import { InfoChanceQG } from '../../../models/GameBoard/components/GameInfoBoard/InfoChanceQG';
 
 type keyPreview = {
 	key: 'current_move' |
 	'end_move' |
+	'info_chance' |
 	'buy_or_auction_card' |
 	'info_board_actions' | // 6 кнопок действий
 	'plus_extra_move' | // когда шанс +2 хода у текущего игрока
@@ -255,7 +257,12 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					cardId
 				};
 			}
-
+			if((cardId === 12763 || cardId === 12768 || cardId === 12783 || cardId === 12797) && player.status === 'end_move'){ // показывает действия при шансе
+				return {
+					key: 'info_chance',
+					cardId
+				}
+			}
 			if (player.current_move && player.status === 'end_move' && !(isAuctions || isChoose)){ // показывает кнопку конца хода
 				return {
 					key: 'end_move',
@@ -452,6 +459,15 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					titleBtn='Окончить ход'
 				/>)
 				break;
+			case 'info_chance':
+				setActionCardView(<InfoChanceQG
+					onMove={onMove}
+					action= 'end_move'
+					title='Вам выпал шанс.'
+					content='нужна информация о шансах'
+					titleBtn='Шанс'
+				/>)
+				break;
 			case 'start_auction_one_card':
 
 				setActionCardView(
@@ -459,7 +475,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 						handleCard={handleCard}
 						game_id={quickGame.id}
 						cards={quickGame.cards}
-						card_id={dataAction.cardId}
+						card_id={dataActionCardQG[profile.id].auction_data.card_id}
 						startPrice={+dataActionCardQG[profile.id].auction_data?.start_price}
 						cardInfo={dataActionCardQG[profile.id].auction_data?.card_info}
 						highestBidderData={dataActionCardQG[profile.id].auction_data.highest_bidder_data}
