@@ -10,10 +10,12 @@ import { Button, Input, Label } from '../../shared/UI';
 interface IFormInputCreateQG{
   handleChangeInput: (e: string, key: string)=> void;
   handleSubmit: ()=> void;
+  paramsError: any;
 }
 const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
   handleSubmit,
   handleChangeInput,
+  paramsError,
 }: IFormInputCreateQG) => {
   return (
     <div className={styles['form-input-create-quick-game__container']}>
@@ -31,36 +33,45 @@ const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
             className={styles['form-input-create-quick-game__container-wrap']}
             onChange={(e: string) => handleChangeInput(e, 'bet_amount')}
             type='number'
-            id='name'
+            id='bet_amount'
             placeholder='Введите ставку'
+            min={1}
           />
           <Input 
             label='Время на ход'
             className={styles['form-input-create-quick-game__container-wrap']}
             onChange={(e: string) => handleChangeInput(e, 'turn_time')}
             type='number'
-            id='name'
+            id='turn_time'
             placeholder='Введите время на ход в секундах'
+            min={10000}
           />
           <Input 
             label='Сумма входа'
             className={styles['form-input-create-quick-game__container-wrap']}
             onChange={(e: string) => handleChangeInput(e, 'start_money')}
             type='number'
-            id='name'
+            id='start_money'
             placeholder='Введите сумму для хвода в игру'
+            min={1}
           />
           <Input 
             label='Количество игроков'
             className={styles['form-input-create-quick-game__container-wrap']}
             onChange={(e: string) => handleChangeInput(e, 'max_players')}
             type='number'
-            id='name'
+            id='max_players'
+            min={2}
           placeholder='Введите количество игроков от 2 до 10'
           />
           <div className={styles['form-input-create-quick-game__container-wrap-submit']}>
           {/* variant?: 'primary' | 'secondary' | 'tertiary' | 'gradient' | any | undefined; */}
-          <Button variant='gradient' gradientColors={['#E4863F', '#FAD660']} onClick={handleSubmit}>Создать игру</Button>
+          <Button
+          disabled={!(paramsError.name && paramsError.bet_amount && paramsError.turn_time && paramsError.start_money && paramsError.max_players)}
+          variant='gradient' 
+          gradientColors={['#E4863F', '#FAD660']} 
+          onClick={handleSubmit}
+          >Создать игру</Button>
           </div>
         </div>
     </div>

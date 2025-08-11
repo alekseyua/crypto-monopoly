@@ -22,7 +22,7 @@ const ModalContainer:React.FC = () => {
       title={modal.title}
       onClose={handleCloseModal}
       content={modal.content}
-    
+      maxWidth={modal?.maxWidth ?? 'auto'}
     />
   )
 }

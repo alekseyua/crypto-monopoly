@@ -17,6 +17,7 @@ const SelectQGContainer = () => {
             type: 'create_game',
             title: 'Создать игру',
             content: <FormInputCreateQGContainer /> ,
+            maxWidth: 700,
         })
     }
     

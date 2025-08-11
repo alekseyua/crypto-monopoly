@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import FormInputCreateQG from './FormInputCreateQuickGame'
 import { useStoreon } from 'storeon/react';
 import { SET_MODAL } from '../../store/modal/modal';
@@ -15,6 +15,13 @@ const FormInputCreateQGContainer:React.FC = () => {
     max_players: 0,
     action: 'create_game'
   });
+  const [paramsError, setParamsError] = React.useState({
+    name: false,
+    bet_amount: false,
+    turn_time: false,
+    start_money: false,
+    max_players: false,
+  });
 
   const handleChangeInput = (value: string, key:string) => {
     setParams( state =>({
@@ -27,11 +34,22 @@ const FormInputCreateQGContainer:React.FC = () => {
     dispatch(CREATE_NEW_QG, params)
     dispatch(SET_MODAL, { isOpen: false });
   }
+
+  useEffect(()=>{
+    setParamsError({
+      name: !!params.name,
+      bet_amount: !!params.bet_amount,
+      turn_time: !!params.turn_time,
+      start_money: !!params.start_money,
+      max_players: !!params.max_players,
+    })
+  },[params])
   
   return (
     <FormInputCreateQG 
     handleChangeInput={handleChangeInput}
     handleSubmit={handleSubmit}
+    paramsError={paramsError}
     />
   )
 }

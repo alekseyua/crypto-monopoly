@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
-import cls from './Input.module.css';
+import styles from './input.module.scss';
+import { useStoreon } from 'storeon/react';
 
 interface IInput {
 	id: string,
@@ -19,6 +20,8 @@ interface IInput {
 	leftText?: string;
 	value?: string  | number;
 	isSpanWidth?: boolean;
+	min?: number;
+	max?: number;
 	// disabled?: boolean;
 	// readOnly?: boolean;
 	// maxLength?: number;
@@ -37,6 +40,8 @@ export const Input: React.FC<IInput> = forwardRef(function Input({
 	label,
 	leftText,
 	error,
+	min,
+	max,
 	id,
 	type = 'text',
 	placeholder = '',
@@ -49,6 +54,16 @@ export const Input: React.FC<IInput> = forwardRef(function Input({
 	const inputRef = useRef<HTMLInputElement>(ref || null);
 	const spanRef = useRef<HTMLSpanElement>(null);
 	const [inputValue, setInputValue] = useState(props.value || '');
+	const [ errorInput, setErrorInput ] = useState<string>('');
+	const {dispatch } = useStoreon();
+
+	const handleErrorInput = (error='') => {
+		let timer = setTimeout(()=>{
+			setErrorInput('');
+			return ()=> clearTimeout(timer);
+		},600)
+		setErrorInput(error);
+	}
 
 	useEffect(() => {
 		if (spanRef.current && inputRef.current) {
@@ -63,18 +78,21 @@ export const Input: React.FC<IInput> = forwardRef(function Input({
 
 	const handlerChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = e.target;
+		if(type === 'number' && ( min && +value < +min || max && +value > +max)){
+			return handleErrorInput('min value ' + min)// dispatch(SET_MODAL, { isOpen: true, content: 'bla bla bla' });
+		}
 		setInputValue(value);
 		props.onChange?.(value);
 	}
 
 	return (
-		<div ref={inputRef} className={`${wrapClassName? wrapClassName : cls.inputCont}`}>
-			{label && <label htmlFor={id} className={`${error ? cls.error : ''}`}>{label}</label>}
-			<div className={cls.inputWrap}>
+		<div ref={inputRef} className={`${wrapClassName? wrapClassName : styles.inputCont}`}>
+			{label && <label htmlFor={id} className={`${error ? styles.error : ''}`}>{label}</label>}
+			<div className={styles.inputWrap}>
 				{iconLeft && iconLeft}
 				{leftText && leftText}
 				<input 
-					className={`${error && cls.error} ${className && className}`} 
+					className={`${error && styles.error} ${className && className}`} 
 					ref={inputRef} 
 					type={type} 
 					id={id} 
@@ -84,6 +102,8 @@ export const Input: React.FC<IInput> = forwardRef(function Input({
 						paddingRight: iconRight ? 35 : 25,
 						...style
 					}}
+					min={min}
+					max={max}
 					{...props}
 					onChange={handlerChangeInput}
 				/>
@@ -103,6 +123,9 @@ export const Input: React.FC<IInput> = forwardRef(function Input({
 				</span>
 				{iconRight && iconRight}
 			</div>
+			{!!errorInput && <div className={styles['input__error-container']}>
+				{errorInput}
+				</div>}
 		</div>
 	);
 });

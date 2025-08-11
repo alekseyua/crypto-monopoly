@@ -19,7 +19,7 @@ export const GameRoom = ({
 	useEffect(()=>{
 		setListPlayers(players);
 	},[players])
-	console.log({listPlayers},profile,
+	console.log({listPlayers},playersCount,
 		// [...players, ...Array.from(Array(playersCount - players.length).fill(players.filter(p=>p.is_creater)[0].user)?.map((p)=>{
 		// 			console.log({p})
 		// 			return p

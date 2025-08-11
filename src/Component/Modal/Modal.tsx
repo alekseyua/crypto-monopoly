@@ -27,6 +27,7 @@ const Modal:React.FC<IProps> = ({
                 [addClass]: !!addClass,
 
             })}
+       
     >
         {
         children && 

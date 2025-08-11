@@ -26,6 +26,18 @@
 	color: var(--color-error);
 }
 
+.input{
+	&__error{
+		//input__error-container
+		&-container{
+			position: absolute;
+			color: red;
+			display: inline-block;
+			bottom: 0px;
+			left: 5%;
+		}
+	}
+}
 .inputWrap{
 	position: relative;
 	display: flex;
