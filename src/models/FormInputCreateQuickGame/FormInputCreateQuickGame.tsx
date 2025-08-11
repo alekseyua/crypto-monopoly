@@ -62,16 +62,19 @@ const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
             type='number'
             id='max_players'
             min={2}
+            max={10}
           placeholder='Введите количество игроков от 2 до 10'
           />
           <div className={styles['form-input-create-quick-game__container-wrap-submit']}>
           {/* variant?: 'primary' | 'secondary' | 'tertiary' | 'gradient' | any | undefined; */}
           <Button
-          disabled={!(paramsError.name && paramsError.bet_amount && paramsError.turn_time && paramsError.start_money && paramsError.max_players)}
-          variant='gradient' 
-          gradientColors={['#E4863F', '#FAD660']} 
-          onClick={handleSubmit}
-          >Создать игру</Button>
+            disabled={!(paramsError.name && paramsError.bet_amount && paramsError.turn_time && paramsError.start_money && paramsError.max_players)}
+            variant='gradient'
+            gradientColors={['#E4863F', '#FAD660']}
+            onClick={handleSubmit}
+          >
+            Создать игру
+          </Button>
           </div>
         </div>
     </div>

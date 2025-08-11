@@ -61,7 +61,7 @@ export const Input: React.FC<IInput> = forwardRef(function Input({
 		let timer = setTimeout(()=>{
 			setErrorInput('');
 			return ()=> clearTimeout(timer);
-		},600)
+		},1600)
 		setErrorInput(error);
 	}
 
@@ -78,9 +78,21 @@ export const Input: React.FC<IInput> = forwardRef(function Input({
 
 	const handlerChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = e.target;
-		if(type === 'number' && ( min && +value < +min || max && +value > +max)){
-			return handleErrorInput('min value ' + min)// dispatch(SET_MODAL, { isOpen: true, content: 'bla bla bla' });
+		if(value === ""){
+			setInputValue(value);
+			props.onChange?.(value);
+			return;
 		}
+		let timer = setTimeout(()=>{
+			if(type === 'number' && ( min && +value < +min)){
+				handleErrorInput('min value ' + min)// dispatch(SET_MODAL, { isOpen: true, content: 'bla bla bla' });
+				return ()=> clearTimeout(timer);
+			}
+			if(type === 'number' && ( max && +value > +max)){
+				handleErrorInput('max value ' + max)// dispatch(SET_MODAL, { isOpen: true, content: 'bla bla bla' });
+				return ()=> clearTimeout(timer); 
+			}
+		},1000);
 		setInputValue(value);
 		props.onChange?.(value);
 	}
