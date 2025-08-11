@@ -23,9 +23,9 @@ const GameInfoBoardFooterContainer:React.FC<IProps> = ({
     <GameInfoBoardFooter 
         bgc={bgc}
         bgcBtn={bgcBtn}
-        capital={dataPlayerQG.bill_data.capital}
-        balance={dataPlayerQG.bill_data.balance}
-        currentPosition={dataPlayerQG.bill_data.rank}
+        capital={dataPlayerQG?.bill_data?.capital ?? 0}
+        balance={dataPlayerQG?.bill_data?.balance ?? 0}
+        currentPosition={dataPlayerQG?.bill_data?.rank ?? 0}
         handleClickRate={handleClickRate}
     />
   )

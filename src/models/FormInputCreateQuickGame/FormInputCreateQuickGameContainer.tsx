@@ -40,7 +40,7 @@ const FormInputCreateQGContainer:React.FC = () => {
     setParamsError({
       name: !!params.name,
       bet_amount: !!params.bet_amount,
-      turn_time: !!params.turn_time && (params.turn_time <= 100),
+      turn_time: !!params.turn_time && (params.turn_time >= 100),
       start_money: !!params.start_money,
       max_players: !!params.max_players && (params.max_players >= 2 && params.max_players <= 10),
     })
