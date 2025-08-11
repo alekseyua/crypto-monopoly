@@ -4,14 +4,15 @@ import { IGameInfoBoardAuctionQGProps } from '../types/gameInfoBoard'
 import { GameInfoBoardPlaceBetAuctionQG } from './GameInfoBoardPlaceBetAuctionQG'
 
 const GameInfoBoardAuctionQGStackScreen: React.FC<IGameInfoBoardAuctionQGProps> = ({
-  handleCard,
+  cards,
+  endTime,
   game_id,
   card_id,
-  cards,
-  startPrice,
   cardInfo,
   property,
   typeStyle,
+  handleCard,
+  startPrice,
   highest_bid,
   highest_bidder,
   highestBidderData,
@@ -36,6 +37,7 @@ const GameInfoBoardAuctionQGStackScreen: React.FC<IGameInfoBoardAuctionQGProps> 
         property={property}
         typeStyle={typeStyle}
         handleChangeScreen={handleChangeScreen}
+        endTime={endTime}
         />
       )
     }
@@ -43,6 +45,7 @@ const GameInfoBoardAuctionQGStackScreen: React.FC<IGameInfoBoardAuctionQGProps> 
     
     return (
       <GameInfoBoardAuctionQG
+      endTime={endTime}
       handleCard = {handleCard}
       game_id = {game_id}
       card_id = {card_id}

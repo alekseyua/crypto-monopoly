@@ -11,6 +11,7 @@ import GameInfoBoardFooterContainer from '../../GameInfoBoardFooter/GameInfoBoar
 
 
 export const GameInfoBoardPlaceBetAuctionQG: React.FC<IGameInfoBoardAuctionQGProps> = ({
+	endTime,
 	game_id,
 	card_id,
 	cardInfo,
@@ -32,29 +33,33 @@ export const GameInfoBoardPlaceBetAuctionQG: React.FC<IGameInfoBoardAuctionQGPro
 				<div className={styles[typeStyle === 'buy' ? 'gib__header' : 'gib__header-auction--place-bet']}>
 
 					<div className={styles[typeStyle === 'buy' ? 'gib__btns-container' : 'gib__btns-container--btn-two']}>
-						<Button 
+						<Button
 							// fillColor={cards.filter((c:ICards)=> c.id === card_id)[0].bgc_header}
 							fillColor='linear-gradient(to right, #E4863F 0%, #E4863F 70%, #FAD660 100%)'
 
 						>{property.card}</Button>
-						<Button 
+						<Button
 							fillColor='#65B99E'
 						>{property.collection}</Button>
 					</div>
 				</div>
 
-					{/* body */}
+				{/* body */}
 				<div className={styles['gib__body-container--auction']}>
-
+					{endTime && (
+						<div className={styles['gib__body-container--auction-time']}>
+							Окончание торгов: {new Date(endTime).toLocaleTimeString()}
+						</div>
+					)}
 					<div className={styles['gib__body-container-wrap']}>
-					<div className={styles['gib__btns-container--btn-back']}>
-						<Button 
-							type='empty' 
-							onClick={() => handleChangeScreen && handleChangeScreen({ path: 'auction' })}>
-							<Icon width={'10px'} height={'10px'} rotate={180} src={RightArrowIcon} />
-							Назад
-						</Button>
-					</div>
+						<div className={styles['gib__btns-container--btn-back']}>
+							<Button
+								type='empty'
+								onClick={() => handleChangeScreen && handleChangeScreen({ path: 'auction' })}>
+								<Icon width={'10px'} height={'10px'} rotate={180} src={RightArrowIcon} />
+								Назад
+							</Button>
+						</div>
 						<Offset mb={10} />
 
 						<div className={styles['gib__info-card-info-container']}>
@@ -67,10 +72,10 @@ export const GameInfoBoardPlaceBetAuctionQG: React.FC<IGameInfoBoardAuctionQGPro
 									onChange={(value) => {
 										const numericValue = parseFloat(value);
 										// if (!isNaN(numericValue) && numericValue >= startPrice) {
-											setCurrentBet(numericValue);
+										setCurrentBet(numericValue);
 										// }
 										//  else {
-											//    setCurrentBet(startPrice);
+										//    setCurrentBet(startPrice);
 										// }
 									}}
 									type='number'
@@ -79,11 +84,11 @@ export const GameInfoBoardPlaceBetAuctionQG: React.FC<IGameInfoBoardAuctionQGPro
 								<InfoBoardLabel borderColor='transparent'>
 									<div className={styles['gib__info-card-info-desc-label--auction']}>
 										Ставка должна быть не ниже начальной цены (выше &nbsp;
-										
-										 <span className={styles['gib__info-card-info-desc-label--auction-inline-value']}>
+
+										<span className={styles['gib__info-card-info-desc-label--auction-inline-value']}>
 											{startPrice} <Icon className={styles['gib__currency']} src={currency2White} />
-											</span>
-											)
+										</span>
+										)
 									</div>
 								</InfoBoardLabel>
 								<Button
@@ -102,8 +107,8 @@ export const GameInfoBoardPlaceBetAuctionQG: React.FC<IGameInfoBoardAuctionQGPro
 										Сделать ставку
 									</div>
 									<span className={styles['gib__info-card-info-desc-label--auction-inline-value']}>
-											{currentBet} <Icon className={styles['gib__currency']} src={currency2White} />
-											</span>
+										{currentBet} <Icon className={styles['gib__currency']} src={currency2White} />
+									</span>
 								</Button>
 								<InfoBoardLabel borderColor='transparent     '>
 									<div className={styles['gib__info-card-info-desc-label']}>

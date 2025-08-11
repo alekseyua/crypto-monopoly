@@ -12,6 +12,7 @@ import GameInfoBoardFooterContainer from '../../GameInfoBoardFooter/GameInfoBoar
 
 export const GameInfoBoardAuctionQG: React.FC<IGameInfoBoardAuctionQGProps> = ({
 	game_id,
+	endTime,
 	card_id,
 	cards,
 	cardInfo,
@@ -42,7 +43,11 @@ console.log({cardInfo}, cards.filter((c:ICards)=> c.id === card_id)[0].bgc_heade
 
 					{/* body */}
 				<div className={styles['gib__body-container']}>
-
+					{endTime && (
+						<div className={styles['gib__body-container--auction-time']}>
+							Окончание торгов: {new Date(endTime).toLocaleTimeString()}
+						</div>
+					)}
 					<div className={styles['gib__body-container-wrap]']}>
 
 						<div className={styles['gib__info-card-info-container']}>

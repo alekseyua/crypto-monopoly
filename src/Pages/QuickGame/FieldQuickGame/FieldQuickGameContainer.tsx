@@ -483,6 +483,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 						highest_bidder={dataActionCardQG[profile.id].auction_data.highest_bidder}
 						property={dataActionCardQG[profile.id].auction_data?.property}
 						typeStyle={'auction'}
+						endTime={dataActionCardQG[profile.id].auction_data?.end_time}
 					/>
 				)
 				break;

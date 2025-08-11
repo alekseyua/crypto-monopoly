@@ -7,6 +7,7 @@ export interface IGameInfoBoardAuctionQGProps {
 	startPrice: number;
 	cardInfo: ICardAuctionDataContainer;
 	highest_bid: number;
+	endTime: string | ReactNode;
 	highest_bidder: number | null;
 	highestBidderData: {
 		highest_did: number;

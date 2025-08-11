@@ -584,6 +584,7 @@
 			position: relative;
 			padding: 10px;
 			margin: 0 15px;
+		
 			//gib__body-container--auction
 			&--auction{
 				background: #f9c874;
@@ -599,6 +600,19 @@
 				position: relative;
 				padding: 10px;
 				margin: 0 15px;
+				//gib__body-container--auction-time
+				&-time {
+					font-family: Manrope;
+					font-weight: 500;
+					font-size: 14px;
+					line-height: 100%;
+					letter-spacing: 0%;
+					vertical-align: middle;
+					color: #000000;
+					margin-bottom: 10px;
+					width: 100%;
+					text-align: center;
+				}
 			}
 			//gib__body-container--full 
 			&--full{
