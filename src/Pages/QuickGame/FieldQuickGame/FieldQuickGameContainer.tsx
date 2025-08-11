@@ -257,7 +257,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					cardId
 				};
 			}
-			if((cardId === 12763 || cardId === 12768 || cardId === 12783 || cardId === 12797) && player.status === 'end_move'){ // показывает действия при шансе
+			if((cardId === 12763 || cardId === 12768 || cardId === 12783 || cardId === 12797) && (player.status !== 'waiting' && player.status !== 'move')){ // показывает действия при шансе
 				return {
 					key: 'info_chance',
 					cardId
@@ -392,6 +392,8 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					game_id={quickGame.id}
 					card_id={dataAction.cardId}
 					dataCard={dataActionCardQG[profile.id].data_actions?.card_info}
+					timeEndMove={dataPlayerQG.move_end_time_sec}
+
 				/>)
 				break;
 			case 'pay_or_add_chance':
@@ -402,6 +404,8 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					game_id={quickGame.id}
 					card_id={dataAction.cardId}
 					dataCard={dataActionCardQG[profile.id].data_actions?.card_info}
+					timeEndMove={dataPlayerQG.move_end_time_sec}
+
 				/>)
 				break;
 			case 'pay_tax_or_add_card_chance':
@@ -410,6 +414,8 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					handleCard={handleCard}
 					game_id={quickGame.id}
 					card_id={dataAction.cardId}
+					timeEndMove={dataPlayerQG.move_end_time_sec}
+
 				/>)
 				break;
 			case 'buy_or_auction_special_card':
@@ -420,6 +426,8 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					game_id={quickGame.id}
 					card_id={dataAction.cardId}
 					dataCard={dataActionCardQG[profile.id].data_actions?.card_info}
+					timeEndMove={dataPlayerQG.move_end_time_sec}
+
 				/>)
 				break;
 			case 'info_board_actions':
@@ -449,22 +457,24 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					action = 'move'
 					title='Время вашего хода'
 					titleBtn='Походить'
-				/>)
-				break;
-			case 'end_move':
-				setActionCardView(<MoveBoardQG
-					onMove={onMove}
-					action= 'end_move'
-					title=''
-					titleBtn='Окончить ход'
+					timeEndMove={dataPlayerQG.move_end_time_sec}
+					/>)
+					break;
+					case 'end_move':
+						setActionCardView(<MoveBoardQG
+							onMove={onMove}
+							action= 'end_move'
+							title=''
+							titleBtn='Окончить ход'
+							timeEndMove={dataPlayerQG.move_end_time_sec}
 				/>)
 				break;
 			case 'info_chance':
 				setActionCardView(<InfoChanceQG
 					onMove={onMove}
-					action= 'end_move'
+					action= {dataActionCardQG[profile.id]?.data_actions?.actions?.move_to? 'move' : 'end_move'}
 					title='Вам выпал шанс.'
-					content='нужна информация о шансах'
+					content={dataActionCardQG[profile.id]?.data_actions?.card?.name? 'Вам выпал переход на ' + dataActionCardQG[profile.id]?.data_actions?.card.name : ''}
 					titleBtn='Шанс'
 				/>)
 				break;
@@ -493,6 +503,8 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					action = 'move'
 					title ='Вам выпал дополнительный ход'
 					titleBtn='Походить'
+					timeEndMove={dataPlayerQG.move_end_time_sec}
+
 				/>)
 				break;
 
@@ -547,7 +559,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 	}, [listSelectUserPreview, stateExchange]);
 
 	// setIsChangeCard после заваршения обмена очистить, когда уходим со 
-	console.log({ exchangeData }, dataPlayerQG.user)
+	console.log({ exchangeData }, dataPlayerQG)
 	return (
 		<FieldQG
 			heightGameBoard={heightGameBoard}

@@ -1,17 +1,17 @@
-import { logo, RightArrowIcon } from '../../../../assets';
+import { logo } from '../../../../assets';
+import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import { Button, Offset } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import Title from '../../../../shared/UI/Title/Title';
-import { GameInfoBoardCorners } from '../../UI/GameInfoBoardCorners/GameInfoBoardCorners';
 import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFooterContainer';
 import styles from './styles/gib.module.scss';
-import { InfoBoardLabel } from './UI/Label/info-board-label';
 
 interface IMoveBoardQGProps {
 	onMove: (params: any) => void;
 	title?: string;
 	titleBtn?: string;
 	action: string;
+	timeEndMove: number;
 }
 
 export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
@@ -19,18 +19,22 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 	action,
 	title = 'Время вашего хода',
 	titleBtn = 'Походить',
+	timeEndMove,
 }: IMoveBoardQGProps) => {
 	return (
 		<div className={styles['gib__container']}>
 			{/* header */}
 			{title ?
-				<div className={styles['gib__header-container']}>
+				<>
 					<Offset mt={30} />
-					<Title
-						className={styles['gib__title']}
-						title={title}
-					/>
-				</div>
+					<div className={styles['gib__header-container--timer']}>
+						<Title
+							className={styles['gib__title']}
+							title={title}
+						/>
+						(<AutoCounter disabled={false} counter={timeEndMove} callback={() => { }} /> сек.)
+					</div>
+				</>
 				: <Offset mt={30} />
 			}
 			{/* btn */}

@@ -19,6 +19,7 @@ interface IGameInfoBoardBuyOrAuctionProps {
 	card_cost?: number;
 	game_id: number;
 	card_id: number;
+	timeEndMove: number;
 	dataCard: any //IDataContainer;
 	handleCard?: ({ game_id, card_id, action }: { action: string, game_id: number, card_id: number }) => void;
 }
@@ -35,6 +36,7 @@ export const GameInfoBoardBuyOrAuction: React.FC<IGameInfoBoardBuyOrAuctionProps
 	dataCard,
 	handleCard,
 	actions,
+	timeEndMove
 }: IGameInfoBoardBuyOrAuctionProps) => {
 	const [amountHouses, setAmountHouses] = React.useState<number>(1);
 	const [isActionCard, setIsActionCard] = React.useState<boolean>(false);
@@ -84,7 +86,7 @@ export const GameInfoBoardBuyOrAuction: React.FC<IGameInfoBoardBuyOrAuctionProps
 						</Button>
 						<Button
 							disabled={!actions.auction && isActionCard}
-							onClick={handleAuction} type='outline'>Автоотказ {<AutoCounter disabled={isActionCard} counter={30} callback={handleAuction} />
+							onClick={handleAuction} type='outline'>Автоотказ {<AutoCounter disabled={isActionCard} counter={timeEndMove} callback={handleAuction} />
 							}</Button>
 					</div>
 					<Offset mt={10} />

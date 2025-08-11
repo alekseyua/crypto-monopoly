@@ -483,6 +483,11 @@
 		display: grid;
 		grid-template-rows: auto 1fr;
 		flex: 0 0 50px;
+		&--timer{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 	}
 
 	// buttons

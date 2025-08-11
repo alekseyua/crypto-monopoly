@@ -21,6 +21,7 @@ interface IGameInfoBoardBuyOrAuctionProps {
 	card_id: number;
 	dataCard: any //IDataContainer;
 	handleCard?: ({ game_id, card_id, action }: { action: string, game_id: number, card_id: number }) => void;
+	timeEndMove: number;
 }
 
 export const GameInfoBoardPayOrAddChance: React.FC<IGameInfoBoardBuyOrAuctionProps> = ({
@@ -35,6 +36,7 @@ export const GameInfoBoardPayOrAddChance: React.FC<IGameInfoBoardBuyOrAuctionPro
 	dataCard,
 	handleCard,
 	actions,
+	timeEndMove,
 }: IGameInfoBoardBuyOrAuctionProps) => {
 	const [amountHouses, setAmountHouses] = React.useState<number>(1);
 	const handleGetChance = function () {
@@ -89,7 +91,7 @@ export const GameInfoBoardPayOrAddChance: React.FC<IGameInfoBoardBuyOrAuctionPro
 							<Icon className={styles['gib__currency']} src={currency2White} /></Button>
 						<Button
 							disabled={!actions.add_chance}
-							onClick={handleGetChance} type='outline'>Автоотказ {<AutoCounter counter={30} callback={handleGetChance} />
+							onClick={handleGetChance} type='outline'>Автоотказ {<AutoCounter counter={timeEndMove} callback={handleGetChance} />
 							}</Button>
 					</div>
 				</div>

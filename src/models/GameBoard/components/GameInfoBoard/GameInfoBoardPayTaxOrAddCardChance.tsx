@@ -1,10 +1,6 @@
-import { currency2White, RightArrowIcon } from '../../../../assets';
-import { Button } from '../../../../shared/UI';
-import Icon from '../../../../shared/UI/Icon/Icon';
+import { Button, Offset } from '../../../../shared/UI';
 import styles from './styles/gib.module.scss';
 import React from 'react';
-import { InfoBoardLabel } from './UI/Label/info-board-label';
-import { autoRefuseTimer } from '../../../../helpers/helper';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import Title from '../../../../shared/UI/Title/Title';
 import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFooterContainer';
@@ -14,6 +10,7 @@ interface IGameInfoBoardPayTaxOrAddCardChanceProps {
 	card_id: number;
 	actions: { [key: string]: boolean }
 	handleCard?: ({ game_id, card_id, action }: { action: string, game_id: number, card_id?: number, chance?: boolean }) => void;
+	timeEndMove: number;
 }
 
 export const GameInfoBoardPayTaxOrAddCardChance: React.FC<IGameInfoBoardPayTaxOrAddCardChanceProps> = ({
@@ -21,6 +18,7 @@ export const GameInfoBoardPayTaxOrAddCardChance: React.FC<IGameInfoBoardPayTaxOr
 	card_id,
 	handleCard,
 	actions,
+	timeEndMove,
 }: IGameInfoBoardPayTaxOrAddCardChanceProps) => {
 	const [isActionCard, setIsActionCard] = React.useState<boolean>(false);
 	const handlePayTax = function () {
@@ -70,9 +68,10 @@ export const GameInfoBoardPayTaxOrAddCardChance: React.FC<IGameInfoBoardPayTaxOr
 						title={'Вам выпала свободная карта.'}
 						tag='h3'
 					/>
-					<div className={styles['gib__btns-container']}>
-						<Button disabled={!actions.pay} onClick={handlePayTax} type='outline'> Оплатить (Автоотказ {<AutoCounter counter={30} callback={handlePayTax} />})</Button>
+					<Offset mt={30} />
+					<div className={styles['gib__btns-container--btn-two']}>
 						<Button disabled={!actions.add_card} onClick={handleGetChance}>Получить карту шанса</Button>
+						<Button disabled={!actions.pay} onClick={handlePayTax} type='outline'> Оплатить ( {<AutoCounter counter={timeEndMove} callback={handlePayTax} />})</Button>
 					</div>
 				</div>
 				{/* body */}
