@@ -44,7 +44,7 @@ const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
             type='number'
             id='turn_time'
             placeholder='Введите время на ход в секундах'
-            min={10000}
+            min={100}
           />
           <Input 
             label='Сумма входа'
