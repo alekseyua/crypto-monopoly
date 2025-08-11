@@ -7,6 +7,7 @@ import { InfoBoardLabel } from '../UI/Label/info-board-label';
 import { getPriceTaxesFromHouses } from '../../../../../helpers/helper';
 import { IGameInfoBoardAuctionQGProps } from '../types/gameInfoBoard';
 import GameInfoBoardFooterContainer from '../../GameInfoBoardFooter/GameInfoBoardFooterContainer';
+import AutoCounter from '../../../../../Component/AutoCounter/AutoCounter';
 
 
 
@@ -48,7 +49,9 @@ export const GameInfoBoardPlaceBetAuctionQG: React.FC<IGameInfoBoardAuctionQGPro
 				<div className={styles['gib__body-container--auction']}>
 					{endTime && (
 						<div className={styles['gib__body-container--auction-time']}>
-							Окончание торгов: {new Date(endTime).toLocaleTimeString()}
+							{/* Окончание торгов: {new Date(endTime).toLocaleTimeString()} */}
+							{<AutoCounter counter={endTime} callback={()=>{}} />}
+
 						</div>
 					)}
 					<div className={styles['gib__body-container-wrap']}>

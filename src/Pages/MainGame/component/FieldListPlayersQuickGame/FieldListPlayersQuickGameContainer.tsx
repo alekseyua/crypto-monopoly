@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { IPlayer } from '../../../../store/quick-game/quick-game.d';
 import FieldListPlayersQG from './FieldListPlayersQuickGame'
 import { useStoreon } from 'storeon/react';
+import { SEND_ACTION_CARD_QG } from '../../../../store/quick-game/quick-game';
 
 interface IFieldListPlayersQGProps {
   players: IPlayer[];
@@ -20,7 +21,7 @@ const FieldListPlayersQGContainer: React.FC<IFieldListPlayersQGProps> = ({
   listSelectUserPreview,
   handleClickUserPreview,
 }: IFieldListPlayersQGProps) => {
-  const {showRate} = useStoreon('showRate',);
+  const {showRate, dispatch} = useStoreon('showRate',);
   const [isOpenListPlayers, setIsOpenListPlayers ] = useState<boolean>(true);
   const [listPlayers, setListPlayers ] = useState<IPlayer[]>([...players]);
   const [sortingListPlayers, setSortingListPlayers ] = useState<'rate'| 'capital'>('rate');
@@ -30,7 +31,9 @@ const FieldListPlayersQGContainer: React.FC<IFieldListPlayersQGProps> = ({
   }
   const handleSettingCard = function (status: string){
    if (status === 'exit') {
-			return alert('exit quick game');
+			return dispatch(SEND_ACTION_CARD_QG, {
+        action: 'end_game',
+   })
 		}
     isChangeCard && 
       setIsOpenModal(status);

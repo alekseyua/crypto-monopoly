@@ -4,6 +4,7 @@ import cls from './header.module.css';
 
 import logo from '../../../../assets/images/logo.png';
 import Icon from '../../../../shared/UI/Icon/Icon';
+import { NAV_QG_SELECT_PAGE } from '../../../../routers/config-nav';
 
 export const AchivmentsHeader = () => {
 	return (
@@ -12,7 +13,7 @@ export const AchivmentsHeader = () => {
 			<header className={cls.header}>
 				<div className={cls.headerTitle}>
 					<Button
-						to='/quick-game'
+						to={NAV_QG_SELECT_PAGE}
 						component='link'
 						className={cls.backBtn}
 						type='filled'

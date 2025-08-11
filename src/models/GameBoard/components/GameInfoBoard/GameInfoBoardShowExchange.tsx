@@ -20,7 +20,7 @@ interface IGameInfoBoardShowExchangeProps {
 	players?: IPlayer[];
 	currentPlayerId: number;
 	handleCard: (params: any) => void;
-
+timeEndMove: number;
 }
 
 export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps> = ({
@@ -30,6 +30,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 	players,
 	currentPlayerId,
 	cards,
+	timeEndMove,
 }: IGameInfoBoardShowExchangeProps) => {
 	const [totalTo, setTotalTo] = useState<number>(0);
 	const [totalFrom, setTotalFrom] = useState<number>(0);
@@ -91,7 +92,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 								onClick={() => handleCard({
 									action: 'deny_exchange',
 								})}>
-								Автоотказ ({<AutoCounter disabled={false} counter={30} callback={() => { }} />})
+								Автоотказ ({<AutoCounter disabled={false} counter={timeEndMove} callback={() => { }} />} сек.)
 							</Button>
 						</div>
 					</div>

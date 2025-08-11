@@ -8,6 +8,7 @@ import { getPriceTaxesFromHouses } from '../../../../../helpers/helper';
 import { IGameInfoBoardAuctionQGProps } from '../types/gameInfoBoard';
 import { ICards } from '../../../../../store/quick-game/quick-game.d';
 import GameInfoBoardFooterContainer from '../../GameInfoBoardFooter/GameInfoBoardFooterContainer';
+import AutoCounter from '../../../../../Component/AutoCounter/AutoCounter';
 
 
 export const GameInfoBoardAuctionQG: React.FC<IGameInfoBoardAuctionQGProps> = ({
@@ -45,7 +46,8 @@ console.log({cardInfo}, cards.filter((c:ICards)=> c.id === card_id)[0].bgc_heade
 				<div className={styles['gib__body-container']}>
 					{endTime && (
 						<div className={styles['gib__body-container--auction-time']}>
-							Окончание торгов: {new Date(endTime).toLocaleTimeString()}
+							Окончание торгов: 
+							{<AutoCounter counter={endTime} callback={()=>{}} />}
 						</div>
 					)}
 					<div className={styles['gib__body-container-wrap]']}>

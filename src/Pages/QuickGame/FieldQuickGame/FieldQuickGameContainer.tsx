@@ -364,6 +364,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					players={quickGame.players}
 					currentPlayerId={dataPlayerQG.id}
 					cards={quickGame.cards}
+					timeEndMove={dataPlayerQG.move_end_time_sec}
 				/>);
 		}
 		let dataAction: keyPreview = getAction(dataPlayerQG, dataActionCardQG[profile.id]) //? 'current_move' : 'wait';
@@ -460,14 +461,14 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					timeEndMove={dataPlayerQG.move_end_time_sec}
 					/>)
 					break;
-					case 'end_move':
-						setActionCardView(<MoveBoardQG
-							onMove={onMove}
-							action= 'end_move'
-							title=''
-							titleBtn='Окончить ход'
-							timeEndMove={dataPlayerQG.move_end_time_sec}
-				/>)
+			case 'end_move':
+				setActionCardView(<MoveBoardQG
+					onMove={onMove}
+					action= 'end_move'
+					title=''
+					titleBtn='Окончить ход'
+					timeEndMove={dataPlayerQG.move_end_time_sec}
+			/>)
 				break;
 			case 'info_chance':
 				setActionCardView(<InfoChanceQG
@@ -493,7 +494,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 						highest_bidder={dataActionCardQG[profile.id].auction_data.highest_bidder}
 						property={dataActionCardQG[profile.id].auction_data?.property}
 						typeStyle={'auction'}
-						endTime={dataActionCardQG[profile.id].auction_data?.end_time}
+						endTime={dataActionCardQG[profile.id].auction_data?.end_time_sec}
 					/>
 				)
 				break;

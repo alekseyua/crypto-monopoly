@@ -6,6 +6,7 @@ import { delay, getLocaleStore, isKeyPresentInHash } from "../../helpers/helper"
 import type { IUserActions, ICards, IDataQG, ISocket, IPlayer } from './quick-game.d'
 import { SET_MESSAGE, SET_MESSAGE_QUICK_GAME } from "../message/message";
 import { GET_USERS } from "../users/users";
+import { NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
 
 // list cards for the game
 export const RESET_LIST_CARDS_QG = v4();
@@ -206,7 +207,7 @@ export const quickGame = (store: StoreonStore) => {
             desc: res.message
           });
           socket.get_games?.close();
-          return payload.redirectTo('/quick-game-select')
+          return payload.redirectTo(NAV_QG_SELECT_PAGE)
         }
         if (res?.error) {
           dispatch(SET_MESSAGE, {
@@ -279,6 +280,10 @@ export const quickGame = (store: StoreonStore) => {
               }else{
                 dispatch(SET_EXCHANGE_DATA,{})
               }
+        }else{
+          dispatch(RESET_QG);
+          payload.redirectTo(NAV_QG_SELECT_PAGE);
+
         }
     });
 
