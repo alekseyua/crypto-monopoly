@@ -14,7 +14,7 @@ const AutoCounter:React.FC<IProps> = ({...props}) => {
       if(timeoutRef.current) clearTimeout(timeoutRef.current);
       return;
     } 
-    // if( time < 0 ) return (setCounter(0), props?.callback && props?.callback(0));
+    if( time < 0 ) return (setCounter(0), props?.callback && props?.callback(0));
     timeoutRef.current = setTimeout(()=>(setCounter(time - 1 ), tick(time - 1)),1000);
   }
   useEffect(()=>{
