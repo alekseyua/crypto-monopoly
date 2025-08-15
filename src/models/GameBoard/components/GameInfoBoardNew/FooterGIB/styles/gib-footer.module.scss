@@ -1,4 +1,4 @@
-@import '../../../../../styles/mixin.scss';
+@import '../../../../../../styles/mixin.scss';
 
 .gib-footer{
     //gib-footer__container
@@ -7,7 +7,7 @@
 			grid-template-columns: 55% 40%;
 			align-items: center;
 			gap: 5%;
-			margin: 0 15px;
+			width: 100%;
 			border-radius: 10px;
             padding: 10px;
     }

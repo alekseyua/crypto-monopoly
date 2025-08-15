@@ -14,6 +14,35 @@
 	font-weight: 500;
 	color: var(--text-color);
 	border-radius: 10px;
+	//fill
+	&.fill{
+		padding: 0;
+		--fill-color: #e9ecff;
+		background: var(--fill-color);
+	}
+	&.fill-round{
+		padding: 0;
+		--fill-color: #e9ecff;
+		background: var(--fill-color);
+		border-radius: 50%;
+	}
+	//transparent
+	&.transparent {
+		background: transparent;
+		padding: 0;
+		border-radius: 10px;
+		border: 1px solid var(--border-color);
+		color: var(--text-color);
+	}
+	//fill-empty
+	&.fill-empty {
+		background: transparent;
+		padding: 0;
+		color: var(--text-color);
+		border: none;
+		font-weight: inherit;
+		width: auto;
+	}
 }
 
 

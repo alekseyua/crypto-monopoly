@@ -15,7 +15,7 @@ interface ICard {
     "board": null; // ?????????/
     "owner": ownerCard; // ?????????/
     "players": IPlayer[], // ?????????/
-    "city": string;
+    "city": ICardCity;
 
 }
 
@@ -23,9 +23,9 @@ interface ICard {
 interface IHouseTaxes {
     [key: string]: number;
 }
-interface IDataCardInfo {
+interface ICardCity {
     name: string;
-    country_name: string;
+    country: string;
 }
 interface IDataCardFeatures {
     base_cost: number;
@@ -42,7 +42,7 @@ interface IDataCardPrice {
 
 export interface IDataContainer {
     data_actions: {
-        "info": IDataCardInfo,
+        "info": ICardInfoData,
         "prices": IDataCardPrice,
         "features": IDataCardFeatures
     };
@@ -113,7 +113,7 @@ export interface IAuctionData {
     "players": IPlayerAuctionData[],
     "end_time": string,
     "property": ICardAuctionData,
-    "card_info":  ICardAuctionDataContainer;
+    "card_info": ICardAuctionDataContainer;
     "highest_bid": number | null,
     "start_price": string,
     "highest_bidder": null;
@@ -121,7 +121,7 @@ export interface IAuctionData {
 
 interface IUserActions {
     [key as string | any]: IDataContainer
-    
+
 }
 
 interface ICardData {
@@ -136,54 +136,54 @@ interface ICardData {
 }
 type ActionTypes = "buy" | "auction";
 interface IActionCard {
-    [key in ActionType ]?: boolean;
+    [key in ActionType]?: boolean;
 }
 
-interface IDataQG{
+interface IDataQG {
     "id": number | null;
     "cards": ICard[];
     "name": string;
-    "players": IPlayer[];    
+    "players": IPlayer[];
     "current_turn": number;
     "is_start": boolean;
     "bet_amount": string;
     "turn_time": number;
     "start_money": string;
     "max_players": number;
-  }
+}
 
 interface ISocket {
-    [key: string] : WebSocket | null | any 
+    [key: string]: WebSocket | null | any
 }
 
 interface Property {
-  id: number;
-  card: string;
-  owner: string;
-  houses: number;
-  hotels: number;
-  mortgaged: boolean;
-  collection: string;
+    id: number;
+    card: string;
+    owner: string;
+    houses: number;
+    hotels: number;
+    mortgaged: boolean;
+    collection: string;
 }
 
 interface BillData {
-  balance: number;
-  property: number;
-  capital: number;
+    balance: number;
+    property: number;
+    capital: number;
 }
 
 interface ChooseActions {
-  pawn: boolean;
-  sell: boolean;
-  build: boolean;
-  redeem: boolean;
-  auction: boolean;
-  exchange: boolean;
+    pawn: boolean;
+    sell: boolean;
+    build: boolean;
+    redeem: boolean;
+    auction: boolean;
+    exchange: boolean;
 }
 
 interface ChooseData {
-  actions: ChooseActions;
-  card_type: string;
+    actions: ChooseActions;
+    card_type: string;
 }
 
 interface IExchangeData {
@@ -196,26 +196,26 @@ interface IExchangeData {
 }
 
 interface IPlayer {
-  id: number;
-  user: string;
-  avatar?: string;
-  balance: string;
-  color: string;
-  is_creater: boolean;
-  is_start_fast_game: boolean;
-  fast_game_id: number;
-  is_start_main_game: boolean;
-  main_game_id: number | null;
-  properties: Property[];
-  bankrupt: boolean;
-  current_card: number;
-  move_number: number;
-  current_move: boolean;
-  card_data: Record<string, unknown>;
-  auction_data: Record<string, unknown>;
-  choose_data: ChooseData | Record<string, never>;
-  bill_data: BillData;
-  status: statusPlayer
+    id: number;
+    user: string;
+    avatar?: string;
+    balance: string;
+    color: string;
+    is_creater: boolean;
+    is_start_fast_game: boolean;
+    fast_game_id: number;
+    is_start_main_game: boolean;
+    main_game_id: number | null;
+    properties: Property[];
+    bankrupt: boolean;
+    current_card: number;
+    move_number: number;
+    current_move: boolean;
+    card_data: Record<string, unknown>;
+    auction_data: Record<string, unknown>;
+    choose_data: ChooseData | Record<string, never>;
+    bill_data: BillData;
+    status: statusPlayer
 }
 type StatusPlayer = 'waiting' | 'move' | 'buy_or_auction' | 'end_move';
 type Players = IPlayer[]
@@ -224,7 +224,7 @@ export type {
     IDataContainer,
     ICard,
     ISocket,
-    IDataQG, 
+    IDataQG,
     IPlayer,
     ownerCard,
     ICardData,

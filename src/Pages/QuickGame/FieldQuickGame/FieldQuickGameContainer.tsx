@@ -120,7 +120,8 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 	const redirectTo = (path: string) => navigate(path);
 
 	const handleCard = (params: any): void => {
-		dispatch(SEND_ACTION_CARD_QG, params); 
+		dispatch(SEND_ACTION_CARD_QG, params);
+		
 		setStateExchange(initStateExchange);
 		setListSelectUserPreview([]);
 		setIsChangeCard(false);
@@ -441,9 +442,12 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 				setActionCardView(
 					<ActionsCardContainerStackScreen 
 						card={quickGame.cards.filter((el: ICard) => el.id === cardIdForActin)[0]}
+						timeEndMove={dataPlayerQG.move_end_time_sec}
+						handleBack={handleCard}
+						actions={dataActionCardQG[profile.id].choose_data?.actions}
+						handleAction={handleCard}
 					/>
 					// <GameInfoBoardActions
-					// 	actions={dataActionCardQG[profile.id].choose_data?.actions}
 					// 	handleCard={handleCardOnFieldAction}
 					// 	game_id={quickGame.id}
 					// 	card_id={dataAction.cardId}

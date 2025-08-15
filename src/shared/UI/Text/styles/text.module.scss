@@ -1,0 +1,20 @@
+.text {
+    font-family: Manrope;
+    font-weight: 300;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--text-color);
+    
+
+
+    &__icon {
+        //text__icon--right
+        &--right {
+            margin-left: 5px;
+            display: flex;
+            align-items: center;
+        }
+    }
+}

@@ -5,7 +5,7 @@
     &__back-container{
         display: flex;
         gap: 10px;
-        @include adaptiv-font(16, 8);
+        @include adaptiv-font(14, 8);
         @include adaptiv-value(padding-top, 10, 5, 1);
         @include adaptiv-value(padding-bottom, 10, 5, 1);
         @include adaptiv-value(padding-left, 15, 5, 1);

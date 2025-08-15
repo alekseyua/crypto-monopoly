@@ -15,7 +15,7 @@ interface linkProps {
 type PropsComponent = buttonProps | linkProps;
 interface IButton {	
 	to?: string | undefined;
-    type?: 'filled' | 'outline' | 'rounded' | 'empty';
+    type?: 'filled' | 'outline' | 'rounded' | 'empty' | 'fill' | 'transparent' | 'fill-round' | 'fill-empty';
     error?: boolean;
     style?: React.CSSProperties;
     props?: React.ButtonHTMLAttributes<HTMLButtonElement> | React.AnchorHTMLAttributes<HTMLAnchorElement>;

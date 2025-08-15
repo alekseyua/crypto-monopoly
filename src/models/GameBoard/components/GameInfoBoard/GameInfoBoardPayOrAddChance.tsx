@@ -4,7 +4,7 @@ import Icon from '../../../../shared/UI/Icon/Icon';
 import styles from './styles/gib.module.scss';
 import React from 'react';
 import { InfoBoardLabel } from './UI/Label/info-board-label';
-import { autoRefuseTimer } from '../../../../helpers/helper';
+import { autoRefuseTimer, getPriceTaxesFromHouses } from '../../../../helpers/helper';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFooterContainer';
 import Title from '../../../../shared/UI/Title/Title';
@@ -45,28 +45,6 @@ export const GameInfoBoardPayOrAddChance: React.FC<IGameInfoBoardBuyOrAuctionPro
 			game_id,
 			card_id,
 		})
-	}
-	const getPriceTaxesFromHouses = (amountHouses: number, listHouses: []): {
-		price: number;
-		name: string;
-	} => {
-		if (!!!listHouses) return {
-			price: 0,
-			name: 'Недопустимое количество домов',
-		};
-		if ((amountHouses < 1 || amountHouses > listHouses.length)) {
-			return {
-				price: 0,
-				name: 'Недопустимое количество домов',
-			};
-		}
-		// Получаем цену для указанного количества домов
-		const element = listHouses[--amountHouses];
-		const keyElement = Object.keys(element)[0];
-		return {
-			price: element[keyElement],
-			name: `${keyElement} ${keyElement === 'hotel' ? '' : keyElement === 1 + '' ? 'дом' : 'домами'}`,
-		};
 	}
 	return (
 		<div className={styles['gib__container']}>

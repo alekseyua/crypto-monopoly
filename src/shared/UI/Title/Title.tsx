@@ -9,6 +9,8 @@ interface IProps {
   onClick?: () => void;
   id?: string;
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  fontWeight?: number;
+  center?: boolean; // Optional, if you want to center the title
 }
 
 const Title: React.FC<IProps> = ({
@@ -18,8 +20,17 @@ const Title: React.FC<IProps> = ({
   onClick = () => { },
   id = '',
   tag = 'h2',
+  fontWeight,
+  center = false,
 }: IProps) => {
+  if (center) {
+    style.textAlign = 'center';
+  }
+  if (fontWeight) {
+    style.fontWeight = fontWeight;
+  }
   switch (tag) {
+
     case 'h1':
       return (
         <h1

@@ -23,11 +23,11 @@ export const autoRefuseTimer = function (time: number, f?: any): any {
     time = time - 1,
     f = autoRefuseTimer(time - 1)
   );
-} 
+}
 
 export const isKeyPresentInHash = function (table: Record<any, any> | undefined, key: string | null): boolean {
   if (table === undefined) return false;
-  if(key === null ) return !!Object.keys(table).length;
+  if (key === null) return !!Object.keys(table).length;
   return Object.prototype.hasOwnProperty.call(table, key) && (table[key] !== undefined);
 }
 
@@ -87,42 +87,42 @@ export const initDataParamsPostOrGet = (params: {
 };
 
 export const getPriceTaxesFromHouses = (amountHouses: number, listHouses: any[]): {
-		price: number;
-		name: string;
-	} => {
-		if(!!!listHouses) return {
-			price: 0,
-			name: 'Error: нет списка домов',
-		};
-		if ((amountHouses < 1 || amountHouses > listHouses.length)) {
-			return {
-				price: 0,
-				name: 'Error: некорректное количество домов',
-			};
-		}
-		// Получаем цену для указанного количества домов
-		const element = listHouses[--amountHouses];
-		const keyElement = Object.keys(element)[0];
-		return {
-			price: element[keyElement],
-			name: `${keyElement} ${keyElement === 'hotel'?  '': keyElement === 1 + '' ? 'дом' : 'домами'}`,
-		};
-	}
-
-  // засветляем цвет
-  export    const adjustColorBrightness = (color: string, percent: number) => {
-    let num = parseInt(color.slice(1), 16),
-      r = (num >> 16) + percent,
-      g = ((num >> 8) & 0x00ff) + percent,
-      b = (num & 0x0000ff) + percent;
-  
-    r = Math.min(255, Math.max(0, r));
-    g = Math.min(255, Math.max(0, g));
-    b = Math.min(255, Math.max(0, b));
-  
-    return `rgb(${r}, ${g}, ${b})`;
+  price: number;
+  name: string;
+} => {
+  if (!!!listHouses) return {
+    price: 0,
+    name: 'Error: нет списка домов',
   };
-  // делаем цвет прозрачный
-  export const  rgbToRgba = function(rgb: string, alpha: number) {
+  if ((amountHouses < 1 || amountHouses > listHouses.length)) {
+    return {
+      price: 0,
+      name: 'Error: некорректное количество домов',
+    };
+  }
+  // Получаем цену для указанного количества домов
+  const element = listHouses[--amountHouses];
+  const keyElement = Object.keys(element)[0];
+  return {
+    price: element[keyElement],
+    name: `${keyElement} ${keyElement === 'hotel' ? '' : keyElement === 1 + '' ? 'дом' : 'домами'}`,
+  };
+}
+
+// засветляем цвет
+export const adjustColorBrightness = (color: string, percent: number) => {
+  let num = parseInt(color.slice(1), 16),
+    r = (num >> 16) + percent,
+    g = ((num >> 8) & 0x00ff) + percent,
+    b = (num & 0x0000ff) + percent;
+
+  r = Math.min(255, Math.max(0, r));
+  g = Math.min(255, Math.max(0, g));
+  b = Math.min(255, Math.max(0, b));
+
+  return `rgb(${r}, ${g}, ${b})`;
+};
+// делаем цвет прозрачный
+export const rgbToRgba = function (rgb: string, alpha: number) {
   return rgb.replace("rgb", "rgba").replace(")", `, ${alpha})`);
 }
