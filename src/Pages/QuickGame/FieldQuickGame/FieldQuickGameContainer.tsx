@@ -6,7 +6,7 @@ import { GameInfoBoard } from '../../../models/GameBoard/components/GameInfoBoar
 import { MoveBoardQG } from '../../../models/GameBoard/components/GameInfoBoard/MoveBoardQuickGame';
 import { GameInfoBoardBuyOrAuction } from '../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardBuyOrAuction';
 import { data, useNavigate } from 'react-router-dom';
-import { ICards, IDataContainer, IPlayer } from '../../../store/quick-game/quick-game.d';
+import { ICard, IDataContainer, IPlayer } from '../../../store/quick-game/quick-game.d';
 import { GameInfoSpecialBoardBuyOrAuction } from '../../../models/GameBoard/components/GameInfoBoard/GameInfoSpecialBoardBuyOrAuction';
 import { GameInfoBoardMoveToMoveTo } from '../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardMoveTo';
 import { isKeyPresentInHash } from '../../../helpers/helper';
@@ -18,6 +18,7 @@ import { GameInfoBoardActions } from '../../../models/GameBoard/components/GameI
 import { GameInfoBoardActionsExchange } from '../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardActionsExchange';
 import { GameInfoBoardShowExchange } from '../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardShowExchange';
 import { InfoChanceQG } from '../../../models/GameBoard/components/GameInfoBoard/InfoChanceQG';
+import ActionsCardContainerStackScreen from '../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ActionsCard/ActionsCardContainerStackScreen';
 
 type keyPreview = {
 	key: 'current_move' |
@@ -91,6 +92,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 	const refGameBoard:React.RefObject<HTMLDivElement | null> = useRef(null);
 	const [isChangeCard, setIsChangeCard] = useState<boolean>(false);
 	const [userIdForExchange, setUserIdForExchange ] = useState<number | null>(null);
+	const [cardIdForActin, setCardIdForAction ] = useState<number | null>(null);
 	const [listSelectUserPreview, setListSelectUserPreview] = useState<number[]>([]);
 	const [stateExchange, setStateExchange] = useState<IStateExchange>(initStateExchange)
 	const navigate = useNavigate();
@@ -134,7 +136,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 		const listCard = quickGame.cards;
 		if (isChangeCard) {
 			// если обмен то добовляем или удаляем карту со списка
-			const card = listCard.filter((el: ICards) => el.id === card_id)[0];
+			const card = listCard.filter((el: ICard) => el.id === card_id)[0];
 			// проверяе собственник карты
 			if (card.owner.player.id !== dataPlayerQG.id) {
 				if (stateExchange.propertys_to.includes(card.id)) {
@@ -173,11 +175,12 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 		} else {
 			// Сделать возможность получения окна с действия по клику карты(продать,купить , обмен и т.д.)
 			// только если у игрока current_move = True
+			setCardIdForAction(card_id);
 			dataPlayerQG?.current_move && dispatch(GET_ACTION_FROM_CARD, {
 				card_id,
 				action: 'get_card_action'
 			});
-			setUserIdForExchange(listCard.filter( (c:ICards) => c.id === card_id)[0]?.owner?.player?.id || null);
+			setUserIdForExchange(listCard.filter( (c:ICard) => c.id === card_id)[0]?.owner?.player?.id || null);
 		}
 	}
 
@@ -242,7 +245,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 			const isAuctions: boolean = isKeyPresentInHash(data, 'auction_data');
 			const isChoose: boolean = isKeyPresentInHash(data, 'choose_data');
 			const cardId = data?.card_id;
-
+			const listCards = quickGame.cards;
 			//
 			console.log('%c----- data ----------', 'color: blue', { isMove: player.current_move }, '\n',
 				 {isActions}, {isAuctions}, {isChoose}, '\n',data)
@@ -257,12 +260,14 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					cardId
 				};
 			}
-			if((cardId === 12763 || cardId === 12768 || cardId === 12783 || cardId === 12797) && (player.status !== 'waiting' && player.status !== 'move')){ // показывает действия при шансе
+			// показывает действия при шансе && (player.status !== 'waiting' && player.status !== 'move')
+			if(player.current_move && listCards.filter( (c: ICard) => c.id === cardId )[0].type_card === 'chance' ){ 
 				return {
 					key: 'info_chance',
 					cardId
 				}
 			}
+
 			if (player.current_move && player.status === 'end_move' && !(isAuctions || isChoose)){ // показывает кнопку конца хода
 				return {
 					key: 'end_move',
@@ -303,7 +308,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 			}
 			// для экспресса 
 			const listExceptionCard = ["express", "airline", "cruise"];
-			if (listExceptionCard.includes(quickGame.cards.filter((el: ICards) => el.id === dataActions.card_id)[0].type_card)) return {
+			if (listExceptionCard.includes(quickGame.cards.filter((el: ICard) => el.id === dataActions.card_id)[0].type_card)) return {
 				key: 'buy_or_auction_special_card',
 				cardId,
 			}
@@ -432,13 +437,17 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 				/>)
 				break;
 			case 'info_board_actions':
+				console.log('cardIdForActin ==== ', cardIdForActin)
 				setActionCardView(
-					<GameInfoBoardActions
-						actions={dataActionCardQG[profile.id].choose_data?.actions}
-						handleCard={handleCardOnFieldAction}
-						game_id={quickGame.id}
-						card_id={dataAction.cardId}
+					<ActionsCardContainerStackScreen 
+						card={quickGame.cards.filter((el: ICard) => el.id === cardIdForActin)[0]}
 					/>
+					// <GameInfoBoardActions
+					// 	actions={dataActionCardQG[profile.id].choose_data?.actions}
+					// 	handleCard={handleCardOnFieldAction}
+					// 	game_id={quickGame.id}
+					// 	card_id={dataAction.cardId}
+					// />
 				)
 				break;
 			case 'prisoner':

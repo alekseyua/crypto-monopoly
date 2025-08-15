@@ -1,5 +1,5 @@
 import { GameBoard } from '../../../models/GameBoard/GameBoard';
-import { ICards, IPlayer } from '../../../store/quick-game/quick-game.d';
+import { ICard, IPlayer } from '../../../store/quick-game/quick-game.d';
 import EventsHistoryListContainer from '../../MainGame/component/events-history-list/EventsHistoryListContainer';
 import FieldListPlayersQGContainer from '../../MainGame/component/FieldListPlayersQuickGame/FieldListPlayersQuickGameContainer';
 
@@ -8,7 +8,7 @@ import cls from '../styles/quick-game.module.scss';
 
 interface IQG {
 	innerRef: React.RefObject<HTMLDivElement | null>;
-	cards: ICards[];
+	cards: ICard[];
 	dataPlayerQG: IPlayer;
 	ActionCard: React.ReactNode;
 	messages: [];

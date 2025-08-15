@@ -35,7 +35,7 @@ export const GameInfoBoardPlaceBetAuctionQG: React.FC<IGameInfoBoardAuctionQGPro
 
 					<div className={styles[typeStyle === 'buy' ? 'gib__btns-container' : 'gib__btns-container--btn-two']}>
 						<Button
-							// fillColor={cards.filter((c:ICards)=> c.id === card_id)[0].bgc_header}
+							// fillColor={cards.filter((c:ICard)=> c.id === card_id)[0].bgc_header}
 							fillColor='linear-gradient(to right, #E4863F 0%, #E4863F 70%, #FAD660 100%)'
 
 						>{property.card}</Button>

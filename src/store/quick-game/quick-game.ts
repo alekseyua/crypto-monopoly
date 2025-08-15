@@ -3,7 +3,7 @@ import { _INIT } from "../auth/auth"
 import { URL_QGS } from "../../api/config.js";
 import { StoreonStore } from "storeon";
 import { delay, getLocaleStore, isKeyPresentInHash } from "../../helpers/helper";
-import type { IUserActions, ICards, IDataQG, ISocket, IPlayer } from './quick-game.d'
+import type { IUserActions, ICard, IDataQG, ISocket, IPlayer } from './quick-game.d'
 import { SET_MESSAGE, SET_MESSAGE_QUICK_GAME } from "../message/message";
 import { GET_USERS } from "../users/users";
 import { NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
@@ -35,6 +35,8 @@ export const GET_ACTION_FROM_CARD = v4();
 export const RESET_EXCHANGE_DATA = v4();
 export const SET_EXCHANGE_DATA = v4();
 export const GET_RATE_LIST_PLAYERS = v4();
+
+export const CLOSE_WSOCKET = v4();
 
 export const quickGame = (store: StoreonStore) => {
   const socket: ISocket = {
@@ -92,7 +94,7 @@ export const quickGame = (store: StoreonStore) => {
   }
 
   // list card
-  const initListCardQG: ICards[] = [];
+  const initListCardQG: ICard[] = [];
 
   store.on(_INIT, () => ({ listCardQG: initListCardQG }));
   store.on(RESET_LIST_CARDS_QG, () => ({ listCardQG: initListCardQG }));
@@ -346,6 +348,8 @@ export const quickGame = (store: StoreonStore) => {
         game_id,
         ...payload
       }));
+    }else{
+      console.warn('WebSocket is not open, cannot get move data');
     }
   });
   store.on(GET_ACTION_FROM_CARD, (store: any, payload) => {
@@ -379,5 +383,12 @@ export const quickGame = (store: StoreonStore) => {
   store.on(_INIT,()=>({showRate: false}));
   store.on(GET_RATE_LIST_PLAYERS, (s: any, payload)=>{
     return {showRate: !s.showRate}
+  })
+
+
+  store.on(CLOSE_WSOCKET, () => {
+    if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
+      socket.get_games.close();
+    }
   })
 }

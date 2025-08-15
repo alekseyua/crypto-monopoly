@@ -1,4 +1,4 @@
-import type { ICards, IPlayer } from '../../store/quick-game/quick-game.d';
+import type { ICard, IPlayer } from '../../store/quick-game/quick-game.d';
 import cls from './styles/game-board.module.scss';
 import { GameField } from './components/game-field/GameField';
 import Parking from './components/Parking/Parking';
@@ -9,7 +9,7 @@ import Circle from './components/Circle/Circle';
 import { GameFieldNew } from './components/game-field/GameFieldNew';
 
 interface IGameBoard {
-    cards: ICards[];
+    cards: ICard[];
 	dataPlayerQG: IPlayer;
 	ActionCard: React.ReactNode;
 	handleCard: (id: number)=> void;
@@ -39,7 +39,7 @@ export const GameBoard: React.FC<IGameBoard> =({
 			</div>
 
 			{
-				cards?.map((card: ICards, index: number) => {
+				cards?.map((card: ICard, index: number) => {
 					if (card.card_number === 21) {
 						// {/* **************** Parcking **************** */ }							
 						return (

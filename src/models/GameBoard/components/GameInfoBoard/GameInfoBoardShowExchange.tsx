@@ -4,7 +4,7 @@ import Icon from '../../../../shared/UI/Icon/Icon';
 import styles from './styles/gib.module.scss';
 import React, { useEffect, useState } from 'react';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
-import { ICards, IExchangeData, IPlayer } from '../../../../store/quick-game/quick-game.d';
+import { ICard, IExchangeData, IPlayer } from '../../../../store/quick-game/quick-game.d';
 import InfoBlock from '../../../../shared/UI/InfoBlock/InfoBlock';
 import AvatarBlock from '../../../../shared/UI/AvatarBlock/AvatarBlock';
 import ButtonBack from '../../../../shared/UI/Buttons/ButtonBack/ButtonBack';
@@ -16,7 +16,7 @@ import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFo
 interface IGameInfoBoardShowExchangeProps {
 	exchageData: IExchangeData;
 	handleBack: (p: any)=> void;
-	cards: ICards[];
+	cards: ICard[];
 	players?: IPlayer[];
 	currentPlayerId: number;
 	handleCard: (params: any) => void;
@@ -218,7 +218,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 											exchageData.propertys_from.map((card: number, index: number) => (
 												<div key={index}>
 													{
-														cards.filter((c: ICards) => +c.id === +card).map((c: ICards) => {
+														cards.filter((c: ICard) => +c.id === +card).map((c: ICard) => {
 															// setTotalFrom(s=> s + +c.cost);
 															return (
 															<div key={c.id}
@@ -252,7 +252,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 											exchageData.propertys_to.map((card: number, index: number) => (
 												<div key={index}>
 													{
-														cards.filter((c: ICards) => +c.id === +card).map((c: ICards) => {
+														cards.filter((c: ICard) => +c.id === +card).map((c: ICard) => {
 															// setTotalTo(s => s + +c.cost);
 															return (
 															<div key={c.id}

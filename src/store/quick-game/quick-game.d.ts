@@ -4,7 +4,7 @@ interface ownerCard {
     "is_pawn": boolean;
 }
 
-interface ICards {
+interface ICard {
     "id": number;
     "name": string;
     "card_number": number;
@@ -141,7 +141,7 @@ interface IActionCard {
 
 interface IDataQG{
     "id": number | null;
-    "cards": ICards[];
+    "cards": ICard[];
     "name": string;
     "players": IPlayer[];    
     "current_turn": number;
@@ -222,7 +222,7 @@ type Players = IPlayer[]
 export type {
     IExchangeData,
     IDataContainer,
-    ICards,
+    ICard,
     ISocket,
     IDataQG, 
     IPlayer,

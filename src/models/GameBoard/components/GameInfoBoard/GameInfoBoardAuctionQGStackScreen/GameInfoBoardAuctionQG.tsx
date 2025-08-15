@@ -6,7 +6,7 @@ import React from 'react';
 import { InfoBoardLabel } from '../UI/Label/info-board-label';
 import { getPriceTaxesFromHouses } from '../../../../../helpers/helper';
 import { IGameInfoBoardAuctionQGProps } from '../types/gameInfoBoard';
-import { ICards } from '../../../../../store/quick-game/quick-game.d';
+import { ICard } from '../../../../../store/quick-game/quick-game.d';
 import GameInfoBoardFooterContainer from '../../GameInfoBoardFooter/GameInfoBoardFooterContainer';
 import AutoCounter from '../../../../../Component/AutoCounter/AutoCounter';
 
@@ -24,7 +24,7 @@ export const GameInfoBoardAuctionQG: React.FC<IGameInfoBoardAuctionQGProps> = ({
 	handleChangeScreen,
 }: IGameInfoBoardAuctionQGProps) => {
 	const [amountHouses, setAmountHouses] = React.useState<number>(1);
-console.log({cardInfo}, cards.filter((c:ICards)=> c.id === card_id)[0].bgc_header);
+console.log({cardInfo}, cards.filter((c:ICard)=> c.id === card_id)[0].bgc_header);
 	return (
 		<div className={styles['gib__container']}>
 			<div className={styles[typeStyle === 'buy' ? 'gib-bg' : 'gib-bg-auction']}>
@@ -32,7 +32,7 @@ console.log({cardInfo}, cards.filter((c:ICards)=> c.id === card_id)[0].bgc_heade
 				<div className={styles[typeStyle === 'buy' ? 'gib__header' : 'gib__header-auction']}>
 					<div className={styles[typeStyle === 'buy' ? 'gib__btns-container' : 'gib__btns-container--btn-two']}>
 						<Button 
-							// fillColor={cards.filter((c:ICards)=> c.id === card_id)[0].bgc_header}
+							// fillColor={cards.filter((c:ICard)=> c.id === card_id)[0].bgc_header}
 							fillColor='linear-gradient(to right, #E4863F 0%, #E4863F 70%, #FAD660 100%)'
 
 						>{property.card}</Button>
