@@ -43,7 +43,8 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 			}
 			{/* btn */}
 			<div className={styles['gib__btns-container--btn-one']}>
-				<Button onClick={() => onMove({
+				<Button 
+				onClick={() => onMove({
 					action,
 				})}>{titleBtn}</Button>
 			</div>

@@ -15,10 +15,13 @@
 	color: var(--text-color);
 	border-radius: 10px;
 	//fill
-	&.fill{
+	&.fill {
 		padding: 0;
 		--fill-color: #e9ecff;
 		background: var(--fill-color);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 	}
 	&.fill-round{
 		padding: 0;

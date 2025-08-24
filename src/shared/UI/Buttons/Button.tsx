@@ -59,36 +59,37 @@ export const Button: React.FC<IButton & PropsComponent> = ({
 	p,
 	...props
 }: IButton & PropsComponent) => {
-	let buttonStyle:  Record<string, string> = {
+	let buttonStyle: Record<string, string> = {
 		'--grad-color-1': gradientColors[0],
 		'--grad-color-2': gradientColors[1],
 		'--fill-color': fillColor,
 		'--text-color': textColor,
 	}
-	if(p) buttonStyle = {...buttonStyle, padding: `${p}px`};
+	if(p?.toString()) buttonStyle = {...buttonStyle, padding: `${p}px`};
 	if(borderColor) buttonStyle = {...buttonStyle, border: `1px solid ${borderColor}`};
 	if (component === 'button') {
+		console.log({buttonStyle})
 		return (
 			<button
-				style={{
-					...buttonStyle,
-					pointerEvents: error? 'none' : 'all',
-					...style,
-                    ...(error? { backgroundColor: 'var(--bg-color-error)' } : {}),
-                    ...(disabled? { cursor: 'not-allowed' } : {}),
-				}}
-				onClick={onClick}
-				className={
-					classNames({
-						[cls.button]: true,
-                        [cls[type]]: true,
-                        [variant && cls[variant]]: !!variant,
-                        [cls.disabled]: disabled,
-                        [cls.error]: error,
-                        [className]:!!className,
-					})
-				}
-					// `${cls.button} ${cls[type]} ${variant && cls[variant]} ${className} ${disabled && cls.disabled}`}
+			onClick={onClick}
+			className={
+				classNames({
+					[cls.button]: true,
+					[cls[type]]: true,
+					[variant && cls[variant]]: !!variant,
+					[cls.disabled]: disabled,
+					[cls.error]: error,
+					[className]:!!className,
+				})
+			}
+			// `${cls.button} ${cls[type]} ${variant && cls[variant]} ${className} ${disabled && cls.disabled}`}
+			style={{
+				pointerEvents: error? 'none' : 'all',
+				...style,
+				...(error? { backgroundColor: 'var(--bg-color-error)' } : {}),
+				...(disabled? { cursor: 'not-allowed' } : {}),
+				...buttonStyle,
+			}}
 				{...props}
 			>
 				{iconLeft && iconLeft }
@@ -101,13 +102,7 @@ export const Button: React.FC<IButton & PropsComponent> = ({
 	if (component === 'div') {
 		return (
 			<div
-				style={{
-					...buttonStyle,
-					pointerEvents: error? 'none' : 'all',
-					...style,
-                    ...(error? { backgroundColor: 'var(--bg-color-error)' } : {}),
-                    ...(disabled? { cursor: 'not-allowed' } : {}),
-				}}
+				
 				onClick={onClick}
 				className={
 					classNames({
@@ -119,6 +114,13 @@ export const Button: React.FC<IButton & PropsComponent> = ({
                         [className]:!!className,
 					})
 				}
+				style={{
+					pointerEvents: error? 'none' : 'all',
+					...style,
+                    ...(error? { backgroundColor: 'var(--bg-color-error)' } : {}),
+                    ...(disabled? { cursor: 'not-allowed' } : {}),
+					...buttonStyle,
+				}}
 					// `${cls.button} ${cls[type]} ${variant && cls[variant]} ${className} ${disabled && cls.disabled}`}
 				{...props}
 			>

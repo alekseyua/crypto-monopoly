@@ -49,7 +49,6 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
 	card,
 }: IExpressAirlineCruiseProps) => {
 		const [ isActionCard, setIsActionCard ] = React.useState<boolean>(false);
-	console.log({card})
 	const handleBuyCard = function() {
 		handleCard && handleCard({
 			action: 'buy',
@@ -60,7 +59,6 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
 
 	const handleAuction = function() {
 		setIsActionCard(true);
-		console.log('handleAuction 2');
 		handleCard && handleCard({
 			action: 'start_auction',
 			game_id,
@@ -88,11 +86,11 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
 				<Icon src={icons.qgCurrencySvgWhite} width="10" height="10" />
 			</Button>
 			<Button
-			type="outline"
+				type="outline"
 				p={0}
 				disabled={!actions.auction && isActionCard}
 				onClick={handleAuction}>
-				Отказ {<AutoCounter counter={timeEndMove} disabled={isActionCard} callback={handleAuction} />}
+				Отказ {<AutoCounter counter={timeEndMove} disabled={isActionCard} callback={()=>{}} />}
 			</Button>
 		</ContainerTwoBtn>
         <Offset mt={10} />

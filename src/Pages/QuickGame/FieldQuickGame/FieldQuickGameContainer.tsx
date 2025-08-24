@@ -308,7 +308,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 				};
 			}
 			// показывает действия при шансе && (player.status !== 'waiting' && player.status !== 'move')
-			if(isMovePlayer && typeCard === 'chance' ){ 
+			if(isMovePlayer && typeCard === 'chance' && isActions ){ 
 				return {
 					key: 'info_chance',
 					cardId
