@@ -1,0 +1,27 @@
+.cornerGradient:has(.leftBottom) {
+    right: 0;
+    top: 0;
+}
+
+.corner {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+}
+
+.corner.leftTop {
+    border-radius: 100% 0 0 0;
+}
+
+.corner.rightTop {
+    border-radius: 0 100% 0 0;
+}
+
+.corner.rightBottom {
+    border-radius: 0 0 100% 0;
+}
+
+.corner.leftBottom {
+    border-radius: 0 0 0 100%;
+}
+

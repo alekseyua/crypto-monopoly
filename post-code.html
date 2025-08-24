@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>letter</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .post__container {
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #edf0ff;
+        border-radius: 7px;
+        background: #edf0ff;
+
+    }
+    .post__header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .post__logo{
+        flex: 0 0 50%
+    }
+    .post__social{
+        flex: 0 0 50%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .post__container-body{
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+    }
+    h1 {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 0.05;
+    }
+
+    .post__footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 10px;
+    }
+    .post__line{
+        margin: 25px 0;
+        width: 100%;
+        border-bottom: 2px solid #0000ff;
+    }
+    .post__bgc-red{
+        background-color: #cf5e5e;
+    }
+    .post__code{
+        background-color: #ccb8b8;
+        padding: 3px;
+        line-height: 1.5;
+    }
+    .post__bottom-margin{
+        margin-bottom: 30px;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let code = document.querySelector(".post__code");
+        code.addEventListener('click',handlClickCode)
+
+        async function handlClickCode (e){
+             try {
+                console.log({code: +code.textContent})
+              await navigator.clipboard.writeText(+code.textContent);
+              alert(`Код скопирован в буфер обмена! ${code.textContent}`)
+            } catch (error) {
+              console.error("Ошибка при копировании текста: ", error.message);
+            }
+        }
+    });
+</script>
+
+<body>
+    <div class="post__container">
+        <div class="post__header">
+            <div class="post__logo">
+                <img src="https://monopoly-game.fun/media/logo.svg" alt="Logo"
+                style="width: 150px;height: 50px;object-fit: contain;">
+            </div>
+            <div class="post__social">
+                <a href="{{facebook_url}}" target="_blank"><img src="facebook.png" alt="Facebook"></a>
+                <a href="{{instagram_url}}" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+            </div>
+        </div>
+        <div class="post__container-body">
+            <h1><span class="post__bgc-red">Здравствуйте,</span> {{full__name}}</h1>
+            <p>Ваш код {{status_code}}:</p>
+            <p class="post__code">{{code}}</p>        
+        </div>        
+        <div class="post__footer">
+            <span class="post__bottom-margin"></span>
+            <p>Если у Вас возникли вопросы, будем рады на них ответить.</p>
+            <p>Наша команда работает для Вас!</p>
+            <div class="post__line"></div>
+            <p>Служба поддержки пользователей {{company}}.</p>
+            <span class="post__bottom-margin"></span>
+            <p>Сайт: <a href="{{link_cite}}">{{link_cite}}</a> </p>
+            <p>Email: <a href="{{link_emali}}">{{link_emali}}</a></p>
+            <p>Telegram: <a href="{{link_telegram}}">{{link_telegram}}</a></p>
+            <p>Телефон: <a href="{{phone_number}}">{{phone_number}}</a></p>
+            <span class="post__bottom-margin"></span>
+            <p>Отписаться от рассылки вы можете на странице <a href="{{link_cite_unsibscrube}}">{{link_cite_unsibscrube}}</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

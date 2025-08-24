@@ -1,0 +1,71 @@
+.game {
+	background: transparent;
+	border: 1px solid #d6dbf5;
+	border-radius: 10px;
+}
+
+.gameHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 30px;
+}
+
+.gameHeader h3 {
+	flex-shrink: 0;
+}
+
+.gameInfo {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+	justify-content: end;
+}
+
+.gameRoomLabel {
+	display: flex;
+	align-items: center;
+	background: #726ced;
+	color: white;
+	padding: 20px 40px;
+	gap: 4px;
+}
+
+.gameRoomLabel > * {
+	/* min-width: 200px; */
+}
+
+.roomUsers {
+	display: flex;
+	align-items: start;
+	overflow-x: auto;
+	gap: 15px;
+	padding-bottom: 10px;
+}
+
+.roomUsers::-webkit-scrollbar-thumb {
+	background-color: #fff;
+	background-image: -webkit-linear-gradient(
+		0deg,
+		#726ced 0%,
+		#9d80f4 30%,
+		#70dcf1 100%
+	);
+	border-radius: 99px;
+}
+
+.roomUsers::-webkit-scrollbar {
+	height: 5px;
+}
+
+.roomUsers::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+.empPlace {
+	min-width: 90px;
+	aspect-ratio: 1 / 1;
+	border-radius: 99px;
+	background: #e9ecff;
+}

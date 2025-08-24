@@ -1,0 +1,32 @@
+.user:hover {
+	cursor: pointer;
+}
+.user {
+	display: grid;
+	gap: 15px;
+	text-align: center;
+	min-width: 90px;
+}
+
+.imgCont {
+	padding: 10px;
+	max-width: 90px;
+	min-width: 90px;
+	border-radius: 99px;
+	background: #d6dbf5;
+	width: 100%;
+	display: grid;
+	aspect-ratio: 1 / 1;
+}
+
+.imgCont img {
+	width: 100%;
+	object-fit: cover;
+	height: 100%;
+	border-radius: 99px;
+}
+
+.imgCont svg {
+	justify-self: center;
+	align-self: center;
+}

@@ -1,0 +1,47 @@
+.cornerGradient {
+	width: 3.91%;
+	position: absolute;
+	aspect-ratio: 1 / 1;
+}
+
+.cornerGradient:has(.rightTop) {
+	right: -0.01%;
+	top: -0.15%;
+}
+
+.cornerGradient:has(.leftTop) {
+	left: -0.08%;
+	top: -0.15%;
+}
+
+.cornerGradient:has(.rightBottom) {
+	right: -0.01%;
+	bottom: -0.07%;
+}
+
+.cornerGradient:has(.leftBottom) {
+	left: -0.06%;
+	bottom: -0.07%;
+}
+
+.corner {
+	width: 100%;
+	height: 100%;
+	background: #ffffff;
+}
+
+.corner.rightTop {
+	border-radius: 0 100% 0 0;
+}
+
+.corner.leftTop {
+	border-radius: 100% 0 0 0;
+}
+
+.corner.rightBottom {
+	border-radius: 0 0 100% 0;
+}
+
+.corner.leftBottom {
+	border-radius: 0 0 0 100%;
+}

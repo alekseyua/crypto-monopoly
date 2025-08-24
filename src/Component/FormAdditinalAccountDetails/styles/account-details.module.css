@@ -1,0 +1,36 @@
+.containerAdditinalAccountDetails{
+    position: relative;
+    background-color: #fff;
+    border-radius: 22px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+.rowAdditinalAccountDetails{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+}
+
+.btnAdditinalAccountDetails{
+    padding: 10px;
+}
+
+.cardContainerAccountDetails{
+    /* background-color: #f5f6fa; */
+    border-radius: 13px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #F6F8FF80;
+    justify-content: space-between;
+}
+
+.cardInnerAccountDetails{
+    display: flex;
+    gap: 10px;
+}

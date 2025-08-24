@@ -1,0 +1,45 @@
+.quickGameSection {
+	max-height: 100%;
+	height: 100%;
+}
+
+.allRoomsCard {
+	height: 100%;
+}
+
+.quickGamesHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	gap: 30px;
+}
+
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.flex:nth-of-type(2) {
+	justify-content: end;
+}
+
+.quickGamesHeader {
+    margin-bottom: 20px;
+}
+
+.allGames {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+}
+
+.filtersMenu:hover{
+	cursor: pointer;
+}
+.filtersMenu{
+	display: flex;
+    gap: 10px;
+	padding: 12px 14px;
+	border-radius: 9px;
+}

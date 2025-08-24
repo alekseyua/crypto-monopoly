@@ -1,0 +1,17 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let code = document.querySelector(".copy_item");
+        code.addEventListener('click',handlClickCode)
+
+        async function handlClickCode (e){
+             try {
+                console.log({code: +code.textContent})
+              await navigator.clipboard.writeText(+code.textContent);
+              alert(`Код скопирован в буфер обмена! ${code.textContent}`)
+            } catch (error) {
+              console.error("Ошибка при копировании текста: ", error.message);
+            }
+        }
+    });
+</script>
+<p class="copy_item">то что должно копироваться</p>        

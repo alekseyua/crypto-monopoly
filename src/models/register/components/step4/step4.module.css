@@ -1,0 +1,27 @@
+.labels {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.cardBody {
+	display: grid;
+	gap: 12px;
+	margin-top: 25px;
+}
+
+.inputs {
+	display: grid;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.inputIcon:hover{
+	cursor: pointer;
+}
+.inputIcon{
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	transform: translate(0,-50%);
+}

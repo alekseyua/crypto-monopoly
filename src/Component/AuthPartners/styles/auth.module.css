@@ -1,0 +1,38 @@
+.socialLinks {
+	display: grid;
+	gap: 10px;
+	margin-top: 20px;
+}
+
+.socialLinkButton {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	text-align: left;
+}
+
+.socialLinksShot{
+	display: grid;
+	gap: 10px;
+	margin-top: 20px;
+	grid-template-columns: repeat(4,minmax(50px,70px));	 	
+	justify-content: center;
+}
+.socialLinksShot>button{
+	padding: 20px;
+	text-align: center;
+}
+
+.socialLinksTitle{
+	width: 100%;
+    background: transparent !important;
+    box-shadow: unset !important;
+    color: #000 !important;
+    text-align: center !important;
+    font-family: Manrope;
+    /* font-size: 15.42px; */
+    font-weight: 300;
+    line-height: 21.06px;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}

@@ -1,0 +1,70 @@
+.quick-game__container{
+	display: grid;
+	// grid-template-columns: 0.3fr 1fr 0.3fr;
+	grid-template-columns: 24% 50% 24%;
+	padding: 20px 0;
+	gap: 2%;
+}
+.quickGameCont {
+	display: grid;
+	grid-template-columns: 4fr minmax(100px, 8fr);
+	align-items: start;
+	padding: 60px 0;
+	gap: 30px;
+}
+
+.quickGameUserInfo {
+	display: grid;
+	gap: 15px;
+}
+
+.referalCard {
+	position: relative;
+	overflow: hidden;
+}
+
+.referalCard .cardBody {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	grid-template-columns: 1fr 112px;
+}
+
+.cardInfo {
+	display: grid;
+	align-items: start;
+}
+
+.cardInfo p {
+	font-size: 18px;
+}
+
+.cardButtons {
+	display: flex;
+	gap: 10px;
+	align-self: end;
+}
+
+.cardInfo .cardButtons button {
+	padding: 14px 15px;
+	font-size: 16px;
+	font-weight: 500;
+	width: max-content;
+	background: #ffffff66;
+}
+
+.cardInfo .cardButtons .cardBtnGradient {
+	background: linear-gradient(to right, #e4863f, #fad660);
+	color: white;
+}
+
+.bgMoneyBag {
+	width: 407px;
+	height: 407px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transform: translateX(45%) translateY(-50%);
+	filter: blur(40px);
+	opacity: 0.5;
+}

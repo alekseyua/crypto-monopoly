@@ -1,0 +1,55 @@
+.inputCont {
+	display: grid;
+	gap: 12px;
+	position: relative;
+}
+
+.inputCont > div > input {
+	padding: 5px 10px;
+	border-radius: 10px;
+	border: 1px solid #d6dbf5;
+	font-size: 18px;
+	font-weight: 300;
+	color: #7b81a0;
+	width: 100%;
+	background: none;	
+}
+
+.inputCont label {
+	font-size: 18px;
+	font-weight: 300;
+	color: #000000;
+	text-align: center;
+}
+
+.inputCont label.error {
+	color: var(--color-error);
+}
+
+.input{
+	&__error{
+		//input__error-container
+		&-container{
+			position: absolute;
+			color: red;
+			display: inline-block;
+			bottom: 0px;
+			left: 5%;
+		}
+	}
+}
+.inputWrap{
+	position: relative;
+	display: flex;
+}
+
+input:focus {
+	outline-color: #726ced;
+}
+input.error:focus {
+	outline-color: var(--color-error);
+}
+
+input.error {
+	border: 1px solid var(--color-error);
+}

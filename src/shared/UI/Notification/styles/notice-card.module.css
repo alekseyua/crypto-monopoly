@@ -1,0 +1,85 @@
+.notificationCardContainer{
+    position: absolute;
+    /* top: 110px; */
+    top: 90px;
+    /* right: 0px; */
+    right: -10px;
+    background-color: #E9ECFF;
+    width: 350px;
+    /* height: 150px; */
+    border-radius: 24px;
+    border: 1px solid #fff;
+    display: flex;
+    padding: 22px;
+    &::after{
+        content: '';
+        position: absolute;
+        top: -15px;
+        right: 3px;
+        width: 50px;
+        height: 50px;
+        border-radius: 10% 150%  0% 150%;
+        transform: rotate(45deg);
+        background-color: #FFf;
+        z-index: -1;
+
+    }
+}
+
+
+.notificationLeftContainer{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex: 0 0 30px;
+}
+
+.notificationRightContainer{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex: 1 1;
+    padding: 4px 10px;
+    flex-direction: column;
+}
+
+.notificationIcon{
+    border-radius: 50%;
+    padding: 10px;
+    border: 5px solid #fff;
+}
+
+.notificationTitle{
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    line-height: 22px;
+    color: #000;
+}
+
+.notificationDesc{
+    padding: 0;
+    font-size: 13px;
+    line-height: 18px;
+    color: #000;
+    text-align: start;
+    font-weight: 300;
+}
+
+.notificationControllerContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 15px;
+    width: 100%;
+}
+.notificationButton{
+    border-radius: 99px;
+    max-height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+}

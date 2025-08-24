@@ -1,0 +1,16 @@
+.depositFilterBtn {
+	display: grid;
+	grid-template-columns: 120px auto;
+	align-items: center;
+	gap: 20px;
+	font-size: 15px;
+	line-height: 20px;
+	font-weight: 500;
+}
+
+.depositFilterBtn p {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	text-align: left;
+}

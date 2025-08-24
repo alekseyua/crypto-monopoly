@@ -1,0 +1,125 @@
+@import '../../../styles/mixin.scss';
+
+.button {
+	// padding: 24px 20px;
+	@include adaptiv-value(padding-top,24, 0, 2);
+	@include adaptiv-value(padding-bottom,24, 0, 2);
+	@include adaptiv-value(padding-left,20, 0, 2);
+	@include adaptiv-value(padding-right,20, 0, 2);
+	
+	width: 100%;
+	// font-size: 18px;
+	@include adaptiv-font(18,10);
+
+	font-weight: 500;
+	color: var(--text-color);
+	border-radius: 10px;
+	//fill
+	&.fill{
+		padding: 0;
+		--fill-color: #e9ecff;
+		background: var(--fill-color);
+	}
+	&.fill-round{
+		padding: 0;
+		--fill-color: #e9ecff;
+		background: var(--fill-color);
+		border-radius: 50%;
+	}
+	//transparent
+	&.transparent {
+		background: transparent;
+		padding: 0;
+		border-radius: 10px;
+		border: 1px solid var(--border-color);
+		color: var(--text-color);
+	}
+	//fill-empty
+	&.fill-empty {
+		background: transparent;
+		padding: 0;
+		color: var(--text-color);
+		border: none;
+		font-weight: inherit;
+		width: auto;
+	}
+}
+
+
+.button.disabled {
+	pointer-events: none !important;
+	opacity: .5;
+}
+
+
+.button.filled {
+	--fill-color: #e9ecff;
+	background: var(--fill-color);
+	box-shadow: inset 5px 5px 4px #F0EFFF66;
+}
+
+.button.fill--light {
+	--fill-color: #e9ecff;
+	background: var(--fill-color);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 24px;
+	text-align: start;
+}
+
+.button.gradient {
+	background: linear-gradient(
+		to right,
+		var(--grad-color-1),
+		var(--grad-color-2)
+	);
+	color: white;
+}
+.button.gradientInvert {
+	background: linear-gradient(
+		to right,
+		var(--grad-color-2),
+		var(--grad-color-1)
+	);
+	color: white;
+}
+
+.button.outline {
+	background: none;
+	border: 1px solid #d6dbf5;
+}
+
+.button.empty {
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	background-color: transparent;
+}
+
+.button:disabled {
+	background: #e9ecff;
+	color: #b7bcd8;
+}
+
+.button.rounded {
+	padding: 18px 26px;
+	border-radius: 99px;
+	font-size: 15px;
+}
+
+.button.Circle{
+	border-radius: 50%;
+	--fill-color: #e9ecff;
+	background: var(--fill-color);
+
+}
+
+.button.center {
+	padding: 18px 26px;
+	border-radius: 10px;
+	font-size: 15px;
+	width: max-content;
+    margin: 0 auto;
+}

@@ -1,0 +1,25 @@
+.topUsers {
+	display: grid;
+	gap: 20px;
+	position: relative;
+	overflow: hidden;
+    align-items: start;
+}
+
+.topUsersGradient {
+	background: linear-gradient(to bottom, #f6f8ff00, #f6f8ff);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+	height: 20%;
+	width: 100%;
+}
+
+.cardLabels {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    margin-bottom: 30px;
+}

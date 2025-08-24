@@ -1,0 +1,246 @@
+.containerInvitedPlayers{
+    position: relative;
+    display: grid;
+    background-color: #fff;
+    border-radius: 22px;
+    padding: 26px;
+    height: fit-content;
+    gap: 18px;
+}
+
+.containerItemsInvitingPlayers{
+    display: grid;
+    gap: 18px;
+    max-height: 555px;
+    overflow: hidden;
+    position: relative;
+}
+
+.containerOpenFiltersItemsInvitingPlayers{
+    display: grid;
+    gap: 18px;
+    max-height: calc(100vh - 30vh);
+    overflow: hidden;
+    position: relative;    
+}
+.containerOpenFiltersItemsInvitingPlayers::after{
+  position: absolute;
+  content: '';
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px; /* Высота зоны затуманивания */
+  z-index: 3;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+}
+
+.containerMinItemsInvitingPlayers{
+    display: grid;
+    gap: 18px;
+    position: relative;
+}
+
+.containerItemsInvitingPlayers::after{
+  position: absolute;
+  content: '';
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px; /* Высота зоны затуманивания */
+  z-index: 3;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+}
+
+.infoCurrentEarning{
+    background-color: transparent;
+    border: 1.21px solid #D6DBF5;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Manrope;
+    font-size: 21.74px;
+    font-weight: 500;
+    line-height: 29.7px;
+}
+
+
+.innerContainerListInvitingPlayers{
+    display: grid;
+    gap: 18px;
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 30px;
+}
+.innerContainerListInvitingPlayers::-webkit-scrollbar{
+    /* display: none; */
+}
+
+.innerContainerMinListInvitingPlayers{
+    display: grid;
+    gap: 18px;
+}
+
+.controllInfoCurrentEarning{
+    background-color: #726CED !important;
+    border-radius: 12px;
+    color: #FFFFFF;
+    font-family: Manrope;
+    font-size: 21.74px;
+    font-weight: 500;
+    line-height: 29.7px;
+    padding: 15px;
+}
+
+.titleInvitedPlayers{
+    font-family: Manrope;
+    line-height: 24.03px;
+    background-color: transparent;
+    padding: 0;
+    font-size: 18px;
+}
+
+.containerPlayerCard{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;    
+    border-left: 2.42px solid #D6DBF5;
+    border-right: 2.42px solid #D6DBF5;
+    border-bottom: 2.42px solid #D6DBF5;
+    border-radius: 30px;
+}
+
+.containerSubPlayerCard{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;    
+    padding: 0 30px 30px;
+}
+
+.playerCard{
+    display: flex;
+    position: relative;
+    border-radius: 30px;
+    background-color: #D6DBF5;
+}
+.playerSubCard{
+    display: flex;
+    position: relative;
+    border-radius: 30px;
+    background-color: #E9ECFF;
+
+}
+
+.playersInfo{
+    padding: 8px 20px;
+    position: relative;
+    border-radius: 30px;
+    background-color: #E9ECFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 3;
+    width: 100%;
+}
+
+.playersInfoWrap{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.playerAvatar{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #F3F3F3;
+    border: 1px solid #E6E6E6;
+    object-fit: cover;
+}
+
+
+.playerName{
+    font-family: Manrope;
+    font-size: 18.12px;
+    font-weight: 400;
+    line-height: 24.75px;
+}
+
+.playerReg{
+    font-family: Manrope;
+    font-size: 18.12px;
+    font-weight: 200;
+    line-height: 24.75px;
+    text-align: right;
+}
+
+.playerEarning.active>span>svg{
+    transform: rotate(180deg);
+    transition: transform .3s;
+}
+.playerEarning>span>svg{
+    transform: rotate(0deg);
+    transition: transform .3s;
+}
+
+.playerEarning{
+    font-family: Manrope;
+    font-size: 18.12px;
+    font-weight: 700;
+    line-height: 24.75px;
+    text-align: right;
+    border-radius: 30px;
+    position: relative;    
+    padding: 8px 20px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.playerEarning>span{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.waitBtnRefLink{
+    padding: 15px;
+}
+
+.activeBtnRefLink{
+    padding: 15px;
+    background-color: #726CED !important;
+}
+
+.containerInfoCerrerntEarning{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.containerFilterList{
+    display: flex;
+    gap: 10px;
+}
+
+.filterList{
+    background-color: #D6DBF5;
+    border-radius: 30px;
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    opacity: .3;
+}
+.filterList:hover{
+    cursor: pointer;
+}
+
+.filterList.active{
+    opacity: 1;
+}
+.filterList.active:hover{
+    cursor: not-allowed;
+}

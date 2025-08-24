@@ -1,0 +1,27 @@
+.wrapIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    &>*{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // vertical-align: middle;
+        &>*{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.backgroundFont{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%) scale(1.7);
+    z-index: 11;
+    opacity: .3;
+    pointer-events: none;
+}

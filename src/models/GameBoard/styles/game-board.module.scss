@@ -1,0 +1,251 @@
+@import '../../../styles/mixin.scss';
+
+.game-board {
+	/* width: 100%;
+	max-height: 100%; */
+	// height: 100%;
+	position: relative;
+	aspect-ratio: 1 / 1;
+	background: #f8f9ff;
+	border-radius: 25px;
+	position: relative;
+	@media (max-width: 600px) {
+			height: auto;
+			width: 100%;
+	}
+	//game-board__info
+	&__info{
+    	width: 58.11%; /// ????????????????????
+		// @include adaptiv-value(width,58.11, 50, 3);
+		aspect-ratio: 1 / 1;
+		background: #ffffff;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		overflow: hidden;
+  }
+}
+
+.field {
+	width: 20.94%;
+	// @include adaptiv-value(width,20.94, 25, 3);
+
+	aspect-ratio: 1 / 1;
+	background: transparent;
+	position: absolute;
+	// background: white;
+	background-size: 50%;
+	background-repeat: no-repeat;
+	// background-color: #E7EFFD;
+
+	//field__round-container
+	&__round-container {
+		display: grid;
+		justify-content: center;
+		justify-items: center;
+		@include adaptiv-value(gap,12, 0, 1);
+	}
+	//field__circle
+	&__circle{
+		// padding-top: 10%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	//field__btn-round
+	&__btn-round{
+		@include adaptiv-value(padding-top,14, -5, 1);
+		@include adaptiv-value(padding-bottom,14, -5, 1);
+		@include adaptiv-value(padding-left,25, 0, 1);
+		@include adaptiv-value(padding-right,25, 0, 1);
+		@include adaptiv-font(20,10);
+	}
+	//field__btn-round-title
+	&__btn-round-title{
+		@include adaptiv-font(14,6);
+		font-weight: 800;
+	}
+}
+
+.field.leftTop {
+	top: 0;
+	left: 0;
+	border-top-left-radius: 20%;
+}
+
+.field.rightTop {
+	top: 0;
+	right: 0;
+	border-top-right-radius: 20%;
+}
+
+.field.leftBottom {
+	left: 0;
+	bottom: 0;
+	border-bottom-left-radius: 20%;
+}
+
+.field.rightBottom {
+	bottom: 0;
+	right: 0;
+	border-bottom-right-radius: 20%;
+	// margin-top: -4px;
+}
+
+.corner {
+	width: 13.66%;
+	position: absolute;
+	aspect-ratio: 1 / 1;
+}
+
+.corner.rightTop {
+	left: 0;
+	bottom: 0;
+	border-radius: 0 80% 0 0 ;
+}
+
+.corner.leftTop {
+	bottom: 0;
+	right: 0;
+	border-radius: 80% 0 0 0 ;
+}
+
+.corner.rightBottom {
+	left: 0;
+	top: 0;
+	border-radius: 0 0 80% 0;
+}
+.corner.leftBottom {
+	right: 0;
+	top: 0;
+	border-radius: 0 0 0 80%;
+}
+
+
+.jailImg {
+	position: absolute;
+	left: 10%;
+	bottom: 10%;
+	width: 80%;
+	height: 64.5%;
+}
+
+.police {
+	position: absolute;
+	top: 15%;
+	right: 15%;
+	width: 70%;
+	height: 85%;
+}
+
+.park {
+	position: absolute;
+	top: 15%;
+	right: 15%;
+	width: 70%;
+	height: 85%;
+}
+
+.park img {
+	width: 60%;
+	margin: 0 auto;
+}
+
+.park p {
+	font-size: 13px;
+	font-weight: 300;
+	text-align: center;
+}
+
+.police img {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.police p {
+	font-size: 13px;
+	font-weight: 300;
+	text-align: center;
+}
+
+.players{
+	//players__container
+	&__container{
+		position: relative;
+		// display: flex;
+		// flex-direction: column;
+		// width: 100%;
+		// gap: 2px;
+		// max-width: 81px;
+		// max-height: 83px;
+		// flex-wrap: wrap;
+		gap: 0px;
+		display: grid;
+		grid-auto-flow: column;
+		grid-template-rows: repeat(3, 1fr);
+		// width: 100%;
+		//players__container--left
+		&--left{
+			justify-content: start;
+		}
+		// //players__container--right
+		&--right{
+			justify-content: start;
+		}
+		//players__container--bottom
+		&--bottom{
+			transform: rotate(180deg);
+			grid-auto-flow: row;
+			grid-template-columns: repeat(3, 1fr);
+		}
+		//players__container--top
+		&--top{
+			grid-auto-flow: row;
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		// &--left-sticker {
+		// 	top: 50%;
+		// 	transform: translateY(-50%);
+		// 	left: 2%;
+		// }
+
+		// //players__container--bottom
+		// &--bottom-sticker {
+		// 	position: absolute;
+		// 	flex-direction: row-reverse;
+		// 	transform: translateX(-48%) rotate(180deg);
+		// 	left: 52%;
+		// 	bottom: 10px;
+
+		// }
+
+		// &--top-sticker {
+		// 	position: relative;
+		// 	flex-direction: row;
+		// 	transform: translate(-50%, 10px);
+		// 	left: 50%;
+		// }
+
+		// &--right-sticker {
+		// 	position: absolute;
+		// 	flex-direction: column-reverse;
+		// 	transform: translateY(-50%) rotate(180deg);
+		// 	top: 50%;
+		// 	right: 10px;
+		// }
+	}
+
+	//players__sticker
+	&__sticker{
+		@include adaptiv-value(width,12, 0, 1);
+		@include adaptiv-value(height,12, 0, 1);
+		border-radius: 50%;
+		position: relative;
+		z-index: 10;
+		margin: 1px;
+		border: 2px solid #FAFBFF;
+    }
+}
