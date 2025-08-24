@@ -82,6 +82,7 @@ const ActionsCard: React.FC<IProps> = ({
         }}
       >
         <ContainerInfoHeaderGIB
+          p={15}
           style={{
             backgroundColor: adjustColorBrightness(card?.owner?.player?.color || '#F5F5F5', 45),
           }}
@@ -122,7 +123,9 @@ const ActionsCard: React.FC<IProps> = ({
           <Offset mt={20} />
         </ContainerInfoHeaderGIB>
 
-        <ContainerInfoBodyGIB>
+        <ContainerInfoBodyGIB 
+          p={15}
+        >
           <Offset mt={20} />
           <ContainerOneBtn>
             <ButtonBack
@@ -183,6 +186,7 @@ const ActionsCard: React.FC<IProps> = ({
               </InnerBtnContextSpaceBetween>
             </Button>
             <Button
+              component='div'
               type='fill-empty'
               textColor='rgba(78, 76, 109, 1)'
               onClick={() => alert('info')}
@@ -221,6 +225,7 @@ const ActionsCard: React.FC<IProps> = ({
               </InnerBtnContextSpaceBetween>
             </Button>
             <Button
+              component='div'
               type='fill-empty'
               textColor='rgba(78, 76, 109, 1)'
               onClick={() => alert('info')}
@@ -259,6 +264,7 @@ const ActionsCard: React.FC<IProps> = ({
               </InnerBtnContextSpaceBetween>
             </Button>
             <Button
+              component='div'
               type='fill-empty'
               textColor='rgba(78, 76, 109, 1)'
               onClick={() => alert('info')}
@@ -298,6 +304,8 @@ const ActionsCard: React.FC<IProps> = ({
               </InnerBtnContextSpaceBetween>
             </Button>
             <Button
+              component='div'
+
               type='fill-empty'
               textColor='rgba(78, 76, 109, 1)'
               onClick={() => alert('info')}
@@ -309,6 +317,44 @@ const ActionsCard: React.FC<IProps> = ({
                 start
               >
                 Обменять карту с другим игроком
+                (?)
+              </Text>
+            </Button>
+          </ContainerInfoTwoColumnGIB>
+          <Offset mt={10} />
+          <ContainerInfoTwoColumnGIB>
+            <Button
+              type='fill'
+              fillColor={card?.owner?.player?.color? adjustColorBrightness(card?.owner?.player?.color, 45) : '#F5F5F5'}
+              p={10}
+              onClick={() => handleAction({
+                action: 'clean_chose_actions',
+                card_id
+              })}
+            >
+              <InnerBtnContextSpaceBetween>
+                <Text
+                  text={'Выйти'}
+                />
+                <Text
+                  fontWeight={900}
+                  text={''}
+                />
+              </InnerBtnContextSpaceBetween>
+            </Button>
+            <Button
+              type='fill-empty'
+              textColor='rgba(78, 76, 109, 1)'
+              onClick={() => alert('info')}
+              component='div'
+            >
+              <Text
+                fontWeight={300}
+                fontSize={12}
+                color={'rgba(78, 76, 109, 1)'}
+                start
+              >
+                Вернуться на игровое поле
                 (?)
               </Text>
             </Button>

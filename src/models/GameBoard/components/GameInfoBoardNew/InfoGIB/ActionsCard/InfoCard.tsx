@@ -74,11 +74,14 @@ const InfoCard: React.FC<IProps> = ({
 
       <Offset mt={15} />
       <ContainerInfoGIB
+        
         style={{
           backgroundColor: card?.owner?.player?.color? adjustColorBrightness(card?.owner?.player?.color , 40) : '#F5F5F5',
         }}
       >
-        <ContainerInfoHeaderGIB>
+        <ContainerInfoHeaderGIB
+          p={15}
+        >
           <Offset mt={20} />
           <ContainerInfoTwoColumnGIB>
             <Button
@@ -100,7 +103,9 @@ const InfoCard: React.FC<IProps> = ({
           </ContainerInfoTwoColumnGIB>
         </ContainerInfoHeaderGIB>
 
-        <ContainerInfoBodyGIB>
+        <ContainerInfoBodyGIB
+          p={15}
+        >
           <Offset mt={20} />
 
           <ContainerInfoTwoColumnGIB>

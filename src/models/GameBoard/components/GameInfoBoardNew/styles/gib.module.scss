@@ -14,6 +14,7 @@
         position: relative;
         z-index: 2;
 
+
         //gib__container-info
         &-info {
             border-radius: 10px;
@@ -24,6 +25,7 @@
             align-items: center;
             // justify-content: center;
             position: relative;
+            overflow: auto;
 
             //gib__container-info-header
             &-header {
@@ -38,13 +40,14 @@
             //gib__container-info-body
             &-body {
                 flex: 1 1;
-                @include adaptiv-value(flex-basis, 236, 0, 1);
+                // flex-basis: 10%;
+                // @include adaptiv-value(flex-basis, 236, 0, 1);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
                 width: 100%;
-                height: 100%;
+                // height: 100%;
                 // padding: 0 20px 20px;
                 overflow-y: scroll;
             
