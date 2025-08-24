@@ -68,7 +68,6 @@ export const Button: React.FC<IButton & PropsComponent> = ({
 	if(p?.toString()) buttonStyle = {...buttonStyle, padding: `${p}px`};
 	if(borderColor) buttonStyle = {...buttonStyle, border: `1px solid ${borderColor}`};
 	if (component === 'button') {
-		console.log({buttonStyle})
 		return (
 			<button
 			onClick={onClick}

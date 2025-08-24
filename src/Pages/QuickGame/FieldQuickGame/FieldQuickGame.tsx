@@ -57,7 +57,7 @@ export const FieldQG: React.FC<IQG> = ({
 							listSelectUserPreview={listSelectUserPreview}
 							dataPlayerQG={dataPlayerQG}
 							playerCurrentMove={playerCurrentMove}
-							cards={cards as (ICard | ISpecialCard)[]}
+							// cards={cards as (ICard | ISpecialCard)[]}
 							handleCard={handleCard}
 							/>
 					</div>

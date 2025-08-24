@@ -13,12 +13,6 @@ export const AchievementsPreviewModuleContainer = () => {
 		listAchivmentPlayer: IAchivmentPlayer[]
 	} = useStoreon('listAchivmentPlayer');
 
-
-	useEffect(() => {
-		console.log('%cRENDER ACHIVMENT LIST SELECT QIUICK GAME container', 'color: red')
-		console.table(listAchivmentPlayer)
-	}, [listAchivmentPlayer]);
-
 	return (
 		<AchievementsPreviewModule 
 			listAchivmentPlayer={listAchivmentPlayer}

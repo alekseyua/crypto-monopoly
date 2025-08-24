@@ -14,6 +14,7 @@ import { IActionCard, ICard, ISpecialCard } from "../../../../../../store/quick-
 import ContainerInfoTwoColumnGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB";
 import InnerBtnContextSpaceBetween from "../../ControllerGIB/InnerBtnContextSpaceBetween";
 import Text from "../../../../../../shared/UI/Text/Text";
+import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";
 
 
 interface IExpressAirlineCruiseProps {
@@ -79,15 +80,16 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
 		<ContainerTwoBtn>
 			<Button
 				type="fill"
-				p={0}
+				p={10}
+				fillColor="#726CED"
 				disabled={!actions.buy}
 				onClick={handleBuyCard}>
 				Купить за {(card as ISpecialCard)?.card_info?.base_cost}
-				<Icon src={icons.qgCurrencySvgWhite} width="10" height="10" />
+				<Icon src={icons.qgCurrencySvgWhite} width="20" height="16" ml={5} />
 			</Button>
 			<Button
 				type="outline"
-				p={0}
+				p={10}
 				disabled={!actions.auction && isActionCard}
 				onClick={handleAuction}>
 				Отказ {<AutoCounter counter={timeEndMove} disabled={isActionCard} callback={()=>{}} />}
@@ -154,10 +156,13 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
 	  </ContainerInfoGIB>
 
 	</ContainerInfoBodyGIB>
+        <Offset mt={10} />
 
 	{/* ---------footer----------- */}
       <ContainerInfoFooterGIB>
-
+<GameInfoBoardFooterContainer
+					bgc={'#CFD3ED4D'}
+				/>
 	  </ContainerInfoFooterGIB>
 	</ContainerGIB>
 	);

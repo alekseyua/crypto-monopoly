@@ -1,4 +1,4 @@
-import type { ICard, IPlayer, ISpecialCard } from '../../store/quick-game/quick-game.d';
+import type { ICard, IDataQG, IPlayer, ISpecialCard } from '../../store/quick-game/quick-game.d';
 import cls from './styles/game-board.module.scss';
 import { GameField } from './components/game-field/GameField';
 import Parking from './components/Parking/Parking';
@@ -7,9 +7,10 @@ import Jail from './components/Jail/Jail';
 import { GameInfoBoardCorners } from './UI/GameInfoBoardCorners/GameInfoBoardCorners';
 import Circle from './components/Circle/Circle';
 import { GameFieldNew } from './components/game-field/GameFieldNew';
+import { useStoreon } from 'storeon/react';
 
 interface IGameBoard {
-    cards: (ICard | ISpecialCard)[];
+    // cards: (ICard | ISpecialCard)[];
 	dataPlayerQG: IPlayer;
 	playerCurrentMove: IPlayer;
 	ActionCard: React.ReactNode;
@@ -19,7 +20,7 @@ interface IGameBoard {
 
 }
 export const GameBoard: React.FC<IGameBoard> =({ 
-	cards,
+	// cards,
 	handleCard,
 	ActionCard,
 	innerRef,
@@ -27,7 +28,14 @@ export const GameBoard: React.FC<IGameBoard> =({
 	playerCurrentMove,
 	listSelectUserPreview,
  }) => {
+	const { 
+		quickGame 
+	}: {
+			quickGame: IDataQG
+	} = useStoreon('quickGame')
 	if (!dataPlayerQG) return;
+	const cards: (ICard | ISpecialCard)[] = quickGame.cards;
+
 	return (
 		<div 
 			ref={innerRef}

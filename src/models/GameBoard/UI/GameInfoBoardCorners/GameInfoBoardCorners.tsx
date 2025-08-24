@@ -9,6 +9,7 @@ export const GameInfoBoardCorners:React.FC<IProps> = ({
 }:IProps) => {
 	return (
 		<div
+			className={cls['conner__container']}
 			style={{
 				filter: isGrayBlur? 'blur(3px) grayscale(100%)' : ''
 			}}	
@@ -44,6 +45,7 @@ export const GameInfoBoardCorners:React.FC<IProps> = ({
 				className={`${cls.cornerGradient}`}>
 				<div className={`${cls.corner}  ${cls.leftBottom}`} />
 			</div>
+			<div className={cls['conner__wrap-field']}></div>
 		</div>
 	);
 };

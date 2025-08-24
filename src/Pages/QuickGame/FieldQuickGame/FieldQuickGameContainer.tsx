@@ -86,41 +86,41 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 		dataPlayerQG,
 		exchangeData,
 		infoMassagePopup,
-		dataActionCardQG 
+		dataActionCardQG
 	}: {
-			dispatch: StoreonDispatch<any>;
-			quickGame: IDataQG;
-			profile: IProfile;
-			messagesQG: IMessageQG[];
-			dataPlayerQG: IPlayer;
-			exchangeData: any;
-			dataActionCardQG:IUserActions; 
-			infoMassagePopup: IInfoMassagePopup;
+		dispatch: StoreonDispatch<any>;
+		quickGame: IDataQG;
+		profile: IProfile;
+		messagesQG: IMessageQG[];
+		dataPlayerQG: IPlayer;
+		exchangeData: any;
+		dataActionCardQG: IUserActions;
+		infoMassagePopup: IInfoMassagePopup;
 
-		} = useStoreon(
-			'exchangeData',
-			'quickGame',
-			'profile',
-			'dataPlayerQG',
-			'dataActionCardQG',
-			'messagesQG',
-			'infoMassagePopup'
-		);
-	const [heightGameBoard, setHeightGameBoard ] = useState<number>(0);
+	} = useStoreon(
+		'exchangeData',
+		'quickGame',
+		'profile',
+		'dataPlayerQG',
+		'dataActionCardQG',
+		'messagesQG',
+		'infoMassagePopup'
+	);
+	const [heightGameBoard, setHeightGameBoard] = useState<number>(0);
 	const [actionCardView, setActionCardView] = useState<React.ReactNode | any>(<GameInfoBoard />);
-	const refGameBoard:React.RefObject<HTMLDivElement | null> = useRef(null);
+	const refGameBoard: React.RefObject<HTMLDivElement | null> = useRef(null);
 	const [isChangeCard, setIsChangeCard] = useState<boolean>(false);
-	const [userIdForExchange, setUserIdForExchange ] = useState<number | null>(null);
+	const [userIdForExchange, setUserIdForExchange] = useState<number | null>(null);
 	const [listSelectUserPreview, setListSelectUserPreview] = useState<number[]>([]);
 	const [stateExchange, setStateExchange] = useState<IStateExchange>(initStateExchange)
 	const navigate = useNavigate();
 
 	const actionCardData = dataActionCardQG[profile.id + '' as keyof IUserActions];
 
-		useEffect(()=>{
-			const height = refGameBoard.current?.offsetWidth
-			height && setHeightGameBoard(height);
-		},[])
+	useEffect(() => {
+		const height = refGameBoard.current?.offsetWidth
+		height && setHeightGameBoard(height);
+	}, [])
 
 	// нужно ли переоткрывать ли соединение при смене страницы ???
 	useEffect(() => {
@@ -132,7 +132,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 
 	const onMove = (params: any) => {
 		dispatch(GET_MOVE_QG, params);
-		if(params.action === 'end_move') return;
+		if (params.action === 'end_move') return;
 		dispatch(GET_ACTION_CARD_QG);
 	}
 
@@ -140,14 +140,12 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 
 	const handleCard = (params: any): void => {
 		dispatch(SEND_ACTION_CARD_QG, params);
-		
 		setStateExchange(initStateExchange);
 		setListSelectUserPreview([]);
 		setIsChangeCard(false);
 	}
 
 	const handleMoveTo = (params: any): void => {
-		console.log('move')
 		dispatch(MOVE_TO, params);
 		dispatch(GET_ACTION_CARD_QG);
 	}
@@ -156,7 +154,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 		const listCard = quickGame.cards;
 		if (isChangeCard) {
 			// если обмен то добовляем или удаляем карту со списка
-			const card = listCard.filter((el:  ICard | ISpecialCard) => el.id === card_id)[0];
+			const card = listCard.filter((el: ICard | ISpecialCard) => el.id === card_id)[0];
 			// проверяе собственник карты
 			if (card.owner.player.id !== dataPlayerQG.id) {
 				if (stateExchange.propertys_to.includes(card.id + '')) {
@@ -164,7 +162,6 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					setStateExchange(state => ({
 						...state,
 						propertys_to: state.propertys_to.filter(el => el !== card.id + ''),
-
 					}))
 				}
 				else {
@@ -199,24 +196,24 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 				card_id,
 				action: 'get_card_action'
 			});
-			setUserIdForExchange(listCard.filter( (c: ICard | ISpecialCard) => c.id === card_id)[0]?.owner?.player?.id || null);
+			setUserIdForExchange(listCard.filter((c: ICard | ISpecialCard) => c.id === card_id)[0]?.owner?.player?.id || null);
 		}
 	}
 
-	const handleCardExchange = (params: any): void=> {
-		if (params?.action === 'exchange'){
+	const handleCardExchange = (params: any): void => {
+		if (params?.action === 'exchange') {
 			handleCard({
 				...params,
-				player_to_id: listSelectUserPreview.filter( (id: number )=>dataPlayerQG.id !== id)[0]
+				player_to_id: listSelectUserPreview.filter((id: number) => dataPlayerQG.id !== id)[0]
 			});
-			
+
 			return;
-		}else if(params.action === 'accept_exchange'){
+		} else if (params.action === 'accept_exchange') {
 			handleCard({
 				...params,
 			});
 			return
-		}else if(params.action === 'deny_exchange'){
+		} else if (params.action === 'deny_exchange') {
 			handleCard({
 				...params,
 			});
@@ -239,7 +236,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					players={quickGame.players}
 					listUserExchange={listSelectUserPreview}
 					currentPlayerId={dataPlayerQG.id}
-					cards={quickGame.cards as  ICard[] | ISpecialCard[]}
+					cards={quickGame.cards as ICard[] | ISpecialCard[]}
 				/>
 			)
 			return
@@ -258,12 +255,12 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 			}
 		}
 		console.log(infoMassagePopup.show, '&&', dataPlayerQG.current_move)
-		if(infoMassagePopup.show && dataPlayerQG.current_move){
+		if (infoMassagePopup.show && dataPlayerQG.current_move) {
 			return setActionCardView(<ShowMassagePopup
-					handleClick={handleCard}
-					title={infoMassagePopup.message}
-					typeCard={infoMassagePopup.type_card}
-				/>);
+				handleClick={handleCard}
+				title={infoMassagePopup.message}
+				typeCard={infoMassagePopup.type_card}
+			/>);
 		}
 		const getAction = logFunc(function (player: IPlayer, data: IDataContainer): keyPreview {
 
@@ -272,13 +269,13 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 			const isChoose: boolean = isKeyPresentInHash(data, 'choose_data');
 			const listCards = quickGame.cards;
 			let cardId = data?.card_id;
-			if(isAuctions) cardId = data.auction_data.card_id;
-			let typeCard = cardId && listCards.filter( (c: (ICard | ISpecialCard)) => c.id === cardId )[0].type_card; // тип карты на которой стоим
-			if(isChoose) typeCard = data.choose_data.card_type;
+			if (isAuctions) cardId = data.auction_data.card_id;
+			let typeCard = cardId && listCards.filter((c: (ICard | ISpecialCard)) => c.id === cardId)[0].type_card; // тип карты на которой стоим
+			if (isChoose) typeCard = data.choose_data.card_type;
 			const isMovePlayer = player.current_move;
 			//
-			console.log('%c----- data ----------', 'color: yellow','\n', {isActions}, '\n',{isAuctions},'\n', {isChoose}, '\n',data)
-			console.log('%cisMovePlayer: ' + isMovePlayer + '\ncardId: ' + cardId + '\ntypeCard: ' + typeCard,'color: yellow',)
+			console.log('%c----- data ----------', 'color: yellow', '\n', { isActions }, '\n', { isAuctions }, '\n', { isChoose }, '\n', data)
+			console.log('%cisMovePlayer: ' + isMovePlayer + '\ncardId: ' + cardId + '\ntypeCard: ' + typeCard, 'color: yellow',)
 
 			const keyAction: 'data_actions' | 'auction_data' | null = isActions ? 'data_actions' : isAuctions ? 'auction_data' : null;
 			// // нет данных для действий
@@ -288,34 +285,34 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 			// 		cardId: 0
 			// 	}
 			// }
-			const dataActions: any =keyAction && data[keyAction];
+			const dataActions: any = keyAction && data[keyAction];
 			// для экспресса  airline  cruise
 			const listExceptionSpecialCard = ["express", "airline", "cruise"];
 			const isExpressAirlineCruise = listExceptionSpecialCard.includes(typeCard + '');
-			
+
 			// Варианты actions
-			
+
 			//sell,exchange,build,pawn,redeem, auction
 			if (isChoose && isMovePlayer && !isExpressAirlineCruise) { //   показывает действия в игре по клику карточки
 				return {
 					key: 'info_board_actions',
 					cardId
 				};
-			}else if(isChoose && isMovePlayer && isExpressAirlineCruise ){
+			} else if (isChoose && isMovePlayer && isExpressAirlineCruise) {
 				return {
 					key: 'info_board_actions_special_card',
 					cardId
 				};
 			}
 			// показывает действия при шансе && (player.status !== 'waiting' && player.status !== 'move')
-			if(isMovePlayer && typeCard === 'chance' && isActions ){ 
+			if (isMovePlayer && typeCard === 'chance' && isActions) {
 				return {
 					key: 'info_chance',
 					cardId
 				}
 			}
 
-			if (isMovePlayer && player.status === 'end_move' && !isAuctions && !isActions){ // показывает кнопку конца хода
+			if (isMovePlayer && player.status === 'end_move' && !isAuctions && !isActions) { // показывает кнопку конца хода
 				return {
 					key: 'end_move',
 					cardId: 0
@@ -333,14 +330,14 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 				}
 			}
 
-			
-			
+
+
 			if (isAuctions && !isExpressAirlineCruise) {
 				return {
 					key: 'start_auction_one_card',
 					cardId,
 				};
-			}else if(isAuctions && isExpressAirlineCruise) {
+			} else if (isAuctions && isExpressAirlineCruise) {
 				return {
 					key: 'start_auction_express_airline_cruise',
 					cardId,
@@ -404,34 +401,34 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 			};
 		})
 
-		if(isKeyPresentInHash(exchangeData, 'price_from')){
+		if (isKeyPresentInHash(exchangeData, 'price_from')) {
 			return setActionCardView(<GameInfoBoardShowExchange
-					exchageData={exchangeData}
-					handleBack={handleCard}
-					key={'GameInfoBoardShowExchange'}
-					handleCard={handleCardExchange}
-					players={quickGame.players}
-					currentPlayerId={dataPlayerQG.id}
-					cards={quickGame.cards as (ICard | ISpecialCard)[]}
-					timeEndMove={dataPlayerQG.move_end_time_sec}
-				/>);
+				exchageData={exchangeData}
+				handleBack={handleCard}
+				key={'GameInfoBoardShowExchange'}
+				handleCard={handleCardExchange}
+				players={quickGame.players}
+				currentPlayerId={dataPlayerQG.id}
+				cards={quickGame.cards as (ICard | ISpecialCard)[]}
+				timeEndMove={dataPlayerQG.move_end_time_sec}
+			/>);
 		}
 		let dataAction: keyPreview = getAction(dataPlayerQG, actionCardData) //? 'current_move' : 'wait';
 		console.log('%cKEY: ' + dataAction.key, 'color: green')
 		switch (dataAction.key) {
 			case 'wait':
 				setActionCardView(<Wait
-					playerCurrentMove={quickGame.players.filter((p:IPlayer)=>p.current_move)[0]}
+					playerCurrentMove={quickGame.players.filter((p: IPlayer) => p.current_move)[0]}
 				/>);
 				break;
 			case 'wait_move': // ожидание хода
 				setActionCardView(<Wait
-					playerCurrentMove={quickGame.players.filter((p:IPlayer)=>p.current_move)[0]}
+					playerCurrentMove={quickGame.players.filter((p: IPlayer) => p.current_move)[0]}
 				/>);
 				break;
 			case 'wait-move':
 				setActionCardView(<Wait
-					playerCurrentMove={quickGame.players.filter((p:IPlayer)=>p.current_move)[0]}
+					playerCurrentMove={quickGame.players.filter((p: IPlayer) => p.current_move)[0]}
 				/>);
 				break;
 			case 'move_to':
@@ -492,7 +489,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 				break;
 			case 'info_board_actions':
 				setActionCardView(
-					<ActionsCardContainerStackScreen 
+					<ActionsCardContainerStackScreen
 						card={quickGame.cards.filter((el: ICard | ISpecialCard) => el.id === actionCardData?.choose_data?.card_id)[0]}
 						timeEndMove={dataPlayerQG.move_end_time_sec}
 						handleBack={handleCard}
@@ -509,7 +506,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 				break;
 			case 'info_board_actions_special_card':
 				setActionCardView(
-					<ActionsCardContainerStackScreen 
+					<ActionsCardContainerStackScreen
 						card={quickGame.cards.filter((el: ICard | ISpecialCard) => el.id === actionCardData?.choose_data?.card_id)[0]}
 						timeEndMove={dataPlayerQG.move_end_time_sec}
 						handleBack={handleCard}
@@ -538,43 +535,43 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 			case 'current_move':
 				setActionCardView(<MoveBoardQG
 					onMove={onMove}
-					action = 'move'
+					action='move'
 					title='Время вашего хода'
 					titleBtn='Походить'
 					timeEndMove={dataPlayerQG.move_end_time_sec}
-					/>)
-					break;
+				/>)
+				break;
 			case 'end_move':
 				setActionCardView(<MoveBoardQG
 					onMove={onMove}
-					action= 'end_move'
+					action='end_move'
 					title=''
 					titleBtn='Окончить ход'
 					timeEndMove={dataPlayerQG.move_end_time_sec}
-			/>)
+				/>)
 				break;
-				// community
-				// keys
-				// move_to - переход к карте ( обязателен card_id куда переходим )
-				// move - доп ход
-				// pay - что то оплатить тут кнопки действия
-				// add_card - получить тут кнопка действия
+			// community
+			// keys
+			// move_to - переход к карте ( обязателен card_id куда переходим )
+			// move - доп ход
+			// pay - что то оплатить тут кнопки действия
+			// add_card - получить тут кнопка действия
 			case 'info_chance':
 				console.log(actionCardData?.data_actions?.actions)
 				// if(actionCardData??.data_actions?.actions) return <>wait</>;
-				const key = actionCardData?.data_actions?.actions? Object.keys(actionCardData?.data_actions?.actions)[0] : '';
+				const key = actionCardData?.data_actions?.actions ? Object.keys(actionCardData?.data_actions?.actions)[0] : '';
 				// keys
 				// move_to - переход к карте ( обязателен card_id куда переходим)
 				// move - доп ход
 				// 
-				console.log('%cKEY ===================== ' + key,'color: hotpink')
+				console.log('%cKEY ===================== ' + key, 'color: hotpink')
 				setActionCardView(<InfoChanceOrCommunity
 					onMove={onMove}
-					action= {key}
-					cardIdWhereMoveTo = {key === 'move_to'? actionCardData?.data_actions?.card?.id : null }
+					action={key}
+					cardIdWhereMoveTo={key === 'move_to' ? actionCardData?.data_actions?.card?.id : null}
 					title='Вам выпал шанс.'
-					content={actionCardData?.data_actions?.card?.name? 'Вам выпал переход на ' + actionCardData?.data_actions?.card.name : ''}
-					titleBtn={key === 'move_to'? 'Перейти' : 'Получить'}
+					content={actionCardData?.data_actions?.card?.name ? 'Вам выпал переход на ' + actionCardData?.data_actions?.card.name : ''}
+					titleBtn={key === 'move_to' ? 'Перейти' : 'Получить'}
 				/>)
 				break;
 			case 'start_auction_one_card':
@@ -616,9 +613,9 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 				break;
 			case 'plus_extra_move':
 				setActionCardView(<MoveBoardQG
-					onMove ={onMove}
-					action = 'move'
-					title ='Вам выпал дополнительный ход'
+					onMove={onMove}
+					action='move'
+					title='Вам выпал дополнительный ход'
 					titleBtn='Походить'
 					timeEndMove={dataPlayerQG.move_end_time_sec}
 
@@ -634,7 +631,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 
 	// ------------------------------ list preview users
 	const handleClickUserPreview = function (id: number) {
-		console.log({userIdForExchange,isChangeCard,id})
+		console.log({ userIdForExchange, isChangeCard, id })
 		if (isChangeCard) {
 			if (!listSelectUserPreview.includes(dataPlayerQG.id)) {
 				setListSelectUserPreview(state => ([...state, dataPlayerQG.id, id]))
@@ -649,7 +646,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 					setListSelectUserPreview(state => ([...state, id]))
 				}
 			}
-		}else if( userIdForExchange){
+		} else if (userIdForExchange) {
 			setUserIdForExchange(null);
 			(dataPlayerQG.id !== id) && setListSelectUserPreview(state => ([...state, dataPlayerQG.id, id]))
 		}
@@ -687,7 +684,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 			players={quickGame.players}
 			listSelectUserPreview={listSelectUserPreview}
 			handleClickUserPreview={handleClickUserPreview}
-			playerCurrentMove={quickGame.players.filter((p:IPlayer)=>p.current_move)[0]}
+			playerCurrentMove={quickGame.players.filter((p: IPlayer) => p.current_move)[0]}
 
 		/>
 	);

@@ -351,7 +351,7 @@ export const quickGame = (store: StoreonStore) => {
         
       } else {
         dispatch(RESET_QG);
-        payload.redirectTo(NAV_QG_SELECT_PAGE);
+        payload?.redirectTo && payload.redirectTo(NAV_QG_SELECT_PAGE);
       }
       // =============================================================
     });

@@ -75,8 +75,11 @@ export const GameInfoBoardBuyOrAuction: React.FC<IGameInfoBoardBuyOrAuctionProps
 					<Offset mt={10} />
 					<div className={styles['gib__btns-container--btn-two']}>
 						<Button onClick={handleBuyCard}
+							type='fill'
+				fillColor="#726CED"
+
 							disabled={!actions?.buy}
-						>Купить за {card_cost}
+							>Купить за {card_cost}
 							<Icon
 								width='15px'
 								height='15px'

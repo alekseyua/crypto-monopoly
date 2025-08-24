@@ -14,6 +14,7 @@ import { ICard } from "../../../../../../store/quick-game/quick-game.d";
 import ContainerInfoTwoColumnGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB";
 import InnerBtnContextSpaceBetween from "../../ControllerGIB/InnerBtnContextSpaceBetween";
 import Text from "../../../../../../shared/UI/Text/Text";
+import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";
 
 
 interface IAuctionExpressAirlineCruiseProps {
@@ -141,10 +142,13 @@ export const AuctionExpressAirlineCruise: React.FC<IAuctionExpressAirlineCruiseP
 	  </ContainerInfoGIB>
 
 	</ContainerInfoBodyGIB>
+		<Offset mt={10} />
 
 	{/* ---------footer----------- */}
       <ContainerInfoFooterGIB>
-
+<GameInfoBoardFooterContainer
+					bgc={'#CFD3ED4D'}
+				/>
 	  </ContainerInfoFooterGIB>
 	</ContainerGIB>
 	);

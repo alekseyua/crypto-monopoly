@@ -4,10 +4,11 @@ import fieldBg from '../../assets/images/field1-bg.png';
 import { icons, LeftSoleIcon, RightSoleIcon } from '../../../../assets';
 import { motion } from 'framer-motion';
 import Icon from '../../../../shared/UI/Icon/Icon';
-import { CSSProperties } from 'react';
+import { CSSProperties, useEffect } from 'react';
 import classNames from 'classnames';
 import { IPlayer } from '../../../../store/quick-game/quick-game.d';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';
+import React from 'react';
 
 interface IGameFieldNew {
 	direction: 'left' | 'right' | 'top' | 'bottom',
@@ -30,7 +31,7 @@ interface IGameFieldNew {
 
 }
 
-export const GameFieldNew: React.FC<IGameFieldNew> = ({
+export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 	id,
 	direction,
 	cardCost,
@@ -66,6 +67,10 @@ export const GameFieldNew: React.FC<IGameFieldNew> = ({
 		'--bgc-bar': bgBar,
 		// ...styleBayCard,
 	}
+
+	useEffect(() => {
+			console.log('%cRENDER GameFieldNew QIUICK GAME container', 'color: red')
+		}, []);
 
 	return (
 		<div
@@ -249,4 +254,4 @@ export const GameFieldNew: React.FC<IGameFieldNew> = ({
 			)}
 		</div>
 	);
-};
+});

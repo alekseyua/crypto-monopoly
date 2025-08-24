@@ -12,6 +12,7 @@
         // z-index: 999;
         padding: 4%;
         position: relative;
+        z-index: 2;
 
         //gib__container-info
         &-info {
@@ -23,13 +24,14 @@
             align-items: center;
             // justify-content: center;
             position: relative;
+
             //gib__container-info-header
             &-header {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 width: 100%;
-                padding: 0 20px;
+                // padding: 0 20px;
                 // flex: 0 0  70px;
             }
 
@@ -43,8 +45,9 @@
                 justify-content: flex-start;
                 width: 100%;
                 height: 100%;
-                padding: 0 20px 20px;
+                // padding: 0 20px 20px;
                 overflow-y: scroll;
+            
             }
 
             //gib__container-info-footer
@@ -54,9 +57,10 @@
                 flex-direction: column;
                 align-items: center;
                 width: 100%;
-                padding: 0 20px;
+                // padding: 0 20px;
 
             }
+
             //gib__container-info-two-column
             &-two-column {
                 display: grid;
@@ -70,6 +74,7 @@
 
     &__controller {
         &-container {
+
             // gib__controller-container--one-btn
             &--one-btn {
                 display: flex;
@@ -77,16 +82,19 @@
                 align-items: center;
                 width: 100%;
             }
+
             //gib__controller-container--two-btn
-            &--two-btn{
+            &--two-btn {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
                 width: 100%;
             }
         }
-        &-btn{
-            &-context{
+
+        &-btn {
+            &-context {
+
                 //gib__controller-btn-context--space-between
                 &--space-between {
                     display: flex;

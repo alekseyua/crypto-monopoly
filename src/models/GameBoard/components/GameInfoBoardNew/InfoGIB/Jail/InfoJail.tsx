@@ -67,7 +67,7 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
 				<Offset mt={30} />
 
 				<Title
-					title={'Вы в тюрме'}
+					title={'Вы в тюрьме'}
 					tag='h3'
 					center
 				/>
