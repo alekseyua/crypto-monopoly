@@ -2,11 +2,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     &>*{
         display: flex;
         align-items: center;
+        position: relative;
         justify-content: center;
+        top: var(--top);
+        bottom: var(--bottom);
         // vertical-align: middle;
         &>*{
             display: flex;

@@ -63,7 +63,12 @@ const UserPanel:React.FC<IProps> = ({
                 </div>
                 <div className={styles['header-menu-btn__price-container']}>
                     <div className={styles['header-menu-btn__price']}>
-                      {`${price}`} $
+                      {`${price}`} 
+                      <Icon 
+                        src={icons.qgCurrencySvg}
+                        width='15'
+                        up={1}
+                      />
                     </div>
                   </div>
               </div>

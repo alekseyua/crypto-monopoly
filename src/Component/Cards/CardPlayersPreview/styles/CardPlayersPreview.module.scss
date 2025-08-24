@@ -81,6 +81,7 @@
     &__capital {
         display: flex;
         align-items: center;
+        gap: 2px;
         &>div>span{
             font-family: Manrope;
             font-weight: 300;

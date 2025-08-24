@@ -51,6 +51,8 @@
     // .header-menu-btn__price
     &__price{
         @include adaptiv-font(14,8);
+        display: flex;
+        gap: 5px;
     }
     //header-menu-btn__price-icon
     &__price-icon{

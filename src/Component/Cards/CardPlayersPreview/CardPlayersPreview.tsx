@@ -136,6 +136,7 @@ const CardPlayersPreview:React.FC<IPropsCardPlayersPreview> = ({
                     <Icon
                         width='12px'
                         height='12px'
+                        down={1}
                         src={icons.qgCurrencySvg}
                     />
                     {/* <img src={currency2White} alt="currency" width={10} height={10}/> */}

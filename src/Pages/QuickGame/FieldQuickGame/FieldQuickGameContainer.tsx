@@ -305,7 +305,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 				};
 			}
 			// показывает действия при шансе && (player.status !== 'waiting' && player.status !== 'move')
-			if (isMovePlayer && typeCard === 'chance' && isActions) {
+			if (isMovePlayer && (typeCard === 'chance' || typeCard === 'community') && isActions) {
 				return {
 					key: 'info_chance',
 					cardId
@@ -377,7 +377,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 				key: 'pay_tax_or_add_card_chance',
 				cardId
 			};
-			if (isKeyPresentInHash(actions, 'move_to')) return {
+			if (isKeyPresentInHash(actions, 'move_to')) return { // скорей всего не нужен уже
 				key: 'move_to',
 				cardId
 			}

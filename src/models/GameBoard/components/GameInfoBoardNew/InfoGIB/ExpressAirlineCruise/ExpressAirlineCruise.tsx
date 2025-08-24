@@ -133,7 +133,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
                 />
                 <Text
                   text={(card as ISpecialCard)?.card_info?.one_card_tax  + ''}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={'15px'} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} height={'13px'} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>

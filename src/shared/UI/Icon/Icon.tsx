@@ -15,6 +15,8 @@ interface IIcon {
     rotate?: number; // rotation angle in degrees
     display?: string;
     props?: any;
+    up?: number;
+    down?: number;
     // additional props for svg tag
 }
 
@@ -31,9 +33,11 @@ const Icon:React.FC<IIcon> = ({
     ml,
     backgroundFont,
     display,
+    up,
+    down,
     ...props
 }: IIcon) => {
-    let customStyle = {}
+    let customStyle: React.CSSProperties & Record<string, string | number> = {};
     if(!!rotate){
         customStyle = {
             transform: `rotate(${rotate}deg)`,
@@ -42,7 +46,14 @@ const Icon:React.FC<IIcon> = ({
     if(mr){ customStyle = {...customStyle,marginRight:mr,};}
     if(ml){ customStyle = {...customStyle,marginLeft:ml,}; }
     if(display){ customStyle = {...customStyle,display:display,}; }
-
+    if(up) customStyle = {
+        ...customStyle,
+        "--bottom": `${up}px`
+    }
+   if(down) customStyle = {
+        ...customStyle,
+        "--top": `${down}px`
+    }
     
     return (
         <span 
