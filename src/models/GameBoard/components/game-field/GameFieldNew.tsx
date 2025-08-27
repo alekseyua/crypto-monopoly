@@ -136,7 +136,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 							>
 								{!(type === 'chance' || type === 'community') && name}
 								{
-									!!owner?.houses ?
+									!!owner?.hotels ?
 										<div className={styles[`card-field__text-title--build-hotel-${direction}`]}>
 											<Icon src={icons.hotelCard} width='25' height='12' />
 
@@ -144,9 +144,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 										: !!owner?.houses ?
 											<div className={styles[`card-field__text-title--build-h-${direction}`]}>
 												{new Array(owner?.houses).fill('').map((h: any) => {
-													return (
-														<Icon src={icons.homeCard} width='7' height='7' />
-													)
+													return <Icon src={icons.home} width="7" height="7" />;
 												})}
 											</div>
 											: null

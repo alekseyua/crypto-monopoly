@@ -555,17 +555,20 @@
                 &-h-left{
                     position: absolute;
                     transform: rotate(90deg) translate(10px, -12px);
-
                 }
                 //card-field__text-title-build-h-bottom
                 &-h-bottom{
                     position: absolute;
-                    transform: rotate(90deg) translate(-10px, -15px);
+                    transform: rotate(90deg) translate(-21px, -15px);
+                    &>span{
+                        margin-left: 5px;
+                    }
                 }
                 //card-field__text-title-build-h-right
                 &-h-right{
                     position: absolute;
                     transform: rotate(90deg) translate(10px, -12px);
+                gap:5px;
                 }
             }
             //card-field__text-title--bottom

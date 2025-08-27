@@ -69,7 +69,10 @@ import jackpot from './icons/jackpot.svg';
 import homeCard from './icons/home-card.svg';
 import hotelCard from './icons/hotel-card.svg';
 
+import home from './icons/home1.svg'
+
 export const icons = {
+  home,
   logo,
   actions,
   crossBlack,
