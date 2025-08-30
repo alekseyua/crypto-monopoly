@@ -45,14 +45,14 @@ export const AuctionInfoCard: React.FC<Iprops> = ({
 						fillColor='linear-gradient(to right, #E4863F 0%, #E4863F 70%, #FAD660 100%)'
 						p={10}
 					>
-						{cardInfo.info.name}
+						{cardInfo?.info?.name}
 					</Button>
 					<Button
 						type='fill'
 						fillColor='#65B99E'
 						p={10}
 					>
-						{cardInfo.info.country_name}
+						{cardInfo?.info?.country_name}
 					</Button>
 				</ContainerTwoBtn>
 			</ContainerInfoHeaderGIB>

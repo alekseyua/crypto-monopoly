@@ -38,7 +38,6 @@ const FieldListPlayersQGContainer: React.FC<IFieldListPlayersQGProps> = ({
     isChangeCard && 
       setIsOpenModal(status);
   }
-console.log('dataPlayerQG --- ', dataPlayerQG.current_move)
   useEffect(()=>{
     // при клике в футоре инфо окна  разворачивать список игроков отсортированных по капиталу
     setIsOpenListPlayers(true);

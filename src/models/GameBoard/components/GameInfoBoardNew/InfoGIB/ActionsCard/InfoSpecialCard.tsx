@@ -43,29 +43,23 @@ const InfoSpecialCard: React.FC<IProps> = ({
   return (
     <ContainerGIB>
       <Offset mt={5} />
-      <Title
-        title={'Действия с картой'}
-        tag="h3"
-        fontWeight={500}
-      />
+      <Title title={"Действия с картой"} tag="h3" fontWeight={500} />
       <Offset mt={15} />
       <ContainerOneBtn>
         <Button
-          type='empty'
-          borderColor='#E4E4E4'
+          type="empty"
+          borderColor="#E4E4E4"
           p={11}
-          onClick={() => handleBack({
-            action: 'clean_chose_actions',
-          })}
+          onClick={() =>
+            handleBack({
+              action: "clean_chose_actions",
+            })
+          }
         >
-          <Text
-            fontWeight={300}
-            fontSize={14}
-            center
-          >
+          <Text fontWeight={300} fontSize={14} center>
             <>
               До хода
-              <AutoCounter counter={timeEndMove} callback={() => { }} />
+              <AutoCounter counter={timeEndMove} callback={() => {}} />
               секунд
             </>
           </Text>
@@ -75,36 +69,36 @@ const InfoSpecialCard: React.FC<IProps> = ({
       <Offset mt={15} />
       <ContainerInfoGIB
         style={{
-          backgroundColor: 'rgba(233, 236, 255, 1)',
+          backgroundColor: "rgba(233, 236, 255, 1)",
         }}
       >
-        <ContainerInfoHeaderGIB>
+        <ContainerInfoHeaderGIB p={"0 15px"}>
           <Offset mt={20} />
           <ContainerOneBtn>
             <Button
-              type='fill'
-              fillColor={card?.bgc_header || '#F5F5F5'}
-              textColor='#FFFFFF'
+              type="fill"
+              fillColor={card?.bgc_header || "#F5F5F5"}
+              textColor="#FFFFFF"
               p={12}
             >
-              {card?.card_info.name || 'Страна не выбран'}
+              {card?.card_info.name || "Страна не выбран"}
             </Button>
           </ContainerOneBtn>
         </ContainerInfoHeaderGIB>
 
-        <ContainerInfoBodyGIB>
+        <ContainerInfoBodyGIB p={"0 15px"}>
           <Offset mt={20} />
 
           <ContainerInfoTwoColumnGIB>
             <Title
-              title={'Характеристики карты'}
-              tag='h5'
+              title={"Характеристики карты"}
+              tag="h5"
               fontWeight={300}
               center
             />
             <Title
-              title={'Покупка недвижимости'}
-              tag='h5'
+              title={"Покупка недвижимости"}
+              tag="h5"
               fontWeight={300}
               center
             />
@@ -112,21 +106,16 @@ const InfoSpecialCard: React.FC<IProps> = ({
           <Offset mt={10} />
 
           <ContainerInfoTwoColumnGIB>
-            <Button
-              type='transparent'
-              p={10}
-            >
+            <Button type="transparent" p={10}>
               <InnerBtnContextSpaceBetween>
+                <Text text={"Налог"} />
                 <Text
-                  text={'Налог'}
-                />
-                <Text
-                  text={card?.card_info?.one_card_tax + ''}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={'15px'} />}
+                  text={card?.card_info?.one_card_tax + ""}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
-            <Button
+            {/* <Button
               type='transparent'
               p={10}
             >
@@ -139,55 +128,48 @@ const InfoSpecialCard: React.FC<IProps> = ({
                   text={'2 из 5 ?'}
                 />
               </InnerBtnContextSpaceBetween>
+            </Button> */}
+            <Button type="transparent" p={10}>
+              <InnerBtnContextSpaceBetween>
+                <Text text={"С коллекцией"} />
+                <Text
+                  text={card?.card_info?.monopoly_tax + ""}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                />
+              </InnerBtnContextSpaceBetween>
             </Button>
           </ContainerInfoTwoColumnGIB>
 
           <Offset mt={10} />
 
           <ContainerInfoTwoColumnGIB>
+            <div></div>
             <Button
-              type='transparent'
+              type="fill"
+              fillColor={"rgba(239, 238, 255, 1)"}
+              borderColor=""
               p={10}
+              onClick={() => handleChangeScreen("actions")}
             >
-              <InnerBtnContextSpaceBetween>
-                <Text
-                  text={'С коллекцией'}
-                />
-                <Text
-                  text={card?.card_info?.monopoly_tax + ''}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={'15px'} />}
-                />
-              </InnerBtnContextSpaceBetween>
-            </Button>
-              <Button
-              type='fill'
-              fillColor={'rgba(239, 238, 255, 1)'}
-              borderColor=''
-              p={10}
-              onClick={() => handleChangeScreen('actions')}
-            >
-              <Text
-                text={'Действия с картой'}
-              />
+              <Text start text={"Действия с картой"} />
             </Button>
           </ContainerInfoTwoColumnGIB>
-
         </ContainerInfoBodyGIB>
 
         <ContainerInfoFooterGIB
-        style={{
-          backgroundColor: adjustColorBrightness(card?.owner?.player?.color || '#F5F5F5', 30),
-        }}
+          p={"0 15px"}
+          style={{
+            backgroundColor: "rgb(229 228 255)",
+          }}
         >
-          <GameInfoBoardFooterContainer 
-            bgc={'transparent'}
-            bgcBtn={adjustColorBrightness(card?.owner?.player?.color || '#F5F5F5', 10)}
+          <GameInfoBoardFooterContainer
+            bgc={"transparent"}
+            bgcBtn={"rgb(215 217 244)"}
           />
         </ContainerInfoFooterGIB>
-
       </ContainerInfoGIB>
     </ContainerGIB>
-  )
+  );
 }
 
 export default InfoSpecialCard

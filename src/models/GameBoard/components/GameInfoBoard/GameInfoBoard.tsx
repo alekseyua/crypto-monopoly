@@ -104,12 +104,12 @@ export const GameInfoBoard:React.FC<IGameInfoBoardProps> = ({
 												<p>5 $</p>
 											</div>
 										</InfoBoardLabel>
-										<InfoBoardLabel>
+										{/* <InfoBoardLabel>
 											<div className={styles['gib__info-card-info-desc-label']}>
 												<p>С коллекцией</p>
 												<p>5 $</p>
 											</div>
-										</InfoBoardLabel>
+										</InfoBoardLabel> */}
 										<InfoBoardLabel>
 											<div className={styles['gib__info-card-info-desc-label']}>
 												<p>Стоимость отеля</p>

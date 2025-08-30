@@ -13,7 +13,7 @@ import { isKeyPresentInHash } from '../../../helpers/helper';
 import { GameInfoBoardPayOrAddChance } from '../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardPayOrAddChance';
 import { GameInfoBoardPayTaxOrAddCardChance } from '../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardPayTaxOrAddCardChance';
 import AuctionContainer from '../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/Auction/AuctionContainer';
-import { GameInfoBoardActionsExchange } from '../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardActionsExchange';
+import { GameInfoBoardActionsExchange } from '../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/Exchange/GameInfoBoardActionsExchange';
 import { GameInfoBoardShowExchange } from '../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardShowExchange';
 import ActionsCardContainerStackScreen from '../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ActionsCard/ActionsCardContainerStackScreen';
 import Wait from '../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/Wait/Wait';
@@ -139,11 +139,28 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 	const redirectTo = (path: string) => navigate(path);
 
 	const handleCard = (params: any): void => {
-		dispatch(SEND_ACTION_CARD_QG, params);
-		setStateExchange(initStateExchange);
-		setListSelectUserPreview([]);
-		setIsChangeCard(false);
-	}
+	// 	console.log({...params})
+    // if (params?.idOwnerCard && dataPlayerQG.id !== params?.idOwnerCard) {
+    //   // для обмена вытягиваем id игрока
+    //   setListSelectUserPreview((state) => [
+    //     ...state,
+    //     dataPlayerQG.id,
+    //     params?.idOwnerCard,
+    //   ]);
+	//   setIsChangeCard(true);
+	//   // 
+	//   debugger
+	//   setStateExchange((state) => ({
+    //   ...state,
+    //   propertys_from: [...state.propertys_from, params.card_id + ""],
+    // }));
+    // }
+
+    dispatch(SEND_ACTION_CARD_QG, params);
+    setStateExchange(initStateExchange);
+    setListSelectUserPreview([]);
+    setIsChangeCard(false);
+  };
 
 	const handleMoveTo = (params: any): void => {
 		dispatch(MOVE_TO, params);
@@ -224,21 +241,35 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 
 	const handleCardOnFieldAction = async (params: any): Promise<void> => {
 		if (params.action === 'exchange') {
-			// будем показывать форму где выбираем какие с какими карточками менять
-			setIsChangeCard(true);
+				console.log({ ...params });
+			if (params?.idOwnerCard && dataPlayerQG.id === params?.idOwnerCard) {
+			//
+			setStateExchange((state) => ({
+				...state,
+				propertys_to: [...state.propertys_to, params.card_id + ""],
+			}));
+		}else if (params?.idOwnerCard && dataPlayerQG.id !== params?.idOwnerCard){
+			setStateExchange((state) => ({
+				...state,
+				propertys_from: [...state.propertys_from, params.card_id + ""],
+				}));
+			}
+        // будем показывать форму где выбираем какие с какими карточками менять
+        setIsChangeCard(true);
 			userIdForExchange && handleClickUserPreview(userIdForExchange);
 			setActionCardView(
-				<GameInfoBoardActionsExchange
-					key={'GameInfoBoardActionsExchange'}
-					handleBack={handleCard}
-					handleCard={handleCardExchange}
-					stateExchange={stateExchange}
-					players={quickGame.players}
-					listUserExchange={listSelectUserPreview}
-					currentPlayerId={dataPlayerQG.id}
-					cards={quickGame.cards as ICard[] | ISpecialCard[]}
-				/>
-			)
+        <GameInfoBoardActionsExchange
+          key={"GameInfoBoardActionsExchange"}
+          handleBack={handleCard}
+          handleCard={handleCardExchange}
+          stateExchange={stateExchange}
+          players={quickGame.players}
+          listUserExchange={listSelectUserPreview}
+          currentPlayerId={dataPlayerQG.id}
+          cards={quickGame.cards as ICard[] | ISpecialCard[]}
+          handleClickUserPreview={handleClickUserPreview}
+        />
+      );
 			return
 		}
 		dispatch(GET_ACTION_FROM_CARD, params);
@@ -475,11 +506,9 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 			case 'buy_or_auction_special_card':
 				setActionCardView(<ExpressAirlineCruise
 					actions={actionCardData?.data_actions?.actions}
-					card_cost={actionCardData?.data_actions?.card_info?.base_cost}
 					handleCard={handleCard}
 					game_id={quickGame.id}
 					card_id={dataAction.cardId}
-					dataCard={actionCardData?.data_actions?.card_info}
 					timeEndMove={dataPlayerQG.move_end_time_sec}
 
 					card={quickGame.cards.filter((el: ICard | ISpecialCard) => el.id === dataAction.cardId)[0]}
@@ -559,20 +588,33 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 			case 'info_chance':
 				console.log(actionCardData?.data_actions?.actions)
 				// if(actionCardData??.data_actions?.actions) return <>wait</>;
-				const key = actionCardData?.data_actions?.actions ? Object.keys(actionCardData?.data_actions?.actions)[0] : '';
+				const keys: string[] = actionCardData?.data_actions?.actions ? Object.keys(actionCardData?.data_actions?.actions) : [''];
 				// keys
 				// move_to - переход к карте ( обязателен card_id куда переходим)
 				// move - доп ход
 				// 
-				console.log('%cKEY ===================== ' + key, 'color: hotpink')
-				setActionCardView(<InfoChanceOrCommunity
-					onMove={onMove}
-					action={key}
-					cardIdWhereMoveTo={key === 'move_to' ? actionCardData?.data_actions?.card?.id : null}
-					title='Вам выпал шанс.'
-					content={actionCardData?.data_actions?.card?.name ? 'Вам выпал переход на ' + actionCardData?.data_actions?.card.name : ''}
-					titleBtn={key === 'move_to' ? 'Перейти' : 'Получить'}
-				/>)
+				console.log('%cKEY ===================== ' + keys, 'color: hotpink')
+				setActionCardView(
+          <InfoChanceOrCommunity
+            onMove={onMove}
+            actions={keys}
+            cardIdWhereMoveTo={
+              keys.includes("move_to")
+                ? actionCardData?.data_actions?.card?.id
+                : null
+            }
+            title="Вам выпал шанс."
+            content={
+              actionCardData?.data_actions?.card?.name
+                ? "Вам выпал переход на " +
+                  actionCardData?.data_actions?.card.name
+                : keys.includes('pay') && infoMassagePopup.message? 
+					infoMassagePopup.message
+					: ''
+            }
+            // titleBtns={keys.map((k:string) => getNameBtn(k))}
+          />
+        );
 				break;
 			case 'start_auction_one_card':
 
@@ -655,17 +697,18 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 	useEffect(() => {
 		if (actionCardView.key === 'GameInfoBoardActionsExchange') {
 			setActionCardView(
-				<GameInfoBoardActionsExchange
-					key={'GameInfoBoardActionsExchange'}
-					handleBack={handleCard}
-					handleCard={handleCardExchange}
-					stateExchange={stateExchange}
-					players={quickGame.players}
-					listUserExchange={listSelectUserPreview}
-					currentPlayerId={dataPlayerQG.id}
-					cards={quickGame.cards}
-				/>
-			)
+        <GameInfoBoardActionsExchange
+          key={"GameInfoBoardActionsExchange"}
+          handleBack={handleCard}
+          handleCard={handleCardExchange}
+          stateExchange={stateExchange}
+          players={quickGame.players}
+          listUserExchange={listSelectUserPreview}
+          currentPlayerId={dataPlayerQG.id}
+          cards={quickGame.cards}
+          handleClickUserPreview={handleClickUserPreview}
+        />
+      );
 		}
 	}, [listSelectUserPreview, stateExchange]);
 

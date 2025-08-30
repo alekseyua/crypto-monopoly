@@ -33,7 +33,6 @@ const ActionsCardContainerStackScreen:React.FC<IProps> = ({
     useEffect(()=>{
         setScreen(showInfoCard)
     },[showInfoCard, card])
-    console.log('ActionsCardContainerStackScreen', card, screen);
 
     if(screen === 'action-card'){
         return <InfoCard 

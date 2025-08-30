@@ -188,7 +188,6 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 													value={exchageData.price_to}
 													isSpanWidth={!!exchageData.price_to}
 													onChange={(value: any) => {}} 
-													bet-auction
 													type='number'
 													id='input-costumer'
 													leftText={exchageData.price_to ? '+ ' : undefined}

@@ -123,7 +123,7 @@ export const AuctionExpressAirlineCruise: React.FC<IAuctionExpressAirlineCruiseP
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
-            <Button
+            {/* <Button
               type='transparent'
               p={10}
             >
@@ -136,7 +136,7 @@ export const AuctionExpressAirlineCruise: React.FC<IAuctionExpressAirlineCruiseP
                   text={'2 из 5 ?'}
                 />
               </InnerBtnContextSpaceBetween>
-            </Button>
+            </Button> */}
           </ContainerInfoTwoColumnGIB>
 
 	  </ContainerInfoGIB>

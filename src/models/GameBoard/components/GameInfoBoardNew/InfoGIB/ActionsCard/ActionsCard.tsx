@@ -45,29 +45,23 @@ const ActionsCard: React.FC<IProps> = ({
   return (
     <ContainerGIB>
       <Offset mt={5} />
-      <Title
-        title={'Действия с картой'}
-        tag="h3"
-        fontWeight={500}
-      />
+      <Title title={"Действия с картой"} tag="h3" fontWeight={500} />
       <Offset mt={15} />
       <ContainerOneBtn>
         <Button
-          type='empty'
-          borderColor='#E4E4E4'
+          type="empty"
+          borderColor="#E4E4E4"
           p={11}
-          onClick={() => handleBack({
-            action: 'clean_chose_actions',
-          })}
+          onClick={() =>
+            handleBack({
+              action: "clean_chose_actions",
+            })
+          }
         >
-          <Text
-            fontWeight={300}
-            fontSize={14}
-            center
-          >
+          <Text fontWeight={300} fontSize={14} center>
             <>
               До хода
-              <AutoCounter counter={timeEndMove} callback={() => { }} />
+              <AutoCounter counter={timeEndMove} callback={() => {}} />
               секунд
             </>
           </Text>
@@ -78,306 +72,278 @@ const ActionsCard: React.FC<IProps> = ({
 
       <ContainerInfoGIB
         style={{
-          backgroundColor: adjustColorBrightness(card?.owner?.player?.color || '#F5F5F5', 20),
+          backgroundColor: "rgba(233, 236, 255, 1)",
         }}
       >
         <ContainerInfoHeaderGIB
           p={15}
           style={{
-            backgroundColor: adjustColorBrightness(card?.owner?.player?.color || '#F5F5F5', 45),
+            backgroundColor: "rgb(226 230 255)",
           }}
         >
           <Offset mt={20} />
-          {
-            showInfoCard === 'action-special-card'
-            ? <ContainerOneBtn>
-                <Button
-                  type='fill'
-                  fillColor={colorName}
-                  textColor='#FFFFFF'
-                  p={12}
-                >
-                  {name || 'Город не выбран'}
-                </Button>
+          {showInfoCard === "action-special-card" ? (
+            <ContainerOneBtn>
+              <Button
+                type="fill"
+                fillColor={colorName}
+                textColor="#FFFFFF"
+                p={12}
+              >
+                {name || "Город не выбран"}
+              </Button>
             </ContainerOneBtn>
-            
-            : <ContainerInfoTwoColumnGIB>
-            <Button
-              type='fill'
-              fillColor={card?.owner?.player?.color || '#cbc5c5ff'}
-              textColor='#FFFFFF'
-              p={12}
-            >
-              {name || '?'}
-            </Button>
-            <Button
-              type='fill'
-              fillColor={card?.bgc_header || '#F5F5F5'}
-              textColor='#FFFFFF'
-              p={12}
-            >
-              {card?.city?.country || '?'}
-            </Button>
-              </ContainerInfoTwoColumnGIB>
-          }
+          ) : (
+            <ContainerInfoTwoColumnGIB>
+              <Button
+                type="fill"
+                fillColor={card?.owner?.player?.color || "#cbc5c5ff"}
+                textColor="#FFFFFF"
+                p={12}
+              >
+                {name || "?"}
+              </Button>
+              <Button
+                type="fill"
+                fillColor={card?.bgc_header || "#F5F5F5"}
+                textColor="#FFFFFF"
+                p={12}
+              >
+                {card?.city?.country || "?"}
+              </Button>
+            </ContainerInfoTwoColumnGIB>
+          )}
           <Offset mt={20} />
         </ContainerInfoHeaderGIB>
 
-        <ContainerInfoBodyGIB 
-          p={15}
-        >
+        <ContainerInfoBodyGIB p={15}>
           <Offset mt={20} />
           <ContainerOneBtn>
             <ButtonBack
               onClick={() => handleChangeScreen(showInfoCard)}
-
-              title={'Назад'}
+              title={"Назад"}
             />
           </ContainerOneBtn>
           <Offset mt={10} />
           <ContainerInfoTwoColumnGIB>
             <Button
-              type='fill'
-              fillColor={card?.owner?.player?.color? adjustColorBrightness(card?.owner?.player?.color, 45) : '#F5F5F5'}
+              type="fill"
+              fillColor={"rgb(215 217 244)"}
               p={10}
               disabled={!actions.sell}
-              onClick={() => handleAction({
-                action: 'sell',
-                card_id
-              })}
+              onClick={() =>
+                handleAction({
+                  action: "sell",
+                  card_id,
+                })
+              }
             >
               <InnerBtnContextSpaceBetween>
-                <Text
-                  text={'Продать в банк'}
-                />
-                <Text
-                  fontWeight={900}
-                  text={''}
-                />
+                <Text text={"Продать в банк"} />
+                <Text fontWeight={900} text={""} />
               </InnerBtnContextSpaceBetween>
             </Button>
             <Text
-              text={'Продажа карты без возможности выкупа.'}
+              text={"Продажа карты без возможности выкупа."}
               fontWeight={300}
               fontSize={12}
-              color={'rgba(78, 76, 109, 1)'}
+              color={"rgba(78, 76, 109, 1)"}
             />
           </ContainerInfoTwoColumnGIB>
           <Offset mt={10} />
           <ContainerInfoTwoColumnGIB>
             <Button
-              type='fill'
-              fillColor={card?.owner?.player?.color? adjustColorBrightness(card?.owner?.player?.color, 45) : '#F5F5F5'}
+              type="fill"
+              fillColor={"rgb(215 217 244)"}
               p={10}
               disabled={!actions.pawn}
-              onClick={() => handleAction({
-                action: 'pawn',
-                card_id
-              })}
+              onClick={() =>
+                handleAction({
+                  action: "pawn",
+                  card_id,
+                })
+              }
             >
               <InnerBtnContextSpaceBetween>
-                <Text
-                  text={'Заложить в банк'}
-                />
-                <Text
-                  fontWeight={900}
-                  text={''}
-                />
+                <Text text={"Заложить в банк"} />
+                <Text fontWeight={900} text={""} />
               </InnerBtnContextSpaceBetween>
             </Button>
             <Button
-              component='div'
-              type='fill-empty'
-              textColor='rgba(78, 76, 109, 1)'
-              onClick={() => alert('info')}
+              component="div"
+              type="fill-empty"
+              textColor="rgba(78, 76, 109, 1)"
+              onClick={() => alert("info")}
             >
               <Text
                 fontWeight={300}
                 fontSize={12}
-                color={'rgba(78, 76, 109, 1)'}
+                color={"rgba(78, 76, 109, 1)"}
                 start
               >
-                Продажа карты с  возможностью выкупа с комиссией банка
-                (?)
+                Продажа карты, с возможностью выкупа, с комиссией банка (?)
               </Text>
             </Button>
           </ContainerInfoTwoColumnGIB>
           <Offset mt={10} />
           <ContainerInfoTwoColumnGIB>
             <Button
-              type='fill'
-              fillColor={card?.owner?.player?.color? adjustColorBrightness(card?.owner?.player?.color, 45) : '#F5F5F5'}
+              type="fill"
+              fillColor={"rgb(215 217 244)"}
               p={10}
               disabled={!actions.auction}
-              onClick={() => handleAction({
-                action: 'start_auction',
-                card_id
-              })}
+              onClick={() =>
+                handleAction({
+                  action: "start_auction",
+                  card_id,
+                  idOwnerCard: card.owner.player.id,
+                })
+              }
             >
               <InnerBtnContextSpaceBetween>
-                <Text
-                  text={'Выставить на аукцион'}
-                />
-                <Text
-                  fontWeight={900}
-                  text={''}
-                />
+                <Text text={"Выставить на аукцион"} />
+                <Text fontWeight={900} text={""} />
               </InnerBtnContextSpaceBetween>
             </Button>
             <Button
-              component='div'
-              type='fill-empty'
-              textColor='rgba(78, 76, 109, 1)'
-              onClick={() => alert('info')}
+              component="div"
+              type="fill-empty"
+              textColor="rgba(78, 76, 109, 1)"
+              onClick={() => alert("info")}
             >
               <Text
                 fontWeight={300}
                 fontSize={12}
-                color={'rgba(78, 76, 109, 1)'}
+                color={"rgba(78, 76, 109, 1)"}
                 start
               >
-                Продажи карты по вашей цене с комиссией банка
-                (?)
+                Продажи карты по вашей цене с комиссией банка (?)
               </Text>
             </Button>
           </ContainerInfoTwoColumnGIB>
           <Offset mt={10} />
           <ContainerInfoTwoColumnGIB>
             <Button
-              type='fill'
-              fillColor={card?.owner?.player?.color? adjustColorBrightness(card?.owner?.player?.color, 45) : '#F5F5F5'}
+              type="fill"
+              fillColor={"rgb(215 217 244)"}
               p={10}
               disabled={!actions.redeem}
-              onClick={() => handleAction({
-                action: 'redeem',
-                card_id
-              })}
+              onClick={() =>
+                handleAction({
+                  action: "redeem",
+                  card_id,
+                })
+              }
             >
               <InnerBtnContextSpaceBetween>
-                <Text
-                  text={'Выкупить'}
-                />
-                <Text
-                  fontWeight={900}
-                  text={''}
-                />
+                <Text text={"Выкупить"} />
+                <Text fontWeight={900} text={""} />
               </InnerBtnContextSpaceBetween>
             </Button>
             <Button
-              component='div'
-              type='fill-empty'
-              textColor='rgba(78, 76, 109, 1)'
-              onClick={() => alert('info')}
+              component="div"
+              type="fill-empty"
+              textColor="rgba(78, 76, 109, 1)"
+              onClick={() => alert("info")}
             >
               <Text
                 fontWeight={300}
                 fontSize={12}
-                color={'rgba(78, 76, 109, 1)'}
+                color={"rgba(78, 76, 109, 1)"}
                 start
-                style={{display: 'flex'}}
+                style={{ display: "flex" }}
               >
-                Выкупить с банка
-                (?)
+                Выкупить с банка (?)
               </Text>
             </Button>
           </ContainerInfoTwoColumnGIB>
           <Offset mt={10} />
           <ContainerInfoTwoColumnGIB>
             <Button
-              type='fill'
-              fillColor={card?.owner?.player?.color? adjustColorBrightness(card?.owner?.player?.color, 45) : '#F5F5F5'}
+              type="fill"
+              fillColor={"rgb(215 217 244)"}
               p={10}
               disabled={!actions.exchange}
-              onClick={() => handleAction({
-                action: 'exchange',
-                card_id
-              })}
+              onClick={() =>
+                handleAction({
+                  action: "exchange",
+                  card_id,
+                  idOwnerCard: card.owner.player.user,
+                })
+              }
             >
               <InnerBtnContextSpaceBetween>
-                <Text
-                  text={'Обменять'}
-                />
-                <Text
-                  fontWeight={900}
-                  text={''}
-                />
+                <Text text={"Обменять"} />
+                <Text fontWeight={900} text={""} />
               </InnerBtnContextSpaceBetween>
             </Button>
             <Button
-              component='div'
-
-              type='fill-empty'
-              textColor='rgba(78, 76, 109, 1)'
-              onClick={() => alert('info')}
+              component="div"
+              type="fill-empty"
+              textColor="rgba(78, 76, 109, 1)"
+              onClick={() => alert("info")}
             >
               <Text
                 fontWeight={300}
                 fontSize={12}
-                color={'rgba(78, 76, 109, 1)'}
+                color={"rgba(78, 76, 109, 1)"}
                 start
               >
-                Обменять карту с другим игроком
-                (?)
+                Обменять карту с другим игроком (?)
               </Text>
             </Button>
           </ContainerInfoTwoColumnGIB>
           <Offset mt={10} />
           <ContainerInfoTwoColumnGIB>
             <Button
-              type='fill'
-              fillColor={card?.owner?.player?.color? adjustColorBrightness(card?.owner?.player?.color, 45) : '#F5F5F5'}
+              type="fill"
+              fillColor={"rgb(215 217 244)"}
               p={10}
-              onClick={() => handleAction({
-                action: 'clean_chose_actions',
-                card_id
-              })}
+              onClick={() =>
+                handleAction({
+                  action: "clean_chose_actions",
+                  card_id,
+                })
+              }
             >
               <InnerBtnContextSpaceBetween>
-                <Text
-                  text={'Выйти'}
-                />
-                <Text
-                  fontWeight={900}
-                  text={''}
-                />
+                <Text text={"Выйти"} />
+                <Text fontWeight={900} text={""} />
               </InnerBtnContextSpaceBetween>
             </Button>
             <Button
-              type='fill-empty'
-              textColor='rgba(78, 76, 109, 1)'
-              onClick={() => alert('info')}
-              component='div'
+              type="fill-empty"
+              textColor="rgba(78, 76, 109, 1)"
+              onClick={() => alert("info")}
+              component="div"
             >
               <Text
                 fontWeight={300}
                 fontSize={12}
-                color={'rgba(78, 76, 109, 1)'}
+                color={"rgba(78, 76, 109, 1)"}
                 start
               >
-                Вернуться на игровое поле
-                (?)
+                Вернуться на игровое поле (?)
               </Text>
             </Button>
           </ContainerInfoTwoColumnGIB>
           <Offset mt={10} />
         </ContainerInfoBodyGIB>
 
-
         <ContainerInfoFooterGIB
+          p={"0 15px"}
           style={{
-            backgroundColor: adjustColorBrightness(card?.owner?.player?.color || '#F5F5F5', 45),
+            backgroundColor: "rgb(229 228 255)",
           }}
         >
           <GameInfoBoardFooterContainer
-            bgc={'transparent'}
-            bgcBtn={adjustColorBrightness(card?.owner?.player?.color || '#F5F5F5', 20)}
+            bgc={"transparent"}
+            bgcBtn={"rgb(215 217 244)"}
           />
         </ContainerInfoFooterGIB>
-
       </ContainerInfoGIB>
     </ContainerGIB>
-
-  )
+  );
 }
 
 export default ActionsCard

@@ -118,12 +118,12 @@ export const GameInfoBoardPayOrAddChance: React.FC<IGameInfoBoardBuyOrAuctionPro
 										</div>
 									</div>
 								</InfoBoardLabel>
-								<InfoBoardLabel>
+								{/* <InfoBoardLabel>
 									<div className={styles['gib__info-card-info-desc-label']}>
 										<p>С коллекцией</p>
 										<div>{dataCard.features?.monopoly_tax}<Icon className={styles['gib__currency']} src={currency2White} /></div>
 									</div>
-								</InfoBoardLabel>
+								</InfoBoardLabel> */}
 								<InfoBoardLabel>
 									<div className={styles['gib__info-card-info-desc-label']}>
 										<p>Стоимость отеля</p>

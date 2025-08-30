@@ -19,29 +19,14 @@ import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterCon
 
 interface IExpressAirlineCruiseProps {
 	card: ICard | ISpecialCard;
-	labelColors?: string[];
-	labelTextColors?: string[];
-	wait?: boolean;
-	buy_or_auction_card?: boolean;
-	numberField?: number;
-	card_cost?: number;
 	game_id: number;
 	card_id: number;
-	dataCard: any //IDataContainer;
 	actions: IActionCard;
 	handleCard?: ({ game_id, card_id, action }: { action: string; game_id: number, card_id: number }) => void;
 	timeEndMove: number;
 }
 
 export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
-	labelColors = ['transparent', '#65B99E'],
-	labelTextColors = ['#000000', '#ffffff'],
-	wait,
-	buy_or_auction_card,
-	numberField,
-	card_cost,
-	dataCard,
-
 	game_id,
 	card_id,
 	handleCard,
@@ -137,7 +122,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
-            <Button
+            {/* <Button
               type='transparent'
               p={10}
             >
@@ -150,7 +135,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
                   text={'2 из 5 ?'}
                 />
               </InnerBtnContextSpaceBetween>
-            </Button>
+            </Button> */}
           </ContainerInfoTwoColumnGIB>
 
 	  </ContainerInfoGIB>

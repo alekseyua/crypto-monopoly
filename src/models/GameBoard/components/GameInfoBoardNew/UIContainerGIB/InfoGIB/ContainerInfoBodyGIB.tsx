@@ -3,7 +3,7 @@ import styles from '../../styles/gib.module.scss';
 
 interface IProps {
     children?: React.ReactNode;
-    p?: number;
+    p?: number | string;
 }
 
 const ContainerInfoBodyGIB:React.FC<IProps> = ({

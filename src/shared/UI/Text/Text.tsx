@@ -50,6 +50,7 @@ const Text: React.FC<IProps> = ({
   } else if (center) {
     style.textAlign = 'center';
     style.justifyContent = 'center';
+    style.width = '100%';
   }
   if (fontWeight) {
     style.fontWeight = fontWeight;
