@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AuctionInfoCard } from './AuctionInfoCard'
 import { IGameInfoBoardAuctionQGProps } from '../../../GameInfoBoard/types/gameInfoBoard'
 import { AuctionPlaceBet } from './AuctionPlaceBet'
@@ -16,7 +16,6 @@ export interface IAuctionProps {
   endTime: number;
   highest_bidder: string;
   highestBidderData: IHighestBidderData;
-  // property: any;
   handleCard: (rest:any) => void;
   typeStyle?: 'buy' | 'auction';
   handleChangeScreen?: (params: { path: string }) => void;
@@ -28,7 +27,6 @@ const AuctionContainer: React.FC<IAuctionProps> = ({
   card_id,
   cardInfo,
   showInfoCard,
-  // property,
   typeStyle,
   handleCard,
   startPrice,
@@ -40,61 +38,55 @@ const AuctionContainer: React.FC<IAuctionProps> = ({
   const handleChangeScreen = ({path}: {path: string}) => {
     setScreen(path as 'auction-card' | 'place-bet')
   }
-  console.log({highest_bid})
+  const [timeEndAuction, setTimeEndAuction] = useState(endTime);
   if( screen === 'place-bet'  && showInfoCard === 'auction-card' ) {
     return (
-      <AuctionPlaceBet 
+      <AuctionPlaceBet
         handleCard={handleCard}
         game_id={game_id}
-        // showInfoCard={showInfoCard}
         card_id={card_id}
         startPrice={startPrice}
         cardInfo={cardInfo as ICardInfo}
         highest_bid={highest_bid}
-        // highest_bidder={  highest_bidder}
-        // highestBidderData={  highestBidderData}
-        // typeStyle={typeStyle}
         handleChangeScreen={handleChangeScreen}
-        endTime={endTime}
-        />
-      )
+        endTime={timeEndAuction}
+        setTimeEndAuction={setTimeEndAuction}
+      />
+    );
     } else
   if( screen === 'place-bet'  && showInfoCard === 'auction-special-card' ) {
     return (
-      <AuctionSpecialPlaceBet 
+      <AuctionSpecialPlaceBet
         handleCard={handleCard}
         game_id={game_id}
-        // showInfoCard={showInfoCard}
         card_id={card_id}
         startPrice={startPrice}
         cardInfo={cardInfo as ISpecialCardInfo}
         highest_bid={highest_bid}
-        // highest_bidder={  highest_bidder}
-        // highestBidderData={  highestBidderData}
-        // typeStyle={typeStyle}
         handleChangeScreen={handleChangeScreen}
-        endTime={endTime}
-        />
-      )
+        endTime={timeEndAuction}
+      />
+    );
     }
   if( screen === 'auction-special-card' ) {
     return (
       <AuctionSpecialInfoCard // нужно переделать
-        endTime={endTime}
-        cardInfo = {cardInfo as ISpecialCardInfo}
+        endTime={timeEndAuction}
+        cardInfo={cardInfo as ISpecialCardInfo}
         handleChangeScreen={handleChangeScreen}
       />
-      )
+    );
     }
     
     
     return (
       <AuctionInfoCard
-        endTime={endTime}
-        cardInfo = {cardInfo as ICardInfo}
+        endTime={timeEndAuction}
+        cardInfo={cardInfo as ICardInfo}
         handleChangeScreen={handleChangeScreen}
+        setTimeEndAuction={setTimeEndAuction}
       />
-  )
+    );
 }
 
 export default AuctionContainer

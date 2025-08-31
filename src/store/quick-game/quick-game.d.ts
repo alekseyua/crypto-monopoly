@@ -275,28 +275,38 @@ interface IExchangeData {
 }
 
 interface IPlayer {
-    id: number;
-    user: string;
-    avatar?: string;
-    balance: string;
-    color: string;
-    is_creater: boolean;
-    is_start_fast_game: boolean;
-    fast_game_id: number;
-    is_start_main_game: boolean;
-    main_game_id: number | null;
-    properties: Property[];
-    bankrupt: boolean;
-    current_card: number;
-    move_number: number;
-    current_move: boolean;
-    card_data: Record<string, unknown>;
-    auction_data: Record<string, unknown>;
-    choose_data: ChooseData | Record<string, never>;
-    bill_data: BillData;
-    status: statusPlayer;
-    username: string;
-    move_end_time_sec: number;
+  id: number;
+  user: string;
+  avatar?: string;
+  balance: string;
+  color: string;
+  is_creater: boolean;
+  is_start_fast_game: boolean;
+  fast_game_id: number;
+  is_start_main_game: boolean;
+  main_game_id: number | null;
+  properties: Property[];
+  bankrupt: boolean;
+  current_card: number;
+  move_number: number;
+  current_move: boolean;
+  card_data: Record<string, unknown>;
+  auction_data: Record<string, unknown>;
+  choose_data: ChooseData | Record<string, never>;
+  bill_data: BillData;
+  status: statusPlayer;
+  username: string;
+  move_end_time_sec: number;
+  messages: IMassagesFeed[];
+}
+
+interface IMassagesFeed {
+  id: number;
+  game: number;
+  player: number;
+  player_name: string;
+  message: string;
+  date_create: string;
 }
 
 interface IInfoMassagePopup {
@@ -340,6 +350,7 @@ export type {
     IUserActions,
     ISpecialCard,
     IExchangeData,
+    IMassagesFeed,
     IDataContainer,
     IAchivmentPlayer,
     ISpecialCardInfo,

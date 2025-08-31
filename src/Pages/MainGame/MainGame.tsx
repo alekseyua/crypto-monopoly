@@ -21,7 +21,6 @@ import cls from './main-game.module.css';
 						development continues
 					</div>
 					<EventsHistoryListContainer 
-						messages={[]}
 						heightGameBoard = { 500 }
 					/>
 				</div>

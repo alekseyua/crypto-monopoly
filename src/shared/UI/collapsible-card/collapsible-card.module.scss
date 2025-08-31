@@ -113,6 +113,8 @@
 
 .collapseBody {
 	position: relative;
+		height: calc(100% - 10px);
+			overflow: hidden;
 }
 .collapseBody.open::after{
 	content: "";

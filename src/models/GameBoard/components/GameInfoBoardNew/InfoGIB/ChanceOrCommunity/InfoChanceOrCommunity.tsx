@@ -1,4 +1,6 @@
+import { icons } from "../../../../../../assets";
 import { Button, Offset } from "../../../../../../shared/UI";
+import Icon from "../../../../../../shared/UI/Icon/Icon";
 import Title from "../../../../../../shared/UI/Title/Title";
 import ContainerOneBtn from "../../ControllerGIB/ContainerOneBtn";
 import ContainerTwoBtn from "../../ControllerGIB/ContainerTwoBtn";
@@ -10,12 +12,13 @@ import ContainerInfoHeaderGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoHe
 
 
 interface IInfoChanceOrCommunityProps {
-	onMove: (params: any) => void;
-	title?: string;
-	// titleBtns?: string[];
-	actions: string[];
-	content: string;
-	cardIdWhereMoveTo: number | null;
+  onMove: (params: any) => void;
+  title?: string;
+  // titleBtns?: string[];
+  actions: string[];
+  content: string;
+  cardIdWhereMoveTo: number | null;
+  typeCard: string;
 }
 
 export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
@@ -23,6 +26,7 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
 	actions,
 	title = 'Время вашего хода',
 	// titleBtns,
+  typeCard,
 	content,
 	cardIdWhereMoveTo,
 }: IInfoChanceOrCommunityProps) => {
@@ -34,12 +38,29 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
           return "Перейти";
         case "pay":
           return "Оплатить";
+        case "return_house":
+          return "Снять дом";
+        case "get_house":
+          return "получить дом";
         default:
           return "Получить";
       }
 	}
 	return (
     <ContainerGIB style={{ background: "#E9ECFF" }}>
+      <Icon
+        src={typeCard === 'chance' ? icons.chance : icons.communityOpacity}
+        width="100%"
+        height="100%"
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: " 50%",
+          transform: "translate(-50%, -50%) rotate(270deg) scale(4.5)",
+          opacity: 0.5,
+          zIndex:1
+        }}
+      />
       <ContainerInfoHeaderGIB>
         <ContainerOneBtn>
           <Button variant="gradient" gradientColors={["#726CED", "#70DCF1"]}>
@@ -51,20 +72,26 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
       <ContainerInfoBodyGIB>
         <Title tag="h2" title={content} center />
         <Offset mt={30} />
-        <ContainerTwoBtn style={{gridTemplateColumns: actions?.length === 2? '1fr 1fr' : '1fr'}}>
+        <ContainerTwoBtn
+          style={{
+            gridTemplateColumns: actions?.length === 2 ? "1fr 1fr" : "1fr",
+          }}
+        >
           {actions?.length &&
             actions.map((a: string, i: number) => {
+              console.log({ a });
               return (
                 <Button
+                  key={i}
                   variant="fill"
                   fillColor={"#726CED"}
                   p={20}
-                  onClick={() =>
+                  onClick={() => {
                     onMove({
                       action: a,
                       card_id: cardIdWhereMoveTo,
-                    })
-                  }
+                    });
+                  }}
                 >
                   {getNameBtn(a)}
                 </Button>

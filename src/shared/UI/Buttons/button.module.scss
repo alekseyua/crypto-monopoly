@@ -6,7 +6,7 @@
 	@include adaptiv-value(padding-bottom,24, 0, 2);
 	@include adaptiv-value(padding-left,20, 0, 2);
 	@include adaptiv-value(padding-right,20, 0, 2);
-	
+	z-index: 10;
 	width: 100%;
 	// font-size: 18px;
 	@include adaptiv-font(18,10);

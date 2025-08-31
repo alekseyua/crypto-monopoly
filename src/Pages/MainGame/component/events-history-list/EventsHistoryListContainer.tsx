@@ -1,19 +1,23 @@
 import { useState } from 'react';
 import { EventsHistoryList } from './events-history-list';
+import { IDataQG, IPlayer } from '../../../../store/quick-game/quick-game.d';
+import { useStoreon } from 'storeon/react';
 interface IProps {
-	messages: {
-		title: string;
-		desc: string;
-	}[]
-	heightGameBoard: number;
+  heightGameBoard: number;
 }
 
 const EventsHistoryListContainer: React.FC<IProps> = ({
-	messages,
 	heightGameBoard,
 }) => {
 	const [isOpen, setIsOpen] = useState(true);
-
+	const {
+    quickGame,
+    dataPlayerQG,
+  }: {
+    quickGame: IDataQG;
+    dataPlayerQG: IPlayer;
+  } = useStoreon("quickGame", "dataPlayerQG");
+	
 	const handleClickOpen = () => {
 		setIsOpen((prev) => !prev);
 	}
@@ -37,14 +41,15 @@ const EventsHistoryListContainer: React.FC<IProps> = ({
 	}
 
 	return (
-		<EventsHistoryList
-			heightGameBoard={heightGameBoard}
-			isOpen={isOpen}
-			handleClick={handleClick}
-			handleClickOpen={handleClickOpen}
-			messages={messages}
-		/>
-	)
+    <EventsHistoryList
+      heightGameBoard={heightGameBoard}
+      isOpen={isOpen}
+      handleClick={handleClick}
+      handleClickOpen={handleClickOpen}
+      messages={dataPlayerQG.messages}
+      players={quickGame.players}
+    />
+  );
 };
 
 export default EventsHistoryListContainer

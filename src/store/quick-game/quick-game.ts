@@ -173,6 +173,7 @@ export const quickGame = (store: StoreonStore) => {
     },
     username: '',
     move_end_time_sec:0,
+    messages:[]
   };
 
   store.on(_INIT, () => ({ dataPlayerQG: initDataPlayerQG }));

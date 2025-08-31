@@ -98,12 +98,12 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
               fontWeight={300}
               center
             />
-            <Title
+            {/* <Title
               title={'Покупка недвижимости'}
               tag='h5'
               fontWeight={300}
               center
-            />
+            /> */}
           </ContainerInfoTwoColumnGIB>
           <Offset mt={10} />
 

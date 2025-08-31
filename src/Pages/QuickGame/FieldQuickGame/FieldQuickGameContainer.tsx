@@ -309,13 +309,6 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 			console.log('%cisMovePlayer: ' + isMovePlayer + '\ncardId: ' + cardId + '\ntypeCard: ' + typeCard, 'color: yellow',)
 
 			const keyAction: 'data_actions' | 'auction_data' | null = isActions ? 'data_actions' : isAuctions ? 'auction_data' : null;
-			// // нет данных для действий
-			// if (!keyAction && !isActions && !isAuctions && !isChoose) {
-			// 	return {
-			// 		key: 'wait_move',
-			// 		cardId: 0
-			// 	}
-			// }
 			const dataActions: any = keyAction && data[keyAction];
 			// для экспресса  airline  cruise
 			const listExceptionSpecialCard = ["express", "airline", "cruise"];
@@ -446,6 +439,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 		}
 		let dataAction: keyPreview = getAction(dataPlayerQG, actionCardData) //? 'current_move' : 'wait';
 		console.log('%cKEY: ' + dataAction.key, 'color: green')
+		const card = quickGame.cards.filter((el: ICard | ISpecialCard) => el.id === dataAction.cardId)[0];
 		switch (dataAction.key) {
 			case 'wait':
 				setActionCardView(<Wait
@@ -504,51 +498,53 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 				/>)
 				break;
 			case 'buy_or_auction_special_card':
-				setActionCardView(<ExpressAirlineCruise
-					actions={actionCardData?.data_actions?.actions}
-					handleCard={handleCard}
-					game_id={quickGame.id}
-					card_id={dataAction.cardId}
-					timeEndMove={dataPlayerQG.move_end_time_sec}
-
-					card={quickGame.cards.filter((el: ICard | ISpecialCard) => el.id === dataAction.cardId)[0]}
-
-
-				/>)
+				setActionCardView(
+          <ExpressAirlineCruise
+            actions={actionCardData?.data_actions?.actions}
+            handleCard={handleCard}
+            game_id={quickGame.id}
+            card_id={dataAction.cardId}
+            timeEndMove={dataPlayerQG.move_end_time_sec}
+            card={card}
+            // card={quickGame.cards.filter((el: ICard | ISpecialCard) => el.id === dataAction.cardId)[0]}
+          />
+        );
 				break;
 			case 'info_board_actions':
 				setActionCardView(
-					<ActionsCardContainerStackScreen
-						card={quickGame.cards.filter((el: ICard | ISpecialCard) => el.id === actionCardData?.choose_data?.card_id)[0]}
-						timeEndMove={dataPlayerQG.move_end_time_sec}
-						handleBack={handleCard}
-						actions={actionCardData?.choose_data?.actions}
-						handleAction={handleCardOnFieldAction}
-						showInfoCard={'action-card'}
-					/>
-					// <GameInfoBoardActions
-					// 	handleCard={handleCardOnFieldAction}
-					// 	game_id={quickGame.id}
-					// 	card_id={dataAction.cardId}
-					// />
-				)
+          <ActionsCardContainerStackScreen
+            card={card}
+            // card={quickGame.cards.filter((el: ICard | ISpecialCard) => el.id === actionCardData?.choose_data?.card_id)[0]}
+            timeEndMove={dataPlayerQG.move_end_time_sec}
+            handleBack={handleCard}
+            actions={actionCardData?.choose_data?.actions}
+            handleAction={handleCardOnFieldAction}
+            showInfoCard={"action-card"}
+          />
+          // <GameInfoBoardActions
+          // 	handleCard={handleCardOnFieldAction}
+          // 	game_id={quickGame.id}
+          // 	card_id={dataAction.cardId}
+          // />
+        );
 				break;
 			case 'info_board_actions_special_card':
 				setActionCardView(
-					<ActionsCardContainerStackScreen
-						card={quickGame.cards.filter((el: ICard | ISpecialCard) => el.id === actionCardData?.choose_data?.card_id)[0]}
-						timeEndMove={dataPlayerQG.move_end_time_sec}
-						handleBack={handleCard}
-						actions={actionCardData?.choose_data?.actions}
-						handleAction={handleCardOnFieldAction}
-						showInfoCard={'action-special-card'}
-					/>
-					// <GameInfoBoardActions
-					// 	handleCard={handleCardOnFieldAction}
-					// 	game_id={quickGame.id}
-					// 	card_id={dataAction.cardId}
-					// />
-				)
+          <ActionsCardContainerStackScreen
+            card={card}
+            // card={quickGame.cards.filter((el: ICard | ISpecialCard) => el.id === actionCardData?.choose_data?.card_id)[0]}
+            timeEndMove={dataPlayerQG.move_end_time_sec}
+            handleBack={handleCard}
+            actions={actionCardData?.choose_data?.actions}
+            handleAction={handleCardOnFieldAction}
+            showInfoCard={"action-special-card"}
+          />
+          // <GameInfoBoardActions
+          // 	handleCard={handleCardOnFieldAction}
+          // 	game_id={quickGame.id}
+          // 	card_id={dataAction.cardId}
+          // />
+        );
 				break;
 			case 'jail':
 				setActionCardView(<InfoJail
@@ -597,6 +593,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 				setActionCardView(
           <InfoChanceOrCommunity
             onMove={onMove}
+            typeCard={card.type_card}
             actions={keys}
             cardIdWhereMoveTo={
               keys.includes("move_to")
@@ -608,9 +605,9 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
               actionCardData?.data_actions?.card?.name
                 ? "Вам выпал переход на " +
                   actionCardData?.data_actions?.card.name
-                : keys.includes('pay') && infoMassagePopup.message? 
-					infoMassagePopup.message
-					: ''
+                : keys.includes("pay") && infoMassagePopup.message
+                ? infoMassagePopup.message
+                : ""
             }
             // titleBtns={keys.map((k:string) => getNameBtn(k))}
           />
@@ -722,7 +719,6 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
 			cards={quickGame.cards as (ICard | ISpecialCard)[]}
 			ActionCard={actionCardView}
 			dataPlayerQG={dataPlayerQG}
-			messages={messagesQG}
 			handleCard={handleCardOnField}
 			players={quickGame.players}
 			listSelectUserPreview={listSelectUserPreview}

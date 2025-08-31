@@ -69,7 +69,9 @@ import jackpot from './icons/jackpot.svg';
 import homeCard from './icons/home-card.svg';
 import hotelCard from './icons/hotel-card.svg';
 
-import home from './icons/home1.svg'
+import home from './icons/home1.svg';
+import communityOpacity from './icons/community-opacity.svg';
+
 
 export const icons = {
   home,
@@ -88,6 +90,7 @@ export const icons = {
   qgCurrencySvg,
   qgCurrencyPng,
   checkMarkerWhite,
+  communityOpacity,
   qgCurrencySvgWhite,
   chance: ChanceIcon,
   rightArrow: RightArrowIcon,
