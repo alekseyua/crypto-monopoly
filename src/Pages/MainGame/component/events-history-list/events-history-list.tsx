@@ -45,9 +45,7 @@ export const EventsHistoryList: React.FC<IEventHistoryList> = ({
                   btnColor={"#F9D15E80"}
                   date={new Date(m.date_create).toLocaleString("ru").toString()}
                   dateColor={"#D09337"}
-                  fieldColor={ !!players &&
-                    players.filter((p: IPlayer) => p.id === m.player)[0].color
-                  }
+                  fieldColor={m.player_color}
                   withButton={false}
                 >
                   <h3>{m.player_name}</h3>

@@ -19,23 +19,24 @@ interface IQG {
   handleClickUserPreview: (id: number) => void;
   heightGameBoard: number;
   isChangeCard: boolean;
+  isChanceGetOrRemoveHouse: boolean;
 }
 
 export const FieldQG: React.FC<IQG> = ({
-	cards,
-	players,
-	innerRef,
-	ActionCard,
-	handleCard,
-	isChangeCard,
-	dataPlayerQG,
-	heightGameBoard,
-	playerCurrentMove,
-	listSelectUserPreview,
-	handleClickUserPreview,
-	
+  cards,
+  players,
+  innerRef,
+  ActionCard,
+  handleCard,
+  isChangeCard,
+  dataPlayerQG,
+  heightGameBoard,
+  playerCurrentMove,
+  listSelectUserPreview,
+  handleClickUserPreview,
+  isChanceGetOrRemoveHouse,
 }: IQG) => {
-	return (
+  return (
     <section className={cls.MainGameSection}>
       <div className="wrapper">
         <div className={cls["quick-game__container"]}>
@@ -54,13 +55,11 @@ export const FieldQG: React.FC<IQG> = ({
               listSelectUserPreview={listSelectUserPreview}
               dataPlayerQG={dataPlayerQG}
               playerCurrentMove={playerCurrentMove}
-              // cards={cards as (ICard | ISpecialCard)[]}
+              isChanceGetOrRemoveHouse={isChanceGetOrRemoveHouse}
               handleCard={handleCard}
-			  />
+            />
           </div>
-          <EventsHistoryListContainer
-            heightGameBoard={heightGameBoard}
-          />
+          <EventsHistoryListContainer heightGameBoard={heightGameBoard} />
         </div>
       </div>
     </section>

@@ -307,6 +307,7 @@ interface IMassagesFeed {
   player_name: string;
   message: string;
   date_create: string;
+  player_color: string;
 }
 
 interface IInfoMassagePopup {

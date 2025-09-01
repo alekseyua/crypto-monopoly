@@ -30,26 +30,26 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
 	content,
 	cardIdWhereMoveTo,
 }: IInfoChanceOrCommunityProps) => {
-	// console.log({action})
-	const getNameBtn = function (name: string) {
-			if(name === undefined) return '';
-      switch (name) {
-        case "move_to":
-          return "Перейти";
-        case "pay":
-          return "Оплатить";
-        case "return_house":
-          return "Снять дом";
-        case "get_house":
-          return "получить дом";
-        default:
-          return "Получить";
-      }
-	}
-	return (
+  console.log({cardIdWhereMoveTo})
+  const getNameBtn = function (name: string) {
+    if (name === undefined) return "";
+    switch (name) {
+      case "move_to":
+        return "Перейти";
+      case "pay":
+        return "Оплатить";
+      case "return_house":
+        return "Снять дом";
+      case "get_house":
+        return "получить дом";
+      default:
+        return "Получить";
+    }
+  };
+  return (
     <ContainerGIB style={{ background: "#E9ECFF" }}>
       <Icon
-        src={typeCard === 'chance' ? icons.chance : icons.communityOpacity}
+        src={typeCard === "chance" ? icons.chance : icons.communityOpacity}
         width="100%"
         height="100%"
         style={{
@@ -58,7 +58,7 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
           left: " 50%",
           transform: "translate(-50%, -50%) rotate(270deg) scale(4.5)",
           opacity: 0.5,
-          zIndex:1
+          zIndex: 1,
         }}
       />
       <ContainerInfoHeaderGIB>

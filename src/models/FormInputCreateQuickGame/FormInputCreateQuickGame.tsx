@@ -45,7 +45,7 @@ const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
           placeholder="Введите количество игроков от 2 до 10"
         />
         <Input
-          label="Ценна входа"
+          label="Цена входа"
           className={styles["form-input-create-quick-game__container-wrap"]}
           onChange={(e: string) => handleChangeInput(e, "bet_amount")}
           type="number"
