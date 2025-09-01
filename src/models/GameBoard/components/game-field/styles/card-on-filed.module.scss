@@ -513,7 +513,7 @@
             display: -webkit-box;
             -webkit-box-orient: horizontal;
             -webkit-line-clamp: 1;
-            overflow: hidden;
+            // overflow: hidden;
             white-space: pre;
             //card-field__text-title--build
             &--build{
@@ -547,19 +547,25 @@
                 //card-field__text-title-build-h-top
                 &-h-top{
                     position: absolute;
-                    transform: rotate(90deg) translate(-10px, -10px);
                     z-index: 999;
-                    gap: 3px;
+                    transform: rotate(270deg) translate(21px, -8px);
+                    
+                        &>span {
+                            margin-left: 5px;
+                        }
                 }
                 //card-field__text-title-build-h-left
                 &-h-left{
                     position: absolute;
-                    transform: rotate(90deg) translate(10px, -12px);
+                    transform: rotate(90deg) translate(-8px, -28px);
+                    &>span {
+                            margin-top: 5px;
+                        }
                 }
                 //card-field__text-title-build-h-bottom
                 &-h-bottom{
                     position: absolute;
-                    transform: rotate(90deg) translate(-21px, -15px);
+                    transform: rotate(270deg) translate(21px, 15px);
                     &>span{
                         margin-left: 5px;
                     }
@@ -567,8 +573,10 @@
                 //card-field__text-title-build-h-right
                 &-h-right{
                     position: absolute;
-                    transform: rotate(90deg) translate(10px, -12px);
-                gap:5px;
+                    transform: rotate(90deg) translate(-8px, -28px);
+                    &>span {
+                            margin-top: 5px;
+                        }
                 }
             }
             //card-field__text-title--bottom

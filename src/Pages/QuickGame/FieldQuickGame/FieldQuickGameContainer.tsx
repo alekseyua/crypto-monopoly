@@ -778,18 +778,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 			/>
 			);
 			break;
-		// community
-		// keys
-		// move_to - переход к карте ( обязателен card_id куда переходим )
-		// move - доп ход
-		// pay - что то оплатить тут кнопки действия
-		// add_card - получить тут кнопка действия
 		case "info_chance":
-			// if(actionCardData??.data_actions?.actions) return <>wait</>;
-			// keys
-			// move_to - переход к карте ( обязателен card_id куда переходим)
-			// move - доп ход
-			//
 			const keys: string[] = actionCardData?.data_actions?.actions
 			? Object.keys(actionCardData?.data_actions?.actions)
 			: [""];
