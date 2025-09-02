@@ -17,6 +17,8 @@ import ContainerGIB from '../../UIContainerGIB/ContainerGIB';
 import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
 import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
 import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
+import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
+import styles from './styles/exchange.module.scss';
 
 interface IGameInfoBoardActionsExchangeProps {
   handleCard: (params: any) => void;
@@ -39,7 +41,6 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
 	handleClickUserPreview,
 	cards,
 }: IGameInfoBoardActionsExchangeProps) => {
-  const styles:any = {}
 	const [totalTo, setTotalTo] = useState<number>(0);
 	const [totalFrom, setTotalFrom] = useState<number>(0);
 	const [isSetInputPriceTo, setIsSetInputPriceTo] = useState<boolean>(false);
@@ -117,458 +118,431 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
 	}
 	return (
     <ContainerGIB style={{ background: "#E9ECFF" }}>
-      <div className={styles["gib-bg-exchange"]}>
-        {/* header */}
-        <ContainerInfoHeaderGIB p={15}>
-          <ButtonBack
-            onClick={() =>
-              handleBack({
-                action: "clean_chose_actions",
-              })
-            }
-            title={"Назад"}
-          />
-          <Offset mb={10} />
-
-          <Title
-            title={"Сделка с игроком"}
-            tag="h3"
-            center
-          />
-        </ContainerInfoHeaderGIB>
-
-        <Offset mb={20} />
-
-        {/* btns actions */}
-        <ContainerInfoTwoColumnGIB>
-            <Button
-              className={styles["gib__btns--btn-action"]}
-              disabled={!(!!totalTo || !!totalFrom)}
-              onClick={() =>
-                handleCard({
-                  action: "exchange",
-                  ...stateExchange,
-                })
-              }
-            >
-              Предложить
-            </Button>
-
-            <Button
-              className={styles["gib__btns--btn-action"]}
-              onClick={() =>
-                handleCard({
-                  action: "exchange",
-                })
-              }
-            >
-              Отказ (
-              {
-                <AutoCounter
-                  disabled={false}
-                  counter={30}
-                  callback={() => {}}
-                />
-              }
-              )
-            </Button>
-        </ContainerInfoTwoColumnGIB>
-        
+      {/* header */}
+      <ContainerInfoHeaderGIB p={15}>
+        <ButtonBack
+          onClick={() =>
+            handleBack({
+              action: "clean_chose_actions",
+            })
+          }
+          title={"Назад"}
+        />
         <Offset mb={10} />
 
-        {/* body */}
-        <div
-          style={{ background: "#E9ECFF" }}
-          className={styles["gib__body-container"]}
+        <Title title={"Сделка с игроком"} tag="h3" center />
+      </ContainerInfoHeaderGIB>
+
+      <Offset mb={20} />
+
+      {/* btns actions */}
+      <ContainerInfoTwoColumnGIB>
+        <Button
+          type="fill"
+          fillColor={"#726CED"}
+          p={15}
+          style={{ borderRadius: 25 }}
+          disabled={!(!!totalTo || !!totalFrom)}
+          onClick={() =>
+            handleCard({
+              action: "exchange",
+              ...stateExchange,
+            })
+          }
         >
-          {!!!listUserExchange.length && (
+          Предложить
+        </Button>
+
+        <Button
+          type="fill"
+          fillColor={"#D6DBF5"}
+          p={15}
+          style={{ borderRadius: 25 }}
+          onClick={() =>
+            handleCard({
+              action: "exchange",
+            })
+          }
+        >
+          Отказ (
+          {<AutoCounter disabled={false} counter={30} callback={() => {}} />})
+        </Button>
+      </ContainerInfoTwoColumnGIB>
+
+      <Offset mb={10} />
+
+      {/* body */}
+      <ContainerInfoBodyGIB
+        style={{
+          background: "#D6DBF5",
+          borderTopLeftRadius: 25,
+          borderTopRightRadius: 25,
+          paddingTop: 15,
+        }}
+      >
+        {!!!listUserExchange.length && (
+          <>
+            <InfoBlock center p={10}>
+              Выберите игрока для обмена
+            </InfoBlock>
+            <Offset mb={10} />
+
+            <ul className={styles["list-player__container-wrapper"]}>
+              {!!players?.length &&
+                players
+                  .filter((p: IPlayer) => p.id !== currentPlayerId)
+                  .map((p: IPlayer, index: number) => {
+                    return (
+                      <li key={index} className={styles["list-player__item"]}>
+                        <CardPlayersPreview
+                          //isOpenModal={()=>{}}
+                          isClickOnCard
+                          isMove={p.current_move}
+                          num={index + 1}
+                          id={p.id}
+                          name={p.username}
+                          color={p.color}
+                          isQG={true}
+                          avatar={p?.avatar}
+                          //   isOwner={dataPlayerQG.id === p.id}
+                          capital={p.bill_data.capital}
+                          //   isGrayBlur={
+                          //     !!listSelectUserPreview.length &&
+                          //     !listSelectUserPreview.includes(p.id)
+                          //   }
+                          //   isSelected={listSelectUserPreview.includes(p.id)}
+                          handleClickUserPreview={handleClickUserPreview}
+                          // handleSettingCard={handleSettingCard}
+                        />
+                      </li>
+                    );
+                  })}
+              <Offset mb={20} />
+            </ul>
+          </>
+        )}
+
+        <div className={styles["gib__body-container-wrap"]}>
+          {!!listUserExchange.length && (
+            <Line
+              direction={"vertical"}
+              location="center"
+              style={{ transform: "translateX(-4px)" }}
+            />
+          )}
+          {/* //  <div className={styles['gib__info-card--half-block-line']}></div>} */}
+
+          {!!listUserExchange.length && (
             <>
-              <InfoBlock center p={10}>
-                Выберите игрока для обмена
-              </InfoBlock>
+              {/* player */}
+              <ContainerInfoTwoColumnGIB style={{ gap: 35 }}>
+                {currentUser && (
+                  <div className={styles["gib__user-exchange"]}>
+                    <div
+                      className={styles["gib__user-exchange--container-avatar"]}
+                    >
+                      <AvatarBlock
+                        color={currentUser.color}
+                        width={25}
+                        height={25}
+                      />
+                    </div>
+                    <div
+                      className={styles["gib__user-exchange--desc-container"]}
+                    >
+                      <span className={styles["gib__user-exchange--name"]}>
+                        {currentUser.username}
+                      </span>
+                      <span className={styles["gib__user-exchange--name-desc"]}>
+                        Предлагаете
+                      </span>
+                    </div>
+                  </div>
+                )}
+                {userForExchange && (
+                  <div className={styles["gib__user-exchange"]}>
+                    <div
+                      className={styles["gib__user-exchange--container-avatar"]}
+                    >
+                      <AvatarBlock
+                        color={userForExchange.color}
+                        width={25}
+                        height={25}
+                      />
+                    </div>
+                    <div
+                      className={styles["gib__user-exchange--desc-container"]}
+                    >
+                      <span className={styles["gib__user-exchange--name"]}>
+                        {userForExchange.username}
+                      </span>
+                      <span className={styles["gib__user-exchange--name-desc"]}>
+                        Отдает
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </ContainerInfoTwoColumnGIB>
+
               <Offset mb={10} />
 
-              <ul className={styles["list-player__container-wrapper"]}>
-                {!!players?.length &&
-                  players
-                    .filter((p: IPlayer) => p.id !== currentPlayerId)
-                    .map((p: IPlayer, index: number) => {
-                      return (
-                        <li key={index} className={styles["list-player__item"]}>
-                          <CardPlayersPreview
-                            //isOpenModal={()=>{}}
-                            isClickOnCard
-                            isMove={p.current_move}
-                            num={index + 1}
-                            id={p.id}
-                            name={p.username}
-                            color={p.color}
-                            isQG={true}
-                            avatar={p?.avatar}
-                            //   isOwner={dataPlayerQG.id === p.id}
-                            capital={p.bill_data.capital}
-                            //   isGrayBlur={
-                            //     !!listSelectUserPreview.length &&
-                            //     !listSelectUserPreview.includes(p.id)
-                            //   }
-                            //   isSelected={listSelectUserPreview.includes(p.id)}
-                            handleClickUserPreview={handleClickUserPreview}
-                            // handleSettingCard={handleSettingCard}
-                          />
-                        </li>
-                      );
-                    })}
-                <Offset mb={20} />
-              </ul>
+              {/* form input */}
+              <ContainerInfoTwoColumnGIB style={{ gap: 35 }}>
+                <div className={styles["gib__user-exchange--input-container"]}>
+                  {!isSetInputPriceFrom && (
+                    <>
+                      +
+                      <Icon src={icons.qgCurrencySvg} />
+                    </>
+                  )}
+                  <Input
+                    wrapClassName={
+                      styles["gib__user-exchange--input-container-input"]
+                    }
+                    placeholder="Введите сумму..."
+                    value={
+                      stateExchange.price_from === 0
+                        ? ""
+                        : stateExchange.price_from
+                    }
+                    isSpanWidth={isSetInputPriceFrom}
+                    onChange={(value: any) => {
+                      let numericValue = parseFloat(value);
+                      if (Number.isNaN(numericValue)) numericValue = 0;
+                      handleCard({
+                        ...stateExchange,
+                        price_from: numericValue,
+                      });
+                    }}
+                    type="number"
+                    id="input-seller"
+                    leftText={isSetInputPriceFrom ? "+ " : undefined}
+                    iconLeft={
+                      isSetInputPriceFrom ? (
+                        <Icon
+                          className={
+                            styles["gib__user-exchange--input-currency"]
+                          }
+                          width="15px"
+                          height="15px"
+                          src={icons.qgCurrencySvg}
+                        />
+                      ) : undefined
+                    }
+                    iconRight={
+                      !!stateExchange.price_from && !isSetInputPriceFrom ? (
+                        <Icon
+                          className={
+                            styles["gib__user-exchange--input-success"]
+                          }
+                          src={icons.checkMarkerWhite}
+                          width="12px"
+                          height="12px"
+                          onClick={() => handleApplyInput("price_from")}
+                        />
+                      ) : isSetInputPriceFrom ? (
+                        <Icon
+                          className={styles["gib__user-exchange--input-reset"]}
+                          src={Cross}
+                          width="17px"
+                          height="17px"
+                          onClick={() => handleApplyInput("price_from_reset")}
+                        />
+                      ) : undefined
+                    }
+                  />
+                </div>
+                <div className={styles["gib__user-exchange--input-container"]}>
+                  {userForExchange && (
+                    <>
+                      {!isSetInputPriceTo && (
+                        <>
+                          +
+                          <Icon src={icons.qgCurrencySvg} />
+                        </>
+                      )}
+                      <Input
+                        wrapClassName={
+                          styles["gib__user-exchange--input-container-input"]
+                        }
+                        placeholder="Введите сумму..."
+                        value={
+                          stateExchange.price_to === 0
+                            ? ""
+                            : stateExchange.price_to
+                        }
+                        isSpanWidth={isSetInputPriceTo}
+                        onChange={(value: any) => {
+                          let numericValue = parseFloat(value);
+                          if (Number.isNaN(numericValue)) numericValue = 0;
+                          handleCard({
+                            ...stateExchange,
+                            price_to: numericValue,
+                          });
+                        }}
+                        type="number"
+                        id="input-costumer"
+                        leftText={isSetInputPriceTo ? "+ " : undefined}
+                        iconLeft={
+                          isSetInputPriceTo ? (
+                            <Icon
+                              className={
+                                styles["gib__user-exchange--input-currency"]
+                              }
+                              width="15px"
+                              height="15px"
+                              src={icons.qgCurrencySvg}
+                            />
+                          ) : undefined
+                        }
+                        iconRight={
+                          !!stateExchange.price_to && !isSetInputPriceTo ? (
+                            <Icon
+                              className={
+                                styles["gib__user-exchange--input-success"]
+                              }
+                              src={icons.checkMarkerWhite}
+                              width="12px"
+                              height="12px"
+                              onClick={() => handleApplyInput("price_to")}
+                            />
+                          ) : isSetInputPriceTo ? (
+                            <Icon
+                              className={
+                                styles["gib__user-exchange--input-reset"]
+                              }
+                              src={Cross}
+                              width="17px"
+                              height="17px"
+                              onClick={() => handleApplyInput("price_to_reset")}
+                            />
+                          ) : undefined
+                        }
+                      />
+                    </>
+                  )}
+                </div>
+              </ContainerInfoTwoColumnGIB>
+
+              <Offset mb={10} />
+
+              {/* cards */}
+              <ContainerInfoTwoColumnGIB style={{ gap: 35 }}>
+                <div className={styles["gib__info-card-exchange-container"]}>
+                  {!!stateExchange.propertys_from.length &&
+                    stateExchange.propertys_from.map(
+                      (card: string, index: number) => (
+                        <div key={index}>
+                          {cards
+                            .filter(
+                              (c: ICard | ISpecialCard) => +c.id === +card
+                            )
+                            .map((c: ICard | ISpecialCard) => {
+                              // setTotalFrom(s=> s + +c.cost);
+                              return (
+                                <div
+                                  key={c.id}
+                                  className={
+                                    styles[
+                                      "gib__info-card-exchange-card-container"
+                                    ]
+                                  }
+                                  style={{
+                                    background: c.bgc_header,
+                                  }}
+                                >
+                                  <div> {c.name} </div>
+                                  <div>
+                                    <div>{c.cost} </div>
+                                    <div>
+                                      <CurrencyQG size={11} color="white" />
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                        </div>
+                      )
+                    )}
+                </div>
+                <div className={styles["gib__info-card-exchange-container"]}>
+                  {!!stateExchange.propertys_to.length &&
+                    stateExchange.propertys_to.map(
+                      (card: string, index: number) => (
+                        <div key={index}>
+                          {cards
+                            .filter(
+                              (c: ICard | ISpecialCard) => +c.id === +card
+                            )
+                            .map((c: ICard | ISpecialCard) => {
+                              // setTotalTo(s => s + +c.cost);
+                              return (
+                                <div
+                                  key={c.id}
+                                  className={
+                                    styles[
+                                      "gib__info-card-exchange-card-container"
+                                    ]
+                                  }
+                                  style={{
+                                    background: c.bgc_header,
+                                  }}
+                                >
+                                  <div> {c.name} </div>
+                                  <div>
+                                    <div>{c.cost} </div>
+                                    <div>
+                                      <CurrencyQG size={11} color="white" />
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                        </div>
+                      )
+                    )}
+                </div>
+              </ContainerInfoTwoColumnGIB>
+
+              {/* total cost */}
+              <div
+                className={styles["gib__user-exchange-container--total-price"]}
+              >
+                <ContainerInfoTwoColumnGIB style={{ gap: 35 }}>
+                  <div className={styles["gib__info-card-exchange-container"]}>
+                    <Line direction="horizontal" />
+                    <div className={styles["gib__user-exchange--total-price"]}>
+                      Итого: {totalFrom}
+                      <CurrencyQG size={10} color="black" />
+                    </div>
+                  </div>
+                  <div className={styles["gib__info-card-exchange-container"]}>
+                    <Line direction="horizontal" />
+                    <div className={styles["gib__user-exchange--total-price"]}>
+                      Итого: {totalTo}
+                      <CurrencyQG size={10} color="black" />
+                    </div>
+                  </div>
+                </ContainerInfoTwoColumnGIB>
+              </div>
             </>
           )}
-
-          <div className={styles["gib__body-container-wrap"]}>
-            {!!listUserExchange.length && (
-              <Line direction={"vertical"} location="center" />
-            )}
-            {/* //  <div className={styles['gib__info-card--half-block-line']}></div>} */}
-
-            {!!listUserExchange.length && (
-              <>
-                {/* player */}
-                <div
-                  className={styles["gib__body-desc-container--two-section"]}
-                >
-                  {currentUser && (
-                    <div className={styles["gib__user-exchange"]}>
-                      <div
-                        className={
-                          styles["gib__user-exchange--container-avatar"]
-                        }
-                      >
-                        <AvatarBlock
-                          color={currentUser.color}
-                          width={25}
-                          height={25}
-                        />
-                      </div>
-                      <div
-                        className={styles["gib__user-exchange--desc-container"]}
-                      >
-                        <span className={styles["gib__user-exchange--name"]}>
-                          {currentUser.username}
-                        </span>
-                        <span
-                          className={styles["gib__user-exchange--name-desc"]}
-                        >
-                          Предлагаете
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                  {userForExchange && (
-                    <div className={styles["gib__user-exchange"]}>
-                      <div
-                        className={
-                          styles["gib__user-exchange--container-avatar"]
-                        }
-                      >
-                        <AvatarBlock
-                          color={userForExchange.color}
-                          width={25}
-                          height={25}
-                        />
-                      </div>
-                      <div
-                        className={styles["gib__user-exchange--desc-container"]}
-                      >
-                        <span className={styles["gib__user-exchange--name"]}>
-                          {userForExchange.username}
-                        </span>
-                        <span
-                          className={styles["gib__user-exchange--name-desc"]}
-                        >
-                          Отдает
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <Offset mb={10} />
-
-                {/* form input */}
-                <div
-                  className={styles["gib__body-desc-container--two-section"]}
-                >
-                  <div
-                    className={styles["gib__user-exchange--input-container"]}
-                  >
-                    {!isSetInputPriceFrom && (
-                      <>
-                        +
-                        <Icon src={icons.qgCurrencySvg} />
-                      </>
-                    )}
-                    <Input
-                      wrapClassName={
-                        styles["gib__user-exchange--input-container-input"]
-                      }
-                      placeholder="Введите сумму..."
-                      value={
-                        stateExchange.price_from === 0
-                          ? ""
-                          : stateExchange.price_from
-                      }
-                      isSpanWidth={isSetInputPriceFrom}
-                      onChange={(value: any) => {
-                        let numericValue = parseFloat(value);
-                        if (Number.isNaN(numericValue)) numericValue = 0;
-                        handleCard({
-                          ...stateExchange,
-                          price_from: numericValue,
-                        });
-                      }}
-                      type="number"
-                      id="input-seller"
-                      leftText={isSetInputPriceFrom ? "+ " : undefined}
-                      iconLeft={
-                        isSetInputPriceFrom ? (
-                          <Icon
-                            className={
-                              styles["gib__user-exchange--input-currency"]
-                            }
-                            width="15px"
-                            height="15px"
-                            src={icons.qgCurrencySvg}
-                          />
-                        ) : undefined
-                      }
-                      iconRight={
-                        !!stateExchange.price_from && !isSetInputPriceFrom ? (
-                          <Icon
-                            className={
-                              styles["gib__user-exchange--input-success"]
-                            }
-                            src={icons.checkMarkerWhite}
-                            width="12px"
-                            height="12px"
-                            onClick={() => handleApplyInput("price_from")}
-                          />
-                        ) : isSetInputPriceFrom ? (
-                          <Icon
-                            className={
-                              styles["gib__user-exchange--input-reset"]
-                            }
-                            src={Cross}
-                            width="17px"
-                            height="17px"
-                            onClick={() => handleApplyInput("price_from_reset")}
-                          />
-                        ) : undefined
-                      }
-                    />
-                  </div>
-                  <div
-                    className={styles["gib__user-exchange--input-container"]}
-                  >
-                    {userForExchange && (
-                      <>
-                        {!isSetInputPriceTo && (
-                          <>
-                            +
-                            <Icon src={icons.qgCurrencySvg} />
-                          </>
-                        )}
-                        <Input
-                          wrapClassName={
-                            styles["gib__user-exchange--input-container-input"]
-                          }
-                          placeholder="Введите сумму..."
-                          value={
-                            stateExchange.price_to === 0
-                              ? ""
-                              : stateExchange.price_to
-                          }
-                          isSpanWidth={isSetInputPriceTo}
-                          onChange={(value: any) => {
-                            let numericValue = parseFloat(value);
-                            if (Number.isNaN(numericValue)) numericValue = 0;
-                            handleCard({
-                              ...stateExchange,
-                              price_to: numericValue,
-                            });
-                          }}
-                          type="number"
-                          id="input-costumer"
-                          leftText={isSetInputPriceTo ? "+ " : undefined}
-                          iconLeft={
-                            isSetInputPriceTo ? (
-                              <Icon
-                                className={
-                                  styles["gib__user-exchange--input-currency"]
-                                }
-                                width="15px"
-                                height="15px"
-                                src={icons.qgCurrencySvg}
-                              />
-                            ) : undefined
-                          }
-                          iconRight={
-                            !!stateExchange.price_to && !isSetInputPriceTo ? (
-                              <Icon
-                                className={
-                                  styles["gib__user-exchange--input-success"]
-                                }
-                                src={icons.checkMarkerWhite}
-                                width="12px"
-                                height="12px"
-                                onClick={() => handleApplyInput("price_to")}
-                              />
-                            ) : isSetInputPriceTo ? (
-                              <Icon
-                                className={
-                                  styles["gib__user-exchange--input-reset"]
-                                }
-                                src={Cross}
-                                width="17px"
-                                height="17px"
-                                onClick={() =>
-                                  handleApplyInput("price_to_reset")
-                                }
-                              />
-                            ) : undefined
-                          }
-                        />
-                      </>
-                    )}
-                  </div>
-                </div>
-
-                <Offset mb={10} />
-
-                {/* cards */}
-                <div
-                  className={styles["gib__body-desc-container--two-section"]}
-                >
-                  <div className={styles["gib__info-card-exchange-container"]}>
-                    {!!stateExchange.propertys_from.length &&
-                      stateExchange.propertys_from.map(
-                        (card: string, index: number) => (
-                          <div key={index}>
-                            {cards
-                              .filter(
-                                (c: ICard | ISpecialCard) => +c.id === +card
-                              )
-                              .map((c: ICard | ISpecialCard) => {
-                                // setTotalFrom(s=> s + +c.cost);
-                                return (
-                                  <div
-                                    key={c.id}
-                                    className={
-                                      styles[
-                                        "gib__info-card-exchange-card-container"
-                                      ]
-                                    }
-                                    style={{
-                                      background: c.bgc_header,
-                                    }}
-                                  >
-                                    <div> {c.name} </div>
-                                    <div>
-                                      <div>{c.cost} </div>
-                                      <div>
-                                        <CurrencyQG size={11} color="white" />
-                                      </div>
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                          </div>
-                        )
-                      )}
-                  </div>
-                  <div className={styles["gib__info-card-exchange-container"]}>
-                    {!!stateExchange.propertys_to.length &&
-                      stateExchange.propertys_to.map(
-                        (card: string, index: number) => (
-                          <div key={index}>
-                            {cards
-                              .filter(
-                                (c: ICard | ISpecialCard) => +c.id === +card
-                              )
-                              .map((c: ICard | ISpecialCard) => {
-                                // setTotalTo(s => s + +c.cost);
-                                return (
-                                  <div
-                                    key={c.id}
-                                    className={
-                                      styles[
-                                        "gib__info-card-exchange-card-container"
-                                      ]
-                                    }
-                                    style={{
-                                      background: c.bgc_header,
-                                    }}
-                                  >
-                                    <div> {c.name} </div>
-                                    <div>
-                                      <div>{c.cost} </div>
-                                      <div>
-                                        <CurrencyQG size={11} color="white" />
-                                      </div>
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                          </div>
-                        )
-                      )}
-                  </div>
-                </div>
-
-                {/* total cost */}
-                <div
-                  className={styles["gib__body-desc-container--total-price"]}
-                >
-                  <div
-                    className={styles["gib__body-desc-container--two-section"]}
-                  >
-                    <div
-                      className={styles["gib__info-card-exchange-container"]}
-                    >
-                      <Line direction="horizontal" />
-                      <div className={styles["gib__body-desc--total-price"]}>
-                        Итого: {totalFrom}
-                        <CurrencyQG size={10} color="black" />
-                      </div>
-                    </div>
-                    <div
-                      className={styles["gib__info-card-exchange-container"]}
-                    >
-                      <Line direction="horizontal" />
-                      <div className={styles["gib__body-desc--total-price"]}>
-                        Итого: {totalTo}
-                        <CurrencyQG size={10} color="black" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
         </div>
+      </ContainerInfoBodyGIB>
 
-        <Offset mb={10} />
+      {/* <Offset mb={10} /> */}
 
-        {/* footer */}
-        <ContainerInfoFooterGIB
-          style={{
-            backgroundColor: "rgb(229 228 255)",
-          }}
-        >
-          <GameInfoBoardFooterContainer
-            bgc={"transparent"}
-            bgcBtn={"rgb(215 217 244)"}
-          />
-        </ContainerInfoFooterGIB>
-      </div>
+      {/* footer */}
+      <ContainerInfoFooterGIB
+        style={{
+          backgroundColor: "rgb(229 228 255)",
+        }}
+      >
+        <GameInfoBoardFooterContainer
+          bgc={"transparent"}
+          bgcBtn={"rgb(215 217 244)"}
+        />
+      </ContainerInfoFooterGIB>
     </ContainerGIB>
   );
 };

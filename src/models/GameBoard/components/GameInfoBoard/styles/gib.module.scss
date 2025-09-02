@@ -801,48 +801,48 @@
 			border-radius: 5px;
 			padding: 3px;
 		}
-		//gib__user-exchange--input-container
-		&--input-container {
-			display: flex;
-			align-items: center;
-			gap: 5px;
-			width: 100%;
-			position: relative;
+		// //gib__user-exchange--input-container
+		// &--input-container {
+		// 	display: flex;
+		// 	align-items: center;
+		// 	gap: 5px;
+		// 	width: 100%;
+		// 	position: relative;
 
-			// gib__user-exchange--input-container-input
-			&-input {
-				width: 100%;
-				height: 24px;
-				border-radius: 7px;
-				border: 1px solid rgba(129, 138, 184, 1);
-				display: flex;
-				padding: 2px;
-				font-size: 14px;
-				font-weight: 500;
-				color: #000000;
-				background-color: transparent;
-				position: relative;
+		// 	// gib__user-exchange--input-container-input
+		// 	&-input {
+		// 		width: 100%;
+		// 		height: 24px;
+		// 		border-radius: 7px;
+		// 		border: 1px solid rgba(129, 138, 184, 1);
+		// 		display: flex;
+		// 		padding: 2px;
+		// 		font-size: 14px;
+		// 		font-weight: 500;
+		// 		color: #000000;
+		// 		background-color: transparent;
+		// 		position: relative;
 
-				&>div>input {
-					border: none;
-					outline: none;
-					width: 100%;
-					height: 100%;
-					background-color: transparent;
-					padding: 0 !important;
-				}
+		// 		&>div>input {
+		// 			border: none;
+		// 			outline: none;
+		// 			width: 100%;
+		// 			height: 100%;
+		// 			background-color: transparent;
+		// 			padding: 0 !important;
+		// 		}
 
-				&::placeholder {
-					font-family: Manrope;
-					font-weight: 300;
-					font-style: Light;
-					font-size: 10.63px;
-					line-height: 100%;
-					letter-spacing: 0%;
-					vertical-align: middle;
-				}
-			}
-		}
+		// 		&::placeholder {
+		// 			font-family: Manrope;
+		// 			font-weight: 300;
+		// 			font-style: Light;
+		// 			font-size: 10.63px;
+		// 			line-height: 100%;
+		// 			letter-spacing: 0%;
+		// 			vertical-align: middle;
+		// 		}
+		// 	}
+		// }
 	}
 
 	//gib__info-card-exchange-container 
