@@ -335,6 +335,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 		);
 		}
 	}, [listSelectUserPreview, stateExchange]);
+	
 	useEffect(() => {
     if (actionCardView.key === "InfoChanceOrCommunity") {
       const keys: string[] = actionCardData?.data_actions?.actions
@@ -343,7 +344,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
       if (keys.includes("get_house") || keys.includes("return_house")) {
         setIsChanceGetOrRemoveHouse(true);
       }
-      console.log(
+      console.log(	
         "%cKEY chance ===================== " + keys,
         "color: hotpink"
       );
@@ -407,8 +408,8 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
       isKeyPresentInHash(actionCardData, "auction_data")
     );
 		if (
-      (infoMassagePopup.show && dataPlayerQG.current_move) ||
-      isKeyPresentInHash(actionCardData, "auction_data")
+      infoMassagePopup.show && (dataPlayerQG.current_move ||
+      isKeyPresentInHash(actionCardData, "auction_data"))
     ) {
       return setActionCardView(
         <ShowMassagePopup
@@ -721,27 +722,37 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 			break;
 		case "info_board_actions":
 			setActionCardView(
-			<ActionsCardContainerStackScreen
-				card={card}
-				timeEndMove={dataPlayerQG.move_end_time_sec}
-				handleBack={handleCard}
-				actions={actionCardData?.choose_data?.actions}
-				handleAction={handleCardOnFieldAction}
-				showInfoCard={"action-card"}
-			/>
-			);
+        <ActionsCardContainerStackScreen
+          card={
+            quickGame.cards.filter(
+              (c: ICard | ISpecialCard) =>
+                c.id === actionCardData.choose_data.card_id
+            )[0]
+          }
+          timeEndMove={dataPlayerQG.move_end_time_sec}
+          handleBack={handleCard}
+          actions={actionCardData?.choose_data?.actions}
+          handleAction={handleCardOnFieldAction}
+          showInfoCard={"action-card"}
+        />
+      );
 			break;
 		case "info_board_actions_special_card":
 			setActionCardView(
-			<ActionsCardContainerStackScreen
-				card={card}
-				timeEndMove={dataPlayerQG.move_end_time_sec}
-				handleBack={handleCard}
-				actions={actionCardData?.choose_data?.actions}
-				handleAction={handleCardOnFieldAction}
-				showInfoCard={"action-special-card"}
-			/>
-			);
+        <ActionsCardContainerStackScreen
+          card={
+            quickGame.cards.filter(
+              (c: ICard | ISpecialCard) =>
+                c.id === actionCardData.choose_data.card_id
+            )[0]
+          }
+          timeEndMove={dataPlayerQG.move_end_time_sec}
+          handleBack={handleCard}
+          actions={actionCardData?.choose_data?.actions}
+          handleAction={handleCardOnFieldAction}
+          showInfoCard={"action-special-card"}
+        />
+      );
 			break;
 		case "jail":
 			setActionCardView(
