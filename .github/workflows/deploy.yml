@@ -1,0 +1,28 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: SSH Deploy to 95.181.224.33
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy via SSH
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: 95.181.224.33
+        username: root
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          echo "== Starting Deploy =="
+          cd /var/telegram/front-apps/repos/joint-purchase.git
+          echo "== Simulating push =="
+          git fetch origin main
+          git update-ref refs/heads/main origin/main
+          echo "== Triggering post-receive =="
+          GIT_DIR=/var/telegram/front-apps/repos/joint-purchase.git /var/telegram/front-apps/repos/joint-purchase.git/hooks/post-receive
