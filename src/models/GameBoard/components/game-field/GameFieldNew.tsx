@@ -141,18 +141,18 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 											<Icon src={icons.hotelCard} width='25' height='12' />
 
 										</div>
-										: !!!owner?.houses ?
+										: !!owner?.houses ?
 											<div className={styles[`card-field__text-title--build-h-${direction}`]}>
 												{new Array(owner?.houses).fill('').map((h: any, i: number) => {
 													return (
-                            <Icon
-                              key={i}
-                              src={icons.home}
-                              width="12px"
-                              height="12px"
-                              rotate={direction === 'left'? 270 : direction === 'right'? 270 : 0}
-                            />
-                          );
+														<Icon
+														key={i}
+														src={icons.home}
+														width="12px"
+														height="12px"
+														rotate={direction === 'left'? 270 : direction === 'right'? 270 : 0}
+														/>
+													);
 												})}
 											</div>
 											: null

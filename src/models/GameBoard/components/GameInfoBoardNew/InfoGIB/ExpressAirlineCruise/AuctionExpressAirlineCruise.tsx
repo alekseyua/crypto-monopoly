@@ -78,7 +78,7 @@ export const AuctionExpressAirlineCruise: React.FC<IAuctionExpressAirlineCruiseP
 				p={0}
 				disabled={!actions.auction && isActionCard}
 				onClick={handleAuction}>
-				Отказ {<AutoCounter counter={timeEndMove} disabled={isActionCard} callback={handleAuction} />}
+				Отказ {<AutoCounter counter={timeEndMove} disabled={isActionCard} callback={()=>{}} />}
 			</Button>
 		</ContainerTwoBtn>
         <Offset mt={10} />
