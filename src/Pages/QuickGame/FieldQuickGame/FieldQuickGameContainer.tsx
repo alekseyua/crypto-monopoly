@@ -37,10 +37,9 @@ import { InfoJail } from "../../../models/GameBoard/components/GameInfoBoardNew/
 import { InfoChanceOrCommunity } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ChanceOrCommunity/InfoChanceOrCommunity";
 import { ShowMassagePopup } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ShowMassagePopup/ShowMassagePopup";
 import { StoreonDispatch } from "storeon";
-import { IProfile } from "../../../store/profile/profile.d";
-import { IMessageQG } from "../../../store/message/message";
 import { SET_HEADER_NAME_IS_SHOW } from "../../../store/header/header";
 import { HeaderNameEnum } from "../../../store/header/header.d";
+import { IUser } from "../../../store/users/user.d";
 
 type keyPreview = {
   key:
@@ -98,8 +97,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
   const {
     dispatch,
     quickGame,
-    profile,
-    messagesQG,
+    user,
     dataPlayerQG,
     exchangeData,
     infoMassagePopup,
@@ -107,8 +105,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
   }: {
     dispatch: StoreonDispatch<any>;
     quickGame: IDataQG;
-    profile: IProfile;
-    messagesQG: IMessageQG[];
+    user: IUser;
     dataPlayerQG: IPlayer;
     exchangeData: any;
     dataActionCardQG: IUserActions;
@@ -116,10 +113,9 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
   } = useStoreon(
     "exchangeData",
     "quickGame",
-    "profile",
+    "user",
     "dataPlayerQG",
     "dataActionCardQG",
-    "messagesQG",
     "infoMassagePopup"
   );
   const [heightGameBoard, setHeightGameBoard] = useState<number>(0);
@@ -138,7 +134,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
   const navigate = useNavigate();
 
   const actionCardData =
-    dataActionCardQG[(profile.id + "") as keyof IUserActions];
+    dataActionCardQG[(user.id + "") as keyof IUserActions];
 
 	useEffect(() => {
     dispatch(SET_HEADER_NAME_IS_SHOW, HeaderNameEnum.QUICK_GAME);
