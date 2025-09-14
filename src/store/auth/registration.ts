@@ -56,7 +56,6 @@ export const registration = (store: StoreonStore) => {
   });
   store.on(INC_REG_STEP, ({ regStep, regData }: any, data, { dispatch }) => {
     for (let key of Object.keys(regData)) {
-      debugger
       if (regStep === 1 && key === "email") {
         if (!validateEmail(regData.email)) {
           setErrorTimming(SET_ERROR_REG, "EMAIL  invalid", dispatch, 1500);

@@ -4,12 +4,12 @@ import UserPanelMainModeNotification from '../../Component/UserPanelNotification
 import UserPanelMainModeLK from '../../Component/UserPanelLK/UserPanelMainModeLK';
 import Icon from '../../shared/UI/Icon/Icon';
 import { DropdownArrow, icons } from '../../assets';
+import { IUser } from '../../store/users/user.d';
 
 interface IProps {
   userInfo: any
-  profile: any
   isQG: any
-  user: any
+  user: IUser;
   handleNavigateTo: any
   handleOpenDropDownMenu: any
   isDropDownMenuOpen: any
@@ -17,7 +17,6 @@ interface IProps {
 
 const UserPanel:React.FC<IProps> = ({ 
   userInfo, 
-  profile, 
   isQG, 
   user, 
   handleNavigateTo, 
@@ -28,7 +27,7 @@ const UserPanel:React.FC<IProps> = ({
     <div className={`${styles['header-menu-btn__user-panel-container']}`} >
       <div className={`${isQG ? styles.quickGame : styles['header-menu-btn__user-panel-container']} ${isDropDownMenuOpen && styles['open']}`} >
         {
-          !!profile.id && userInfo?.map((info:any, i: number) => {
+          !!user.id && userInfo?.map((info:any, i: number) => {
             // !!user?.username && userInfo?.map( (info, i) => {
             const { name, price, link, id } = info;
             return (
@@ -82,7 +81,7 @@ const UserPanel:React.FC<IProps> = ({
           })
         }
       </div>
-      <UserPanelMainModeLK user={user} profile={profile}/>
+      <UserPanelMainModeLK user={user}/>
 
       <UserPanelMainModeNotification />
     </div>

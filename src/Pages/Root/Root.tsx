@@ -9,7 +9,7 @@ import { GET_USERS } from '../../store/users/users';
 
 const Root = () => {
 	const navigate = useNavigate();
-	const {dispatch, profile } = useStoreon('profile');
+	const {dispatch, user } = useStoreon('user');
 		
 	useEffect(() => {
 		const navigating = () => {
@@ -22,7 +22,7 @@ const Root = () => {
 	}, [navigate]);
 
 	useEffect(()=>{
-		if(!profile.id){
+		if(!user.id){
 			dispatch(GET_USERS)
 		}
 	},[])

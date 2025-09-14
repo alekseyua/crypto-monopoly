@@ -3,15 +3,14 @@ import UserPanelLK from './UserPanelLK';
 import { useStoreon } from 'storeon/react';
 import { LOGOUT } from '../../store/auth/registration';
 import { GET_USERS } from '../../store/users/users';
+import { IUser } from '../../store/users/user.d';
 
 interface IProps {
-  user: any;
-  profile: any;
+  user: IUser;
 }
 
 const UserPanelMainModeLK:React.FC<IProps> = ({
   user,
-  profile,
 }) => {
   const [ isOpenLKMenu, setIsOpenLKMenu ] = useState(false);
   const { dispatch } = useStoreon();
@@ -27,7 +26,6 @@ const UserPanelMainModeLK:React.FC<IProps> = ({
   return (
     <UserPanelLK
       user={user}
-      profile={profile}
       isOpenLKMenu={isOpenLKMenu}
       handleLogout={handleLogout}
       handleOpenLKMenu={handleOpenLKMenu}

@@ -112,7 +112,6 @@ console.log("UserPanelContainer render", { user, quickGame });
     return (
         <UserPanel
             user={user}
-            profile={user}
             userInfo={userInfo}
             isQG={isQG}
             handleNavigateTo={handleNavigateTo}
