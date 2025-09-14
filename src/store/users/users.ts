@@ -7,7 +7,7 @@ import { getLocaleStore } from "../../helpers/helper";
 import { SET_DATA_PROFILE } from "../profile/profile";
 
 export const SET_USERS: string = v4();
-export const GET_USERS: string = v4();
+export const GET_USERS = 'profile/GET_USERS' as const;
 export const SET_USERS_NULL: string = v4();
 
 
@@ -23,10 +23,10 @@ export const users = (store: StoreonStore) => {
         const email: string | undefined = payload?.email ?? getLocaleStore('email');
         const res = await api.get(API_GET_USER,{email});
         if(typeof callback === 'function') callback(res as { data: { id: number } });
-        console.log('GET_USERS status', res?.data);
+        // console.log('GET_USERS status', res?.data);
         if (res?.status === 200)  {
             dispatch(SET_USERS, res.data);   
-            dispatch(SET_DATA_PROFILE, res.data); 
+            // dispatch(SET_DATA_PROFILE, res.data); 
         }
     });
 }

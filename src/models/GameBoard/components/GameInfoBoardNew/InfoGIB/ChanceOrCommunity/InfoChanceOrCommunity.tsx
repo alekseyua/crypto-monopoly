@@ -63,7 +63,7 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
       />
       <ContainerInfoHeaderGIB>
         <ContainerOneBtn>
-          <Button variant="gradient" gradientColors={["#726CED", "#70DCF1"]}>
+          <Button p={12} variant="gradient" gradientColors={["#726CED", "#70DCF1"]}>
             {title}
           </Button>
         </ContainerOneBtn>
@@ -71,7 +71,7 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
       <Offset mt={70} />
       <ContainerInfoBodyGIB>
         <Title tag="h2" title={content} center />
-        <Offset mt={30} />
+        <Offset mt={60} />
         <ContainerTwoBtn
           style={{
             gridTemplateColumns: actions?.length === 2 ? "1fr 1fr" : "1fr",
@@ -79,7 +79,6 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
         >
           {actions?.length &&
             actions.map((a: string, i: number) => {
-              console.log({ a });
               return (
                 <Button
                   key={i}

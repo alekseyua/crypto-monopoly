@@ -28,6 +28,7 @@ export const ShowMassagePopup: React.FC<IProps> = ({
       <ContainerInfoBodyGIB>
         <ContainerOneBtn>
           <Button
+            p={15}
             variant="gradient"
             gradientColors={["#726CED", "#70DCF1"]}
             onClick={() =>

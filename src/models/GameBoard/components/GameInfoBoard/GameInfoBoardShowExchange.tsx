@@ -160,7 +160,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 								<div className={styles['gib__body-desc-container--two-section']}>
 
 									<div className={styles['gib__user-exchange--input-container']}>
-										<Input
+										{ !!exchageData.price_from && <Input
 											wrapClassName={styles['gib__user-exchange--input-container-input']}
 											placeholder='Введите сумму...'
 											value={exchageData.price_from}
@@ -176,13 +176,13 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 												src={icons.qgCurrencySvg}
 											/> : undefined}
 											
-										/>
+										/>}
 									</div>
 									<div className={styles['gib__user-exchange--input-container']}>
 										{
 											userToWhomOffered &&
 											<>
-												<Input
+												{!!exchageData.price_to && <Input
 													wrapClassName={styles['gib__user-exchange--input-container-input']}
 													placeholder='Введите сумму...'
 													value={exchageData.price_to}
@@ -198,7 +198,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 														src={icons.qgCurrencySvg}
 													/> : undefined}
 													
-												/>
+												/>}
 											</>
 										}
 									</div>

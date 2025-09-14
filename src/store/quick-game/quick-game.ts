@@ -15,6 +15,7 @@ export const CREATE_NEW_QG = v4();
 export const JOIN_QG = v4();
 export const GET_LIST_QG = v4();
 export const SET_LIST_QG = v4();
+export const RET_LIST_QG = v4();
 export const SET_QG = v4();
 export const RESET_QG = v4();
 export const UPDATE_LIST_QG = v4();
@@ -24,6 +25,7 @@ export const SET_SHOW_QG = v4();
 export const NULL_SHOW_QG = v4();
 export const DISCONNECT_LIST_QG = v4();
 export const SET_DATA_PLAYER_QG = v4();
+export const RET_DATA_PLAYER_QG = v4();
 
 export const RESET_DATA_ACTION_CARD = v4();
 export const SET_DATA_ACTION_CARD = v4();
@@ -59,7 +61,7 @@ function connectWebSocket(socket: WebSocket, callback: (res: any) => any, action
     console.warn("WebSocket close code: ", e?.code, typeof e?.code);
     if (e?.code === 1006) {
       // Попробуем переподключиться через 2 секунды
-      setTimeout(connectWebSocket, 2000);
+      // setTimeout(connectWebSocket, 2000);
       return console.log('close websocket error 1006')
     }
     if (e?.code === 1000) {
@@ -68,12 +70,6 @@ function connectWebSocket(socket: WebSocket, callback: (res: any) => any, action
     // setTimeout(connectWebSocket, 2000);  
   }
   socket.onmessage = (event: MessageEvent) => {
-    // console.log(socket,'%c√action= "get_player_data"', 'color: green', JSON.parse(event.data)?.player_data?.user)
-    // if(!getLocaleStore('profile_id') && !isUserId){
-    //   socket.send(JSON.stringify({action: 'get_player_data'}))
-    //   isUserId = true
-    //   return;
-    // }
     callback(JSON.parse(event.data));
     if (action === 'close') {
       // принудительно закрываем
@@ -108,16 +104,7 @@ export const quickGame = (store: StoreonStore) => {
   store.on(_INIT, ()=>({infoMassagePopup: initInfoMessagePopup}))
   store.on(SET_INFO_MESSAGE_POPUP, (state: any, payload ) => ({infoMassagePopup: {...payload}}))
   // Achivment player
-  const initListAchivmentPlayer: IAchivmentPlayer[] = [
-    //   {
-    //     "id": 0,
-    //     "achievement": {
-    //         "name": ""
-    //     },
-    //     "date_awarded": "",
-    //     "repeat": 0
-    // }
-  ];
+  const initListAchivmentPlayer: IAchivmentPlayer[] = [];
 
   store.on(_INIT, () => ({ listAchivmentPlayer: initListAchivmentPlayer }));
   store.on(RESET_ACHIVMENT_PLAYER_QG, () => ({ listAchivmentPlayer: initListAchivmentPlayer }));
@@ -126,7 +113,6 @@ export const quickGame = (store: StoreonStore) => {
   }));
   // list card
   const initListCardQG: ICard[] = [];
-
   store.on(_INIT, () => ({ listCardQG: initListCardQG }));
   store.on(RESET_LIST_CARDS_QG, () => ({ listCardQG: initListCardQG }));
   store.on(SET_LIST_CARDS_QG, (_, payload) => ({
@@ -177,6 +163,7 @@ export const quickGame = (store: StoreonStore) => {
   };
 
   store.on(_INIT, () => ({ dataPlayerQG: initDataPlayerQG }));
+  store.on(RET_DATA_PLAYER_QG, () => ({ dataPlayerQG: initDataPlayerQG }));
   store.on(SET_DATA_PLAYER_QG, (_, payload) => ({
     dataPlayerQG: { ...payload },
   }));
@@ -193,7 +180,6 @@ export const quickGame = (store: StoreonStore) => {
     start_money: '',
     max_players: 0,
   };
-
   store.on(_INIT, () => ({ quickGame: initDataQG }));
   store.on(RESET_QG, () => ({ quickGame: initDataQG }));
   store.on(SET_QG, (_, payload) => ({
@@ -203,6 +189,7 @@ export const quickGame = (store: StoreonStore) => {
  
   const initListQGs: IListQGs[] = [];
   store.on(_INIT, () => ({ listQGs: initListQGs }));
+  store.on(RET_LIST_QG, () => ({ listQGs: initListQGs }));
   store.on(SET_LIST_QG, (_, payload) => ({
     listQGs: [...payload],
   }));
@@ -285,8 +272,12 @@ export const quickGame = (store: StoreonStore) => {
           console.log("%c ALARM into 'card_data' has a key 'actions'", "color: red", ' player id', currentPlayer[0]?.user)
         }
         // ====================== info message popup ============================
-        if (Object.keys(currentPlayer[0]).includes('popup_data')) { // кратковременные сообщения
-          dispatch(SET_INFO_MESSAGE_POPUP, currentPlayer[0].popup_data)
+        if (
+          isKeyPresentInHash(currentPlayer[0], "popup_data") &&
+          Object.keys(currentPlayer[0]).includes("popup_data")
+        ) {
+          // кратковременные сообщения
+          dispatch(SET_INFO_MESSAGE_POPUP, currentPlayer[0].popup_data);
         }
         // =========================================================
         let choose_data = undefined;
@@ -376,15 +367,12 @@ export const quickGame = (store: StoreonStore) => {
   });
 
   store.on(CREATE_NEW_QG, (_, payload, { dispatch }) => {
-
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
-      console.log('create_game')
       socket.get_games.send(JSON.stringify(payload));
     }
   });
 
   store.on(SEND_ACTION_CARD_QG, (store: any, payload, { dispatch }) => {
-    console.log('buy card', { status: socket.get_games?.readyState, payload })
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       const game_id = store.quickGame.id;
 
@@ -428,7 +416,6 @@ export const quickGame = (store: StoreonStore) => {
   });
 
   store.on(GET_ACTION_CARD_QG, (store: any, payload) => {
-    console.log('get_action_card_in_game is ready', { status: socket.get_games?.readyState });
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       const game_id = store.quickGame.id;
       socket.get_games?.send(JSON.stringify({
@@ -439,14 +426,10 @@ export const quickGame = (store: StoreonStore) => {
 
   });
 
-  store.on(RESET_EXCHANGE_DATA, (store, payload, { dispatch }) => {
-    return dispatch(SET_EXCHANGE_DATA, {})
-  })
-
+  
   store.on(_INIT, () => ({ exchangeData: {} }))
-  store.on(SET_EXCHANGE_DATA, (store, payload, { dispatch }) => {
-    return ({ exchangeData: payload })
-  })
+  store.on(SET_EXCHANGE_DATA, (store, payload, { dispatch }) => ({ exchangeData: payload }))
+  store.on(RESET_EXCHANGE_DATA, (store, payload, { dispatch }) => dispatch(SET_EXCHANGE_DATA, {}))
 
   store.on(_INIT, () => ({ showRate: false }));
   store.on(GET_RATE_LIST_PLAYERS, (s: any, payload) => {

@@ -22,6 +22,7 @@ const SelectQGContainer = () => {
 
   useEffect(() => {
     // делаем проверку на существование игры переносим на поле
+    debugger
     quickGame.id && quickGame.cards.length && navigate(NAV_QG_FIELD_PAGE);
   }, [quickGame, navigate])
 

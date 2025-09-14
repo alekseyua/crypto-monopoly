@@ -9,6 +9,7 @@ import { GET_DUBLICATE_CODE_RECOVERY, SET_ERROR_RECOVERY } from "./recovery";
 import { SET_MESSAGE } from "../message/message";
 import { NAV_MAIN_PAGE } from "../../routers/config-nav";
 import { GET_USERS, SET_USERS_NULL } from "../users/users";
+import { RESET_ACHIVMENT_PLAYER_QG, RESET_DATA_ACTION_CARD, RESET_EXCHANGE_DATA, RESET_LIST_CARDS_QG, RESET_QG, RET_DATA_PLAYER_QG, RET_LIST_QG } from "../quick-game/quick-game";
 
 
 
@@ -219,6 +220,14 @@ export const registration = (store: StoreonStore) => {
     removeLocaleStore("token");
     removeLocaleStore("refresh");
     dispatch(SET_USERS_NULL);
+    dispatch(RESET_ACHIVMENT_PLAYER_QG);
+    dispatch(RESET_LIST_CARDS_QG);
+    dispatch(RESET_DATA_ACTION_CARD);
+    dispatch(RET_DATA_PLAYER_QG);
+    dispatch(RESET_QG);
+    dispatch(RET_LIST_QG);
+    dispatch(RESET_EXCHANGE_DATA);
+
 
     return {
       authStep: 1,

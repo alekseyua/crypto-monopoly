@@ -3,9 +3,10 @@ import withRouter from '../../HOC/withRouter'
 import UserPanel from './UserPanel'
 import { useEffect, useState } from 'react';
 import { GET_USERS } from '../../store/users/users';
-import { IPlayer } from '../../store/quick-game/quick-game.d';
+import { IDataQG, IPlayer } from '../../store/quick-game/quick-game.d';
 import { StoreonDispatch } from 'storeon';
 import { NavigateFunction } from 'react-router-dom';
+import { IUser } from '../../store/users/user.d';
 
 const quickGameMenu = [
   {
@@ -43,16 +44,18 @@ const mainGameMenu = [
   },
 ];
 
+interface StateStore {
+  user: IUser;
+  isQG: boolean;
+  quickGame: IDataQG;
+  dataPlayerQG: IPlayer;
+}
+interface Events {
+  [GET_USERS]: IUser;
+}
+
 const UserPanelContainer = ({ navigate }: {navigate: NavigateFunction}) => {
-    const { user, isQG, quickGame, dataPlayerQG }:
-    {
-        user: any;
-        isQG: any;
-        quickGame: any;
-        dataPlayerQG: IPlayer
-        dispatch: StoreonDispatch<any>
-    } = 
-        useStoreon('user', 'isQG', 'quickGame', 'dataPlayerQG');
+    const { user, isQG, quickGame, dataPlayerQG, dispatch } = useStoreon<StateStore, Events>('user', 'isQG', 'quickGame', 'dataPlayerQG');
     const [isDropDownMenuOpen, setIsDropDownMenuOpen ] = useState(false);
     const [userInfo, setUserInfo ] = useState(mainGameMenu)
 
@@ -63,13 +66,8 @@ const UserPanelContainer = ({ navigate }: {navigate: NavigateFunction}) => {
     
     useEffect(() => {
         if (quickGame?.id) {
-          console.log(
-            "%cID-QUICKGAME " + quickGame?.id,
-            "color: red",
-            dataPlayerQG
-          );
         const dataUserPanel = dataPlayerQG.bill_data;
-        setUserInfo(
+        !!dataUserPanel && setUserInfo(
           quickGameMenu.map((item) =>
             item.id === "balance"
               ? {
@@ -100,6 +98,11 @@ const UserPanelContainer = ({ navigate }: {navigate: NavigateFunction}) => {
         }
       }
     }, [user, quickGame, dataPlayerQG]);
+
+    useEffect(() => {
+        // получаем юзеров
+        !user?.username && user?.id && dispatch(GET_USERS, undefined as undefined);
+    }, [user, dispatch]);
 
     const handleOpenDropDownMenu = () => {
         // Implement dropdown menu logic here

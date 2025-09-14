@@ -729,20 +729,20 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 			break;
 		case "info_board_actions":
 			setActionCardView(
-        <ActionsCardContainerStackScreen
-          card={
-            quickGame.cards.filter(
-              (c: ICard | ISpecialCard) =>
-                c.id === actionCardData.choose_data.card_id
-            )[0]
-          }
-          timeEndMove={dataPlayerQG.move_end_time_sec}
-          handleBack={handleCard}
-          actions={actionCardData?.choose_data?.actions}
-          handleAction={handleCardOnFieldAction}
-          showInfoCard={"action-card"}
-        />
-      );
+				<ActionsCardContainerStackScreen
+				card={
+					quickGame.cards.filter(
+					(c: ICard | ISpecialCard) =>
+						c.id === actionCardData.choose_data.card_id
+					)[0]
+				}
+				timeEndMove={dataPlayerQG.move_end_time_sec}
+				handleBack={handleCard}
+				actions={actionCardData?.choose_data?.actions}
+				handleAction={handleCardOnFieldAction}
+				showInfoCard={"action-card"}
+				/>
+			);
 			break;
 		case "info_board_actions_special_card":
 			setActionCardView(
