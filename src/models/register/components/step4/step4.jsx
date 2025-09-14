@@ -36,7 +36,7 @@ export const Step4 = ({
 				<div className={cls.inputs}>
 					<Input
 						value={regData.password}
-						onChange={(value) => handleSetRegData({ password: value })}
+						onChange={(e) => handleSetRegData({ password: e.target.value })}
 						label={
 							'Пароль должен содержать минимум 8 символов на латинице или цифры, 1 и более символов заглавныеи минимум 1 знак: _-<>{}#№!?*'
 						}
@@ -61,7 +61,7 @@ export const Step4 = ({
 					/>
 					<Input
 						value={regData.repeatPassword}
-						onChange={(value) => handleSetRegData({ repeatPassword: value })}
+						onChange={(e) => handleSetRegData({ repeatPassword: e.target.value })}
 						id={'repeatPassword'}
 						error={errorReg ? errorReg : regData.password !== regData.repeatPassword}
 						type={showPasswordConfirm ? 'text' : 'password'}
@@ -84,7 +84,8 @@ style={{
 				{errorReg && <Label text={errorReg} />}
 				<Button
 					onClick={() => handleNextStep()}
-					type='filled'
+					p={24}
+					type='fill'
 					fillColor='#726CED'
 					textColor='#fff'
 					disabled={

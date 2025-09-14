@@ -1,0 +1,12 @@
+.header{
+    &__balance{
+        //header__balance-container
+        &-container{
+            background: #f8f9ff;
+                border-radius: 99px;
+                display: flex;
+                justify-content: space-between;
+                padding: 12px;
+        }
+    }
+}

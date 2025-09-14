@@ -360,7 +360,7 @@ export const quickGame = (store: StoreonStore) => {
     // if(!socket.get_games && socket.get_games?.readyState !== WebSocket.OPEN) {
     if (!!!storage?.profile?.id || storage?.profile?.id === undefined) {
       dispatch(GET_USERS, {
-        callback: (res: any) => {
+        callback: (res: {data: {id: number}}) => {
           connectWS(res?.data?.id);
         }
       });// данные пользователя в игре

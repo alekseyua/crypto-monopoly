@@ -11,7 +11,33 @@ interface IProfile {
     "balance": number;
 }
 
+type Currency = "USDT-TRC20" | "USDT-ERC20";
+type PaymentStatus = "pending" | "confirmed" | "failed" | "zeroed";
 
-export {
-    IProfile,
+interface PaymentConfirm {
+  payment_hash: string;
+  payment_id: string;
 }
+
+interface Payment {
+  id: number | null; // null при создании нового платежа
+  amount: string; // Приходит как строка с десятичными
+  currency: Currency;
+  address: string;
+  status: PaymentStatus; // Можно заменить на enum
+  tx_hash: string | null;
+  created_at: string; // ISO дата в строковом виде
+  user: number;
+}
+
+interface PaymentError {
+  amount: boolean;
+  currency: boolean;
+  address: boolean;
+  status?: boolean;
+  tx_hash?: boolean;
+  user: boolean;
+}
+
+
+export { IProfile, Payment, PaymentError, PaymentConfirm };

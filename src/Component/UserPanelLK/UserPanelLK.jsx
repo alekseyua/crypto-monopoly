@@ -24,7 +24,7 @@ const UserPanelLK = ({profile, handleOpenLKMenu, handleLogout, user, isOpenLKMen
       {
         isOpenLKMenu && 
           <div className={cls['header-menu-lk-btn__dropdown-container']}>
-            <Link to={''}>Настройки</Link>
+            <Link to={'/profile'}>Настройки</Link>
             <br />
             {
               // user?.username 

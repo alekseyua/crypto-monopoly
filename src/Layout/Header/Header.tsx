@@ -28,7 +28,7 @@ const Header:React.FC = () => {
 									}
 								</div>
 								{
-									window.location.href.includes('/authorization/')
+									window.location.href.includes('/authorization/') 
 										? <nav className={styles.nav}>
 											<Button variant='rounded' component='link' to='/rules'>
 												Правила игры

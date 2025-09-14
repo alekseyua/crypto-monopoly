@@ -8,7 +8,7 @@ const withRouter = (Component) => {
     const navigate = useNavigate();
     const location = useLocation();
     const params = useParams();
-    
+    const hash = location.hash.replace('#', '');
     useEffect(()=>{
       goToUp()
       
@@ -19,6 +19,7 @@ const withRouter = (Component) => {
         navigate={navigate}
         location={location}
         params={params}
+        hash={hash}
       />
     );
   }

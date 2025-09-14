@@ -19,7 +19,7 @@ export const Step3 = ({
 			<div className={cls.cardBody}>
 				<Input
 					value={regData.username}
-					onChange={(value) => handleSetRegData({username: value})}
+					onChange={(e) => handleSetRegData({username: e.target.value})}
 					label={
 						errorReg? errorReg : 'Никнейм должен содержать не более 12 символовбез пробелов и только на латинице. Допускаются знаки:_-<>{}#№!?*'
 					}
@@ -31,7 +31,8 @@ export const Step3 = ({
 				/>
 				<Button
 					onClick={() => handleNextStep()}
-					type='filled'
+					p={24}
+					type='fill'
 					fillColor='#726CED'
 					textColor='#fff'
 					disabled={regData.username.trim().length === 0}>

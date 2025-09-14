@@ -10,6 +10,7 @@ import { recovery } from './auth/recovery';
 import { referal } from "./auth/referal";
 import { websocket } from './websocket/websocket';
 import { modal } from './modal/modal';
+import { headerStore } from './header/header';
 
 // Initial state, reducers and business logic are packed in independent modules
 
@@ -19,6 +20,7 @@ export const store = createStoreon([
   error,
   modal,
   referal,
+  headerStore,
   message,
   profile,
   recovery,

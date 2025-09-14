@@ -84,7 +84,8 @@ export const Step5 = ({
 						})).reduce((acc, obj) => ({ ...acc, ...obj }), {}), 
 						callbackReg: handleRegistration
 					})}
-					type='filled'
+					p={24}
+					type='fill'
 					fillColor='#726CED'
 					textColor='#fff'
 					disabled={

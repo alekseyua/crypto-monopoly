@@ -9,7 +9,8 @@ export const modal = (store: StoreonStore) => {
     interface IModal {
         isOpen: boolean;
         content: React.ReactNode | string | number;
-        title: string;        
+        title: string;
+        type?: string;
         confirmBtn: string;
         cancelBtn: string;
         confirmCallback: () => void;

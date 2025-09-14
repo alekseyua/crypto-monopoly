@@ -28,7 +28,7 @@ export const Step2 = ({
 				<Input
 					// ref={codeInputRef}
 					value={emailCode}
-					onChange={(value) => setEmailCode(value)}
+					onChange={(e) => setEmailCode(e.target.value)}
 					label={errorReg ? errorReg : `Код для проверки отправлен на указанный почтовый ящик  (${regData.email.slice(0,4)}***${regData.email.slice(-6,regData.email.length)})`}
 					error={errorReg}
 					id={'mail'}
@@ -41,6 +41,8 @@ export const Step2 = ({
 					<Button onClick={()=>handlePrevStep()}>Указать другую почту</Button>
 					<Button
 						onClick={() => handleNextStep({code: emailCode})}
+						p={24}
+						type='fill'
 						disabled={
 							!emailCode
 								? true

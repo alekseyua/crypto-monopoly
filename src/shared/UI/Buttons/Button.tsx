@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import cls from './button.module.scss';
-import React, { ComponentType } from 'react';
+import styles from './button.module.scss';
+import React from 'react';
 import classNames from 'classnames';
 
 interface buttonProps{
@@ -18,25 +18,50 @@ interface linkProps {
 	onClick?: never;
 }
 type PropsComponent = buttonProps | linkProps | divProps;
-interface IButton {	
-	to?: string | undefined;
-    type?: 'filled' | 'outline' | 'rounded' | 'empty' | 'fill' | 'transparent' | 'fill-round' | 'fill-empty';
-    error?: boolean;
-    style?: React.CSSProperties;
-    props?: React.ButtonHTMLAttributes<HTMLButtonElement> | React.AnchorHTMLAttributes<HTMLAnchorElement>;
-    variant?: 'primary' | 'secondary' | 'tertiary' | 'gradient' | any | undefined;
-    // onClick: () => void;
-    children: React.ReactNode;
-    iconLeft?: React.ReactElement;
-    disabled?: boolean;
-    fillColor?: string;
-    borderColor?: string;
-    textColor?: string;
-    className?: string;
-    // component?: 'button' | 'link';
-    iconRight?: React.ReactElement;
-    gradientColors?: [string, string];
-	p?: number | string;
+interface IButton {
+  to?: string | undefined;
+  type?:
+    | "filled"
+    | "outline"
+    | "rounded"
+    | "empty"
+    | "fill"
+    | "transparent"
+    | "fill-round"
+    | "fill-empty"
+    | "gradient-invert";
+  error?: boolean;
+  style?: React.CSSProperties;
+  props?:
+    | React.ButtonHTMLAttributes<HTMLButtonElement>
+    | React.AnchorHTMLAttributes<HTMLAnchorElement>;
+  variant?:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "gradient"
+    | "filled"
+    | "outline"
+    | "rounded"
+    | "empty"
+    | "fill"
+    | "transparent"
+    | "fill-round"
+    | "fill-empty"
+    | "gradient-invert";
+  // onClick: () => void;
+  children: React.ReactNode;
+  iconLeft?: React.ReactElement;
+  disabled?: boolean;
+  fillColor?: string;
+  borderColor?: string;
+  textColor?: string;
+  className?: string;
+  // component?: 'button' | 'link';
+  iconRight?: React.ReactElement;
+  gradientColors?: [string, string];
+  p?: number | string;
+  typeBtn?: "button" | "submit" | "reset" | undefined;
 }
 
 export const Button: React.FC<IButton & PropsComponent> = ({
@@ -44,7 +69,7 @@ export const Button: React.FC<IButton & PropsComponent> = ({
 	type = 'filled',
 	error,
 	style={},
-	variant = '',
+	variant,
 	onClick=()=>{},
 	children,
 	iconLeft,
@@ -55,6 +80,7 @@ export const Button: React.FC<IButton & PropsComponent> = ({
 	iconRight,
 	gradientColors = ['#6fd4f2', '#796fee'],
 	disabled,
+  typeBtn="button",
 	borderColor,
 	p,
 	...props
@@ -69,77 +95,78 @@ export const Button: React.FC<IButton & PropsComponent> = ({
 	if(borderColor) buttonStyle = {...buttonStyle, border: `1px solid ${borderColor}`};
 	if (component === 'button') {
 		return (
-			<button
-			onClick={onClick}
-			className={
-				classNames({
-					[cls.button]: true,
-					[cls[type]]: true,
-					[variant && cls[variant]]: !!variant,
-					[cls.disabled]: disabled,
-					[cls.error]: error,
-					[className]:!!className,
-				})
-			}
-			// `${cls.button} ${cls[type]} ${variant && cls[variant]} ${className} ${disabled && cls.disabled}`}
-			style={{
-				pointerEvents: error? 'none' : 'all',
-				...style,
-				...(error? { backgroundColor: 'var(--bg-color-error)' } : {}),
-				...(disabled? { cursor: 'not-allowed' } : {}),
-				...buttonStyle,
-			}}
-				{...props}
-			>
-				{iconLeft && iconLeft }
-				{children}
-				{iconRight &&  iconRight }
-
-			</button>
-		);
+      <button
+        type={typeBtn}
+        onClick={onClick}
+        className={classNames(
+          styles.button,
+          type && styles[type],
+          variant && styles[variant],
+          disabled && styles.disabled,
+          error && styles.error,
+          className
+        )}
+        // `${styles.button} ${styles[type]} ${variant && styles[variant]} ${className} ${disabled && styles.disabled}`}
+        style={{
+          pointerEvents: error ? "none" : "all",
+          ...style,
+          ...(error ? { backgroundColor: "var(--bg-color-error)" } : {}),
+          ...(disabled ? { cursor: "not-allowed" } : {}),
+          ...buttonStyle,
+        }}
+        {...props}
+      >
+        {iconLeft && iconLeft}
+        {children}
+        {iconRight && iconRight}
+      </button>
+    );
 	}
 	if (component === 'div') {
 		return (
-			<div
-				
-				onClick={onClick}
-				className={
-					classNames({
-						[cls.button]: true,
-                        [cls[type]]: true,
-                        [variant && cls[variant]]: !!variant,
-                        [cls.disabled]: disabled,
-                        [cls.error]: error,
-                        [className]:!!className,
-					})
-				}
-				style={{
-					pointerEvents: error? 'none' : 'all',
-					...style,
-                    ...(error? { backgroundColor: 'var(--bg-color-error)' } : {}),
-                    ...(disabled? { cursor: 'not-allowed' } : {}),
-					...buttonStyle,
-				}}
-					// `${cls.button} ${cls[type]} ${variant && cls[variant]} ${className} ${disabled && cls.disabled}`}
-				{...props}
-			>
-				{iconLeft && iconLeft }
-				{children}
-				{iconRight &&  iconRight }
-
-			</div>
-		);
+      <div
+        onClick={onClick}
+        className={classNames(
+          styles.button,
+          type && styles[type],
+          variant && styles[variant],
+          disabled && styles.disabled,
+          error && styles.error,
+          className
+        )}
+        style={{
+          pointerEvents: error ? "none" : "all",
+          ...style,
+          ...(error ? { backgroundColor: "var(--bg-color-error)" } : {}),
+          ...(disabled ? { cursor: "not-allowed" } : {}),
+          ...buttonStyle,
+        }}
+        // `${styles.button} ${styles[type]} ${variant && styles[variant]} ${className} ${disabled && styles.disabled}`}
+        {...props}
+      >
+        {iconLeft && iconLeft}
+        {children}
+        {iconRight && iconRight}
+      </div>
+    );
 	}
 	
 	if (component === 'link') {
 		return (
-			<Link
-				to={to}				
-				className={`${cls.button} ${cls[type]} ${cls[variant]} ${className}`}
-				{...props}
-			>
-				{children}
-			</Link>
-		);
+      <Link
+        to={to}
+        className={classNames(
+          styles.button,
+          type && styles[type],
+          variant && styles[variant],
+          disabled && styles.disabled,
+          error && styles.error,
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </Link>
+    );
 	}
 };

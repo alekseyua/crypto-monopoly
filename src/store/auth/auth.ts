@@ -74,7 +74,6 @@ export const authStore = (store: StoreonStore) => {
       await delay(1500)
       return dispatch(DESC_AUTH_STEP);
     } else if (res?.status === 200) {
-      console.log({res})
       if(res.data.profileData){
         dispatch(SET_DATA_PROFILE, res.data.profileData)
       }

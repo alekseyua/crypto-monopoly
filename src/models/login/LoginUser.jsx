@@ -36,7 +36,7 @@ export const LoginUser = ({
 									padding: '24px 25px'
 								}}
 								value={authStep === 2 ? authData.password : authData.email}
-								onChange={(value) => handleSetAuthData(authStep === 2 ? { password: value } : { email: value })}
+								onChange={(e) => handleSetAuthData(authStep === 2 ? { password: e.target.value } : { email: e.target.value })}
 								label={error ? error : authStep === 2 ? 'Введите пароль' : 'Почта или никнейм'}
 								type={authStep === 2 ? showPassword ? 'text' : 'password' : 'text'}
 								id={authStep === 2 ? 'password' : 'email'}
@@ -63,7 +63,8 @@ export const LoginUser = ({
 								}
 								<Button
 									onClick={handleLogin}
-									type='filled'
+									p={24}
+									type='fill'
 									fillColor={error && authStep === 2 ? 'var(--bg-color-error)' : '#726CED'}
 									textColor='#fff'
 									error={error}
@@ -86,7 +87,10 @@ export const LoginUser = ({
 
 			<WrapperCard>
 				<p className={cls.loginButtonLabel}>Еще не зарегистрированы?</p>
-				<Button onClick={handlerRedirectRegit}>Зарегистрироваться</Button>
+				<Button 
+					p={24}
+					onClick={handlerRedirectRegit}
+				>Зарегистрироваться</Button>
 			</WrapperCard>
 		</div>
 	);

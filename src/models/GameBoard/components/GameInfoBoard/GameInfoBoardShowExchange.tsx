@@ -187,7 +187,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 													placeholder='Введите сумму...'
 													value={exchageData.price_to}
 													isSpanWidth={!!exchageData.price_to}
-													onChange={(value: any) => {}} 
+													onChange={() => {}} 
 													type='number'
 													id='input-costumer'
 													leftText={exchageData.price_to ? '+ ' : undefined}

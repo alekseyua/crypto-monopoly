@@ -23,7 +23,7 @@ const FormInputCreateQGContainer:React.FC = () => {
     max_players: false,
   });
 
-  const handleChangeInput = (value: string, key:string) => {
+  const handleChangeInput = (value: string | number, key:string) => {
     setParams( state =>({
       ...state,
       [key]: value

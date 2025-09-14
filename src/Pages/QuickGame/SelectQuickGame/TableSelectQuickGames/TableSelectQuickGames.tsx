@@ -3,20 +3,20 @@ import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import { autoRefuseTimer } from '../../../../helpers/helper';
 import { Label, WrapperCard } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
-import { IProfile } from '../../../../store/profile/profile.d';
 import { IListQGs } from '../../../../store/quick-game/quick-game.d';
+import { IUser } from '../../../../store/users/user';
 import { GameRoom } from './components';
 import cls from './quick-games.module.css';
 
 interface IProps {
-	profile: IProfile;
+	user: IUser;
 	listGame: IListQGs[];
 	handleClickJoinGame: any;
 	handlerClickCreateGame: any;
 }
 
 export const TableSelectQuickGames: React.FC<IProps> = ({
-	profile,
+	user,
 	listGame,
 	handleClickJoinGame,
 	handlerClickCreateGame
@@ -74,7 +74,7 @@ export const TableSelectQuickGames: React.FC<IProps> = ({
 								gameBet={game?.bet_amount}
 								playersCount={+game?.max_players}
 								players={game?.players}
-								profile={profile}
+								user={user}
 								handleClickJoinGame={handleClickJoinGame}
 							/>
 						)) :

@@ -7,16 +7,19 @@ import FormInputCreateQGContainer from '../../../../models/FormInputCreateQuickG
 import { DISCONNECT_LIST_QG, GET_LIST_QG, JOIN_QG } from '../../../../store/quick-game/quick-game';
 import { IListQGs } from '../../../../store/quick-game/quick-game.d';
 import { StoreonDispatch } from 'storeon';
-import { IProfile } from '../../../../store/profile/profile.d';
+import { IUser } from '../../../../store/users/user.d';
 
 const TableSelectQuickGamesContainer = () => {
     const navigate = useNavigate();
-    const { listQGs, profile,  dispatch         
+    const {
+      listQGs,
+      user,
+      dispatch,
     }: {
-        listQGs: IListQGs[];
-        profile: IProfile;
-        dispatch : StoreonDispatch<any>
-    } = useStoreon('listQGs', 'profile');
+      listQGs: IListQGs[];
+      user: IUser;
+      dispatch: StoreonDispatch<any>;
+    } = useStoreon("listQGs", "user");
 
     const handlerClickCreateGame = () => {
         // создание новой комнаты
@@ -44,7 +47,7 @@ const TableSelectQuickGamesContainer = () => {
 
     return (
     <TableSelectQuickGames
-        profile={profile}
+        user={user}
         listGame={listQGs}
         handleClickJoinGame={handleClickJoinGame}
         handlerClickCreateGame={handlerClickCreateGame}

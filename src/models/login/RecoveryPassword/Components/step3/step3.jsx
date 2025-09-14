@@ -25,7 +25,7 @@ export const Step3 = ({
 				<div className={cls.inputs}>
 					<Input
 						value={recoveryData.new_password}
-						onChange={(value) => handleSetRegData({ new_password: value })}
+						onChange={(e) => handleSetRegData({ new_password: e.target.value })}
 						label={
 							'Пароль должен содержать минимум 8 символов на латинице или цифры, 1 и более символов заглавныеи минимум 1 знак: _-<>{}#№!?*'
 						}
@@ -46,7 +46,7 @@ export const Step3 = ({
 					/>
 					<Input
 						value={recoveryData.repeatPassword}
-						onChange={(value) => handleSetRegData({ repeatPassword: value })}
+						onChange={(e) => handleSetRegData({ repeatPassword: e.target.value })}
 						id={'repeatPassword'}
 						error={errorRecovery ? errorRecovery : recoveryData.repeatPassword !== recoveryData.new_password}
 						type={showPasswordConfirm ? 'text' : 'password'}

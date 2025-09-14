@@ -1,14 +1,14 @@
 import ConnectAccount from "../../Component/ConnectAccount/ConnectAccount";
 import InvatingPlayers from "../../Component/InvatingPlayers/InvatingPlayers";
 import FormOwnData from "../../Component/FormOwnData/FormOwnData";
-import ProfilePanelContainer from "../../models/ProfilePanel/ProfilePanelContainer"
-import cls from './styles/main-field-account-balance.module.css';
+import HeaderProfileContainer from "../../models/HeaderProfile/HeaderProfileContainer"
+import styles from './styles/main-field-account-balance.module.scss';
 import FormChangePassword from "../../Component/FormChangePassword/FormChangePassword";
 import FormSecuretyAccaunt from "../../Component/FormSecuretyAccaunt/FormSecuretyAccaunt";
 import FormActivityHistory from "../../Component/FormActivityHistory/FormActivityHistory";
-import FormBalanceProfile from "../../Component/FormBalanceProfile/FormBalanceProfile";
 import FormAdditinalAccountDetails from "../../Component/FormAdditinalAccountDetails/FormAdditinalAccountDetails";
 import FormHistoryTransaction from "../../Component/FormHistoryTransaction/FormHistoryTransaction";
+import BalanceProfileContainer from "../../Component/FormBalanceProfile/BalanceProfileContainer";
 
 const Profile = ({
   profile,
@@ -28,15 +28,16 @@ const Profile = ({
 }) => {
   return (
     <div
-      className={cls.mainContainerAccountBalance}
+      className={styles['profile__container']}
     >
-      <ProfilePanelContainer />
       <div
-        className={cls.mainFieldAccountBalance}
+        className={styles['profile__field-container']}
         style={{
           gridTemplateColumns: 
-            dashboardProfile?.button?.length && dashboardProfile?.button[3].status === 'active' && dashboardProfile.button[1].status === 'active' // аккаутн и безопастность
-            ? `1fr 2fr 1fr` : `1fr 1fr 1fr`
+            dashboardProfile?.button?.length && dashboardProfile?.button[3].status === 'active' 
+              && dashboardProfile.button[1].status === 'active' // аккаутн и безопастность
+                ? `1fr 2fr 1fr` 
+                : `1fr 1fr 1fr`
         }}
       >
 
@@ -81,7 +82,7 @@ const Profile = ({
               )
               :
               <>
-                <FormBalanceProfile />
+                <BalanceProfileContainer />
                 <FormAdditinalAccountDetails />
                 <FormHistoryTransaction />
               </>

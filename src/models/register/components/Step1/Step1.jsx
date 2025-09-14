@@ -17,7 +17,7 @@ export const Step1 = ({
 			<div className={cls.cardBody}>
 				<Input
 					value={regData.email}
-					onChange={(value) => handleSetRegData({email: value})}
+					onChange={(e) => handleSetRegData({email: e.target.value})}
 					label={errorReg? errorReg : 'Почта'}
 					error={errorReg}
 					id={'mail'}
@@ -27,7 +27,8 @@ export const Step1 = ({
 				/>
 				<Button
 					onClick={() => handleNextStep()}
-					type='filled'
+					type='fill'
+					p={24}
                     fillColor='#726CED'
                     textColor='#fff'
 					disabled={!(regData.email.includes('@') && regData.email.includes('.')  && regData.email.length !== 0)}>

@@ -18,10 +18,12 @@ export const users = (store: StoreonStore) => {
     store.on(SET_USERS_NULL, () => ({ user: initUser }));
     
     store.on(GET_USERS, async (_, payload, { dispatch }) => {
-        const callback: (res: any)=>any | undefined = payload?.callback;
+        const callback: (res: { data: { id: number } }) => void | undefined =
+          payload?.callback;
         const email: string | undefined = payload?.email ?? getLocaleStore('email');
         const res = await api.get(API_GET_USER,{email});
-        if(typeof callback === 'function') callback(res);
+        if(typeof callback === 'function') callback(res as { data: { id: number } });
+        console.log('GET_USERS status', res?.data);
         if (res?.status === 200)  {
             dispatch(SET_USERS, res.data);   
             dispatch(SET_DATA_PROFILE, res.data); 

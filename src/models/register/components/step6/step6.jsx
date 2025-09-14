@@ -32,8 +32,12 @@ export const Step6 = ({handleSetRegData, handleRegistration}) => {
 								}}
 				/>
 				<div className={cls.btns}>
-					<Button onClick={handleRegistration}>Пропустить</Button>
+					<Button 
+					p={24}
+					onClick={handleRegistration}>Пропустить</Button>
 					<Button
+						p={24}
+						type='fill'
 						onClick={handleRegistration}
 						disabled={!regData.refFrend.length>0}
 						fillColor='#726CED'

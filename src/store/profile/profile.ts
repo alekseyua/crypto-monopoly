@@ -1,8 +1,11 @@
 import { _INIT } from "../auth/auth";
 import avatar from '../../assets/images/avatar-2.jpeg';
 import { StoreonStore } from "storeon";
-import {IProfile} from './profile.d';
+import {IProfile, Payment, PaymentConfirm} from './profile.d';
 import { v4 } from "uuid";
+import api from "../../api/api";
+import { API_CONFIRM_PAYMENT, API_TOP_UP_WALLET } from "../../api/config";
+import { SET_MODAL } from "../modal/modal";
 
 export const GET_DATA_PROFILE = v4();
 export const SET_DATA_PROFILE = v4();
@@ -10,7 +13,11 @@ export const GET_DASHBOARD_PROFILE = v4();;
 export const SWITCH_DASHBOARD_PROFILE = v4();;
 export const SWITCH_BTN_FILTER_INVITE_PLAYERS = v4();;
 export const CHANGE_FILTER_INVITE_PLAYERS = v4();;
-export const OPEN_SUB_INVITE_PLAYERS = v4();;
+export const OPEN_SUB_INVITE_PLAYERS = v4()
+// wallet
+export const TOP_UP_WALLET = "profile/top_up_wallet" as const;
+export const CONFIRM_PAYMENT = "profile/confirm_payment" as const;
+export const SET_PAYLOAD_IN_STATE = v4();
 
 export const profile = (store: StoreonStore) => {
   // profile logic
@@ -451,4 +458,48 @@ export const profile = (store: StoreonStore) => {
       // }
     }
   });
+
+  //  TOP_UP_WALLET
+  const initPayment: Payment = {
+    id: null,
+    amount: "",
+    currency: "USDT-TRC20",
+    status: "zeroed",
+    tx_hash: null,
+    created_at: "",
+    address: "",
+    user: 0,
+  };  
+  store.on(_INIT, () => ({ paymentStore: initPayment }));
+  store.on(SET_PAYLOAD_IN_STATE, (store: any, payload: Payment) => ({
+    paymentStore: payload,
+  }));
+
+  store.on(TOP_UP_WALLET, async (store: any, payload: Payment, { dispatch }) => {
+    const res = await api.post(API_TOP_UP_WALLET, payload);
+    if(res.status === 200) {
+      dispatch(SET_PAYLOAD_IN_STATE, res.data.payment_data);
+    }else if(res.status === 400) {
+      const err = new Error('Server error, try again later');
+      console.error(err);  
+      alert('Ошибка сервера, попробуйте позже ' + res?.data?.error[0] || '');
+    }
+  });
+
+  store.on(
+    CONFIRM_PAYMENT,
+    async (store: any, payload: PaymentConfirm, { dispatch }) => {
+      const res = await api.get(API_CONFIRM_PAYMENT, payload);
+      console.log("res confirm payment = ", res);
+      if (res?.status === 200) {
+        dispatch(SET_PAYLOAD_IN_STATE, initPayment);
+        dispatch(SET_MODAL, { isOpen: false });
+        alert("Платеж успешно отправлен!");
+      } else if (res?.status === 400) {
+        const err = new Error("Server error, try again later");
+        console.error(err);
+        alert("Ошибка сервера, попробуйте позже " + res?.data?.error[0] || "");
+      }
+    }
+  );
 };

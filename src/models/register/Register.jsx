@@ -58,7 +58,9 @@ export const Register = ({
 					<div style={{gridArea: 'auth'}}>
 					<WrapperCard>
 						<p className={cls.loginButtonLabel}>Уже зарегистрированы?</p>
-						<Button onClick={handlerRedirectAuth}>Войти</Button>
+						<Button 
+						p={24} 
+						onClick={handlerRedirectAuth}>Войти</Button>
 					</WrapperCard>
 					</div>
 

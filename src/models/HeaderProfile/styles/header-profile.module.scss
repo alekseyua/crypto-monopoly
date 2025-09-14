@@ -1,0 +1,100 @@
+.header-profile{
+    // header-profile__container
+    &__container{
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+        gap: 20px;
+        padding: 15px 12px;
+        flex-direction: row;
+        position: relative;
+        left: 0;
+        top: 0;
+        background-color: #fff;
+        border-radius: 99px;
+        margin: 15px 69px 0;
+        //header-profile__container--left
+        &--left{
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+    }
+    //header-profile__name
+    &__name{
+        font-size: 20px;
+            font-weight: 600;
+            margin-right: 10px;
+            text-wrap: nowrap;
+            background-color: transparent;
+            padding: 10px 20px;
+    }
+    //header-profile__btns-container
+    &__btns{
+        &-container{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 10px;
+            /* padding: 20px 0; */
+            //header-profile__btns-container--left
+            &--left{
+                display: flex;
+                width: 100%;
+                gap: 10px;
+                flex-wrap: nowrap;
+            }
+            //header-profile__btns-container--right
+            &--right{
+                width: 100%;
+                display: flex;
+                gap: 10px;
+                flex-wrap: nowrap;
+                justify-content: flex-end;
+            }
+        }
+        //header-profile__btns-item--chat
+        &-item{
+            &--chat{
+                display: flex;
+                align-items: center;
+                background-color: #D6DBF5;
+                border-radius: 99px;
+            }
+        }  
+    }
+}
+
+
+.iconBack{
+    position: relative;
+    border-radius: 50%;
+    padding: 20px 20px 15px;
+}
+
+.containerButton{
+    text-wrap: nowrap;
+    padding: 8px 20px;
+    border-radius: 99px;
+    display: flex;
+    align-items: center;
+    max-width: 250px;
+    justify-content: center;
+}
+.containerButtonSwitch{
+    text-wrap: nowrap;
+    padding: 0;
+    border-radius: 99px;
+}
+
+.containerSwitchBtn{
+    display: flex;
+    border-radius: 99px;
+    background-color: #e9ecff;
+    padding: 8px;
+}
+
+.nameButtonChatBtn{
+    padding: 10px 20px;
+}

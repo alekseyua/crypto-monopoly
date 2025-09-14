@@ -8,43 +8,43 @@ import { StoreonDispatch } from 'storeon';
 import { NavigateFunction } from 'react-router-dom';
 
 const quickGameMenu = [
-        {
-            id: 'jackpot',
-            name: 'Куш игры',
-            price: 0,            
-            link: '/'
-        },
-        {
-            id: 'balance',
-            name: 'Баланс',
-            price: 0,
-            link: '/'
-        },
-]
+  {
+    id: "jackpot",
+    name: "Куш игры",
+    price: 0,
+    link: "/",
+  },
+  {
+    id: "balance",
+    name: "Баланс",
+    price: 0,
+    link: "/profile#balance",
+  },
+];
 
 const mainGameMenu = [
-     {
-            id: 'capital',
-            name: 'Капитал',
-            price: 0,            
-            link: '/'
-        },
-         {
-            id: 'thing',
-            name: 'Имущество',
-            price: 0,
-            link: '/'
-        },
-         {
-            id: 'balance',
-            name: 'Баланс',
-            price: 0,
-            link: '/'
-        },
-]
+  {
+    id: "capital",
+    name: "Капитал",
+    price: 0,
+    link: "/",
+  },
+  {
+    id: "thing",
+    name: "Имущество",
+    price: 0,
+    link: "/",
+  },
+  {
+    id: "balance",
+    name: "Баланс",
+    price: 0,
+    link: "/profile#balance",
+  },
+];
 
 const UserPanelContainer = ({ navigate }: {navigate: NavigateFunction}) => {
-    const { user, isQG, quickGame, dataPlayerQG, dispatch }:
+    const { user, isQG, quickGame, dataPlayerQG }:
     {
         user: any;
         isQG: any;
@@ -61,43 +61,51 @@ const UserPanelContainer = ({ navigate }: {navigate: NavigateFunction}) => {
     }
 
     
-    useEffect(()=>{
-        if(quickGame?.id){
-            console.log('%cID-QUICKGAME ' + quickGame.id, 'color: red',dataPlayerQG)
-                const dataUserPanel = dataPlayerQG.bill_data;
-            setUserInfo(quickGameMenu.map(item=> 
-                    item.id === 'balance'
-                    ? {
-                        ...item, 
-                        price: dataUserPanel.balance
-                    } 
-                    : item.id === 'jackpot'
-                    ? {
-                        ...item, 
-                        price: dataUserPanel.jackpot
-                    } 
-                    :{...item} )
-                )
-        }else{
-            // напалняем меню инфой 
-            if(user?.username){
-                setUserInfo(mainGameMenu.map(item=> 
-                    item.id === 'balance'
-                    ? {
-                        ...item, 
-                        price: user.balance
-                    } 
-                    : {...item} )
-                )
-            }
+    useEffect(() => {
+        if (quickGame?.id) {
+          console.log(
+            "%cID-QUICKGAME " + quickGame?.id,
+            "color: red",
+            dataPlayerQG
+          );
+        const dataUserPanel = dataPlayerQG.bill_data;
+        setUserInfo(
+          quickGameMenu.map((item) =>
+            item.id === "balance"
+              ? {
+                  ...item,
+                  price: dataUserPanel.balance,
+                }
+              : item.id === "jackpot"
+              ? {
+                  ...item,
+                  price: dataUserPanel.jackpot,
+                }
+              : { ...item }
+          )
+        );
+      } else {
+        // напалняем меню инфой
+        if (user?.username) {
+          setUserInfo(
+            mainGameMenu.map((item) =>
+              item.id === "balance"
+                ? {
+                    ...item,
+                    price: user.balance,
+                  }
+                : { ...item }
+            )
+          );
         }
-    },[user, quickGame])
+      }
+    }, [user, quickGame, dataPlayerQG]);
 
     const handleOpenDropDownMenu = () => {
         // Implement dropdown menu logic here
         setIsDropDownMenuOpen(state=>!state);
     }
-
+console.log("UserPanelContainer render", { user, quickGame });
     return (
         <UserPanel
             user={user}

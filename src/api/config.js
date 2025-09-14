@@ -23,3 +23,7 @@ export const API_GET_QG = FAST_GAME;
 export const API_CREATE_QG = FAST_GAME;
 export const API_JOIN_QG = "/join/";
 export const API_STATUS_QG = "/get_game_status/";
+
+// profile
+export const API_TOP_UP_WALLET = "/user/payments/";
+export const API_CONFIRM_PAYMENT = "/user/payments/confirm_payment/";

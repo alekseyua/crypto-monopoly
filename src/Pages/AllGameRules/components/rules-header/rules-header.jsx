@@ -21,7 +21,8 @@ import cls from './rules-header.module.css';
 				<div className={cls.search}>
 					<input type='text' placeholder='Как часто можно ходить...' />
 					<button>
-						<SearchIcon width={14} height={14} />
+						{/* <SearchIcon width={14} height={14} /> */}
+						<Icon src={SearchIcon} width={14} height={14} />
 					</button>
 				</div>
 				<Button variant='rounded' type='gradient'>

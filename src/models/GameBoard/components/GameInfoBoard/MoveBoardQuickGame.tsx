@@ -49,32 +49,7 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 				})}>{titleBtn}</Button>
 			</div>
 <ContainerInfoTwoColumnGIB>
-{/* <Input
-									wrapClassName={styles['gib__input-bet-auction']}
-									placeholder='Введите вашу ставку'
-									// value={currentBet}
-									onChange={(value) => {
-										const numericValue = parseFloat(value);
-										// if (!isNaN(numericValue) && numericValue >= startPrice) {
-										// setCurrentBet(numericValue);
-										// }
-										//  else {
-										//    setCurrentBet(startPrice);
-										// }
-									}}
-									type='number'
-									id='input-bet-auction'
-								/> */}
-							{/* <Text fontSize={12} color="#4E4C6D" style={{display: 'inline-block'}}>
-  Ставка должна быть не ниже начальной цены (выше&nbsp;
-  {12}
-  <Icon src={icons.qgCurrencySvgWhite} width="14" height="13" ml={4} />
-  )
-</Text> */}
-{/* <ButtonBack
-						onClick={() => ({})}
-						title={'Назад'}
-					/> */}
+
 				</ContainerInfoTwoColumnGIB>
 
 			<Offset mt={10} />

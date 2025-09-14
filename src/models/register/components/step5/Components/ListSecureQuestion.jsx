@@ -49,7 +49,7 @@ const ListSecureQuestion = ({
 									padding: '24px 25px'
                                      }}
                                     value={selectedAnswer}
-                                    onChange={setSelectedAnswer}
+                                    onChange={(e)=>setSelectedAnswer(e.target.value)}
                                     />
                                     <Button
                                         fillColor='#E9ECFF'

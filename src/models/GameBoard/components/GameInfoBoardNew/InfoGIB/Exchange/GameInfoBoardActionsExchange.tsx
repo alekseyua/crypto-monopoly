@@ -306,8 +306,8 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
                         : stateExchange.price_from
                     }
                     isSpanWidth={isSetInputPriceFrom}
-                    onChange={(value: any) => {
-                      let numericValue = parseFloat(value);
+                    onChange={(e) => {
+                      let numericValue = parseFloat(e.target.value);
                       if (Number.isNaN(numericValue)) numericValue = 0;
                       handleCard({
                         ...stateExchange,
@@ -372,8 +372,8 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
                             : stateExchange.price_to
                         }
                         isSpanWidth={isSetInputPriceTo}
-                        onChange={(value: any) => {
-                          let numericValue = parseFloat(value);
+                        onChange={(e) => {
+                          let numericValue = parseFloat(e.target.value);
                           if (Number.isNaN(numericValue)) numericValue = 0;
                           handleCard({
                             ...stateExchange,

@@ -3,6 +3,8 @@ import Profile from './Profile'
 import { CHANGE_FILTER_INVITE_PLAYERS, OPEN_SUB_INVITE_PLAYERS, SWITCH_BTN_FILTER_INVITE_PLAYERS } from '../../store/profile/profile';
 import { useEffect, useState } from 'react';
 import { delay } from '../../helpers/helper';
+import { SET_HEADER_NAME_IS_SHOW } from '../../store/header/header';
+import { HeaderNameEnum } from '../../store/header/header.d';
 
 const ProfileContainer = () => {
   const { 
@@ -16,11 +18,14 @@ const ProfileContainer = () => {
   useEffect(() => {
     // Fetch user data and set it in the store
       // dispatch(GET_DATA_PROFILE)
+      dispatch(SET_HEADER_NAME_IS_SHOW, HeaderNameEnum.PROFILE);
   }, [dispatch])
+
+
 
   const handleChangeAvatar = () => {
     // Implement avatar changing logic here
-    alert('chenge avatar')
+    alert('change avatar')
   }
 
   const handleAddPhoneOwnInfo = () => {
@@ -35,12 +40,10 @@ const ProfileContainer = () => {
   }
 
   const handleCopyRefLink = (refLink) => {
-    // Implement copy ref link logic here
     try {
       navigator.clipboard.writeText(refLink)    
       setStatusCopyRefLink(true)
       setTimeout(() => setStatusCopyRefLink(false), 2000)  // Optional: Show success message for a short time
-      // alert('copy ref link complate')      
     } catch (error) {
       setStatusCopyRefLink(false)
     }

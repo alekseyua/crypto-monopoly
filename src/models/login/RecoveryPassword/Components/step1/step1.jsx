@@ -20,7 +20,7 @@ export const Step1 = ({
 									padding: '24px 25px'
 								}}
 					value={recoveryData.email}
-					onChange={(value) => handleSetRegData({email: value})}
+					onChange={(e) => handleSetRegData({email: e.target.value})}
 					label={errorRecovery? errorRecovery : 'Почта'}
 					error={errorRecovery}
 					id={'mail'}

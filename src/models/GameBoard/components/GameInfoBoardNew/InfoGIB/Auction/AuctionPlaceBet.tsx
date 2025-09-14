@@ -109,8 +109,8 @@ IProps) => {
             wrapClassName={styles["gib__input-bet-auction"]}
             placeholder="Введите вашу ставку"
             value={currentBet}
-            onChange={(value) => {
-              const numericValue = parseFloat(value);
+            onChange={(e) => {
+              const numericValue = parseFloat(e.target.value);
               // if (!isNaN(numericValue) && numericValue >= startPrice) {
               setCurrentBet(numericValue);
               // }
