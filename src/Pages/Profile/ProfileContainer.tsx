@@ -1,25 +1,28 @@
 import { useStoreon } from 'storeon/react';
 import Profile from './Profile'
-import { CHANGE_FILTER_INVITE_PLAYERS, OPEN_SUB_INVITE_PLAYERS, SWITCH_BTN_FILTER_INVITE_PLAYERS } from '../../store/profile/profile';
+import { CHANGE_FILTER_INVITE_PLAYERS, OPEN_SUB_INVITE_PLAYERS, SWITCH_BTN_FILTER_INVITE_PLAYERS, UPDATE_PHOTO_AVATAR_PROFILE } from '../../store/profile/profile';
 import { useEffect, useState } from 'react';
 import { delay } from '../../helpers/helper';
 import { SET_HEADER_NAME_IS_SHOW } from '../../store/header/header';
 import { HeaderNameEnum } from '../../store/header/header.d';
+import { GET_USERS } from '../../store/users/users';
 
 const ProfileContainer = () => {
   const { 
-    dispatch, profile, dashboardProfile, 
+    dispatch, user, dashboardProfile, 
     controllerShowFilterInvitePlayers, controllerFilterInvitePlayers,
     openSubInvitePlayers,
   } = useStoreon('controllerFilterInvitePlayers', 'openSubInvitePlayers', 
-    'profile','controllerShowFilterInvitePlayers', 'dashboardProfile');
+    'user','controllerShowFilterInvitePlayers', 'dashboardProfile');
   const [showPassword, setShowPassword] = useState(false);
   const [ statusCopyRefLink, setStatusCopyRefLink ] = useState(false);
   useEffect(() => {
     // Fetch user data and set it in the store
-      // dispatch(GET_DATA_PROFILE)
+      if(!user || (user && Object.keys(user).length === 0)){
+        dispatch(GET_USERS, undefined)
+      }
       dispatch(SET_HEADER_NAME_IS_SHOW, HeaderNameEnum.PROFILE);
-  }, [dispatch])
+  }, [dispatch, user]);
 
 
 
@@ -28,8 +31,9 @@ const ProfileContainer = () => {
     alert('change avatar')
   }
 
-  const handleAddPhoneOwnInfo = () => {
+  const handleAddPhoneOwnInfo = (photo: File) => {
     // Implement add phone logic here
+    dispatch(UPDATE_PHOTO_AVATAR_PROFILE, photo);
     alert('how add phone????????????????')
   }
   
@@ -39,7 +43,7 @@ const ProfileContainer = () => {
     setShowPassword(false)
   }
 
-  const handleCopyRefLink = (refLink) => {
+  const handleCopyRefLink = (refLink: string) => {
     try {
       navigator.clipboard.writeText(refLink)    
       setStatusCopyRefLink(true)
@@ -54,7 +58,7 @@ const ProfileContainer = () => {
   const handleOpenSubInvitePlayers = () => dispatch(OPEN_SUB_INVITE_PLAYERS)
     return (
     <Profile
-      profile={profile}
+      user={user}
       showPassword={showPassword}
       statusCopyRefLink={statusCopyRefLink}
       dashboardProfile={dashboardProfile}

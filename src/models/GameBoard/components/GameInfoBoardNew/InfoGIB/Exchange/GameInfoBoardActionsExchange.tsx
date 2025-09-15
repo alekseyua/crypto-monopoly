@@ -19,6 +19,7 @@ import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHe
 import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
 import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
 import styles from './styles/exchange.module.scss';
+import { temporaryDisableBtn } from '../../../../../../helpers/helper';
 
 interface IGameInfoBoardActionsExchangeProps {
   handleCard: (params: any) => void;
@@ -41,6 +42,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
 	handleClickUserPreview,
 	cards,
 }: IGameInfoBoardActionsExchangeProps) => {
+  const [isClick, setIsClick] = useState<boolean>(false);
 	const [totalTo, setTotalTo] = useState<number>(0);
 	const [totalFrom, setTotalFrom] = useState<number>(0);
 	const [isSetInputPriceTo, setIsSetInputPriceTo] = useState<boolean>(false);
@@ -142,13 +144,15 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
           fillColor={"#726CED"}
           p={15}
           style={{ borderRadius: 25 }}
-          disabled={!(!!totalTo || !!totalFrom)}
-          onClick={() =>
+          disabled={!(isClick && (!!totalTo || !!totalFrom))}
+
+          onClick={() =>{
+            temporaryDisableBtn(2000, setIsClick);
             handleCard({
               action: "exchange",
               ...stateExchange,
             })
-          }
+          }}
         >
           Предложить
         </Button>
@@ -158,11 +162,13 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
           fillColor={"#D6DBF5"}
           p={15}
           style={{ borderRadius: 25 }}
-          onClick={() =>
+          disabled={isClick}
+          onClick={() =>{
+            temporaryDisableBtn(2000, setIsClick);
             handleCard({
               action: "exchange",
             })
-          }
+          }}
         >
           Отказ (
           {<AutoCounter disabled={false} counter={30} callback={() => {}} />})

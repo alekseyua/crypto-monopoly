@@ -9,7 +9,7 @@ import { Button, Offset } from '../../../../../../shared/UI';
 import Title from '../../../../../../shared/UI/Title/Title';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import ContainerOneBtn from '../../ControllerGIB/ContainerOneBtn';
-import { adjustColorBrightness, getPriceTaxesFromHouses } from '../../../../../../helpers/helper';
+import { adjustColorBrightness, getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../../../helpers/helper';
 import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
 import InnerBtnContextSpaceBetween from '../../ControllerGIB/InnerBtnContextSpaceBetween';
 import Text from '../../../../../../shared/UI/Text/Text';
@@ -39,7 +39,7 @@ const InfoCard: React.FC<IProps> = ({
   setAmountHouses,
   handleChangeScreen,
 }: IProps) => {
-  console.log(adjustColorBrightness(card?.owner?.player?.color, 10))
+  const [isClick, setIsClick] = React.useState<boolean>(false);
   return (
     <ContainerGIB>
       <Offset mt={5} />
@@ -49,12 +49,14 @@ const InfoCard: React.FC<IProps> = ({
         <Button
           type="empty"
           borderColor="#E4E4E4"
+          disabled={isClick}
           p={11}
-          onClick={() =>
+          onClick={() =>{
+            temporaryDisableBtn(2000, setIsClick);
             handleBack({
               action: "clean_chose_actions",
             })
-          }
+          }}
         >
           <Text fontWeight={300} fontSize={14} center>
             <>
@@ -154,13 +156,14 @@ const InfoCard: React.FC<IProps> = ({
             <Button
               type="transparent"
               p={10}
-              disabled={!(card?.owner?.can_build && actions?.build)} // Assuming this button is disabled
-              onClick={() =>
+              disabled={isClick && !(card?.owner?.can_build && actions?.build)} // Assuming this button is disabled
+              onClick={() =>{
+                temporaryDisableBtn(2000, setIsClick);
                 handleAction({
                   action: "build",
                   card_id: card?.id,
                 })
-              }
+              }}
             >
               <InnerBtnContextSpaceBetween>
                 <Text text={"Купить дом"} />
@@ -249,19 +252,20 @@ const InfoCard: React.FC<IProps> = ({
             <Button
               type="transparent"
               p={10}
-              disabled={
+              disabled={ isClick &&
                 !(
                   card.owner.can_build &&
                   actions.build &&
                   card.owner.houses === 4
                 )
               } // Assuming this button is disabled
-              onClick={() =>
+              onClick={() =>{
+                temporaryDisableBtn(2000, setIsClick);
                 handleAction({
                   action: "build",
                   card_id: card.id,
                 })
-              }
+              }}
             >
               <InnerBtnContextSpaceBetween>
                 <Text text={"Купить отель"} />

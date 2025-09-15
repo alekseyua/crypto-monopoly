@@ -7,7 +7,7 @@ import Text from '../../../../../../shared/UI/Text/Text';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import ContainerInfoGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoGIB';
 import { ICard } from '../../../../../../store/quick-game/quick-game.d';
-import { adjustColorBrightness } from '../../../../../../helpers/helper';
+import { adjustColorBrightness, temporaryDisableBtn } from '../../../../../../helpers/helper';
 import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
 import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
 import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
@@ -42,6 +42,7 @@ const ActionsCard: React.FC<IProps> = ({
   showInfoCard,
   handleChangeScreen,
 }: IProps) => {
+  const [isClick, setIsClick] = React.useState<boolean>(false);
   return (
     <ContainerGIB>
       <Offset mt={5} />
@@ -52,11 +53,13 @@ const ActionsCard: React.FC<IProps> = ({
           type="empty"
           borderColor="#E4E4E4"
           p={11}
-          onClick={() =>
+          disabled={isClick}
+          onClick={() =>{
+            temporaryDisableBtn(2000, setIsClick);
             handleBack({
               action: "clean_chose_actions",
             })
-          }
+          }}
         >
           <Text fontWeight={300} fontSize={14} center>
             <>
@@ -130,13 +133,14 @@ const ActionsCard: React.FC<IProps> = ({
               type="fill"
               fillColor={"rgb(215 217 244)"}
               p={10}
-              disabled={!actions.sell}
-              onClick={() =>
+              disabled={isClick && !actions.sell}
+              onClick={() =>{
+                temporaryDisableBtn(2000, setIsClick);
                 handleAction({
                   action: "sell",
                   card_id,
                 })
-              }
+              }}
             >
               <InnerBtnContextSpaceBetween>
                 <Text text={"Продать в банк"} />
@@ -156,13 +160,14 @@ const ActionsCard: React.FC<IProps> = ({
               type="fill"
               fillColor={"rgb(215 217 244)"}
               p={10}
-              disabled={!actions.pawn}
-              onClick={() =>
+              disabled={isClick && !actions.pawn}
+              onClick={() =>{
+                temporaryDisableBtn(2000, setIsClick);
                 handleAction({
                   action: "pawn",
                   card_id,
                 })
-              }
+              }}
             >
               <InnerBtnContextSpaceBetween>
                 <Text text={"Заложить в банк"} />
@@ -191,14 +196,15 @@ const ActionsCard: React.FC<IProps> = ({
               type="fill"
               fillColor={"rgb(215 217 244)"}
               p={10}
-              disabled={!actions.auction}
-              onClick={() =>
+              disabled={isClick&& !actions.auction}
+              onClick={() =>{
+                temporaryDisableBtn(2000, setIsClick);
                 handleAction({
                   action: "start_auction",
                   card_id,
                   idOwnerCard: card.owner.player.id,
                 })
-              }
+              }}
             >
               <InnerBtnContextSpaceBetween>
                 <Text text={"Выставить на аукцион"} />
@@ -227,13 +233,14 @@ const ActionsCard: React.FC<IProps> = ({
               type="fill"
               fillColor={"rgb(215 217 244)"}
               p={10}
-              disabled={!actions.redeem}
-              onClick={() =>
+              disabled={isClick && !actions.redeem}
+              onClick={() =>{
+                temporaryDisableBtn(2000, setIsClick);
                 handleAction({
                   action: "redeem",
                   card_id,
                 })
-              }
+              }}
             >
               <InnerBtnContextSpaceBetween>
                 <Text text={"Выкупить"} />
@@ -263,14 +270,15 @@ const ActionsCard: React.FC<IProps> = ({
               type="fill"
               fillColor={"rgb(215 217 244)"}
               p={10}
-              disabled={!actions.exchange}
-              onClick={() =>
+              disabled={isClick && !actions.exchange}
+              onClick={() =>{
+                temporaryDisableBtn(2000, setIsClick);
                 handleAction({
                   action: "exchange",
                   card_id,
                   idOwnerCard: card.owner.player.user,
                 })
-              }
+              }}
             >
               <InnerBtnContextSpaceBetween>
                 <Text text={"Обменять"} />
@@ -299,12 +307,14 @@ const ActionsCard: React.FC<IProps> = ({
               type="fill"
               fillColor={"rgb(215 217 244)"}
               p={10}
-              onClick={() =>
+              disabled={isClick}
+              onClick={() =>{
+                temporaryDisableBtn(2000, setIsClick);
                 handleAction({
                   action: "clean_chose_actions",
                   card_id,
                 })
-              }
+              }}
             >
               <InnerBtnContextSpaceBetween>
                 <Text text={"Выйти"} />

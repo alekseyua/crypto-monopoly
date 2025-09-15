@@ -7,6 +7,7 @@ const FormOwnData = ({
     handleChangeAvatar,
     handleAddPhoneOwnInfo,
 }) => {
+    console.log({ infoUser });
     return (
         <div
             className={cls.containerOwnCard}
@@ -29,14 +30,14 @@ const FormOwnData = ({
                         </div>
                         <div className={cls.containerFormInfoUser}>
                             <div className={cls.formshowInfoUser}>
-                                {infoUser.name}
+                                {infoUser.username}
                                 <span>Никнейм</span>
                             </div>
                             <div className={cls.formshowInfoUser}>
                                 {infoUser.email}
                                 <span>Почта</span>
                             </div>
-                            <div onClick={handleAddPhoneOwnInfo} className={cls.formshowInfoUserPhone}>{infoUser.phone ? infoUser.phone : 'указать номер телефона' }</div>
+                            <div onClick={handleAddPhoneOwnInfo} className={cls.formshowInfoUserPhone}>{infoUser.phone_number ? infoUser.phone_number : 'указать номер телефона' }</div>
                         </div>
                         <div
                             className={cls.infoHowJoinService}

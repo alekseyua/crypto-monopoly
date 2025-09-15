@@ -11,7 +11,7 @@ import FormHistoryTransaction from "../../Component/FormHistoryTransaction/FormH
 import BalanceProfileContainer from "../../Component/FormBalanceProfile/BalanceProfileContainer";
 
 const Profile = ({
-  profile,
+  user,
   showPassword,
   dashboardProfile,
   statusCopyRefLink,
@@ -47,16 +47,16 @@ const Profile = ({
               ? (dashboardProfile.button[0].status === 'active'
                 ? <>
                   <FormOwnData
-                    infoUser={profile?.user}
+                    infoUser={user}
                     handleChangeAvatar={handleChangeAvatar}
                     handleAddPhoneOwnInfo={handleAddPhoneOwnInfo}
                   />
                   <ConnectAccount
-                    accountInfo={profile?.account_info}
+                    accountInfo={{}}
 
                   />
                   <InvatingPlayers
-                    invitedPlayers={profile?.invited_players}
+                    invitedPlayers={{}}
                     statusCopyRefLink={statusCopyRefLink}
                     handleCopyRefLink={handleCopyRefLink}
                     openSubInvitePlayers={openSubInvitePlayers}

@@ -14,10 +14,7 @@ export interface IAuctionProps {
   cardInfo: ICardInfo | ISpecialCardInfo;
   highest_bid: number;
   endTime: number;
-  highest_bidder: string;
-  highestBidderData: IHighestBidderData;
   handleCard: (rest:any) => void;
-  typeStyle?: 'buy' | 'auction';
   handleChangeScreen?: (params: { path: string }) => void;
 }
 
@@ -27,12 +24,9 @@ const AuctionContainer: React.FC<IAuctionProps> = ({
   card_id,
   cardInfo,
   showInfoCard,
-  typeStyle,
   handleCard,
   startPrice,
   highest_bid,
-  highest_bidder,
-  highestBidderData,
 }: IAuctionProps) => {
   const [screen, setScreen ] = React.useState<'auction-card' | 'auction-special-card' | 'place-bet'>(showInfoCard)
   const handleChangeScreen = ({path}: {path: string}) => {

@@ -171,3 +171,10 @@ export function getUrlWebsocket(url: string, payload: any) {
   return url;
 
 }
+
+export const temporaryDisableBtn = function (time: number, f: Function) {
+  f(true);
+  setTimeout(() => {
+    f(false);
+  }, time);
+};

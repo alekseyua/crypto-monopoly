@@ -1,26 +1,22 @@
-import { currency2White, icons, RightArrowIcon } from '../../../../../../assets';
-import { Button, Input, Offset } from '../../../../../../shared/UI';
-import Icon from '../../../../../../shared/UI/Icon/Icon';
+import { icons } from "../../../../../../assets";
+import { Button, Input, Offset } from "../../../../../../shared/UI";
+import Icon from "../../../../../../shared/UI/Icon/Icon";
 // import styles from '../styles/gib.module.scss';
-import React, { useEffect } from 'react';
-import { InfoBoardLabel } from '../../../GameInfoBoard/UI/Label/info-board-label';
-import { getPriceTaxesFromHouses } from '../../../../../../helpers/helper';
-import { IGameInfoBoardAuctionQGProps } from '../../../GameInfoBoard/types/gameInfoBoard';
-import GameInfoBoardFooterContainer from '../../../GameInfoBoardFooter/GameInfoBoardFooterContainer';
-import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
-import { IAuctionProps } from './AuctionContainer';
-import ContainerGIB from '../../UIContainerGIB/ContainerGIB';
-import ContainerTwoBtn from '../../ControllerGIB/ContainerTwoBtn';
-import ContainerOneBtn from '../../ControllerGIB/ContainerOneBtn';
-import { ICardInfo } from '../../../../../../store/quick-game/quick-game.d';
-import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
-import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
-import Text from '../../../../../../shared/UI/Text/Text';
-import ButtonBack from '../../../../../../shared/UI/Buttons/ButtonBack/ButtonBack';
-import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
-import InnerBtnContextSpaceBetween from '../../ControllerGIB/InnerBtnContextSpaceBetween';
-import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
-
+import React, { useEffect } from "react";
+import { temporaryDisableBtn } from "../../../../../../helpers/helper";
+import GameInfoBoardFooterContainer from "../../../GameInfoBoardFooter/GameInfoBoardFooterContainer";
+import AutoCounter from "../../../../../../Component/AutoCounter/AutoCounter";
+import ContainerGIB from "../../UIContainerGIB/ContainerGIB";
+import ContainerTwoBtn from "../../ControllerGIB/ContainerTwoBtn";
+import ContainerOneBtn from "../../ControllerGIB/ContainerOneBtn";
+import { ICardInfo } from "../../../../../../store/quick-game/quick-game.d";
+import ContainerInfoHeaderGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB";
+import ContainerInfoBodyGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB";
+import Text from "../../../../../../shared/UI/Text/Text";
+import ButtonBack from "../../../../../../shared/UI/Buttons/ButtonBack/ButtonBack";
+import ContainerInfoTwoColumnGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB";
+import InnerBtnContextSpaceBetween from "../../ControllerGIB/InnerBtnContextSpaceBetween";
+import ContainerInfoFooterGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB";
 
 interface IProps {
   cardInfo: ICardInfo;
@@ -44,16 +40,9 @@ export const AuctionPlaceBet: React.FC<IProps> = ({
   card_id,
   handleCard,
   setTimeEndAuction,
-}: // game_id,
-// card_id,
-// handleCard,
-// typeStyle = 'buy',
-// showInfoCard,
-// highest_bidder,
-// highestBidderData,
-IProps) => {
+}: IProps) => {
   const [currentBet, setCurrentBet] = React.useState<number>(highest_bid);
-  // handleChangeScreen && handleChangeScreen({path: 'auction'})
+  const [isClick, setIsClick] = React.useState<boolean>(false);
   const styles: any = {};
   useEffect(() => {
     setCurrentBet(highest_bid);
@@ -111,12 +100,7 @@ IProps) => {
             value={currentBet}
             onChange={(e) => {
               const numericValue = parseFloat(e.target.value);
-              // if (!isNaN(numericValue) && numericValue >= startPrice) {
               setCurrentBet(numericValue);
-              // }
-              //  else {
-              //    setCurrentBet(startPrice);
-              // }
             }}
             type="number"
             id="input-bet-auction"
@@ -144,17 +128,18 @@ IProps) => {
           <Button
             fillColor="#FFE4B5"
             p={10}
-            disabled={!currentBet || currentBet < startPrice}
+            disabled={isClick && (!currentBet || currentBet < startPrice)}
             className={styles["gib__btn-action-place-bet-auction"]}
-            onClick={() =>
+            onClick={() => {
+              temporaryDisableBtn(2000, setIsClick);
               handleCard &&
-              handleCard({
-                action: "bid_auction",
-                game_id,
-                card_id,
-                bid: currentBet,
-              })
-            }
+                handleCard({
+                  action: "bid_auction",
+                  game_id,
+                  card_id,
+                  bid: currentBet,
+                });
+            }}
           >
             <InnerBtnContextSpaceBetween>
               <Text text={"Сделать ставку"} />
@@ -174,17 +159,18 @@ IProps) => {
           <Button
             fillColor="#FFE4B5"
             p={10}
-            disabled={!currentBet || currentBet < startPrice}
+            disabled={isClick && (!currentBet || currentBet < startPrice)}
             className={styles["gib__btn-action-place-bet-auction"]}
-            onClick={() =>
+            onClick={() => {
+              temporaryDisableBtn(2000, setIsClick);
               handleCard &&
-              handleCard({
-                action: "bid_auction",
-                game_id,
-                card_id,
-                bid: currentBet,
-              })
-            }
+                handleCard({
+                  action: "bid_auction",
+                  game_id,
+                  card_id,
+                  bid: currentBet,
+                });
+            }}
           >
             <Text fontSize={12} color="#4E4C6D">
               Правила проведения торгов
@@ -204,13 +190,5 @@ IProps) => {
         />
       </ContainerInfoFooterGIB>
     </ContainerGIB>
-
-    // 		<GameInfoBoardFooterContainer
-    // 			bgc={'#FADDAA'}
-    // 			bgcBtn={'#F5CC82'}
-    // 		/>
-    // 	</div>
-
-    // </div>
   );
 };

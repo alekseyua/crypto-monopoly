@@ -6,28 +6,25 @@ import GameInfoBoardFooterContainer from '../../../GameInfoBoardFooter/GameInfoB
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import ContainerGIB from '../../UIContainerGIB/ContainerGIB';
 import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
-import ContainerTwoBtn from '../../ControllerGIB/ContainerTwoBtn';
 import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
 import Title from '../../../../../../shared/UI/Title/Title';
 import Text from '../../../../../../shared/UI/Text/Text';
 import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
 import InnerBtnContextSpaceBetween from '../../ControllerGIB/InnerBtnContextSpaceBetween';
-import { getPriceTaxesFromHouses } from '../../../../../../helpers/helper';
 import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
 import { ISpecialCardInfo } from '../../../../../../store/quick-game/quick-game.d';
 import ContainerOneBtn from '../../ControllerGIB/ContainerOneBtn';
 
-interface Iprops {
+interface IProps {
 	endTime: number;
 	cardInfo: ISpecialCardInfo;
 	handleChangeScreen: ({path}:{path: string})=>void;
 }
-export const AuctionSpecialInfoCard: React.FC<Iprops> = ({
+export const AuctionSpecialInfoCard: React.FC<IProps> = ({
 	endTime,
 	cardInfo,
 	handleChangeScreen,
-}: Iprops) => {
-	const [amountHouses, setAmountHouses] = React.useState<number>(1);
+}: IProps) => {
 	return (
 		<ContainerGIB
 			style={{

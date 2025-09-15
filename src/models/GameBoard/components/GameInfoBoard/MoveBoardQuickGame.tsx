@@ -1,14 +1,13 @@
-import { icons, logo } from '../../../../assets';
+import { set } from 'react-hook-form';
+import { logo } from '../../../../assets';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
-import { Button, Input, Offset } from '../../../../shared/UI';
+import { Button, Offset } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
-import Text from '../../../../shared/UI/Text/Text';
 import Title from '../../../../shared/UI/Title/Title';
 import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFooterContainer';
 import ContainerInfoTwoColumnGIB from '../GameInfoBoardNew/UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
 import styles from './styles/gib.module.scss';
-import {ReactComponent as QgCurrencySvgWhite} from '../../../../assets/icons/qg-currency-white.svg';
-import ButtonBack from '../../../../shared/UI/Buttons/ButtonBack/ButtonBack';
+import React from 'react';
 
 interface IMoveBoardQGProps {
 	onMove: (params: any) => void;
@@ -25,6 +24,8 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 	titleBtn = 'Походить',
 	timeEndMove,
 }: IMoveBoardQGProps) => {
+	  const [ isClick, setIsClick ] =  React.useState(false); 
+	
 	return (
 		<div className={styles['gib__container']}>
 			{/* header */}
@@ -44,9 +45,12 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 			{/* btn */}
 			<div className={styles['gib__btns-container--btn-one']}>
 				<Button 
-				onClick={() => onMove({
+				disabled={isClick }
+				onClick={() => {
+					setIsClick(true);
+					onMove({
 					action,
-				})}>{titleBtn}</Button>
+				})}}>{titleBtn}</Button>
 			</div>
 <ContainerInfoTwoColumnGIB>
 

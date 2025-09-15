@@ -4,10 +4,12 @@ import { StoreonStore } from "storeon";
 import {IProfile, Payment, PaymentConfirm} from './profile.d';
 import { v4 } from "uuid";
 import api from "../../api/api";
-import { API_CONFIRM_PAYMENT, API_TOP_UP_WALLET } from "../../api/config";
+import { API_CHANGE_PHOTO_AVATAR, API_CONFIRM_PAYMENT, API_TOP_UP_WALLET } from "../../api/config";
 import { SET_MODAL } from "../modal/modal";
 
 export const GET_DATA_PROFILE = v4();
+export const UPDATE_PHOTO_AVATAR_PROFILE = v4();
+
 export const SET_DATA_PROFILE = v4();
 export const GET_DASHBOARD_PROFILE = v4();;
 export const SWITCH_DASHBOARD_PROFILE = v4();;
@@ -22,6 +24,25 @@ export const SET_PAYLOAD_IN_STATE = v4();
 export const profile = (store: StoreonStore) => {
   // profile logic
   //...
+  store.on(UPDATE_PHOTO_AVATAR_PROFILE, async (store: any, payload: FormData, { dispatch }) => {
+    try {
+      const res = await api.post(API_CHANGE_PHOTO_AVATAR, payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      if(res.status === 200) {
+        alert('Аватар успешно обновлен!');
+        dispatch(GET_DATA_PROFILE);
+      } else {
+        alert('Ошибка при обновлении аватара, попробуйте позже ' + res?.data?.error[0] || '');
+      }
+    } catch (error) {
+      console.error('Error updating avatar:', error);
+      alert('Произошла ошибка при обновлении аватара. Пожалуйста, попробуйте еще раз.');
+    }
+  });
+
   const initOpenSubInvitePlayers = false;
 
   store.on(_INIT, () => ({
@@ -131,254 +152,254 @@ export const profile = (store: StoreonStore) => {
       }
     }
     ))
-  store.on(GET_DATA_PROFILE, () => {
-    // const params = {
-    //     url: '',
+  // store.on(GET_DATA_PROFILE, () => {
+  //   // const params = {
+  //   //     url: '',
 
-    // }
-    return {
-      profile: {
-        user: {
-          name: "Sam Venchester",
-          data_registration: "Приглашен 24.12.2023",
-          email: "pavel.balk@mailru",
-          phone: null,
-          amount_day: "Вы с нами уже <b>3 дня</b> (регистрация 24.12.2023)",
-        },
-        account_info: {
-          account_partnaship: [
-            {
-              name: "good.max009@gmail.com",
-              status: "active",
-            },
-            {
-              name: "Привязать Metal",
-              status: "disactive",
-            },
-            {
-              name: "Привязать VK ID",
-              status: "disactive",
-            },
-            {
-              name: "Привязать Яндекс ID",
-              status: "disactive",
-            },
-          ],
-        },
-        invited_players: {
-          ref_link: `https://bla-bla-bla.get.mony`,
-          players: [
-            {
-              name: "Sam Venchester",
-              data_registration: "Приглашен 20.12.2023",
-              earning: "+25$",
-              avatar: avatar,
-              sub_invite_players: [
-                {
-                  name: "Sam Venchester_1",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_2",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_3",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_4",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_5",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-              ],
-            },
-            {
-              name: "Kli_Gench",
-              data_registration: "Приглашен 20.12.2023",
-              avatar: avatar,
-              earning: null,
-              sub_invite_players: [],
-            },
-            {
-              name: "Kli_Gench",
-              data_registration: "Приглашен 20.12.2023",
-              avatar: avatar,
-              earning: null,
-              sub_invite_players: [],
-            },
-            {
-              name: "Kli_Gench",
-              data_registration: "Приглашен 20.12.2023",
-              avatar: avatar,
-              earning: null,
-              sub_invite_players: [],
-            },
-            {
-              name: "Kli_Gench",
-              data_registration: "Приглашен 20.12.2023",
-              avatar: avatar,
-              earning: null,
-              sub_invite_players: [],
-            },
-            {
-              name: "Sam Venchester",
-              data_registration: "Приглашен 20.12.2023",
-              earning: "+25$",
-              avatar: avatar,
-              sub_invite_players: [
-                {
-                  name: "Sam Venchester_1",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_2",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_3",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_4",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_5",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-              ],
-            },
-            {
-              name: "Kli_Gench",
-              data_registration: "Приглашен 20.12.2023",
-              avatar: avatar,
-              earning: null,
-              sub_invite_players: [],
-            },
-            {
-              name: "Sam Venchester",
-              data_registration: "Приглашен 20.12.2023",
-              earning: "+25$",
-              avatar: avatar,
-              sub_invite_players: [
-                {
-                  name: "Sam Venchester_1",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_2",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_3",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_4",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_5",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-              ],
-            },
-            {
-              name: "Kli_Gench",
-              data_registration: "Приглашен 20.12.2023",
-              avatar: avatar,
-              earning: null,
-              sub_invite_players: [],
-            },
-            {
-              name: "Kli_Gench",
-              data_registration: "Приглашен 20.12.2023",
-              avatar: avatar,
-              earning: null,
-              sub_invite_players: [],
-            },
-            {
-              name: "Kli_Gench",
-              data_registration: "Приглашен 20.12.2023",
-              avatar: avatar,
-              earning: null,
-              sub_invite_players: [],
-            },
-            {
-              name: "Kli_Gench",
-              data_registration: "Приглашен 20.12.2023",
-              avatar: avatar,
-              earning: null,
-              sub_invite_players: [],
-            },
-            {
-              name: "Sam Venchester",
-              data_registration: "Приглашен 20.12.2023",
-              earning: "+25$",
-              avatar: avatar,
-              sub_invite_players: [
-                {
-                  name: "Sam Venchester_1",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_2",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_3",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_4",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-                {
-                  name: "Sam Venchester_5",
-                  earning: "+5$",
-                  avatar: avatar,
-                },
-              ],
-            },
-            {
-              name: "Kli_Gench",
-              data_registration: "Приглашен 20.12.2023",
-              avatar: avatar,
-              earning: null,
-              sub_invite_players: [],
-            },
-          ],
-          info: {
-            title: "Реферальная программа",
-            desc: `<p>Это дополнительная возможность заработка для активных игроков и активных «рефероводов».Приглашайте больше участников к нам в игру и получайте дополнительный доход.</p><p>Вы будете получать <b>7%</b> от покупки каждой карточки, дома и отеля от игрока, которого вы пригласили,  и <b>3%</b> от покупок всех приглашенных, которых привел игрок, приглашенный вами.</p>`,
-          },
-        },
-      },
-    };
-  });
+  //   // }
+  //   return {
+  //     profile: {
+  //       user: {
+  //         name: "Sam Venchester",
+  //         data_registration: "Приглашен 24.12.2023",
+  //         email: "pavel.balk@mailru",
+  //         phone: null,
+  //         amount_day: "Вы с нами уже <b>3 дня</b> (регистрация 24.12.2023)",
+  //       },
+  //       account_info: {
+  //         account_partnaship: [
+  //           {
+  //             name: "good.max009@gmail.com",
+  //             status: "active",
+  //           },
+  //           {
+  //             name: "Привязать Metal",
+  //             status: "disactive",
+  //           },
+  //           {
+  //             name: "Привязать VK ID",
+  //             status: "disactive",
+  //           },
+  //           {
+  //             name: "Привязать Яндекс ID",
+  //             status: "disactive",
+  //           },
+  //         ],
+  //       },
+  //       invited_players: {
+  //         ref_link: `https://bla-bla-bla.get.mony`,
+  //         players: [
+  //           {
+  //             name: "Sam Venchester",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             earning: "+25$",
+  //             avatar: avatar,
+  //             sub_invite_players: [
+  //               {
+  //                 name: "Sam Venchester_1",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_2",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_3",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_4",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_5",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //             ],
+  //           },
+  //           {
+  //             name: "Kli_Gench",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             avatar: avatar,
+  //             earning: null,
+  //             sub_invite_players: [],
+  //           },
+  //           {
+  //             name: "Kli_Gench",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             avatar: avatar,
+  //             earning: null,
+  //             sub_invite_players: [],
+  //           },
+  //           {
+  //             name: "Kli_Gench",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             avatar: avatar,
+  //             earning: null,
+  //             sub_invite_players: [],
+  //           },
+  //           {
+  //             name: "Kli_Gench",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             avatar: avatar,
+  //             earning: null,
+  //             sub_invite_players: [],
+  //           },
+  //           {
+  //             name: "Sam Venchester",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             earning: "+25$",
+  //             avatar: avatar,
+  //             sub_invite_players: [
+  //               {
+  //                 name: "Sam Venchester_1",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_2",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_3",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_4",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_5",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //             ],
+  //           },
+  //           {
+  //             name: "Kli_Gench",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             avatar: avatar,
+  //             earning: null,
+  //             sub_invite_players: [],
+  //           },
+  //           {
+  //             name: "Sam Venchester",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             earning: "+25$",
+  //             avatar: avatar,
+  //             sub_invite_players: [
+  //               {
+  //                 name: "Sam Venchester_1",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_2",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_3",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_4",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_5",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //             ],
+  //           },
+  //           {
+  //             name: "Kli_Gench",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             avatar: avatar,
+  //             earning: null,
+  //             sub_invite_players: [],
+  //           },
+  //           {
+  //             name: "Kli_Gench",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             avatar: avatar,
+  //             earning: null,
+  //             sub_invite_players: [],
+  //           },
+  //           {
+  //             name: "Kli_Gench",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             avatar: avatar,
+  //             earning: null,
+  //             sub_invite_players: [],
+  //           },
+  //           {
+  //             name: "Kli_Gench",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             avatar: avatar,
+  //             earning: null,
+  //             sub_invite_players: [],
+  //           },
+  //           {
+  //             name: "Sam Venchester",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             earning: "+25$",
+  //             avatar: avatar,
+  //             sub_invite_players: [
+  //               {
+  //                 name: "Sam Venchester_1",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_2",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_3",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_4",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //               {
+  //                 name: "Sam Venchester_5",
+  //                 earning: "+5$",
+  //                 avatar: avatar,
+  //               },
+  //             ],
+  //           },
+  //           {
+  //             name: "Kli_Gench",
+  //             data_registration: "Приглашен 20.12.2023",
+  //             avatar: avatar,
+  //             earning: null,
+  //             sub_invite_players: [],
+  //           },
+  //         ],
+  //         info: {
+  //           title: "Реферальная программа",
+  //           desc: `<p>Это дополнительная возможность заработка для активных игроков и активных «рефероводов».Приглашайте больше участников к нам в игру и получайте дополнительный доход.</p><p>Вы будете получать <b>7%</b> от покупки каждой карточки, дома и отеля от игрока, которого вы пригласили,  и <b>3%</b> от покупок всех приглашенных, которых привел игрок, приглашенный вами.</p>`,
+  //         },
+  //       },
+  //     },
+  //   };
+  // });
 
   store.on(SWITCH_DASHBOARD_PROFILE, ({ dashboardProfile }: any, payload) => {
     if (Object.keys(dashboardProfile).length) {

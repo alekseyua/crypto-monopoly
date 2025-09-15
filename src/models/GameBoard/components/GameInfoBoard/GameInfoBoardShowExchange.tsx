@@ -12,6 +12,7 @@ import Title from '../../../../shared/UI/Title/Title';
 import Line from '../../../../shared/UI/Line/Line';
 import CurrencyQG from '../../../../shared/UI/CurrencyQG/CurrencyQG';
 import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFooterContainer';
+import { temporaryDisableBtn } from '../../../../helpers/helper';
 
 interface IGameInfoBoardShowExchangeProps {
 	exchageData: IExchangeData;
@@ -32,6 +33,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 	cards,
 	timeEndMove,
 }: IGameInfoBoardShowExchangeProps) => {
+	const [isClick, setIsClick] = useState<boolean>(false);
 	const [totalTo, setTotalTo] = useState<number>(0);
 	const [totalFrom, setTotalFrom] = useState<number>(0);
 	const userWhoOffer = players?.filter( (p:IPlayer) => p.id === exchageData.player_from_id)[0];
@@ -78,20 +80,26 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 					<div className={styles['gib__btns-container']}>
 						<div className={styles['gib__btns-container--btn-two']}>
 							<Button
+								disabled={isClick}
 								className={styles['gib__btns--btn-action']}
-								onClick={() => handleCard({
+								onClick={() =>{
+									temporaryDisableBtn(2000, setIsClick);
+									handleCard({
 									action: 'accept_exchange',
 									...exchageData
-								})}
+								})}}
 							>
 								Принять
 							</Button>
 
 							<Button
 								className={styles['gib__btns--btn-action']}
-								onClick={() => handleCard({
+								disabled={isClick}
+								onClick={() => {
+									temporaryDisableBtn(2000, setIsClick);
+									handleCard({
 									action: 'deny_exchange',
-								})}>
+								})}}>
 								Отказ ({<AutoCounter disabled={false} counter={timeEndMove} callback={() => { }} />} сек.)
 							</Button>
 						</div>

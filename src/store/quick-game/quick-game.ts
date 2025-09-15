@@ -337,7 +337,7 @@ export const quickGame = (store: StoreonStore) => {
   store.on(SEND_ACTION_CARD_QG, (store: any, payload, { dispatch }) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       const game_id = store.quickGame.id;
-
+      
       return socket.get_games.send(JSON.stringify({
         game_id,
         ...payload

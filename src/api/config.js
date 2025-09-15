@@ -28,3 +28,4 @@ export const API_STATUS_QG = "/get_game_status/";
 // profile
 export const API_TOP_UP_WALLET = "/user/payments/";
 export const API_CONFIRM_PAYMENT = "/user/payments/confirm_payment/";
+export const API_CHANGE_PHOTO_AVATAR = "/user/change-photo/";

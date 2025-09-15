@@ -5,6 +5,7 @@ import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import Title from '../../../../shared/UI/Title/Title';
 import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFooterContainer';
 import { IActionCard } from '../../../../store/quick-game/quick-game.d';
+import { temporaryDisableBtn } from '../../../../helpers/helper';
 
 interface IGameInfoBoardPayTaxOrAddCardChanceProps {
 	game_id: number;
@@ -21,8 +22,10 @@ export const GameInfoBoardPayTaxOrAddCardChance: React.FC<IGameInfoBoardPayTaxOr
 	actions,
 	timeEndMove,
 }: IGameInfoBoardPayTaxOrAddCardChanceProps) => {
+	const [isClick, setIsClick] = React.useState<boolean>(false);
 	const [isActionCard, setIsActionCard] = React.useState<boolean>(false);
 	const handlePayTax = function () {
+		temporaryDisableBtn(2000, setIsClick);
 		!isActionCard && handleCard && handleCard({
 			action: 'pay',
 			game_id,
@@ -31,6 +34,7 @@ export const GameInfoBoardPayTaxOrAddCardChance: React.FC<IGameInfoBoardPayTaxOr
 		setIsActionCard(true);
 	}
 	const handleGetChance = function () {
+		temporaryDisableBtn(2000, setIsClick);
 		handleCard && handleCard({
 			action: 'get_card_action',
 			game_id,
@@ -50,8 +54,8 @@ export const GameInfoBoardPayTaxOrAddCardChance: React.FC<IGameInfoBoardPayTaxOr
 					/>
 					<Offset mt={30} />
 					<div className={styles['gib__btns-container--btn-two']}>
-						<Button disabled={!actions.add_card} onClick={handleGetChance}>Получить карту шанса</Button>
-						<Button disabled={!actions.pay} onClick={handlePayTax} type='outline'> Оплатить ( {<AutoCounter counter={timeEndMove} callback={()=>{}} />})</Button>
+						<Button disabled={isClick && !actions.add_card} onClick={handleGetChance}>Получить карту шанса</Button>
+						<Button disabled={isClick && !actions.pay} onClick={handlePayTax} type='outline'> Оплатить ( {<AutoCounter counter={timeEndMove} callback={()=>{}} />})</Button>
 					</div>
 				</div>
 				{/* body */}

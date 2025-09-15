@@ -836,10 +836,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 				card_id={actionCardData?.auction_data.card_id}
 				startPrice={+actionCardData?.auction_data?.start_price}
 				cardInfo={actionCardData?.auction_data?.card_info}
-				highestBidderData={actionCardData?.auction_data.highest_bidder_data}
 				highest_bid={actionCardData?.auction_data.highest_bid}
-				highest_bidder={actionCardData?.auction_data.highest_bidder}
-				typeStyle={"auction"}
 				endTime={actionCardData?.auction_data?.end_time_sec}
 				showInfoCard="auction-card"
 			/>
@@ -853,11 +850,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 				card_id={actionCardData?.auction_data.card_id}
 				startPrice={+actionCardData?.auction_data?.start_price}
 				cardInfo={actionCardData?.auction_data?.card_info}
-				highestBidderData={actionCardData?.auction_data.highest_bidder_data}
 				highest_bid={actionCardData?.auction_data.highest_bid}
-				highest_bidder={actionCardData?.auction_data.highest_bidder}
-				// property={actionCardData?.auction_data?.property}
-				typeStyle={"auction"}
 				endTime={actionCardData?.auction_data?.end_time_sec}
 				showInfoCard={"auction-special-card"}
 			/>
@@ -882,7 +875,6 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 	}, [actionCardData, dataPlayerQG, exchangeData, infoMassagePopup]);
 
   // setIsChangeCard после заваршения обмена очистить, когда уходим со
-  console.log({ exchangeData }, dataPlayerQG);
   return (
     <FieldQG
       heightGameBoard={heightGameBoard}

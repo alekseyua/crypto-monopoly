@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import React, { useCallback } from "react";
 import { icons } from "../../../../../../assets";
 import { Button, Offset } from "../../../../../../shared/UI";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
@@ -11,6 +11,7 @@ import ContainerGIB from "../../UIContainerGIB/ContainerGIB";
 import ContainerInfoBodyGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB";
 import ContainerInfoFooterGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB";
 import ContainerInfoHeaderGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB";
+import { temporaryDisableBtn } from "../../../../../../helpers/helper";
 
 
 interface IInfoChanceOrCommunityProps {
@@ -34,7 +35,7 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
 	content,
 	cardIdWhereMoveTo,
 }: IInfoChanceOrCommunityProps) => {
-  console.log({cardIdWhereMoveTo})
+  const [ isClick, setIsClick ] =  React.useState(false); 
   const getNameBtn = useCallback(function (name: string) {
     if (name === undefined) return "";
     switch (name) {
@@ -116,9 +117,10 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
                     key={i}
                     variant="fill"
                     fillColor={"#726CED"}
-                    disabled={isActionHouses && !cardIdWhereMoveTo}
+                    disabled={isClick || (isActionHouses && !cardIdWhereMoveTo)}
                     p={20}
                     onClick={() => {
+                      temporaryDisableBtn(2000, setIsClick);
                       onMove({
                         action: a,
                         card_id: cardIdWhereMoveTo,

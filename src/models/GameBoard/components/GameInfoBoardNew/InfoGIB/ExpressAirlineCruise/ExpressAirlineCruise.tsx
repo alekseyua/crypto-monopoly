@@ -15,6 +15,7 @@ import ContainerInfoTwoColumnGIB from "../../UIContainerGIB/InfoGIB/ContainerInf
 import InnerBtnContextSpaceBetween from "../../ControllerGIB/InnerBtnContextSpaceBetween";
 import Text from "../../../../../../shared/UI/Text/Text";
 import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";
+import { temporaryDisableBtn } from "../../../../../../helpers/helper";
 
 
 interface IExpressAirlineCruiseProps {
@@ -35,7 +36,9 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
 	card,
 }: IExpressAirlineCruiseProps) => {
 		const [ isActionCard, setIsActionCard ] = React.useState<boolean>(false);
+		const [ isClick, setIsClick ] = React.useState<boolean>(false);
 	const handleBuyCard = function() {
+		temporaryDisableBtn(2000, setIsClick);
 		handleCard && handleCard({
 			action: 'buy',
 			game_id,
@@ -44,6 +47,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
 	}
 
 	const handleAuction = function() {
+		temporaryDisableBtn(2000, setIsClick);
 		setIsActionCard(true);
 		handleCard && handleCard({
 			action: 'start_auction',
@@ -67,7 +71,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
 				type="fill"
 				p={10}
 				fillColor="#726CED"
-				disabled={!actions.buy}
+				disabled={isClick && !actions.buy}
 				onClick={handleBuyCard}>
 				Купить за {(card as ISpecialCard)?.card_info?.base_cost}
 				<Icon src={icons.qgCurrencySvgWhite} width="20" height="16" ml={5} />
@@ -75,7 +79,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
 			<Button
 				type="outline"
 				p={10}
-				disabled={!actions.auction && isActionCard}
+				disabled={isClick && !actions.auction && isActionCard}
 				onClick={handleAuction}>
 				Отказ {<AutoCounter counter={timeEndMove} disabled={isActionCard} callback={()=>{}} />}
 			</Button>

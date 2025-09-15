@@ -4,7 +4,7 @@ import Icon from '../../../../shared/UI/Icon/Icon';
 import styles from './styles/gib.module.scss';
 import React from 'react';
 import { InfoBoardLabel } from './UI/Label/info-board-label';
-import { autoRefuseTimer, getPriceTaxesFromHouses } from '../../../../helpers/helper';
+import { autoRefuseTimer, getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../helpers/helper';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFooterContainer';
 import Title from '../../../../shared/UI/Title/Title';
@@ -13,10 +13,7 @@ import { IActionCard } from '../../../../store/quick-game/quick-game.d';
 interface IGameInfoBoardBuyOrAuctionProps {
 	labelColors?: string[];
 	labelTextColors?: string[];
-	wait?: boolean;
 	actions: IActionCard;
-	buy_or_auction_card?: boolean;
-	numberField?: number;
 	card_cost?: number;
 	game_id: number;
 	card_id: number;
@@ -28,9 +25,6 @@ interface IGameInfoBoardBuyOrAuctionProps {
 export const GameInfoBoardPayOrAddChance: React.FC<IGameInfoBoardBuyOrAuctionProps> = ({
 	labelColors = ['transparent', '#65B99E'],
 	labelTextColors = ['#000000', '#ffffff'],
-	wait,
-	buy_or_auction_card,
-	numberField,
 	card_cost,
 	game_id,
 	card_id,
@@ -40,7 +34,9 @@ export const GameInfoBoardPayOrAddChance: React.FC<IGameInfoBoardBuyOrAuctionPro
 	timeEndMove,
 }: IGameInfoBoardBuyOrAuctionProps) => {
 	const [amountHouses, setAmountHouses] = React.useState<number>(1);
+	const [ isClick, setIsClick ] = React.useState<boolean>(false);
 	const handleGetChance = function () {
+		temporaryDisableBtn(2000, setIsClick);
 		handleCard && handleCard({
 			action: 'get_card_action',
 			game_id,
@@ -61,15 +57,17 @@ export const GameInfoBoardPayOrAddChance: React.FC<IGameInfoBoardBuyOrAuctionPro
 					/>
 					<div className={styles['gib__btns-container']}>
 						<Button
-							disabled={!actions.pay}
-							onClick={() => handleCard && handleCard({
+							disabled={isClick && !actions.pay}
+							onClick={() => {
+								temporaryDisableBtn(2000, setIsClick);
+								handleCard && handleCard({
 								action: 'pay',
 								game_id,
 								card_id,
-							})}>Купить за {card_cost}
+							})}}>Купить за {card_cost}
 							<Icon className={styles['gib__currency']} src={currency2White} /></Button>
 						<Button
-							disabled={!actions.add_chance}
+							disabled={isClick && !actions.add_chance}
 							onClick={handleGetChance} type='outline'>Отказ {<AutoCounter counter={timeEndMove} callback={handleGetChance} />
 							}</Button>
 					</div>

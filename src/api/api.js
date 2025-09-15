@@ -118,9 +118,9 @@ class ApiService {
     }
     
     // Метод POST-запроса
-    async post(endpoint, data = {}) {
+    async post(endpoint, data = {}, headers = {}) {
       try {
-        const response = await this.api.post(endpoint, initDataParamsPostOrGet(data));
+        const response = await this.api.post(endpoint, initDataParamsPostOrGet(data), { headers });
         if(response.status === 400){
           return { data: response.data, status: response.status };
         }

@@ -9,7 +9,7 @@ import { Button, Offset } from '../../../../../../shared/UI';
 import Title from '../../../../../../shared/UI/Title/Title';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import ContainerOneBtn from '../../ControllerGIB/ContainerOneBtn';
-import { adjustColorBrightness, getPriceTaxesFromHouses } from '../../../../../../helpers/helper';
+import { adjustColorBrightness, getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../../../helpers/helper';
 import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
 import InnerBtnContextSpaceBetween from '../../ControllerGIB/InnerBtnContextSpaceBetween';
 import Text from '../../../../../../shared/UI/Text/Text';
@@ -39,7 +39,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
   setAmountHouses,
   handleChangeScreen,
 }: IProps) => {
-  console.log({card})
+  const [isClick, setIsClick] = React.useState<boolean>(false);
   return (
     <ContainerGIB>
       <Offset mt={5} />
@@ -50,11 +50,13 @@ const InfoSpecialCard: React.FC<IProps> = ({
           type="empty"
           borderColor="#E4E4E4"
           p={11}
-          onClick={() =>
+          disabled={isClick}
+          onClick={() =>{
+            temporaryDisableBtn(2000, setIsClick);
             handleBack({
               action: "clean_chose_actions",
             })
-          }
+          }}
         >
           <Text fontWeight={300} fontSize={14} center>
             <>
