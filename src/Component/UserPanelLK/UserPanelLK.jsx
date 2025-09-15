@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import cls from './styles/user-panel-lk.module.scss';
-import { NAV_AUTH_PAGE, NAV_REG_PAGE } from '../../routers/config-nav';
+import { NAV_AUTH_PAGE, NAV_PROFILE, NAV_REG_PAGE } from '../../routers/config-nav';
 
 const UserPanelLK = ({ handleOpenLKMenu, handleLogout, user, isOpenLKMenu}) => {
   return (
@@ -23,7 +23,7 @@ const UserPanelLK = ({ handleOpenLKMenu, handleLogout, user, isOpenLKMenu}) => {
       {
         isOpenLKMenu && 
           <div className={cls['header-menu-lk-btn__dropdown-container']}>
-            <Link to={'/user'}>Настройки</Link>
+            <Link to={NAV_PROFILE}>Настройки</Link>
             <br />
             {
               // user?.username 

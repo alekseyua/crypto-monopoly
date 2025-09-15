@@ -127,3 +127,47 @@ export const adjustColorBrightness = (color: string, percent: number) => {
 export const rgbToRgba = function (rgb: string, alpha: number) {
   return rgb.replace("rgb", "rgba").replace(")", `, ${alpha})`);
 }
+
+export function connectWebSocket(socket: WebSocket, callback: (res: any) => any, action: string = 'pending') {
+  if (socket === undefined) return
+  socket.onopen = () => {
+    console.warn("WebSocket open: ");
+  }
+  socket.onerror = (error: any) => {
+    console.error("ReadyState = ", error?.target?.readyState, "WebSocket error: ", error);
+    if (error?.target?.readyState === WebSocket.CLOSED) {
+      return
+    }
+    socket.close(); // Закрываем соединение при ошибке
+  }
+  socket.onclose = (e: CloseEvent) => {
+    console.warn("WebSocket close code: ", e?.code, typeof e?.code);
+    if (e?.code === 1006) {
+      // Попробуем переподключиться через 2 секунды
+      // setTimeout(connectWebSocket, 2000);
+      return console.log('close websocket error 1006')
+    }
+    if (e?.code === 1000) {
+      return console.log('close from client websocket code 1000')
+    }
+    // setTimeout(connectWebSocket, 2000);  
+  }
+  socket.onmessage = (event: MessageEvent) => {
+    callback(JSON.parse(event.data));
+    if (action === 'close') {
+      // принудительно закрываем
+      console.log('принудительно закрываем Websocket')
+      socket.close();
+    }
+    return
+  }
+}
+
+export function getUrlWebsocket(url: string, payload: any) {
+  url += `?token=${getLocaleStore("token")}`;
+  if (Object.keys(payload).length) {
+    url += `&${Object.keys(payload)?.map(key => `${key}=${payload[key]}`).join('&')}`;  // append query params to the URL if provided in data object.
+  }
+  return url;
+
+}

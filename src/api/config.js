@@ -1,6 +1,7 @@
 // websocket
 
 export const URL_QGS = 'wss://monopoly-game.fun/ws/game/';
+export const URL_FEED_QG = 'wss://monopoly-game.fun/ws/sending/';
 
 
 export const getProfile = '/api/profile/';

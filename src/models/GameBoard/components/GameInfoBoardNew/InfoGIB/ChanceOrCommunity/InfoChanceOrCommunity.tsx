@@ -1,7 +1,9 @@
+import { useCallback } from "react";
 import { icons } from "../../../../../../assets";
 import { Button, Offset } from "../../../../../../shared/UI";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
 import Title from "../../../../../../shared/UI/Title/Title";
+import { ICard } from "../../../../../../store/quick-game/quick-game.d";
 import ContainerOneBtn from "../../ControllerGIB/ContainerOneBtn";
 import ContainerTwoBtn from "../../ControllerGIB/ContainerTwoBtn";
 import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";
@@ -19,6 +21,7 @@ interface IInfoChanceOrCommunityProps {
   content: string;
   cardIdWhereMoveTo: number | null;
   typeCard: string;
+  cards: ICard[];
 }
 
 export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
@@ -26,12 +29,13 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
 	actions,
 	title = 'Время вашего хода',
 	// titleBtns,
+  cards,
   typeCard,
 	content,
 	cardIdWhereMoveTo,
 }: IInfoChanceOrCommunityProps) => {
   console.log({cardIdWhereMoveTo})
-  const getNameBtn = function (name: string) {
+  const getNameBtn = useCallback(function (name: string) {
     if (name === undefined) return "";
     switch (name) {
       case "move_to":
@@ -45,6 +49,11 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
       default:
         return "Получить";
     }
+  }, []);
+
+  const getInfoCard = function (id: number | null) {
+    if (id === null) return null;
+    return cards.find((c: ICard) => c.id === id);
   };
   return (
     <ContainerGIB style={{ background: "#E9ECFF" }}>
@@ -79,21 +88,46 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
         >
           {actions?.length &&
             actions.map((a: string, i: number) => {
+              const isActionHouses = a === "return_house" || a === "get_house";
+              const card = isActionHouses && getInfoCard(cardIdWhereMoveTo);
               return (
-                <Button
-                  key={i}
-                  variant="fill"
-                  fillColor={"#726CED"}
-                  p={20}
-                  onClick={() => {
-                    onMove({
-                      action: a,
-                      card_id: cardIdWhereMoveTo,
-                    });
-                  }}
-                >
-                  {getNameBtn(a)}
-                </Button>
+                <div key={i} style={{ zIndex: 2 }}>
+                  {!!!cardIdWhereMoveTo && isActionHouses ? (
+                    <>
+                      <Title
+                        tag="h3"
+                        title={"Выберите карту что бы " + getNameBtn(a)}
+                        center
+                      />
+                      <Offset mt={20} />
+                    </>
+                  ) : null}
+                  {isActionHouses && card ? (
+                    <>
+                      <Title
+                        tag="h3"
+                        title={getNameBtn(a) + " с " + card.name}
+                        center
+                      />
+                      <Offset mt={20} />
+                    </>
+                  ) : null}
+                  <Button
+                    key={i}
+                    variant="fill"
+                    fillColor={"#726CED"}
+                    disabled={isActionHouses && !cardIdWhereMoveTo}
+                    p={20}
+                    onClick={() => {
+                      onMove({
+                        action: a,
+                        card_id: cardIdWhereMoveTo,
+                      });
+                    }}
+                  >
+                    {getNameBtn(a)}
+                  </Button>
+                </div>
               );
             })}
         </ContainerTwoBtn>

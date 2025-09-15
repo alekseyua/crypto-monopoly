@@ -150,7 +150,8 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
   const onMove = useCallback(
     (params: any) => {
       dispatch(GET_MOVE_QG, params);
-      if (params.action === "end_move") return;
+	  const listException = ["end_move", "return_house", "get_house"];
+      if (listException.includes(params.action)) return;
       dispatch(GET_ACTION_CARD_QG);
     },
     [dispatch]
@@ -358,6 +359,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
         <InfoChanceOrCommunity
           onMove={onMove}
           typeCard={card.type_card}
+		  cards={quickGame.cards as ICard[]}
           actions={keys}
           key={"InfoChanceOrCommunity"}
           cardIdWhereMoveTo={
@@ -804,6 +806,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
         <InfoChanceOrCommunity
           onMove={onMove}
           typeCard={card.type_card}
+		  cards={quickGame.cards as ICard[]}
           actions={keys}
           key={"InfoChanceOrCommunity"}
           cardIdWhereMoveTo={

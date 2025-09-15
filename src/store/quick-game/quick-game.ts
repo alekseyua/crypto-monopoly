@@ -1,12 +1,13 @@
 import { v4 } from "uuid";
 import { _INIT } from "../auth/auth"
-import { URL_QGS } from "../../api/config.js";
+import { URL_FEED_QG, URL_QGS } from "../../api/config.js";
 import { StoreonStore } from "storeon";
-import { delay, getLocaleStore, isKeyPresentInHash } from "../../helpers/helper";
+import { connectWebSocket, delay, getLocaleStore, getUrlWebsocket, isKeyPresentInHash } from "../../helpers/helper";
 import type { IUserActions, ICard, IDataQG, ISocket, IPlayer, IInfoMassagePopup, IAchivmentPlayer, IListQGs } from './quick-game.d'
 import { SET_MESSAGE, SET_MESSAGE_QUICK_GAME } from "../message/message";
 import { GET_USERS } from "../users/users";
 import { NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
+import { get } from "http";
 
 // list cards for the game
 export const RESET_LIST_CARDS_QG = v4();
@@ -44,54 +45,14 @@ export const SET_ACHIVMENT_PLAYER_QG = v4();
 export const RESET_ACHIVMENT_PLAYER_QG = v4();
 
 export const CLOSE_WSOCKET = v4();
+// feed news quick game
+export const OPEN_WS_FEED_NEWS_QG = v4();
 
-function connectWebSocket(socket: WebSocket, callback: (res: any) => any, action: string = 'pending') {
-  if (socket === undefined) return
-  socket.onopen = () => {
-    console.warn("WebSocket open: ");
-  }
-  socket.onerror = (error: any) => {
-    console.error("ReadyState = ", error?.target?.readyState, "WebSocket error: ", error);
-    if (error?.target?.readyState === WebSocket.CLOSED) {
-      return
-    }
-    socket.close(); // Закрываем соединение при ошибке
-  }
-  socket.onclose = (e: CloseEvent) => {
-    console.warn("WebSocket close code: ", e?.code, typeof e?.code);
-    if (e?.code === 1006) {
-      // Попробуем переподключиться через 2 секунды
-      // setTimeout(connectWebSocket, 2000);
-      return console.log('close websocket error 1006')
-    }
-    if (e?.code === 1000) {
-      return console.log('close from client websocket code 1000')
-    }
-    // setTimeout(connectWebSocket, 2000);  
-  }
-  socket.onmessage = (event: MessageEvent) => {
-    callback(JSON.parse(event.data));
-    if (action === 'close') {
-      // принудительно закрываем
-      console.log('принудительно закрываем Websocket')
-      socket.close();
-    }
-    return
-  }
-}
-
-function getUrlWebsocket(url: string, payload: any) {
-  url += `?token=${getLocaleStore("token")}`;
-  if (Object.keys(payload).length) {
-    url += `&${Object.keys(payload)?.map(key => `${key}=${payload[key]}`).join('&')}`;  // append query params to the URL if provided in data object.
-  }
-  return url;
-
-}
 
 export const quickGame = (store: StoreonStore) => {
   const socket: ISocket = {
     get_games: null,
+    feed: null,
   }
 
   // infoMessagePopup
@@ -266,6 +227,7 @@ export const quickGame = (store: StoreonStore) => {
         dispatch(SET_QG, res.game_data)
         const currentPlayer = res.game_data && res.game_data.players.filter((p: any) => +p.user === profileID);
         dispatch(SET_DATA_PLAYER_QG, currentPlayer[0]);// данные пользователя в игре
+        dispatch(OPEN_WS_FEED_NEWS_QG, { game_id: res.game_data.id });// открываем ws для фида новостей игры
         //choose_data 
         // ====================== ERROR ============================
         if (isKeyPresentInHash(currentPlayer[0]?.card_data, 'actions')) {
@@ -441,5 +403,31 @@ export const quickGame = (store: StoreonStore) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       socket.get_games.close();
     }
+    
   })
+    // fedds news quick game
+  store.on(OPEN_WS_FEED_NEWS_QG, (state: any, payload, { dispatch }) => {
+    const URL = getUrlWebsocket(URL_FEED_QG, payload);
+    if (socket.feed && socket.feed?.readyState === WebSocket.OPEN) {
+      return;
+    }
+    console.log('open ws feed news quick game' , URL)
+    const connectFeedWS = () => connectWebSocket(socket.feed = new WebSocket(URL), async (res: any) => {
+      console.log('feed news quick game', res);
+      if (res?.message) {
+        dispatch(SET_MESSAGE, {
+          title: `Feed news quick game`,
+          desc: res.message
+        })
+      }
+      if (res?.error) {
+        dispatch(SET_MESSAGE, {
+          title: 'нужно с бека титульное название ошибки',
+          desc: res.message
+        });
+        return;
+      }
+    });
+    connectFeedWS()
+  } )
 }
