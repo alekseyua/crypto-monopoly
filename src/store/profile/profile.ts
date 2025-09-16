@@ -24,9 +24,15 @@ export const SET_PAYLOAD_IN_STATE = v4();
 export const profile = (store: StoreonStore) => {
   // profile logic
   //...
-  store.on(UPDATE_PHOTO_AVATAR_PROFILE, async (store: any, payload: FormData, { dispatch }) => {
+  store.on(UPDATE_PHOTO_AVATAR_PROFILE, async (store: any, payload: {file: File}, { dispatch }) => {
     try {
-      const res = await api.post(API_CHANGE_PHOTO_AVATAR, payload, {
+      const formData = new FormData();
+      if (payload.file instanceof File) {
+        formData.append("image", payload.file); // или formData.append('image', payload.file, payload.file.name);
+      } else {
+        console.warn("Файл отсутствует или имеет неверный тип");
+      }
+      const res = await api.post(API_CHANGE_PHOTO_AVATAR, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

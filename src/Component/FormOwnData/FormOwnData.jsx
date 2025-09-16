@@ -17,11 +17,23 @@ const FormOwnData = ({
                     <>
                         <div
                             className={cls.conAvatar}
-                            onClick={handleChangeAvatar}
-                        >
+                            >
+                            <input 
+                                onChange={handleChangeAvatar}
+                                type="file" 
+                                accept="image/*" 
+                                style={{
+                                    width: '100%',
+                                    opacity: 0,
+                                    height: '100%',
+                                    position: 'absolute',
+                                    zIndex: 10
+                                }} 
+                            />
+
                             {
                                 !infoUser?.avatar
-                                ? <Icon  src={IconCamera}  /> 
+                                ? <Icon  src={IconCamera}  style={{zIndex:9, position: 'relative'}}/> 
                                 : <img
                                         src={avatar}
                                         alt="avatar"

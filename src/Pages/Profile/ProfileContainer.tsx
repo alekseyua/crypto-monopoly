@@ -26,14 +26,16 @@ const ProfileContainer = () => {
 
 
 
-  const handleChangeAvatar = () => {
-    // Implement avatar changing logic here
-    alert('change avatar')
-  }
-
-  const handleAddPhoneOwnInfo = (photo: File) => {
+  const handleChangeAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // setImage(URL.createObjectURL(file));
+      dispatch(UPDATE_PHOTO_AVATAR_PROFILE, {file});
+    }
+  };
+  
+  const handleAddPhoneOwnInfo = () => {
     // Implement add phone logic here
-    dispatch(UPDATE_PHOTO_AVATAR_PROFILE, photo);
     alert('how add phone????????????????')
   }
   
