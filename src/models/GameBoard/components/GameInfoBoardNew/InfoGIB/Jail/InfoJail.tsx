@@ -76,7 +76,7 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
           <Button
             type="fill"
             p={10}
-            disabled={isClickBtn && !actions.pay_for_freedom}
+            disabled={isClickBtn || !actions.pay_for_freedom}
             onClick={handlePayFreedom}
           >
             <Text text={"Заплатить за освобождение"} />
@@ -95,14 +95,14 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
           <Button
             type="fill"
             p={10}
-            disabled={isClickBtn && !actions.roll_the_dice}
+            disabled={isClickBtn || !actions.roll_the_dice}
             onClick={handleThrowDice}
           >
             <Text text={"Кинуть кубики"} />
           </Button>
 
           <Text
-            text={"нужно уточнить текст."}
+            text={"нужно уточнить текст. >?"}
             fontWeight={300}
             fontSize={12}
             color={"rgba(78, 76, 109, 1)"}
@@ -114,14 +114,14 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
           <Button
             type="fill"
             p={10}
-            disabled={isClickBtn && !actions.freedom_card}
+            disabled={isClickBtn || !actions.freedom_card}
             onClick={handleUseFreedomCard}
           >
             <Text text={'Использовать "Карта свободы"'} />
           </Button>
 
           <Text
-            text={"нужно уточнить текст."}
+            text={"нужно уточнить текст. >?"}
             fontWeight={300}
             fontSize={12}
             color={"rgba(78, 76, 109, 1)"}

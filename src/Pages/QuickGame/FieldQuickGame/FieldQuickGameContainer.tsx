@@ -637,31 +637,13 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 		)[0];
 		switch (dataAction.key) {
 		case "wait":
-			setActionCardView(
-			<Wait
-				playerCurrentMove={
-				quickGame.players.filter((p: IPlayer) => p.current_move)[0]
-				}
-			/>
-			);
+			setActionCardView(<Wait playerCurrentMove={dataPlayerQG} />);
 			break;
 		case "wait_move": // ожидание хода
-			setActionCardView(
-			<Wait
-				playerCurrentMove={
-				quickGame.players.filter((p: IPlayer) => p.current_move)[0]
-				}
-			/>
-			);
+			setActionCardView(<Wait playerCurrentMove={dataPlayerQG} />);
 			break;
 		case "wait-move":
-			setActionCardView(
-			<Wait
-				playerCurrentMove={
-				quickGame.players.filter((p: IPlayer) => p.current_move)[0]
-				}
-			/>
-			);
+			setActionCardView(<Wait playerCurrentMove={dataPlayerQG} />);
 			break;
 		case "move_to":
 			setActionCardView(
@@ -888,9 +870,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
       listSelectUserPreview={listSelectUserPreview}
       handleClickUserPreview={handleClickUserPreview}
       isChanceGetOrRemoveHouse={isChanceGetOrRemoveHouse}
-      playerCurrentMove={
-        quickGame.players.filter((p: IPlayer) => p.current_move)[0]
-      }
+      playerCurrentMove={dataPlayerQG}
     />
   );
 };
