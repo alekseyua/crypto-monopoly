@@ -4,7 +4,7 @@ import { URL_FEED_QG, URL_QGS } from "../../api/config.js";
 import { StoreonStore } from "storeon";
 import { connectWebSocket, delay, getLocaleStore, getUrlWebsocket, isKeyPresentInHash } from "../../helpers/helper";
 import type { IUserActions, ICard, IDataQG, ISocket, IPlayer, IInfoMassagePopup, IAchivmentPlayer, IListQGs } from './quick-game.d'
-import { SET_MESSAGE, SET_MESSAGE_QUICK_GAME } from "../message/message";
+import { SET_FEED_NEWS_MESSAGE_QG, SET_MESSAGE, SET_MESSAGE_QUICK_GAME } from "../message/message";
 import { GET_USERS } from "../users/users";
 import { NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
 import { get } from "http";
@@ -201,16 +201,16 @@ export const quickGame = (store: StoreonStore) => {
         });
         return;
       }
-      // ===================== achivments player======================
-      if (Object.keys(res).includes('user_data')) {
-        if (Object.keys(res.user_data).includes('player_data')) {
-          if (Object.keys(res.user_data.player_data).includes('achievements')) {
-            dispatch(SET_ACHIVMENT_PLAYER_QG, res.user_data.player_data.achievements)
-          }else {
-            dispatch(RESET_ACHIVMENT_PLAYER_QG)
-          }
-        }
-      }
+      // // ===================== achivments player======================
+      // if (Object.keys(res).includes('user_data')) {
+      //   if (Object.keys(res.user_data).includes('player_data')) {
+      //     if (Object.keys(res.user_data.player_data).includes('achievements')) {
+      //       dispatch(SET_ACHIVMENT_PLAYER_QG, res.user_data.player_data.achievements)
+      //     }else {
+      //       dispatch(RESET_ACHIVMENT_PLAYER_QG)
+      //     }
+      //   }
+      // }
       // =============================================================
       
       // ===================== list games quick ======================
@@ -337,7 +337,7 @@ export const quickGame = (store: StoreonStore) => {
   store.on(SEND_ACTION_CARD_QG, (store: any, payload, { dispatch }) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       const game_id = store.quickGame.id;
-      
+
       return socket.get_games.send(JSON.stringify({
         game_id,
         ...payload
@@ -382,7 +382,8 @@ export const quickGame = (store: StoreonStore) => {
       const game_id = store.quickGame.id;
       socket.get_games?.send(JSON.stringify({
         action: 'get_card_action',
-        game_id
+        game_id,
+        ...payload
       }));
     }
 
@@ -414,19 +415,20 @@ export const quickGame = (store: StoreonStore) => {
     console.log('open ws feed news quick game' , URL)
     const connectFeedWS = () => connectWebSocket(socket.feed = new WebSocket(URL), async (res: any) => {
       console.log('feed news quick game', res);
-      if (res?.message) {
-        dispatch(SET_MESSAGE, {
-          title: `Feed news quick game`,
-          desc: res.message
-        })
+      if (isKeyPresentInHash(res, "send_data")) {
+        if (isKeyPresentInHash(res.send_data, "achievements")) {
+          dispatch(SET_ACHIVMENT_PLAYER_QG, res.send_data.achievements);
+        } else {
+          dispatch(SET_ACHIVMENT_PLAYER_QG, []);
+        }
+        if (isKeyPresentInHash(res.send_data, "messages")) {
+          dispatch(SET_FEED_NEWS_MESSAGE_QG, res.send_data.messages);
+        }else{
+          dispatch(SET_FEED_NEWS_MESSAGE_QG, []);
+        }
+
       }
-      if (res?.error) {
-        dispatch(SET_MESSAGE, {
-          title: 'нужно с бека титульное название ошибки',
-          desc: res.message
-        });
-        return;
-      }
+     
     });
     connectFeedWS()
   } )

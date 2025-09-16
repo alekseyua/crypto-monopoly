@@ -300,16 +300,6 @@ interface IPlayer {
   messages: IMassagesFeed[];
 }
 
-interface IMassagesFeed {
-  id: number;
-  game: number;
-  player: number;
-  player_name: string;
-  message: string;
-  date_create: string;
-  player_color: string;
-}
-
 interface IInfoMassagePopup {
     "show": boolean;
     "message": string;
@@ -338,6 +328,16 @@ interface IAchivmentPlayer {
 type StatusPlayer = 'waiting' | 'move' | 'buy_or_auction' | 'end_move';
 type Players = IPlayer[];
 
+
+interface IMassagesFeed {
+  id: number;
+  game: number;
+  player: number;
+  player_name: string;
+  player_color: string;
+  message: string;
+  date_create: string;
+}
 export type {
     ICard,
     ISocket,

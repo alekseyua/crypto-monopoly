@@ -152,6 +152,10 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
       dispatch(GET_MOVE_QG, params);
 	  const listException = ["end_move", "return_house", "get_house"];
       if (listException.includes(params.action)) return;
+	  if(params.action === 'add_card'){
+		  dispatch(GET_ACTION_CARD_QG, {chance: true});
+		return;
+	  }
       dispatch(GET_ACTION_CARD_QG);
     },
     [dispatch]

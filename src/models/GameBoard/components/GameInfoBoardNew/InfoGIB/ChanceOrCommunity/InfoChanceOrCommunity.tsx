@@ -121,10 +121,14 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
                     p={20}
                     onClick={() => {
                       temporaryDisableBtn(2000, setIsClick);
-                      onMove({
+                      let params: any = {
                         action: a,
                         card_id: cardIdWhereMoveTo,
-                      });
+                      };
+                      if(a === 'add_card'){
+                        params = { card_id: cardIdWhereMoveTo };
+                      }
+                      onMove(params);
                     }}
                   >
                     {getNameBtn(a)}
