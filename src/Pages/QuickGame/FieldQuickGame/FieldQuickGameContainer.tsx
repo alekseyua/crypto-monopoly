@@ -493,7 +493,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 		}
 		// показывает действия при шансе && (player.status !== 'waiting' && player.status !== 'move')
 		if (
-			isMovePlayer &&
+			// isMovePlayer &&
 			(typeCard === "chance" || typeCard === "community") &&
 			isActions
 		) {
@@ -553,6 +553,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 		const actions: ActionTypes = dataActions.actions;
 		console.log("----- список действий ----------");
 		console.log({ ...actions });
+		console.log({cardId});
 		console.log("--------------------------------");
 
 		if (
@@ -788,12 +789,14 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
         <InfoChanceOrCommunity
           onMove={onMove}
           typeCard={card.type_card}
-		  cards={quickGame.cards as ICard[]}
+          cards={quickGame.cards as ICard[]}
           actions={keys}
           key={"InfoChanceOrCommunity"}
           cardIdWhereMoveTo={
             keys.includes("move_to")
               ? actionCardData?.data_actions?.card?.id
+              : keys.includes("add_card") && keys.includes("pay")
+              ? dataAction.cardId
               : idCardForChanceGetOrRemoveHouse
               ? idCardForChanceGetOrRemoveHouse
               : null
