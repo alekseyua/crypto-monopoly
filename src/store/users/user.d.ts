@@ -9,5 +9,12 @@ interface IUser {
   state_registration: number;
   state_registration_text: string;
   username: string;
+  photo: string | null;
+  invited_users: [];
 }
-export { IUser };
+
+interface IUserPayload {
+  email: string;
+  callback?: (any)=>void;
+}
+export { IUser, IUserPayload };

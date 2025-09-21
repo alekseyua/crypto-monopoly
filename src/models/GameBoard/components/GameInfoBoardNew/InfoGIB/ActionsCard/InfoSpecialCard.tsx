@@ -4,7 +4,7 @@ import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHe
 import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
 import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
 import ContainerInfoGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoGIB';
-import { ISpecialCard } from '../../../../../../store/quick-game/quick-game.d';
+import { IChooseDataActions, ISpecialCard } from '../../../../../../store/quick-game/quick-game.d';
 import { Button, Offset } from '../../../../../../shared/UI';
 import Title from '../../../../../../shared/UI/Title/Title';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
@@ -25,7 +25,7 @@ interface IProps {
   setAmountHouses: (amount: number) => void; // Function to set amount of houses
   amountHouses: number; // Current amount of houses
   handleAction: (p: any)=>void;
-	actions: { [key: string]: boolean }
+	actions: IChooseDataActions//{ [key: string]: boolean }
 
 }
 

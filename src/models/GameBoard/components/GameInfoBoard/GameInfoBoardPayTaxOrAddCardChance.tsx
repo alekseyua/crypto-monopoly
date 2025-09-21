@@ -54,8 +54,8 @@ export const GameInfoBoardPayTaxOrAddCardChance: React.FC<IGameInfoBoardPayTaxOr
 					/>
 					<Offset mt={30} />
 					<div className={styles['gib__btns-container--btn-two']}>
-						<Button disabled={isClick && !actions.add_card} onClick={handleGetChance}>Получить карту шанса</Button>
-						<Button disabled={isClick && !actions.pay} onClick={handlePayTax} type='outline'> Оплатить ( {<AutoCounter counter={timeEndMove} callback={()=>{}} />})</Button>
+						<Button disabled={isClick || !actions.add_card} onClick={handleGetChance}>Получить карту шанса</Button>
+						<Button disabled={isClick || !actions.pay} onClick={handlePayTax} type='outline'> Оплатить ( {<AutoCounter counter={timeEndMove} callback={()=>{}} />})</Button>
 					</div>
 				</div>
 				{/* body */}

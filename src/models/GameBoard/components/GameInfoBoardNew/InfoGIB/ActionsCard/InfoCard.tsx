@@ -4,12 +4,12 @@ import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHe
 import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
 import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
 import ContainerInfoGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoGIB';
-import { ICard } from '../../../../../../store/quick-game/quick-game.d';
+import { ICard, IChooseDataActions } from '../../../../../../store/quick-game/quick-game.d';
 import { Button, Offset } from '../../../../../../shared/UI';
 import Title from '../../../../../../shared/UI/Title/Title';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import ContainerOneBtn from '../../ControllerGIB/ContainerOneBtn';
-import { adjustColorBrightness, getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../../../helpers/helper';
+import { getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../../../helpers/helper';
 import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
 import InnerBtnContextSpaceBetween from '../../ControllerGIB/InnerBtnContextSpaceBetween';
 import Text from '../../../../../../shared/UI/Text/Text';
@@ -25,8 +25,7 @@ interface IProps {
   setAmountHouses: (amount: number) => void; // Function to set amount of houses
   amountHouses: number; // Current amount of houses
   handleAction: (p: any)=>void;
-	actions: { [key: string]: boolean }
-
+	actions: IChooseDataActions;
 }
 
 const InfoCard: React.FC<IProps> = ({
@@ -51,11 +50,11 @@ const InfoCard: React.FC<IProps> = ({
           borderColor="#E4E4E4"
           disabled={isClick}
           p={11}
-          onClick={() =>{
+          onClick={() => {
             temporaryDisableBtn(2000, setIsClick);
             handleBack({
               action: "clean_chose_actions",
-            })
+            });
           }}
         >
           <Text fontWeight={300} fontSize={14} center>
@@ -156,17 +155,22 @@ const InfoCard: React.FC<IProps> = ({
             <Button
               type="transparent"
               p={10}
-              disabled={isClick && !(card?.owner?.can_build && actions?.build)} // Assuming this button is disabled
-              onClick={() =>{
+              disabled={isClick || !(card?.owner?.can_build && actions?.build)} // Assuming this button is disabled
+              // disabled={true}
+              onClick={() => {
                 temporaryDisableBtn(2000, setIsClick);
                 handleAction({
                   action: "build",
                   card_id: card?.id,
-                })
+                });
               }}
             >
               <InnerBtnContextSpaceBetween>
-                <Text text={"Купить дом"} />
+                <Text
+                  text={
+                    "Купить дом" 
+                  }
+                />
                 <Text
                   text={card?.card_info?.prices?.house + ""}
                   iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
@@ -252,19 +256,20 @@ const InfoCard: React.FC<IProps> = ({
             <Button
               type="transparent"
               p={10}
-              disabled={ isClick &&
+              disabled={
+                isClick ||
                 !(
                   card.owner.can_build &&
                   actions.build &&
                   card.owner.houses === 4
                 )
               } // Assuming this button is disabled
-              onClick={() =>{
+              onClick={() => {
                 temporaryDisableBtn(2000, setIsClick);
                 handleAction({
                   action: "build",
                   card_id: card.id,
-                })
+                });
               }}
             >
               <InnerBtnContextSpaceBetween>

@@ -1,7 +1,7 @@
 const Offset = ({
     mb,mt,ml,mr
 }: any) => {
-    const styleCostume: any = {}
+    let styleCostume: any = {}
     if(mb){
         styleCostume.marginBottom = mb
     }

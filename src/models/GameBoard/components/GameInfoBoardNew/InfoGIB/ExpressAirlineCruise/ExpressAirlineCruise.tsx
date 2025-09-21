@@ -71,7 +71,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
 				type="fill"
 				p={10}
 				fillColor="#726CED"
-				disabled={isClick && !actions.buy}
+				disabled={isClick || !actions.buy}
 				onClick={handleBuyCard}>
 				Купить за {(card as ISpecialCard)?.card_info?.base_cost}
 				<Icon src={icons.qgCurrencySvgWhite} width="20" height="16" ml={5} />
@@ -79,7 +79,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
 			<Button
 				type="outline"
 				p={10}
-				disabled={isClick && !actions.auction && isActionCard}
+				disabled={isClick || (!actions.auction && isActionCard)}
 				onClick={handleAuction}>
 				Отказ {<AutoCounter counter={timeEndMove} disabled={isActionCard} callback={()=>{}} />}
 			</Button>

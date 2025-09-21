@@ -3,7 +3,7 @@ import styles from './styles/avatar.module.scss';
 import { adjustColorBrightness } from '../../../helpers/helper';
 
 interface IProps {
-  image?: string | undefined;
+  avatar?: string | undefined;
   color: string;
   isGrayBlur?: boolean;
   width?: string | number;
@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const AvatarBlock: React.FC<IProps> = ({
-  image,
+  avatar,
   color,
   isGrayBlur = false,
   width,
@@ -36,7 +36,7 @@ const AvatarBlock: React.FC<IProps> = ({
 
       ></span>
       <img
-        src={image ?? 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png'}
+        src={avatar ?? 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png'}
         alt="avatar"
         className={styles['avatar__container--image']}
         style={{

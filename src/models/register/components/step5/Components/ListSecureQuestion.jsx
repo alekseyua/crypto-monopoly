@@ -2,7 +2,7 @@ import { Button, Input, Offset } from '../../../../../shared/UI';
 import cls from './list-questions.module.css';
 import Line from '../../../../../shared/UI/Line/Line';
 import BlockGrid from '../../../../../shared/UI/Block/BlockGrid';
-import { Cross, crossBlack, IconSuccess, RightArrowIcon } from '../../../../../assets';
+import { Cross, crossBlack, success, RightArrowIcon } from '../../../../../assets';
 import Icon from '../../../../../shared/UI/Icon/Icon';
 
 const ListSecureQuestion = ({ 
@@ -80,7 +80,7 @@ const ListSecureQuestion = ({
                                     }}
                                     onClick={() => handleSaveAnswer(q.id,selectedAnswer)}
                                     textColor='#fff'
-                                        iconRight={<Icon src={IconSuccess} width={30} height={30} />}></Button>
+                                        iconRight={<Icon src={success} width={30} height={30} />}></Button>
                                     </BlockGrid>
                                     </>
                                     }

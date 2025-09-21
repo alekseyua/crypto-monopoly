@@ -40,7 +40,7 @@ import userImg from "./images/user-img.jpeg";
 import GiftIcon from "./icons/gift-icon.svg";
 import Cross from "./icons/cross.svg";
 import crossBlack from "./icons/cross-black.svg";
-import IconSuccess from "./icons/success.svg";
+import success from "./icons/success.svg";
 import notification from "./icons/notification.svg";
 import google from "./icons/google.svg";
 import meta from "./icons/meta.svg";
@@ -76,6 +76,7 @@ import communityOpacity from './icons/community-opacity.svg';
 export const icons = {
   home,
   logo,
+  success,
   actions,
   crossBlack,
   eyeRed,
@@ -119,7 +120,7 @@ avatar,
 // IconBack,
   IconTemp1,
   IconTemp2,
-  IconSuccess,
+  success,
   crossBlack,
   IconConvert,
   IconPhone,

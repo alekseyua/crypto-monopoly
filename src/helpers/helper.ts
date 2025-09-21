@@ -64,8 +64,9 @@ export function getSessionStore(key: string) {
 }
 
 export const initDataParamsPostOrGet = (params: {
-  [key: string]: any
+  [key: string]: any | FormData
 }) => {
+  if(params instanceof FormData) return params;
   let newParams = {};
   const listExcept = [
     "",

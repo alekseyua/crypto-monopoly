@@ -4,7 +4,7 @@ import { StoreonStore } from "storeon";
 import { v4 } from "uuid";
 import { _INIT } from "../auth/auth";
 import { getLocaleStore } from "../../helpers/helper";
-import { SET_DATA_PROFILE } from "../profile/profile";
+import { IUserPayload } from "./user.d";
 
 export const SET_USERS: string = v4();
 export const GET_USERS = 'profile/GET_USERS' as const;
@@ -17,16 +17,15 @@ export const users = (store: StoreonStore) => {
     store.on(SET_USERS, (_, payload) => ({ user: payload }));
     store.on(SET_USERS_NULL, () => ({ user: initUser }));
     
-    store.on(GET_USERS, async (_, payload, { dispatch }) => {
-        const callback: (res: { data: { id: number } }) => void | undefined =
-          payload?.callback;
-        const email: string | undefined = payload?.email ?? getLocaleStore('email');
-        const res = await api.get(API_GET_USER,{email});
-        if(typeof callback === 'function') callback(res as { data: { id: number } });
-        // console.log('GET_USERS status', res?.data);
-        if (res?.status === 200)  {
-            dispatch(SET_USERS, res.data);   
-            // dispatch(SET_DATA_PROFILE, res.data); 
-        }
+    store.on(GET_USERS, async (_, payload: IUserPayload, { dispatch }) => {
+      const callback = payload?.callback;
+      const email: string | undefined =
+        payload?.email ?? getLocaleStore("email");
+      const res = await api.get(API_GET_USER, { email });
+      if (typeof callback === "function")
+        callback(res as { data: { id: number } });
+      if (res?.status === 200) {
+        dispatch(SET_USERS, res.data);
+      }
     });
 }

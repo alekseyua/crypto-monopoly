@@ -11,7 +11,7 @@ const UserPanelLK = ({ handleOpenLKMenu, handleLogout, user, isOpenLKMenu}) => {
     >
       <img
         className={cls['header-menu-lk-btn__avatar']}
-        src={user?.avatar ?? 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png'}
+        src={user.photo ?? 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png'}
         alt='User'
       />
 

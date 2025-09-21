@@ -74,7 +74,7 @@ export const GameInfoBoardBuyOrAuction: React.FC<IGameInfoBoardBuyOrAuctionProps
               onClick={handleBuyCard}
               type="fill"
               fillColor="#726CED"
-              disabled={isClick && !actions?.buy}
+              disabled={isClick || !actions?.buy}
             >
               Купить за {card_cost}
               <Icon
@@ -85,7 +85,7 @@ export const GameInfoBoardBuyOrAuction: React.FC<IGameInfoBoardBuyOrAuctionProps
               />
             </Button>
             <Button
-              disabled={isClick && !actions.auction && isActionCard}
+              disabled={isClick || (!actions.auction && isActionCard)}
               onClick={handleAuction}
               type="outline"
             >

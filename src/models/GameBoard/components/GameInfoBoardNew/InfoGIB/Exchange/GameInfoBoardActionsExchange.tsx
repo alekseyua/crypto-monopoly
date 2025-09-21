@@ -81,12 +81,12 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
 	}, [stateExchange.propertys_from, stateExchange.price_from, cards]);
 
 	useEffect(() => {
-		const total = stateExchange.propertys_to.reduce((acc, cardId) => {
-			const card = cards.find(c => +c.id === +cardId);
-			return card ? acc + +card.cost : acc;
-		}, 0);
-		setTotalTo(stateExchange.price_to + total);
-	}, [stateExchange.propertys_to, cards]);
+    const total = stateExchange.propertys_to.reduce((acc, cardId) => {
+      const card = cards.find((c) => +c.id === +cardId);
+      return card ? acc + +card.cost : acc;
+    }, 0);
+    setTotalTo(stateExchange.price_to + total);
+  }, [stateExchange.propertys_to, cards, stateExchange.price_to]);
 		
 	const handleApplyInput = function (key: 'price_from' | 'price_to' | 'price_from_reset' | 'price_to_reset'){
 		if(key === 'price_from') {
@@ -144,7 +144,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
           fillColor={"#726CED"}
           p={15}
           style={{ borderRadius: 25 }}
-          disabled={!(isClick && (!!totalTo || !!totalFrom))}
+          disabled={!(isClick || (!!totalTo || !!totalFrom))}
 
           onClick={() =>{
             temporaryDisableBtn(2000, setIsClick);

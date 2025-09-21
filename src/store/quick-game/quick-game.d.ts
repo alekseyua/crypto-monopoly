@@ -77,36 +77,23 @@ interface IDataCardPrice {
 
 
 export interface IDataContainer {
-    [key]: {} | number;
-    data_actions: {
-        "info": ICardInfoData,
-        "prices": IDataCardPrice,
-        "features": IDataCardFeatures;
-        "actions": IActionCard;
-        "card_info": ICardInfo;
-        "card_id": number;
-        card: {
-            id: number;
-            name: string
-        };
-        move_end_time_sec: number;
-    };
-    auction_data: IAuctionData;
-    choose_data: {
-        actions: {
-            buy?: boolean;
-            auction?: boolean;
-            sell?: boolean;
-            exchange?: boolean;
-            build?: boolean;
-            pawn?: boolean;
-            redeem?: boolean;
-        };
-        card_id: number;
-        card_info: ICardInfo | ISpecialCard;
-        card_type: string
-    };
+  [key]: {} | number;
+  data_actions: {
+    info: ICardInfoData;
+    prices: IDataCardPrice;
+    features: IDataCardFeatures;
+    actions: IActionCard;
+    card_info: ICardInfo;
     card_id: number;
+    card: {
+      id: number;
+      name: string;
+    };
+    move_end_time_sec: number;
+  };
+  auction_data: IAuctionData;
+  choose_data: IChooseData;
+  card_id: number;
 }
 
 export interface IPlayerAuctionData {
@@ -338,6 +325,24 @@ interface IMassagesFeed {
   message: string;
   date_create: string;
 }
+
+interface IChooseDataActions {
+  auction: boolean;
+  pawn: boolean;
+  sell: boolean;
+  build: boolean;
+  redeem: boolean;
+  exchange: boolean;
+  can_sell_property: boolean;
+}
+
+interface IChooseData {
+  actions: IChooseDataActions;
+  card_id: number;
+  card_type: string;
+  card_info: ICardInfo;
+};
+
 export type {
     ICard,
     ISocket,
@@ -346,6 +351,7 @@ export type {
     IListQGs,
     ownerCard,
     ICardData,
+    IChooseData,
     IActionCard,
     StatusPlayer,
     IUserActions,
@@ -356,5 +362,6 @@ export type {
     IAchivmentPlayer,
     ISpecialCardInfo,
     IInfoMassagePopup,
+    IChooseDataActions,
     IHighestBidderData,
 }

@@ -128,7 +128,7 @@ export const AuctionPlaceBet: React.FC<IProps> = ({
           <Button
             fillColor="#FFE4B5"
             p={10}
-            disabled={isClick && (!currentBet || currentBet < startPrice)}
+            disabled={isClick || (!currentBet || currentBet < startPrice)}
             className={styles["gib__btn-action-place-bet-auction"]}
             onClick={() => {
               temporaryDisableBtn(2000, setIsClick);
@@ -159,7 +159,7 @@ export const AuctionPlaceBet: React.FC<IProps> = ({
           <Button
             fillColor="#FFE4B5"
             p={10}
-            disabled={isClick && (!currentBet || currentBet < startPrice)}
+            disabled={isClick || (!currentBet || currentBet < startPrice)}
             className={styles["gib__btn-action-place-bet-auction"]}
             onClick={() => {
               temporaryDisableBtn(2000, setIsClick);

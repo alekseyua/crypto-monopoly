@@ -39,5 +39,52 @@ interface PaymentError {
   user: boolean;
 }
 
+interface IUpdatePhoneNumber {
+  phone_number: string;
+  callback: (v:any)=>void;
+}
 
-export { IProfile, Payment, PaymentError, PaymentConfirm };
+interface IPayloadUpdatePhotoAvatar {
+  photo: File
+}
+
+type ButtonStatus = "active" | "inactive" | undefined;
+
+// Типы кнопок по типу
+type DashboardButtonType =
+  | "common"
+  | "security"
+  | "chat"
+  | "account"
+  | "balance";
+
+// Тип кнопки
+interface IDashboardButton {
+  name: string;
+  type: DashboardButtonType;
+  status?: ButtonStatus;
+  amount_messages?: number; // только у type === 'chat'
+}
+
+// Главный тип dashboardProfile
+interface IDashboardProfile {
+  name: string;
+  button: DashboardButton[];
+}
+
+interface IFilterItem {
+  title: string;
+  status: boolean;
+}
+
+export {
+  IProfile,
+  Payment,
+  PaymentError,
+  PaymentConfirm,
+  IDashboardButton,
+  IDashboardProfile,
+  IUpdatePhoneNumber,
+  IPayloadUpdatePhotoAvatar,
+  IFilterItem,
+};

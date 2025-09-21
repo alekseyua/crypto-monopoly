@@ -57,7 +57,7 @@ export const GameInfoBoardPayOrAddChance: React.FC<IGameInfoBoardBuyOrAuctionPro
 					/>
 					<div className={styles['gib__btns-container']}>
 						<Button
-							disabled={isClick && !actions.pay}
+							disabled={isClick || !actions.pay}
 							onClick={() => {
 								temporaryDisableBtn(2000, setIsClick);
 								handleCard && handleCard({
@@ -67,8 +67,9 @@ export const GameInfoBoardPayOrAddChance: React.FC<IGameInfoBoardBuyOrAuctionPro
 							})}}>Купить за {card_cost}
 							<Icon className={styles['gib__currency']} src={currency2White} /></Button>
 						<Button
-							disabled={isClick && !actions.add_chance}
-							onClick={handleGetChance} type='outline'>Отказ {<AutoCounter counter={timeEndMove} callback={handleGetChance} />
+							disabled={isClick || !actions.add_chance}
+							// onClick={handleGetChance} 
+							type='outline'>Отказ {<AutoCounter counter={timeEndMove} callback={()=>{}} />
 							}</Button>
 					</div>
 				</div>

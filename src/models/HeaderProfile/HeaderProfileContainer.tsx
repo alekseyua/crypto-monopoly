@@ -2,7 +2,7 @@ import { useStoreon } from 'storeon/react'
 import withRouter from '../../HOC/withRouter'
 import React, { useEffect } from 'react';
 import HeaderProfile from './HeaderProfile';
-import { GET_DASHBOARD_PROFILE, SWITCH_DASHBOARD_PROFILE } from '../../store/profile/profile';
+import { SWITCH_DASHBOARD_PROFILE } from '../../store/profile/profile';
 
 interface IProps {
     navigate: (path: string | number) => void;
@@ -12,9 +12,9 @@ interface IProps {
 const HeaderProfileContainer: React.FC<IProps> = ({ navigate, hash }) => {
     const { dashboardProfile, user, dispatch } = useStoreon('dashboardProfile', 'user');
 
-    useEffect(() => {
-        dispatch(GET_DASHBOARD_PROFILE)
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(GET_DASHBOARD_PROFILE)
+    // }, [dispatch])
 
     const handleNavigateTo = (type: string | number) => {
       if (typeof type === "number") return navigate(type);

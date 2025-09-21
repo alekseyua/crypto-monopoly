@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import ActionsCard from './ActionsCard'
 import InfoCard from './InfoCard'
-import { ICard, ISpecialCard } from '../../../../../../store/quick-game/quick-game.d'
+import { ICard, IChooseDataActions, ISpecialCard } from '../../../../../../store/quick-game/quick-game.d'
 import InfoSpecialCard from './InfoSpecialCard';
 
 type AnyCard = ICard | ISpecialCard;
 
 interface IProps {
     card: AnyCard;
-	actions: { [key: string]: boolean }
+	actions: IChooseDataActions//{ [key: string]: boolean }
     handleBack: (p:any) => void; // Assuming this is needed for navigation
     timeEndMove: number; // Optional, assuming it might be used in the future
     handleAction: (params: any) => void; // Function to handle actions like sell

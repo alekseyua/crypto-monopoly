@@ -1,7 +1,7 @@
 import { IconConvert, IconGoogleAuth, IconPhone } from '../../assets';
 import { Button, Label, Offset } from '../../shared/UI';
 import Icon from '../../shared/UI/Icon/Icon';
-import cls from './styles/securety-account.module.css';
+import cls from './styles/security-account.module.css';
 
 
 const FormSecuretyAccaunt = () => {

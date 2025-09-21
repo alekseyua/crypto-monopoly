@@ -81,10 +81,15 @@ export const Input = forwardRef<HTMLInputElement, IInput>(function Input(
      }
    }
 
+   
    setInputValue(value);
    props.onValueChange?.(value);
    props.onChange?.(e); // 👈 важно
- };
+  };
+  
+  useEffect(() => {
+   !!errorText && handleErrorInput(errorText);
+  }, [errorText]);
 
   return (
     <div className={wrapClassName || styles.inputCont}>

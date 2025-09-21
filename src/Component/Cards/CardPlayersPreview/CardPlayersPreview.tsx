@@ -128,6 +128,7 @@ const CardPlayersPreview:React.FC<IPropsCardPlayersPreview> = ({
 
         <AvatarBlock
           color={color}
+          avatar={avatar}
           isGrayBlur={isGrayBlur}
           width={65}
           height={65}

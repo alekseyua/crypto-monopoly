@@ -16,6 +16,7 @@ import { GameInfoBoardBuyOrAuction } from "../../../models/GameBoard/components/
 import { useNavigate } from "react-router-dom";
 import {
   ICard,
+  IChooseDataActions,
   IDataContainer,
   IDataQG,
   IInfoMassagePopup,
@@ -150,13 +151,13 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
   const onMove = useCallback(
     (params: any) => {
       dispatch(GET_MOVE_QG, params);
-	  const listException = ["end_move", "return_house", "get_house"];
-      if (listException.includes(params.action)) return;
-	  if(params.action === 'add_card'){
-		  dispatch(GET_ACTION_CARD_QG, {chance: true});
-		return;
-	  }
-      dispatch(GET_ACTION_CARD_QG);
+      //   const listException = ["end_move", "return_house", "get_house"];
+      //   if (listException.includes(params.action)) return;
+      if (params.action === "add_card") {
+        dispatch(GET_ACTION_CARD_QG, { chance: true });
+      } else if (params.action === "move_to") {
+        dispatch(GET_ACTION_CARD_QG);
+      }
     },
     [dispatch]
   );
@@ -714,20 +715,20 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 			break;
 		case "info_board_actions":
 			setActionCardView(
-				<ActionsCardContainerStackScreen
-				card={
-					quickGame.cards.filter(
-					(c: ICard | ISpecialCard) =>
-						c.id === actionCardData.choose_data.card_id
-					)[0]
-				}
-				timeEndMove={dataPlayerQG.move_end_time_sec}
-				handleBack={handleCard}
-				actions={actionCardData?.choose_data?.actions}
-				handleAction={handleCardOnFieldAction}
-				showInfoCard={"action-card"}
-				/>
-			);
+        <ActionsCardContainerStackScreen
+          card={
+            quickGame.cards.filter(
+              (c: ICard | ISpecialCard) =>
+                c.id === actionCardData.choose_data.card_id
+            )[0]
+          }
+          timeEndMove={dataPlayerQG.move_end_time_sec}
+          handleBack={handleCard}
+          actions={actionCardData?.choose_data?.actions as IChooseDataActions}
+          handleAction={handleCardOnFieldAction}
+          showInfoCard={"action-card"}
+        />
+      );
 			break;
 		case "info_board_actions_special_card":
 			setActionCardView(
@@ -740,7 +741,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
           }
           timeEndMove={dataPlayerQG.move_end_time_sec}
           handleBack={handleCard}
-          actions={actionCardData?.choose_data?.actions}
+          actions={actionCardData?.choose_data?.actions as IChooseDataActions}
           handleAction={handleCardOnFieldAction}
           showInfoCard={"action-special-card"}
         />

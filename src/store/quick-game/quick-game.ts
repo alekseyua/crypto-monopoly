@@ -3,7 +3,7 @@ import { _INIT } from "../auth/auth"
 import { URL_FEED_QG, URL_QGS } from "../../api/config.js";
 import { StoreonStore } from "storeon";
 import { connectWebSocket, delay, getLocaleStore, getUrlWebsocket, isKeyPresentInHash } from "../../helpers/helper";
-import type { IUserActions, ICard, IDataQG, ISocket, IPlayer, IInfoMassagePopup, IAchivmentPlayer, IListQGs } from './quick-game.d'
+import type { IUserActions, ICard, IDataQG, ISocket, IPlayer, IInfoMassagePopup, IAchivmentPlayer, IListQGs, IChooseData } from './quick-game.d'
 import { SET_FEED_NEWS_MESSAGE_QG, SET_MESSAGE, SET_MESSAGE_QUICK_GAME } from "../message/message";
 import { GET_USERS } from "../users/users";
 import { NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
@@ -242,7 +242,7 @@ export const quickGame = (store: StoreonStore) => {
           dispatch(SET_INFO_MESSAGE_POPUP, currentPlayer[0].popup_data);
         }
         // =========================================================
-        let choose_data = undefined;
+        let choose_data: IChooseData | undefined = undefined;
         if (isKeyPresentInHash(currentPlayer[0]?.choose_data, 'actions')) {
           choose_data = {
             actions: currentPlayer[0]?.choose_data?.actions,
