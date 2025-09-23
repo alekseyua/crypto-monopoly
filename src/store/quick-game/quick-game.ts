@@ -21,7 +21,7 @@ export const SET_QG = v4();
 export const RESET_QG = v4();
 export const UPDATE_LIST_QG = v4();
 export const GET_MOVE_QG = v4();
-export const GET_ACTION_CARD_QG = v4();
+export const GET_CARD_ACTION_QG = v4();
 export const SET_SHOW_QG = v4();
 export const NULL_SHOW_QG = v4();
 export const DISCONNECT_LIST_QG = v4();
@@ -337,7 +337,6 @@ export const quickGame = (store: StoreonStore) => {
   store.on(SEND_ACTION_CARD_QG, (store: any, payload, { dispatch }) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       const game_id = store.quickGame.id;
-
       return socket.get_games.send(JSON.stringify({
         game_id,
         ...payload
@@ -360,24 +359,24 @@ export const quickGame = (store: StoreonStore) => {
   });
 
   store.on(GET_MOVE_QG, (store: any, payload) => {
-    if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
-      const game_id = store.quickGame.id;
-      socket.get_games?.send(JSON.stringify({
-        game_id,
-        ...payload
-      }));
-    } else {
-      console.warn('WebSocket is not open, cannot get move data');
-    }
+    // if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
+    //   const game_id = store.quickGame.id;
+    //   socket.get_games?.send(JSON.stringify({
+    //     game_id,
+    //     ...payload
+    //   }));
+    // } else {
+    //   console.warn('WebSocket is not open, cannot get move data');
+    // }
   });
   store.on(GET_ACTION_FROM_CARD, (store: any, payload) => {
-    if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
-      const game_id = store.quickGame.id;
-      socket.get_games?.send(JSON.stringify({ ...payload, game_id }));
-    }
+    // if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
+    //   const game_id = store.quickGame.id;
+    //   socket.get_games?.send(JSON.stringify({ ...payload, game_id }));
+    // }
   });
 
-  store.on(GET_ACTION_CARD_QG, (store: any, payload) => {
+  store.on(GET_CARD_ACTION_QG, (store: any, payload) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       const game_id = store.quickGame.id;
       socket.get_games?.send(JSON.stringify({

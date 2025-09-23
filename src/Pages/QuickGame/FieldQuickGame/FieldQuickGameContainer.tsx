@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import {
   SEND_ACTION_CARD_QG,
   DISCONNECT_LIST_QG,
-  GET_ACTION_CARD_QG,
+  GET_CARD_ACTION_QG,
   GET_LIST_QG,
   GET_MOVE_QG,
   MOVE_TO,
@@ -150,14 +150,15 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 
   const onMove = useCallback(
     (params: any) => {
-      dispatch(GET_MOVE_QG, params);
+      dispatch(SEND_ACTION_CARD_QG, params);
       //   const listException = ["end_move", "return_house", "get_house"];
       //   if (listException.includes(params.action)) return;
       if (params.action === "add_card") {
-        dispatch(GET_ACTION_CARD_QG, { chance: true });
-      } else if (params.action === "move_to") {
-        dispatch(GET_ACTION_CARD_QG);
-      }
+       return dispatch(GET_CARD_ACTION_QG, { chance: true });
+      } 
+	  //else if (params.action === "move_to") {
+        dispatch(GET_CARD_ACTION_QG);
+      //}
     },
     [dispatch]
   );
@@ -171,10 +172,11 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 
   const handleMoveTo = (params: any): void => {
     dispatch(MOVE_TO, params);
-    dispatch(GET_ACTION_CARD_QG);
-  };
+    dispatch(GET_CARD_ACTION_QG);
+};
 
-  const handleCardOnField = (card_id: number): void => {
+const handleCardOnField = (card_id: number): void => {
+	  // Сделать возможность получения окна с действия по клику карты(продать,купить , обмен и т.д.)
     const listCard = quickGame.cards;
     if (isChangeCard) {
       // если обмен то добовляем или удаляем карту со списка
@@ -218,13 +220,8 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
     } else if(isChanceGetOrRemoveHouse){
 		setIdCardForChanceGetOrRemoveHouse(card_id);
 	}else{
-      // Сделать возможность получения окна с действия по клику карты(продать,купить , обмен и т.д.)
       // только если у игрока current_move = True
-      dataPlayerQG?.current_move &&
-        dispatch(GET_ACTION_FROM_CARD, {
-          card_id,
-          action: "get_card_action",
-        });
+      dataPlayerQG?.current_move && dispatch(GET_CARD_ACTION_QG, {card_id});
       setUserIdForExchange(
         listCard.filter((c: ICard | ISpecialCard) => c.id === card_id)[0]?.owner
           ?.player?.id || null
@@ -257,10 +254,9 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
   };
 
   const handleCardOnFieldAction = async (params: any): Promise<void> => {
+	console.log(params)
     if (params.action === "exchange") {
-      console.log({ ...params });
       if (params?.idOwnerCard && dataPlayerQG.id === params?.idOwnerCard) {
-        //
         setStateExchange((state) => ({
           ...state,
           propertys_to: [...state.propertys_to, params.card_id + ""],
@@ -292,7 +288,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
       );
       return;
     }
-    dispatch(GET_ACTION_FROM_CARD, params);
+    dispatch(SEND_ACTION_CARD_QG, params);
   };
 
   // ------------------------------ list preview users

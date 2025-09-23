@@ -35,14 +35,7 @@ export const GameInfoBoardPayOrAddChance: React.FC<IGameInfoBoardBuyOrAuctionPro
 }: IGameInfoBoardBuyOrAuctionProps) => {
 	const [amountHouses, setAmountHouses] = React.useState<number>(1);
 	const [ isClick, setIsClick ] = React.useState<boolean>(false);
-	const handleGetChance = function () {
-		temporaryDisableBtn(2000, setIsClick);
-		handleCard && handleCard({
-			action: 'get_card_action',
-			game_id,
-			card_id,
-		})
-	}
+	
 	return (
 		<div className={styles['gib__container']}>
 
