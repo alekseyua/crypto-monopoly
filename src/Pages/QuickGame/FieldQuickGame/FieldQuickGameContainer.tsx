@@ -6,9 +6,7 @@ import {
   DISCONNECT_LIST_QG,
   GET_CARD_ACTION_QG,
   GET_LIST_QG,
-  GET_MOVE_QG,
   MOVE_TO,
-  GET_ACTION_FROM_CARD,
 } from "../../../store/quick-game/quick-game";
 import { GameInfoBoard } from "../../../models/GameBoard/components/GameInfoBoard/GameInfoBoard";
 import { MoveBoardQG } from "../../../models/GameBoard/components/GameInfoBoard/MoveBoardQuickGame";
@@ -151,13 +149,15 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
   const onMove = useCallback(
     (params: any) => {
       dispatch(SEND_ACTION_CARD_QG, params);
-      //   const listException = ["end_move", "return_house", "get_house"];
-      //   if (listException.includes(params.action)) return;
+	const listException = ["end_move", 
+		// "return_house", "get_house"
+	];
+	if (listException.includes(params.action)) return;
       if (params.action === "add_card") {
-       return dispatch(GET_CARD_ACTION_QG, { chance: true });
-      } 
-	  //else if (params.action === "move_to") {
-        dispatch(GET_CARD_ACTION_QG);
+        return dispatch(GET_CARD_ACTION_QG, { chance: true });
+      }
+      //else if (params.action === "end_move") {
+      dispatch(GET_CARD_ACTION_QG);
       //}
     },
     [dispatch]

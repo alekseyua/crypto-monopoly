@@ -20,7 +20,6 @@ export const RET_LIST_QG = v4();
 export const SET_QG = v4();
 export const RESET_QG = v4();
 export const UPDATE_LIST_QG = v4();
-export const GET_MOVE_QG = v4();
 export const GET_CARD_ACTION_QG = v4();
 export const SET_SHOW_QG = v4();
 export const NULL_SHOW_QG = v4();
@@ -34,7 +33,6 @@ export const SET_DATA_ACTION_CARD = v4();
 export const GET_STATUS_QG = v4();
 export const SEND_ACTION_CARD_QG = v4();
 export const MOVE_TO = v4();
-export const GET_ACTION_FROM_CARD = v4();
 export const RESET_EXCHANGE_DATA = v4();
 export const SET_EXCHANGE_DATA = v4();
 export const GET_RATE_LIST_PLAYERS = v4();
@@ -358,24 +356,6 @@ export const quickGame = (store: StoreonStore) => {
     return dispatch(GET_LIST_QG, { action: 'get_games' });
   });
 
-  store.on(GET_MOVE_QG, (store: any, payload) => {
-    // if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
-    //   const game_id = store.quickGame.id;
-    //   socket.get_games?.send(JSON.stringify({
-    //     game_id,
-    //     ...payload
-    //   }));
-    // } else {
-    //   console.warn('WebSocket is not open, cannot get move data');
-    // }
-  });
-  store.on(GET_ACTION_FROM_CARD, (store: any, payload) => {
-    // if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
-    //   const game_id = store.quickGame.id;
-    //   socket.get_games?.send(JSON.stringify({ ...payload, game_id }));
-    // }
-  });
-
   store.on(GET_CARD_ACTION_QG, (store: any, payload) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       const game_id = store.quickGame.id;
@@ -387,7 +367,6 @@ export const quickGame = (store: StoreonStore) => {
     }
 
   });
-
   
   store.on(_INIT, () => ({ exchangeData: {} }))
   store.on(SET_EXCHANGE_DATA, (store, payload, { dispatch }) => ({ exchangeData: payload }))
@@ -405,7 +384,7 @@ export const quickGame = (store: StoreonStore) => {
     }
     
   })
-    // fedds news quick game
+    // feds news quick game
   store.on(OPEN_WS_FEED_NEWS_QG, (state: any, payload, { dispatch }) => {
     const URL = getUrlWebsocket(URL_FEED_QG, payload);
     if (socket.feed && socket.feed?.readyState === WebSocket.OPEN) {
