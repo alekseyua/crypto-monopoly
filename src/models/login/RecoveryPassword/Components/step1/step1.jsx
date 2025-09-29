@@ -28,6 +28,8 @@ export const Step1 = ({
 				<Button
 					onClick={() => handleNextStep()}
 					type='filled'
+					p={24}
+
                     fillColor='#726CED'
                     textColor='#fff'
 					disabled={!(recoveryData.email.includes('@') && recoveryData.email.includes('.') && recoveryData.email.length !== 0)}>

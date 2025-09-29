@@ -22,6 +22,7 @@ const FormOwnData: React.FC<FormOwnDataProps> = ({
   handleChangeAvatar,
   handleAddPhoneOwnInfo,
 }) => {
+  console.log({ infoUser });
   return (
     <div className={cls.containerOwnCard}>
       {infoUser && Object.keys(infoUser).length ? (
@@ -96,11 +97,16 @@ const FormOwnData: React.FC<FormOwnDataProps> = ({
             )}
           </div>
 
-          {/* <div className={cls.infoHowJoinService}>
-            {infoUser.amount_day && (
-              <span dangerouslySetInnerHTML={{ __html: infoUser.amount_day }} />
-            )}
-          </div> */}
+          <div className={cls.infoHowJoinService}>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html:
+                    "Вы с нами уже " +
+                    (infoUser.days_in_sevice + 1) +
+                    " дня (регистрация " + new Date(infoUser.date_join).toLocaleDateString('ru') + ")"  ,
+                }}
+              />
+          </div>
         </>
       ) : (
         <>Loading ...</>

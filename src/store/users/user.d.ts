@@ -11,6 +11,8 @@ interface IUser {
   username: string;
   photo: string | null;
   invited_users: [];
+  days_in_sevice: number;
+  date_join: string;
 }
 
 interface IUserPayload {
