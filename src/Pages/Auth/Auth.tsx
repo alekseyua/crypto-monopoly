@@ -11,7 +11,7 @@ import { authImg } from '../../assets';
 				<div className={cls.authContent}>
 					<div className={cls.authInfo}>
 						<p className={cls.authInfotext}>
-							Выигрывайте по-крупному и наслаждайтесь щедрыми призамивместе с
+							Выигрывайте по-крупному и наслаждайтесь щедрыми призами вместе с
 							<b> Land Of Monopoly</b> на всех популярных платформах.
 						</p>
 						<img src={authImg} alt='Devices'  />
