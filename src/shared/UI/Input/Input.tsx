@@ -1,6 +1,5 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 import styles from "./input.module.scss";
-import { useStoreon } from "storeon/react";
 
 interface IInput
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
@@ -17,6 +16,7 @@ interface IInput
   wrapClassName?: string;
   leftText?: string;
   isSpanWidth?: boolean;
+  error?: string;
 }
 
 export const Input = forwardRef<HTMLInputElement, IInput>(function Input(
@@ -37,6 +37,7 @@ export const Input = forwardRef<HTMLInputElement, IInput>(function Input(
     className,
     iconRight,
     value,
+    error,
     ...props
   },
   ref
@@ -94,15 +95,22 @@ export const Input = forwardRef<HTMLInputElement, IInput>(function Input(
   return (
     <div className={wrapClassName || styles.inputCont}>
       {label && (
-        <label htmlFor={id} className={errorText ? styles.error : ""}>
+        <label
+          htmlFor={id}
+          className={errorText || !!error?.length ? styles.error : ""}
+        >
           {label}
         </label>
       )}
-      <div className={styles.inputWrap} style={styleWrap}>
+      <div className={`${errorText || !!error?.length ? styles.error : ""} ${styles.inputWrap}`} style={styleWrap}>
         {iconLeft}
         {leftText}
         <input
-          className={`${errorText ? styles.error : ""} ${className || ""}`}
+            // ${errorText || !!error?.length ? styles.error : ""} 
+          className={`
+          ${
+            className || ""
+          }`}
           ref={ref}
           type={type}
           id={id}

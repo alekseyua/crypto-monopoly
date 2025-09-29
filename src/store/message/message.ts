@@ -2,11 +2,11 @@ import { StoreonStore } from "storeon";
 import { v4 } from "uuid";
 import { IMassagesFeed } from "../quick-game/quick-game.d";
 
-export const SET_MESSAGE = v4();
+export const SET_MESSAGE = 'message/set_new message' as const;
 export const SET_MESSAGE_QUICK_GAME = v4();
 export const SET_FEED_NEWS_MESSAGE_QG = v4();
 
-interface IMessage {
+export interface IMessage {
     title: string;
     desc: string;
 }
@@ -21,9 +21,9 @@ export const message = (store: StoreonStore) => {
     const initMessages:IMessage[] = [];
 
     store.on('@init', () => ({messages: initMessages}));
-    store.on(SET_MESSAGE, (state: any, message: {title: string, desc: string}) => ({
-        // messages: message
-        messages: [message,...state.messages]
+    store.on(SET_MESSAGE, (state: any, payload: IMessage[]) => ({
+      // messages: message
+      messages: [...payload, ...state.messages],
     }));
     
     const initMessagesQG:IMessageQG[] = [];

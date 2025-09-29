@@ -17,7 +17,7 @@ export const Register = ({
 	handleSetRegData,
 	handleRegistration,
 	handlerRedirectAuth,
-	handleGetDublicateCode,
+	handleGetDuplicateCode,
 }) => {
 	const { regStep,  } = useStoreon('regStep')
 
@@ -26,7 +26,7 @@ export const Register = ({
 			case 1:
 				return <Step1 handleSetRegData={handleSetRegData} handleNextStep={handleNextStep} />;
 			case 2:
-				return <Step2 handleSetRegData={handleSetRegData} handlePrevStep={handlePrevStep} handleNextStep={handleNextStep} handleGetDublicateCode={handleGetDublicateCode }/>;
+				return <Step2 handleSetRegData={handleSetRegData} handlePrevStep={handlePrevStep} handleNextStep={handleNextStep} handleGetDuplicateCode={handleGetDuplicateCode }/>;
 				case 3:
 					return <Step4 handleSetRegData={handleSetRegData} handleNextStep={handleNextStep} />;
 					case 4:
@@ -35,7 +35,7 @@ export const Register = ({
 				return <Step5 handleSetRegData={handleSetRegData} handleRegistration={handleRegistration} handleNextStep={handleNextStep} />;			
 			default : return <></>
 		}
-	}, [regStep, handleGetDublicateCode, handleNextStep, handlePrevStep,handleRegistration,handleSetRegData]);
+	}, [regStep, handleGetDuplicateCode, handleNextStep, handlePrevStep,handleRegistration,handleSetRegData]);
 
 	return (
 		<div className={cls.registerCont}>

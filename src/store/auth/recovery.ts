@@ -3,7 +3,7 @@ import api from "../../api/api";
 import { _INIT } from "./auth";
 import { v4 } from "uuid";
 import { setErrorTimming } from "../helperStore/helperStore";
-import { API_CHANGE_CURRENT_PASSWORD, API_CHECK_CODE, API_DUBLICATE_CODE, API_RESEND_CODE } from "../../api/config";
+import { API_CHANGE_CURRENT_PASSWORD, API_CHECK_CODE, API_DUPLICATE_CODE, API_RESEND_CODE } from "../../api/config";
 import { delay, removeLocaleStore } from "../../helpers/helper";
 
 export const INC_RECOVERY_STEP = v4();
@@ -106,7 +106,7 @@ export const recovery = (store: StoreonStore) => {
                 const email = payload?.email;
                 let params: {} = {};
                 if(email) params = {...params, email};
-                const res = await api.post(API_DUBLICATE_CODE, {...recoveryData, ...params});
+                const res = await api.post(API_DUPLICATE_CODE, {...recoveryData, ...params});
                 if (res?.status === 400) {
                     setErrorTimming(
                         SET_ERROR_RECOVERY,

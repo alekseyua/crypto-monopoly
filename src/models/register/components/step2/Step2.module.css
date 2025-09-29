@@ -34,3 +34,6 @@
 	color: #726CED;
 
 }
+.error{
+	color: var(--color-error);
+}

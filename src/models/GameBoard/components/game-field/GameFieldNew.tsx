@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import { CSSProperties, useEffect } from 'react';
 import classNames from 'classnames';
-import { IPlayer } from '../../../../store/quick-game/quick-game.d';
+import { IPlayer, ownerCard } from '../../../../store/quick-game/quick-game.d';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';
 import React from 'react';
 
@@ -23,16 +23,17 @@ interface IGameFieldNew {
 	players?: IPlayer[];
 	playerCurrentMove: IPlayer;
 	cardCost: string;
-	owner: any//ownerCard | {};
+	owner: ownerCard;
 	id: number;
 	isGrayBlur: boolean;
 	activeCardForSelect: boolean;
 	handleCard: (id: number) => void;
-
+	isPawn?: boolean;
 }
 
 export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 	id,
+	isPawn,
 	direction,
 	cardCost,
 	className,
@@ -44,7 +45,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 	onField = false,
 	name = 'name',
 	players,
-	owner = {},
+	owner,
 	isGrayBlur = false,
 	handleCard,
 	playerCurrentMove,
@@ -80,6 +81,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 				[styles['card-field__container--' + direction]]: direction,
 				[styles[`${className}`]]: className,
 				[styles[type]]: type,
+				[styles['card-field__is-pawn']]: owner?.is_pawn
 				// chance | city | community | cruise | express | airline
 			})}
 			style={{

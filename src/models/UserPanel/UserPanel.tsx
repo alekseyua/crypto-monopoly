@@ -1,10 +1,10 @@
 import { Label } from '../../shared/UI';
 import styles from './styles/user-panel.module.scss';
-import UserPanelMainModeNotification from '../../Component/UserPanelNotification/UserPanelMainModeNotification';
 import UserPanelMainModeLK from '../../Component/UserPanelLK/UserPanelMainModeLK';
 import Icon from '../../shared/UI/Icon/Icon';
 import { DropdownArrow, icons } from '../../assets';
 import { IUser } from '../../store/users/user.d';
+import UserPanelMainModeNotification from '../../Component/UserPanelNotification/UserPanelMainModeNotification';
 
 interface IProps {
   userInfo: any

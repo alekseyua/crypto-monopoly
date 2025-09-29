@@ -185,18 +185,18 @@ export const quickGame = (store: StoreonStore) => {
       }
       if (res?.message === "No game with this id") {
         dispatch(RESET_QG)
-        dispatch(SET_MESSAGE, {
+        dispatch(SET_MESSAGE, [{
           title: 'нужно с бека титульное название ошибки',
           desc: res.message
-        });
+        }]);
         socket.get_games?.close();
         return payload.redirectTo(NAV_QG_SELECT_PAGE)
       }
       if (res?.error) {
-        dispatch(SET_MESSAGE, {
+        dispatch(SET_MESSAGE, [{
           title: 'нужно с бека титульное название ошибки',
           desc: res.message
-        });
+        }]);
         return;
       }
       // // ===================== achivments player======================

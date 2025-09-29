@@ -21,14 +21,14 @@ const NotificationCard = ({ notice, handleActionNotification = () => { } }) => {
                     <h3 className={cls.notificationTitle}>{notice.text.title}</h3>
                     <p className={cls.notificationDesc}>{notice.text.description}</p>
                     <div className={cls.notificationControllerContainer}>
-                        <Button
+                        {/* <Button
                             className={cls.notificationButton}
                             variant='gradient'
                             gradientColors={notice.color}
                             onClick={() => handleActionNotification(notice.redirectTo, notice.id)}
                         >
                             Показать
-                        </Button>
+                        </Button> */}
                         <Button
                             className={cls.notificationButton}
                             style={{ '--fill-color': '#fff' }}

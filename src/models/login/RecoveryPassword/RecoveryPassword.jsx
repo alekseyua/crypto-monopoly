@@ -11,7 +11,7 @@ const RecoveryPassword = ({
   handleSetRecData,
   handleShowPassword,
   showPasswordConfirm,
-  handleGetDublicateCode,
+  handleGetDuplicateCode,
   handleShowPasswordConfirm,
 }) => {
   const changeSteps = useCallback(() => {
@@ -23,7 +23,7 @@ const RecoveryPassword = ({
           handleNextStep={handleNextStep} 
           handlePrevStep={handlePrevStep} 
           handleSetRegData={handleSetRecData} 
-          handleGetDublicateCode={handleGetDublicateCode}
+          handleGetDuplicateCode={handleGetDuplicateCode}
           />;
       case 3:
         return <Step3 
@@ -36,7 +36,7 @@ const RecoveryPassword = ({
         />;
         default: return <></>
     }
-  }, [handleGetDublicateCode, recoveryStep, showPassword, showPasswordConfirm, handleNextStep, handlePrevStep, handleSetRecData, handleShowPassword,handleShowPasswordConfirm]);
+  }, [handleGetDuplicateCode, recoveryStep, showPassword, showPasswordConfirm, handleNextStep, handlePrevStep, handleSetRecData, handleShowPassword,handleShowPasswordConfirm]);
 
   return <div>
     {changeSteps()}

@@ -6,7 +6,7 @@ export const Step2 = ({
 	handleNextStep,
 	handlePrevStep,
 	handleSetRegData,
-	handleGetDublicateCode
+	handleGetDuplicateCode
 }) => {
 	const { recoveryStep, recoveryData, errorRecovery } = useStoreon('recoveryStep', 'recoveryData', 'errorRecovery')
 
@@ -26,7 +26,7 @@ export const Step2 = ({
 					onChange={(e) => handleSetRegData({ code: e.target.value })}
 					label={errorRecovery ? errorRecovery : `Код для проверки отправлен на указанный почтовый ящик  (${recoveryData.email.slice(0, 4)}***${recoveryData.email.slice(-6, recoveryData.email.length)})`}
 					id={'mail'}
-					iconRight={<div className={cls.dublicateCode} onClick={handleGetDublicateCode}>Дублировать код</div>}
+					iconRight={<div className={cls.dublicateCode} onClick={handleGetDuplicateCode}>Дублировать код</div>}
 
 				/>
 				<div className={cls.btns}>

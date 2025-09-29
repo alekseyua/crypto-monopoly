@@ -30,8 +30,10 @@ export const referal = (store: StoreonStore) => {
               dispatch(SET_REF_LINK,refLink);
               try {
                 await navigator.clipboard.writeText(refLink);
-                dispatch(SET_MESSAGE, [
-                  "Ссылка скопирована в буфер обмена! ",
+                dispatch(SET_MESSAGE, [{
+                  title: 'ССылка',
+                  desc: "Ссылка скопирована в буфер обмена! "
+                },
                   refLink,
                 ]);
               } catch (error: any) {

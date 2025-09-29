@@ -36,7 +36,7 @@ const RegitUserContainer: React.FC<IProps> = ({ navigate }) => {
 		}
 	}, [dispatch])
 
-	const handleGetDublicateCode =() => {
+	const handleGetDuplicateCode =() => {
 		dispatch(GET_DUBLICATE_CODE_REG)
 	}
 
@@ -49,7 +49,7 @@ const RegitUserContainer: React.FC<IProps> = ({ navigate }) => {
 			handleSetRegData={handleSetRegData}
 			handleRegistration={handleRegistration}
 			handlerRedirectAuth={handlerRedirectAuth}
-			handleGetDublicateCode={handleGetDublicateCode}
+			handleGetDuplicateCode={handleGetDuplicateCode}
 		/>
 	);
 };

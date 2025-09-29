@@ -42,7 +42,10 @@
 	position: relative;
 	display: flex;
 }
-
+.error.inputWrap {
+	border: 1px solid var(--color-error);
+	border-radius: 10px;
+}
 input:focus {
 	outline-color: #726ced;
 }
@@ -51,5 +54,4 @@ input.error:focus {
 }
 
 input.error {
-	border: 1px solid var(--color-error);
 }

@@ -33,7 +33,7 @@ const RecoveryPasswordContainer = () => {
     }
   },[dispatch])
   
-  const handleGetDublicateCode =() => {
+  const handleGetDuplicateCode =() => {
     dispatch(GET_DUBLICATE_CODE_RECOVERY)
   }
 
@@ -47,7 +47,7 @@ const RecoveryPasswordContainer = () => {
       handleSetRecData={handleSetRecData}
       handleShowPassword={handleShowPassword}
       showPasswordConfirm={showPasswordConfirm}
-      handleGetDublicateCode={handleGetDublicateCode}
+      handleGetDuplicateCode={handleGetDuplicateCode}
       handleShowPasswordConfirm={handleShowPasswordConfirm}
     />
   );

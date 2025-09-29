@@ -121,7 +121,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
             }
             headerBgc={card.bgc_header}
             name={card.name}
-            owner={card?.owner}
+            owner={card.owner}
             onField={
               !!card.players.length &&
               card.players.map((p: IPlayer) => p.current_move)[0]
@@ -138,6 +138,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
               (!!listSelectUserPreview.length &&
                 listSelectUserPreview.includes(card.owner.player.id))
             }
+            // isPawn={card.owner.player.id }
           />
         );
       })}

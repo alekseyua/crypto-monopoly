@@ -1,9 +1,14 @@
-import { _INIT } from "../auth/auth.ts";
+import { StoreonStore } from "storeon";
+import { _INIT } from "../auth/auth";
 
-export const SET_ERROR = 'set-error';
-export const CLEAR_ERROR = "clear-error";
+export const SET_ERROR = 'set-error' as const;
+export const CLEAR_ERROR = "clear-error" as const;
 
-export const error = store => {
+export interface IError {
+
+}
+
+export const error = (store: StoreonStore) => {
 
     // initialize error state
     store.on(_INIT, () => ({ error: null }));

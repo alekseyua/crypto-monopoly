@@ -6,7 +6,7 @@ import { useStoreon } from 'storeon/react';
 export const Step2 = ({
 	handleNextStep,
 	handlePrevStep,
-	handleGetDublicateCode
+	handleGetDuplicateCode
 }) => {
 	const { regStep, regData, errorReg } = useStoreon('regStep', 'regData', 'errorReg')
 
@@ -29,26 +29,26 @@ export const Step2 = ({
 					// ref={codeInputRef}
 					value={emailCode}
 					onChange={(e) => setEmailCode(e.target.value)}
-					label={errorReg ? errorReg : `Код для проверки отправлен на указанный почтовый ящик  (${regData.email.slice(0,4)}***${regData.email.slice(-6,regData.email.length)})`}
+					label={errorReg ? errorReg : `Код для проверки отправлен на указанный почтовый ящик  (${regData.email.slice(0, 4)}***${regData.email.slice(-6, regData.email.length)})`}
 					error={errorReg}
 					id={'mail'}
 					style={{
-									padding: '24px 25px'
-								}}
-					iconRight={<div className={cls.dublicateCode} onClick={handleGetDublicateCode}>Дублировать код</div>}
+						padding: '24px 25px'
+					}}
+					iconRight={<div className={`${errorReg? cls.error : ''} ${cls.dublicateCode}`} onClick={handleGetDuplicateCode}>Дублировать код</div>}
 				/>
 				<div className={cls.btns}>
-					<Button onClick={()=>handlePrevStep()}>Указать другую почту</Button>
+					<Button onClick={() => handlePrevStep()}>Указать другую почту</Button>
 					<Button
-						onClick={() => handleNextStep({code: emailCode})}
+						onClick={() => handleNextStep({ code: emailCode })}
 						p={24}
 						type='fill'
 						disabled={
 							!emailCode
 								? true
 								: emailCode?.match(/\d/g)?.length
-								? emailCode?.match(/\d/g)?.length < 5
-								: true
+									? emailCode?.match(/\d/g)?.length < 5
+									: true
 						}
 						fillColor='#726CED'
 						textColor='#fff'>

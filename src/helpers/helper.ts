@@ -1,3 +1,5 @@
+import { INotice } from "../Component/UserPanelNotification/UserPanelMainModeNotification";
+
 export const delay = (wait: number) => new Promise(resolve => setTimeout(resolve, wait));
 export const goToUp = (): any => document?.querySelector('.goto') && document?.querySelector('.goto')?.scrollIntoView({ block: "start", behavior: "smooth" });
 export const validateEmail = (email: string) => {
@@ -5,9 +7,13 @@ export const validateEmail = (email: string) => {
   return emailRegex.test(email);
 }
 // Функция для перемещения изменившихся статусов в конец списка
-export const moveChangedStatusToEnd = (array: [{ status: boolean }], statusToMove: boolean) => {
-  const unchangedItems = array.filter((item) => item.status !== statusToMove);
-  const changedItems = array.filter((item) => item.status === statusToMove);
+export const moveChangedStatusToEnd = (array: INotice[], statusToMove: string) => {
+  const unchangedItems = array.filter(
+    (item: INotice) => item.status !== statusToMove
+  );
+  const changedItems = array.filter(
+    (item: INotice) => item.status === statusToMove
+  );
   return [...unchangedItems, ...changedItems];
 }
 

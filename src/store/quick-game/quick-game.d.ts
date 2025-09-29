@@ -1,10 +1,10 @@
 interface ownerCard {
-    "player": IPlayer;
-    "can_build": boolean;
-    "is_pawn": boolean;
-    hotels: number;
-    houses: number;
-    "card_info": ICardInfo;
+  player: IPlayer;
+  can_build: boolean;
+  is_pawn: boolean;
+  hotels: number;
+  houses: number;
+  card_info: ICardInfo | ISpecialCardInfo;
 }
 
 interface ICard {
@@ -131,13 +131,13 @@ export interface ICardFeaturesData {
 }
 
 export interface ICardInfo {
-    "info": ICardInfoData,
-    "prices": ICardPriceData,
-    "features": ICardFeaturesData,
-    "card_type": string,
-    "start_price"?: number; // ???
-    "highest_bid"?: number, // ???
-    "base_cost"?: number, // ???
+  info: ICardInfoData;
+  prices: ICardPriceData;
+  features: ICardFeaturesData;
+  card_type: string;
+  start_price?: number; // ???
+  highest_bid?: number; // ???
+  base_cost?: number; // ???
 }
 
 export interface ICardAuctionDataPrices {

@@ -2,12 +2,12 @@ import { StoreonStore } from "storeon";
 import api from "../../api/api";
 import { v4 } from "uuid";
 import { _INIT } from "./auth";
-import { delay, removeLocaleStore, validateEmail } from "../../helpers/helper";
+import { delay, removeLocaleStore, setLocaleStore, validateEmail } from "../../helpers/helper";
 import { setErrorTimming } from "../helperStore/helperStore";
-import { API_CONFIRM_EMAIL, API_DUBLICATE_CODE, API_GET_SECRET_QUETION } from "../../api/config";
+import { API_CONFIRM_EMAIL, API_DUPLICATE_CODE, API_GET_SECRET_QUETION } from "../../api/config";
 import { GET_DUBLICATE_CODE_RECOVERY, SET_ERROR_RECOVERY } from "./recovery";
-import { SET_MESSAGE } from "../message/message";
-import { NAV_MAIN_PAGE } from "../../routers/config-nav";
+import { IMessage, SET_MESSAGE } from "../message/message";
+import { NAV_MAIN_PAGE, NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
 import { GET_USERS, SET_USERS_NULL } from "../users/users";
 import { RESET_ACHIVMENT_PLAYER_QG, RESET_DATA_ACTION_CARD, RESET_EXCHANGE_DATA, RESET_LIST_CARDS_QG, RESET_QG, RET_DATA_PLAYER_QG, RET_LIST_QG } from "../quick-game/quick-game";
 
@@ -94,19 +94,30 @@ export const registration = (store: StoreonStore) => {
     if (regStep === 2) dispatch(SET_REG_TO_STORE, { email: "" });
     return { regStep: regStep - 1 };
   });
-  store.on(GET_DUBLICATE_CODE_REG, async ({ regData }: any, data, { dispatch }) => {
-    const res = await api.post(API_DUBLICATE_CODE, regData);
-    if (res?.status === 400) {
-      setErrorTimming(
-        SET_ERROR_RECOVERY,
-        res?.error,
-        dispatch,
-        1500
-      );
-      return;
+
+  type EventMapDuplicateCode = {
+    [SET_MESSAGE]: IMessage[];
+    [SET_ERROR_RECOVERY]: string;
+  }
+  type DuplicateCodeDispatch = {
+    dispatch: <T extends keyof EventMapDuplicateCode>(
+      type: T,
+      payload: EventMapDuplicateCode[T]
+    )=>void
+  }
+  store.on(
+    GET_DUBLICATE_CODE_REG,
+    async ({ regData }: any, data, { dispatch }: DuplicateCodeDispatch) => {
+      const res = await api.post(API_DUPLICATE_CODE, regData);
+      console.log({ res });
+      if (res?.status === 400) {
+        setErrorTimming(SET_ERROR_RECOVERY, res?.error, dispatch, 1500);
+        return;
+      }
+     !!res?.data?.detail.length &&
+        dispatch(SET_MESSAGE, [{ title: "Дубликат кода", desc: res?.data?.detail[0] }]);
     }
-    dispatch(SET_MESSAGE, res?.data);
-  });
+  );
   const initRegData = {
     email: "",
     code: "",
@@ -138,7 +149,8 @@ export const registration = (store: StoreonStore) => {
   store.on(GET_REG, async (_, data, { dispatch }) => {
     dispatch(RESET_REG_STEP);
     dispatch(RESET_REG_DATA);
-    return data.redirect(NAV_MAIN_PAGE);
+    return data.redirect(NAV_QG_SELECT_PAGE);
+    // return data.redirect(NAV_MAIN_PAGE);
   });
 
   store.on(CHECK_REG_DATA, async ({ refCode }: any, data, { dispatch }) => {
@@ -164,6 +176,7 @@ export const registration = (store: StoreonStore) => {
 
     params = { ...params, key: "" };
     const res = await api.post(urlRegStep, params);
+    console.log({res})
     if (res?.status === 400) {
       if (res?.data?.error?.length) {
         setErrorTimming(SET_ERROR_REG, res?.data?.error, dispatch, 2000);
@@ -198,14 +211,21 @@ export const registration = (store: StoreonStore) => {
       }
     } else if(res?.status === 200){
       if (data?.key === "code") {
-        localStorage.setItem("token", res?.data?.access_token);
-        localStorage.setItem("refresh", res?.data?.refresh_token);
+        setLocaleStore("token", res?.data?.access_token);
+        setLocaleStore("refresh", res?.data?.refresh_token);
+        params?.email && setLocaleStore("email", params.email);
+        
       }
       if (data?.key === "secureQuestion") {
         dispatch(RESET_REG_STEP);
         return data.callbackReg();
       }
-      dispatch(SET_MESSAGE, res?.data?.detail);
+      dispatch(SET_MESSAGE, [
+        {
+          title: `Регистрация шаг ${data?.key}`,
+          desc: res?.data?.detail,
+        },
+      ]);
       return data.callback(true);
     } else {
         alert('error, contact technical support ' + res?.status)
