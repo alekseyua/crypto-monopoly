@@ -1,10 +1,9 @@
-import { logo, RightArrowIcon } from '../../../../assets';
+import { logo } from '../../../../assets';
 import { Button, Offset } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import Title from '../../../../shared/UI/Title/Title';
 import { IPlayer } from '../../../../store/quick-game/quick-game.d';
-import { GameInfoBoardCorners } from '../../UI/GameInfoBoardCorners/GameInfoBoardCorners';
-import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFooterContainer';
+import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer';
 import styles from './styles/gib.module.scss';
 import { InfoBoardLabel } from './UI/Label/info-board-label';
 
@@ -22,9 +21,6 @@ export const GameInfoBoard:React.FC<IGameInfoBoardProps> = ({
 	labelTextColors = ['#000000', '#ffffff'],
 	wait,
 	loading = false,
-	buy_or_auction_card,
-	moveTo,
-	playerCurrentMove,
 }:IGameInfoBoardProps) => {
 	if (loading) {
 		return (

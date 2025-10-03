@@ -1,9 +1,8 @@
-import { icons, logo, RightArrowIcon } from '../../../../assets';
+import { icons } from '../../../../assets';
 import { Button, Offset } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import Title from '../../../../shared/UI/Title/Title';
-import { GameInfoBoardCorners } from '../../UI/GameInfoBoardCorners/GameInfoBoardCorners';
-import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFooterContainer';
+import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer';
 import styles from './styles/gib.module.scss';
 
 interface IInfoChanceQGProps {
@@ -63,7 +62,7 @@ export const InfoChanceQG: React.FC<IInfoChanceQGProps> = ({
 			<Offset mt={10} />
 			{/* footer */}
 
-			<GameInfoBoardFooterContainer 
+			<GameInfoBoardFooterContainer
 				bgc={'#CFD3ED4D'}
 			/>
 

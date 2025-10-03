@@ -77,8 +77,13 @@
         vertical-align: middle;
         color: rgba(0, 0, 0, 1);
     }
-    // card-players-preview__capital
-    &__capital {
+    //card-players-preview__container-balance-capital
+    &__container-balance-capital{
+        display: flex;
+        gap: 10px;
+    }
+    // card-players-preview__balance-capital
+    &__balance-capital {
         display: flex;
         align-items: center;
         gap: 2px;

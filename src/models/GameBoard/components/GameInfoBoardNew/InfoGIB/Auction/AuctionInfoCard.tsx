@@ -2,7 +2,6 @@ import { icons } from '../../../../../../assets';
 import { Button, Offset } from '../../../../../../shared/UI';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
 import React from 'react';
-import GameInfoBoardFooterContainer from '../../../GameInfoBoardFooter/GameInfoBoardFooterContainer';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import ContainerGIB from '../../UIContainerGIB/ContainerGIB';
 import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
@@ -15,6 +14,7 @@ import InnerBtnContextSpaceBetween from '../../ControllerGIB/InnerBtnContextSpac
 import { getPriceTaxesFromHouses } from '../../../../../../helpers/helper';
 import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
 import { ICardInfo } from '../../../../../../store/quick-game/quick-game.d';
+import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
 
 interface Iprops {
   endTime: number;

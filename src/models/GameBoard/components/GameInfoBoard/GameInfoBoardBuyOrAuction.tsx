@@ -1,4 +1,4 @@
-import { currency2White, icons, RightArrowIcon } from '../../../../assets';
+import { icons } from '../../../../assets';
 import { Button, Offset } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import styles from './styles/gib.module.scss';
@@ -6,9 +6,9 @@ import React from 'react';
 import { InfoBoardLabel } from './UI/Label/info-board-label';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import { getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../helpers/helper';
-import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFooterContainer';
 import Title from '../../../../shared/UI/Title/Title';
 import { IActionCard } from '../../../../store/quick-game/quick-game.d';
+import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer';
 
 interface IGameInfoBoardBuyOrAuctionProps {
 	labelColors?: string[];

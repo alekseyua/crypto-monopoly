@@ -3,7 +3,6 @@ import { Button, Input, Offset } from "../../../../../../shared/UI";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
 import React, { useEffect } from "react";
 import { temporaryDisableBtn } from "../../../../../../helpers/helper";
-import GameInfoBoardFooterContainer from "../../../GameInfoBoardFooter/GameInfoBoardFooterContainer";
 import AutoCounter from "../../../../../../Component/AutoCounter/AutoCounter";
 import ContainerGIB from "../../UIContainerGIB/ContainerGIB";
 import ContainerOneBtn from "../../ControllerGIB/ContainerOneBtn";
@@ -15,6 +14,7 @@ import ContainerInfoTwoColumnGIB from "../../UIContainerGIB/InfoGIB/ContainerInf
 import { ISpecialCardInfo } from "../../../../../../store/quick-game/quick-game.d";
 import InnerBtnContextSpaceBetween from "../../ControllerGIB/InnerBtnContextSpaceBetween";
 import ContainerInfoFooterGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB";
+import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";
 
 interface IProps {
   cardInfo: ISpecialCardInfo;

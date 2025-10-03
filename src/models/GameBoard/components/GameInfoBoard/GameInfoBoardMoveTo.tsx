@@ -1,11 +1,11 @@
 import React from "react";
-import { logo, RightArrowIcon } from "../../../../assets";
+import { logo } from "../../../../assets";
 import { temporaryDisableBtn } from "../../../../helpers/helper";
 import { Button, Offset } from "../../../../shared/UI";
 import Icon from "../../../../shared/UI/Icon/Icon";
 import Title from "../../../../shared/UI/Title/Title";
-import GameInfoBoardFooterContainer from "../GameInfoBoardFooter/GameInfoBoardFooterContainer";
 import styles from "./styles/gib.module.scss";
+import GameInfoBoardFooterContainer from "../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer";
 
 interface IGameInfoBoardMoveToProps {
   labelColors?: string[];

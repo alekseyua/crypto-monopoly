@@ -1,10 +1,9 @@
-import { set } from 'react-hook-form';
 import { logo } from '../../../../assets';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import { Button, Offset } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import Title from '../../../../shared/UI/Title/Title';
-import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFooterContainer';
+import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer';
 import ContainerInfoTwoColumnGIB from '../GameInfoBoardNew/UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
 import styles from './styles/gib.module.scss';
 import React from 'react';

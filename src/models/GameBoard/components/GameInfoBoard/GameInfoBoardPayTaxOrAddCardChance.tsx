@@ -3,9 +3,9 @@ import styles from './styles/gib.module.scss';
 import React from 'react';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import Title from '../../../../shared/UI/Title/Title';
-import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFooterContainer';
 import { IActionCard } from '../../../../store/quick-game/quick-game.d';
 import { temporaryDisableBtn } from '../../../../helpers/helper';
+import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer';
 
 interface IGameInfoBoardPayTaxOrAddCardChanceProps {
 	game_id: number;

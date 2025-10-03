@@ -6,11 +6,13 @@ import AvatarBlock from '../../../shared/UI/AvatarBlock/AvatarBlock';
 import ModalContainer from '../../Modal/ModalContainer';
 import Title from '../../../shared/UI/Title/Title';
 import { rgbToRgba } from '../../../helpers/helper';
+import { Tooltip } from 'react-tooltip';
 interface IPropsCardPlayersPreview {
     num: number;
     name: string;
     avatar: string | undefined;
     capital: number;
+    balance: number;
     id: number;
     isQG: boolean;
     color: string;
@@ -31,6 +33,7 @@ const CardPlayersPreview:React.FC<IPropsCardPlayersPreview> = ({
     color,
     avatar,
     capital,
+    balance,
     isClickOnCard,
     isMove,
     isSelected = false,
@@ -160,18 +163,57 @@ const CardPlayersPreview:React.FC<IPropsCardPlayersPreview> = ({
       >
         <div className={styles["card-players-preview__desc-container"]}>
           <div className={styles["card-players-preview__name"]}>{name}</div>
-          <div className={styles["card-players-preview__capital"]}>
-            <div>
-              <span>Капитал: </span>
-              <span>{capital} </span>
+          <div
+            className={
+              styles["card-players-preview__container-balance-capital"]
+            }
+            data-tooltip-id="preview-balance-capital"
+          >
+            <div className={styles["card-players-preview__balance-capital"]}>
+              <div>
+                <span>К: </span>
+                <span>{capital} </span>
+              </div>
+              <Icon
+                width="12px"
+                height="12px"
+                down={1}
+                src={icons.qgCurrencySvg}
+              />
+              {/* <img src={currency2White} alt="currency" width={10} height={10}/> */}
             </div>
-            <Icon
-              width="12px"
-              height="12px"
-              down={1}
-              src={icons.qgCurrencySvg}
-            />
-            {/* <img src={currency2White} alt="currency" width={10} height={10}/> */}
+            <div className={styles["card-players-preview__balance-capital"]}>
+              <div>
+                <span>Б: </span>
+                <span>{balance} </span>
+              </div>
+              <Icon
+                width="12px"
+                height="12px"
+                down={1}
+                src={icons.qgCurrencySvg}
+              />
+              {/* <img src={currency2White} alt="currency" width={10} height={10}/> */}
+            </div>
+            <Tooltip
+              id="preview-balance-capital"
+              style={{
+                backgroundColor: "#F6F8FF99",
+                color: "#000",
+                transform: "translateX(-50px)",
+                borderRadius: 12,
+                zIndex: 9999,
+              }}
+            >
+              <div className={"tool-tip__balance"}>
+                Баланс: {balance}
+                <Icon src={icons.qgCurrencySvg} width="12px" height="12px" />
+              </div>
+              <div className={"tool-tip__balance"}>
+                Капитал: {capital}
+                <Icon src={icons.qgCurrencySvg} width="12px" height="12px" />
+              </div>
+            </Tooltip>
           </div>
         </div>
         {!isClickOnCard && (

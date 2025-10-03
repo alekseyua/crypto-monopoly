@@ -80,7 +80,7 @@ const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
           type="number"
           id="turn_time"
           placeholder="Введите время на ход в секундах"
-          min={90}
+          min={60}
           style={{
             padding: "14px 25px",
           }}

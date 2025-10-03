@@ -93,3 +93,11 @@ h2{
     line-height: 33px;
     color: #1E1E1E;
 }
+
+.tool-tip__balance {
+    @include adaptiv-font(14, 7);
+    display: flex;
+    text-wrap: nowrap;
+    align-items: center;
+    gap: 3px;
+}

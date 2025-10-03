@@ -4,7 +4,6 @@ import Icon from "../../../../../../shared/UI/Icon/Icon";
 // import styles from '../styles/gib.module.scss';
 import React, { useEffect } from "react";
 import { temporaryDisableBtn } from "../../../../../../helpers/helper";
-import GameInfoBoardFooterContainer from "../../../GameInfoBoardFooter/GameInfoBoardFooterContainer";
 import AutoCounter from "../../../../../../Component/AutoCounter/AutoCounter";
 import ContainerGIB from "../../UIContainerGIB/ContainerGIB";
 import ContainerTwoBtn from "../../ControllerGIB/ContainerTwoBtn";
@@ -17,6 +16,7 @@ import ButtonBack from "../../../../../../shared/UI/Buttons/ButtonBack/ButtonBac
 import ContainerInfoTwoColumnGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB";
 import InnerBtnContextSpaceBetween from "../../ControllerGIB/InnerBtnContextSpaceBetween";
 import ContainerInfoFooterGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB";
+import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";
 
 interface IProps {
   cardInfo: ICardInfo;

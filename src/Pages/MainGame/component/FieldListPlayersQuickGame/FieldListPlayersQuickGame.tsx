@@ -64,10 +64,7 @@ const FieldListPlayersQG: React.FC<IFieldListPlayersQGProps> = ({
           isOpenListPlayers && !!players.length &&
           players.map((p: IPlayer, index: number) => {
             return (
-              <li
-                key={index}
-                className={styles['list-player__item']}
-              >
+              <li key={index} className={styles["list-player__item"]}>
                 <CardPlayersPreview
                   isOpenModal={isOpenModal}
                   isMove={p.current_move}
@@ -79,13 +76,17 @@ const FieldListPlayersQG: React.FC<IFieldListPlayersQGProps> = ({
                   avatar={p?.avatar}
                   isOwner={dataPlayerQG.id === p.id}
                   capital={p.bill_data.capital}
-                  isGrayBlur={!!listSelectUserPreview.length && !listSelectUserPreview.includes(p.id)}
+                  balance={p.bill_data.balance}
+                  isGrayBlur={
+                    !!listSelectUserPreview.length &&
+                    !listSelectUserPreview.includes(p.id)
+                  }
                   isSelected={listSelectUserPreview.includes(p.id)}
                   handleClickUserPreview={handleClickUserPreview}
                   handleSettingCard={handleSettingCard}
                 />
               </li>
-            )
+            );
           })
         }
         <Offset mb={20} />

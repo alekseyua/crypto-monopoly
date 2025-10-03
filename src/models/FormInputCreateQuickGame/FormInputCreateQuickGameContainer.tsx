@@ -36,11 +36,10 @@ const FormInputCreateQGContainer:React.FC = () => {
   }
 
   useEffect(()=>{
-    console.log(!!params.max_players && (params.max_players >= 2 && params.max_players <= 10))
     setParamsError({
       name: !!params.name,
       bet_amount: !!params.bet_amount,
-      turn_time: !!params.turn_time && (params.turn_time >= 90),
+      turn_time: !!params.turn_time && (params.turn_time >= 60),
       start_money: !!params.start_money,
       max_players: !!params.max_players && (params.max_players >= 2 && params.max_players <= 10),
     })

@@ -11,7 +11,6 @@ import ButtonBack from '../../../../../../shared/UI/Buttons/ButtonBack/ButtonBac
 import Title from '../../../../../../shared/UI/Title/Title';
 import Line from '../../../../../../shared/UI/Line/Line';
 import CurrencyQG from '../../../../../../shared/UI/CurrencyQG/CurrencyQG';
-import GameInfoBoardFooterContainer from '../../../GameInfoBoardFooter/GameInfoBoardFooterContainer';
 import CardPlayersPreview from '../../../../../../Component/Cards/CardPlayersPreview/CardPlayersPreview';
 import ContainerGIB from '../../UIContainerGIB/ContainerGIB';
 import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
@@ -20,6 +19,7 @@ import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInf
 import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
 import styles from './styles/exchange.module.scss';
 import { temporaryDisableBtn } from '../../../../../../helpers/helper';
+import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
 
 interface IGameInfoBoardActionsExchangeProps {
   handleCard: (params: any) => void;
@@ -212,6 +212,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
                           avatar={p?.avatar}
                           //   isOwner={dataPlayerQG.id === p.id}
                           capital={p.bill_data.capital}
+                          balance={p.bill_data.balance}
                           //   isGrayBlur={
                           //     !!listSelectUserPreview.length &&
                           //     !listSelectUserPreview.includes(p.id)

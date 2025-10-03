@@ -7,11 +7,13 @@ import { GET_RATE_LIST_PLAYERS } from '../../../../../store/quick-game/quick-gam
 interface IProps {
   bgc?: string;
   bgcBtn?: string;
+  style?: React.CSSProperties;
 }
 
 const GameInfoBoardFooterContainer:React.FC<IProps> = ({
   bgc,
-  bgcBtn
+  bgcBtn,
+  style,
 
 }) => {
     const {dataPlayerQG, dispatch} = useStoreon('dataPlayerQG');
@@ -23,6 +25,7 @@ const GameInfoBoardFooterContainer:React.FC<IProps> = ({
   return (
     <GameInfoBoardFooter 
         bgc={bgc}
+        style={style}
         bgcBtn={bgcBtn}
         capital={dataPlayerQG?.bill_data?.capital ?? 0}
         balance={dataPlayerQG?.bill_data?.balance ?? 0}

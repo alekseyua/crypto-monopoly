@@ -1,18 +1,16 @@
-import { Cross, icons } from '../../../../assets';
+import { icons } from '../../../../assets';
 import { Button, Input, Offset } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import styles from './styles/gib.module.scss';
 import React, { useEffect, useState } from 'react';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import { ICard, IExchangeData, IPlayer, ISpecialCard } from '../../../../store/quick-game/quick-game.d';
-import InfoBlock from '../../../../shared/UI/InfoBlock/InfoBlock';
 import AvatarBlock from '../../../../shared/UI/AvatarBlock/AvatarBlock';
-import ButtonBack from '../../../../shared/UI/Buttons/ButtonBack/ButtonBack';
 import Title from '../../../../shared/UI/Title/Title';
 import Line from '../../../../shared/UI/Line/Line';
 import CurrencyQG from '../../../../shared/UI/CurrencyQG/CurrencyQG';
-import GameInfoBoardFooterContainer from '../GameInfoBoardFooter/GameInfoBoardFooterContainer';
 import { temporaryDisableBtn } from '../../../../helpers/helper';
+import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer';
 
 interface IGameInfoBoardShowExchangeProps {
 	exchageData: IExchangeData;
