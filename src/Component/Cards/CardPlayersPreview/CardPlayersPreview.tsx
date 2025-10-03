@@ -8,42 +8,43 @@ import Title from '../../../shared/UI/Title/Title';
 import { rgbToRgba } from '../../../helpers/helper';
 import { Tooltip } from 'react-tooltip';
 interface IPropsCardPlayersPreview {
-    num: number;
-    name: string;
-    avatar: string | undefined;
-    capital: number;
-    balance: number;
-    id: number;
-    isQG: boolean;
-    color: string;
-    isOwner?: boolean;
-    isSelected?: boolean;
-    isGrayBlur?: boolean;
-    isOpenModal?:string;
-    isMove: boolean;
-    isClickOnCard?: boolean;
-    handleSettingCard?: (status: string) => void;
-    handleClickUserPreview: (id:number) => void;
+  num: number;
+  name: string;
+  avatar: string | undefined;
+  capital: number;
+  balance: number;
+  property: number;
+  id: number;
+  isQG: boolean;
+  color: string;
+  isOwner?: boolean;
+  isSelected?: boolean;
+  isGrayBlur?: boolean;
+  isOpenModal?: string;
+  isMove: boolean;
+  isClickOnCard?: boolean;
+  handleSettingCard?: (status: string) => void;
+  handleClickUserPreview: (id: number) => void;
 }
-const CardPlayersPreview:React.FC<IPropsCardPlayersPreview> = ({
-    id,
-    num,
-    isQG,
-    name,
-    color,
-    avatar,
-    capital,
-    balance,
-    isClickOnCard,
-    isMove,
-    isSelected = false,
-    isGrayBlur = false,
-    isOwner = false,
-    isOpenModal,
-    handleSettingCard,
-    handleClickUserPreview,
-}:IPropsCardPlayersPreview) => {
-
+const CardPlayersPreview: React.FC<IPropsCardPlayersPreview> = ({
+  id,
+  num,
+  isQG,
+  name,
+  color,
+  avatar,
+  capital,
+  balance,
+  property,
+  isClickOnCard,
+  isMove,
+  isSelected = false,
+  isGrayBlur = false,
+  isOwner = false,
+  isOpenModal,
+  handleSettingCard,
+  handleClickUserPreview,
+}: IPropsCardPlayersPreview) => {
   return (
     <div
       className={styles["card-players-preview__container"]}
@@ -171,6 +172,30 @@ const CardPlayersPreview:React.FC<IPropsCardPlayersPreview> = ({
           >
             <div className={styles["card-players-preview__balance-capital"]}>
               <div>
+                <span>Б: </span>
+                <span>{balance} </span>
+              </div>
+              <Icon
+                width="12px"
+                height="12px"
+                down={1}
+                src={icons.qgCurrencySvg}
+              />
+            </div>
+            <div className={styles["card-players-preview__balance-capital"]}>
+              <div>
+                <span>И: </span>
+                <span>{property} </span>
+              </div>
+              <Icon
+                width="12px"
+                height="12px"
+                down={1}
+                src={icons.qgCurrencySvg}
+              />
+            </div>
+            <div className={styles["card-players-preview__balance-capital"]}>
+              <div>
                 <span>К: </span>
                 <span>{capital} </span>
               </div>
@@ -182,19 +207,7 @@ const CardPlayersPreview:React.FC<IPropsCardPlayersPreview> = ({
               />
               {/* <img src={currency2White} alt="currency" width={10} height={10}/> */}
             </div>
-            <div className={styles["card-players-preview__balance-capital"]}>
-              <div>
-                <span>Б: </span>
-                <span>{balance} </span>
-              </div>
-              <Icon
-                width="12px"
-                height="12px"
-                down={1}
-                src={icons.qgCurrencySvg}
-              />
-              {/* <img src={currency2White} alt="currency" width={10} height={10}/> */}
-            </div>
+
             <Tooltip
               id="preview-balance-capital"
               style={{
@@ -207,6 +220,10 @@ const CardPlayersPreview:React.FC<IPropsCardPlayersPreview> = ({
             >
               <div className={"tool-tip__balance"}>
                 Баланс: {balance}
+                <Icon src={icons.qgCurrencySvg} width="12px" height="12px" />
+              </div>
+              <div className={"tool-tip__balance"}>
+                Имущество: {property}
                 <Icon src={icons.qgCurrencySvg} width="12px" height="12px" />
               </div>
               <div className={"tool-tip__balance"}>
@@ -241,6 +258,6 @@ const CardPlayersPreview:React.FC<IPropsCardPlayersPreview> = ({
       {/* footer */}
     </div>
   );
-}
+};
 
 export default CardPlayersPreview

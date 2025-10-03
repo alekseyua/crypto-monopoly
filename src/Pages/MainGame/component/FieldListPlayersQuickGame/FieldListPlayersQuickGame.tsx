@@ -77,6 +77,7 @@ const FieldListPlayersQG: React.FC<IFieldListPlayersQGProps> = ({
                   isOwner={dataPlayerQG.id === p.id}
                   capital={p.bill_data.capital}
                   balance={p.bill_data.balance}
+                  property={p.bill_data.property}
                   isGrayBlur={
                     !!listSelectUserPreview.length &&
                     !listSelectUserPreview.includes(p.id)
