@@ -1,6 +1,6 @@
 import { useStoreon } from 'storeon/react'
 import { TableSelectQuickGames } from './TableSelectQuickGames';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SET_MODAL } from '../../../../store/modal/modal';
 import FormInputCreateQGContainer from '../../../../models/FormInputCreateQuickGame/FormInputCreateQuickGameContainer';
@@ -21,6 +21,8 @@ const TableSelectQuickGamesContainer = () => {
       dispatch: StoreonDispatch<any>;
     } = useStoreon("listQGs", "user");
 
+	const redirectTo = useCallback((path: string) => navigate(path), [navigate]);
+
     const handlerClickCreateGame = () => {
         // создание новой комнаты
         dispatch(SET_MODAL, {
@@ -37,13 +39,13 @@ const TableSelectQuickGamesContainer = () => {
         dispatch(JOIN_QG, { action: 'join_game', game_id: id })
     } 
 
-    useEffect(()=>{
-        // нужно ли переоткрывать ли соединение при смене страницы ???
-        dispatch(GET_LIST_QG, { action: 'get_games', redirectTo })
-        return () => dispatch(DISCONNECT_LIST_QG, { action: 'get_games', redirectTo })
-    },[dispatch]);
+    useEffect(() => {
+      // нужно ли переоткрывать ли соединение при смене страницы ???
+      dispatch(GET_LIST_QG, { action: "get_games", redirectTo });
+      return () =>
+        dispatch(DISCONNECT_LIST_QG, { action: "get_games", redirectTo });
+    }, [dispatch, redirectTo]);
 
-	const redirectTo = (path: string) => navigate(path);
 
     return (
     <TableSelectQuickGames

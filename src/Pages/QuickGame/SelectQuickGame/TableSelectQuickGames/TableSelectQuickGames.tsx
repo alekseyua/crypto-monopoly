@@ -1,6 +1,4 @@
 import { plus, StonksIcon, ThreeDots } from '../../../../assets';
-import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
-import { autoRefuseTimer } from '../../../../helpers/helper';
 import { Label, WrapperCard } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import { IListQGs } from '../../../../store/quick-game/quick-game.d';

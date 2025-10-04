@@ -9,3 +9,4 @@ export const NAV_GAME_RULES = '/rules/details';
 export const NAV_ALL_ACHIEVEMENTS =  '/quick-game/all-achivments';
 export const NAV_BALANCE =  '/balance';
 export const NAV_PROFILE =  '/profile';
+export const NAV_ABOUT =  '/about';

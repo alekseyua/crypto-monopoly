@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { AuctionInfoCard } from './AuctionInfoCard'
-import { IGameInfoBoardAuctionQGProps } from '../../../GameInfoBoard/types/gameInfoBoard'
 import { AuctionPlaceBet } from './AuctionPlaceBet'
-import { ICard, ICardInfo, IHighestBidderData, ISpecialCardInfo } from '../../../../../../store/quick-game/quick-game.d';
+import { ICardInfo, ISpecialCardInfo } from '../../../../../../store/quick-game/quick-game.d';
 import { AuctionSpecialInfoCard } from './AuctionSpecialInfoCard';
 import { AuctionSpecialPlaceBet } from './AuctionSpecialPlaceBet';
 

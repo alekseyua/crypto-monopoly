@@ -1,5 +1,4 @@
 import { moneyBag } from '../../../assets';
-import { AchievementsPreviewModule } from '../../../models/achivments/AchievementsPreviewModule';
 import { TopUsers } from '../../../models/top-users/top-users';
 import TableSelectQuickGamesContainer from './TableSelectQuickGames/TableSelectQuickGamesContainer';
 import { Button, WrapperCard } from '../../../shared/UI';

@@ -1,7 +1,6 @@
 import { _INIT } from "../auth/auth";
 import { StoreonStore } from "storeon";
 import {IFilterItem, IDashboardProfile, IPayloadUpdatePhotoAvatar, IProfile, IUpdatePhoneNumber, Payment, PaymentConfirm} from './profile.d';
-import { v4 } from "uuid";
 import api from "../../api/api";
 import { API_CHANGE_PHONE_NUMBER, API_CHANGE_PHOTO_AVATAR, API_CONFIRM_PAYMENT, API_TOP_UP_WALLET } from "../../api/config";
 import { SET_MODAL } from "../modal/modal";

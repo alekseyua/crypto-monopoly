@@ -52,7 +52,7 @@ const FieldListPlayersQGContainer: React.FC<IFieldListPlayersQGProps> = ({
       const sort = players.sort((a : IPlayer,b : IPlayer): any => b.move_number - a.move_number);
       setListPlayers(sort)
     }
-  },[sortingListPlayers,dataPlayerQG])
+  },[sortingListPlayers,dataPlayerQG , players])
 
   const handleSorting = function(){
     if(sortingListPlayers === 'rate'){

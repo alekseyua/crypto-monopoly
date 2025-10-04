@@ -211,7 +211,7 @@ const CardPlayersPreview: React.FC<IPropsCardPlayersPreview> = ({
             <Tooltip
               id="preview-balance-capital"
               style={{
-                backgroundColor: "#F6F8FF99",
+                backgroundColor: "rgba(201, 202, 207, 0.93)",
                 color: "#000",
                 transform: "translateX(-50px)",
                 borderRadius: 12,

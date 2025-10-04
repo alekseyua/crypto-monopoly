@@ -1,32 +1,36 @@
-import React from 'react';
-import ContainerGIB from '../../UIContainerGIB/ContainerGIB';
-import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
-import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
-import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
-import ContainerInfoGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoGIB';
-import { IChooseDataActions, ISpecialCard } from '../../../../../../store/quick-game/quick-game.d';
-import { Button, Offset } from '../../../../../../shared/UI';
-import Title from '../../../../../../shared/UI/Title/Title';
-import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
-import ContainerOneBtn from '../../ControllerGIB/ContainerOneBtn';
-import { adjustColorBrightness, getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../../../helpers/helper';
-import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
-import InnerBtnContextSpaceBetween from '../../ControllerGIB/InnerBtnContextSpaceBetween';
-import Text from '../../../../../../shared/UI/Text/Text';
-import { icons } from '../../../../../../assets';
-import Icon from '../../../../../../shared/UI/Icon/Icon';
-import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
+import React from "react";
+import ContainerGIB from "../../UIContainerGIB/ContainerGIB";
+import ContainerInfoHeaderGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB";
+import ContainerInfoBodyGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB";
+import ContainerInfoFooterGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB";
+import ContainerInfoGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoGIB";
+import {
+  IChooseDataActions,
+  ISpecialCard,
+} from "../../../../../../store/quick-game/quick-game.d";
+import { Button, Offset } from "../../../../../../shared/UI";
+import Title from "../../../../../../shared/UI/Title/Title";
+import AutoCounter from "../../../../../../Component/AutoCounter/AutoCounter";
+import ContainerOneBtn from "../../ControllerGIB/ContainerOneBtn";
+import { temporaryDisableBtn } from "../../../../../../helpers/helper";
+import ContainerInfoTwoColumnGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB";
+import InnerBtnContextSpaceBetween from "../../ControllerGIB/InnerBtnContextSpaceBetween";
+import Text from "../../../../../../shared/UI/Text/Text";
+import { icons } from "../../../../../../assets";
+import Icon from "../../../../../../shared/UI/Icon/Icon";
+import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";
 
 interface IProps {
-  handleChangeScreen: (newScreen: 'action-card' | 'action-special-card' | 'actions') => void;
+  handleChangeScreen: (
+    newScreen: "action-card" | "action-special-card" | "actions"
+  ) => void;
   handleBack: (p: any) => void; // Optional, assuming you might want to go back
   card: ISpecialCard;
   timeEndMove: number;
   setAmountHouses: (amount: number) => void; // Function to set amount of houses
   amountHouses: number; // Current amount of houses
-  handleAction: (p: any)=>void;
-	actions: IChooseDataActions//{ [key: string]: boolean }
-
+  handleAction: (p: any) => void;
+  actions: IChooseDataActions; //{ [key: string]: boolean }
 }
 
 const InfoSpecialCard: React.FC<IProps> = ({
@@ -51,11 +55,11 @@ const InfoSpecialCard: React.FC<IProps> = ({
           borderColor="#E4E4E4"
           p={11}
           disabled={isClick}
-          onClick={() =>{
+          onClick={() => {
             temporaryDisableBtn(2000, setIsClick);
             handleBack({
               action: "clean_chose_actions",
-            })
+            });
           }}
         >
           <Text fontWeight={300} fontSize={14} center>
@@ -172,6 +176,6 @@ const InfoSpecialCard: React.FC<IProps> = ({
       </ContainerInfoGIB>
     </ContainerGIB>
   );
-}
+};
 
-export default InfoSpecialCard
+export default InfoSpecialCard;

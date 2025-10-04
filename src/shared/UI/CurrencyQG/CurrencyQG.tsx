@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './currency.module.scss';
 import { icons } from '../../../assets';
 import Icon from '../Icon/Icon';
 
@@ -14,7 +13,6 @@ const CurrencyQG:React.FC<IProps> = ({
   
   return (
     <Icon
-      // className={styles['gib__body-desc-container--two-section--card-avatar-icon']}
       src={color === 'white'? icons.qgCurrencySvgWhite : icons.qgCurrencySvg}
       width= {size + 'px'}
       height={size + 'px'}

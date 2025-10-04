@@ -50,8 +50,10 @@ interface ISpecialCardInfo {
     "one_card_tax": number;
     "two_card_tax": number;
     "three_card_tax": number;
+    "four_card_tax": number;
     "monopoly_tax": number;
     "card_type": string;
+    "collection_amount": string;
     "start_price": number;
 }
 
@@ -138,6 +140,7 @@ export interface ICardInfo {
   start_price?: number; // ???
   highest_bid?: number; // ???
   base_cost?: number; // ???
+  collection_amount: string;
 }
 
 export interface ICardAuctionDataPrices {

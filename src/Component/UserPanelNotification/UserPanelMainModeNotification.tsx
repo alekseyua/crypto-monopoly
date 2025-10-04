@@ -5,6 +5,7 @@ import { useStoreon } from "storeon/react";
 import { v4 as uuidv4 } from "uuid";
 import { IMessage } from "../../store/message/message";
 
+// eslint-disable-next-line
 type ErrorPayload = {
   type: string;
   payload: string[]; // если payload — массив сообщений
@@ -25,7 +26,11 @@ export interface INotice {
 }
 
 const UserPanelMainModeNotification = () => {
-  const { messages, error } = useStoreon<StateStore, EventMessage>("messages", "error");
+  // eslint-disable-next-line
+  const { messages, error } = useStoreon<StateStore, EventMessage>(
+    "messages",
+    "error"
+  );
   const [notice, setNotice] = useState<INotice[]>([]);
 
   // useEffect(() => {
@@ -71,14 +76,18 @@ const UserPanelMainModeNotification = () => {
     if (route === "close") {
       return setNotice((state: INotice[]) =>
         moveChangedStatusToEnd(
-          state?.map((n:INotice) => (n.id === id ? { ...n, status: "read" } : n)),
+          state?.map((n: INotice) =>
+            n.id === id ? { ...n, status: "read" } : n
+          ),
           "read"
         )
       );
     }
     setNotice((state: INotice[]) =>
       moveChangedStatusToEnd(
-        state?.map((n:INotice) => (n.id === id ? { ...n, status: "read" } : n)),
+        state?.map((n: INotice) =>
+          n.id === id ? { ...n, status: "read" } : n
+        ),
         "read"
       )
     );

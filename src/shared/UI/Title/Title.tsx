@@ -1,8 +1,6 @@
 import React from 'react';
-import styles from './styles/title.module.scss';
 
 interface IProps {
-
   title?: string;
   className?: string;
   style?: React.CSSProperties;

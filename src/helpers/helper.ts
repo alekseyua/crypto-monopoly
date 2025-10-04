@@ -23,14 +23,6 @@ export function setLocaleStoreObj(data: []) {
   }
 }
 
-export const autoRefuseTimer = function (time: number, f?: any): any {
-
-  return () => (
-    time = time - 1,
-    f = autoRefuseTimer(time - 1)
-  );
-}
-
 export const isKeyPresentInHash = function (table: Record<any, any> | undefined, key: string | null): boolean {
   if (table === undefined) return false;
   if (key === null) return !!Object.keys(table).length;

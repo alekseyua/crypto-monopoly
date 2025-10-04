@@ -4,7 +4,6 @@ import UserPanel from './UserPanel'
 import { useEffect, useState } from 'react';
 import { GET_USERS } from '../../store/users/users';
 import { IDataQG, IPlayer } from '../../store/quick-game/quick-game.d';
-import { StoreonDispatch } from 'storeon';
 import { NavigateFunction } from 'react-router-dom';
 import { IUser } from '../../store/users/user.d';
 
@@ -108,7 +107,6 @@ const UserPanelContainer = ({ navigate }: {navigate: NavigateFunction}) => {
         // Implement dropdown menu logic here
         setIsDropDownMenuOpen(state=>!state);
     }
-console.log("UserPanelContainer render", { user, quickGame });
     return (
         <UserPanel
             user={user}

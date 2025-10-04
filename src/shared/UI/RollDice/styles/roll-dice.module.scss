@@ -1,0 +1,200 @@
+// === Переменные размера ===
+:root {
+    --cube-size: 200px; // Размер куба
+    --dot-size: 15%; // Относительный размер точки
+    --dot-center: 42.5%; // Центр точки
+    --dot-offset: 25%; // Отступ от края
+    --dot-offset-end: 60%; // Отступ с другой стороны
+}
+
+// === Общий стиль точек ===
+.dot {
+    position: absolute;
+    width: var(--dot-size);
+    height: var(--dot-size);
+    background: #fff;
+    border-radius: 50%;
+    display: block;
+}
+
+// === Контейнер и куб ===
+.container {
+    width: var(--cube-size);
+    height: var(--cube-size);
+    perspective: 1000px;
+    perspective-origin: 50% 100%;
+    position: relative;
+    margin: 0 auto;
+    //container__wrap
+    &__wrap {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        position: relative;
+        
+    }
+}
+
+#cube {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s ease-in-out;
+    position: absolute;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    >div {
+        background: hsla(0, 85%, 50%, 0.8);
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 2px solid #ab1a1a;
+    }
+
+    // === Грани ===
+    .front {
+        transform: translateZ(calc(var(--cube-size) / 2));
+    }
+
+    .back {
+        transform: rotateX(180deg) translateZ(calc(var(--cube-size) / 2));
+    }
+
+    .right {
+        transform: rotateY(90deg) translateZ(calc(var(--cube-size) / 2));
+    }
+
+    .left {
+        transform: rotateY(-90deg) translateZ(calc(var(--cube-size) / 2));
+    }
+
+    .top {
+        transform: rotateX(90deg) translateZ(calc(var(--cube-size) / 2));
+    }
+
+    .bottom {
+        transform: rotateX(-90deg) translateZ(calc(var(--cube-size) / 2));
+    }
+}
+
+// === Расположение точек на гранях ===
+.front {
+    .dot1 {
+        top: var(--dot-center);
+        left: var(--dot-center);
+    }
+}
+
+.back {
+    .dot1 {
+        top: var(--dot-offset);
+        left: var(--dot-offset);
+    }
+
+    .dot2 {
+        top: var(--dot-offset-end);
+        left: var(--dot-offset-end);
+    }
+}
+
+.right {
+    .dot1 {
+        top: var(--dot-offset);
+        left: var(--dot-offset);
+    }
+
+    .dot2 {
+        top: var(--dot-center);
+        left: var(--dot-center);
+    }
+
+    .dot3 {
+        top: var(--dot-offset-end);
+        left: var(--dot-offset-end);
+    }
+}
+
+.left {
+    .dot1 {
+        top: var(--dot-offset);
+        left: var(--dot-offset);
+    }
+
+    .dot2 {
+        top: var(--dot-offset);
+        left: var(--dot-offset-end);
+    }
+
+    .dot3 {
+        top: var(--dot-offset-end);
+        left: var(--dot-offset);
+    }
+
+    .dot4 {
+        top: var(--dot-offset-end);
+        left: var(--dot-offset-end);
+    }
+}
+
+.top {
+    .dot1 {
+        top: var(--dot-offset);
+        left: var(--dot-offset);
+    }
+
+    .dot2 {
+        top: var(--dot-offset);
+        left: var(--dot-offset-end);
+    }
+
+    .dot3 {
+        top: var(--dot-center);
+        left: var(--dot-center);
+    }
+
+    .dot4 {
+        top: var(--dot-offset-end);
+        left: var(--dot-offset);
+    }
+
+    .dot5 {
+        top: var(--dot-offset-end);
+        left: var(--dot-offset-end);
+    }
+}
+
+.bottom {
+    .dot1 {
+        top: var(--dot-offset);
+        left: var(--dot-offset);
+    }
+
+    .dot2 {
+        top: var(--dot-offset);
+        left: var(--dot-center);
+    }
+
+    .dot3 {
+        top: var(--dot-offset);
+        left: var(--dot-offset-end);
+    }
+
+    .dot4 {
+        top: var(--dot-offset-end);
+        left: var(--dot-offset);
+    }
+
+    .dot5 {
+        top: var(--dot-offset-end);
+        left: var(--dot-center);
+    }
+
+    .dot6 {
+        top: var(--dot-offset-end);
+        left: var(--dot-offset-end);
+    }
+}

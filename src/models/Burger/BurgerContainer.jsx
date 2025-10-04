@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { NAV_ALL_ACHIEVEMENTS, NAV_MAIN_PAGE, NAV_QG_SELECT_PAGE } from '../../routers/config-nav';
+import { NAV_ABOUT, NAV_ALL_ACHIEVEMENTS, NAV_MAIN_PAGE, NAV_QG_SELECT_PAGE } from '../../routers/config-nav';
 import withRouter from '../../HOC/withRouter';
 import Burger from './Burger';
 import { CREATE_NEW_QG } from '../../store/quick-game/quick-game';
@@ -30,7 +30,7 @@ const BurgerContainer = ({location}) => {
     {
       id: 3, 
       title: 'О проекте',
-      link: '',
+      link: NAV_ABOUT,
       active: false
     },
   ])

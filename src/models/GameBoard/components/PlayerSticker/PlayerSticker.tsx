@@ -1,15 +1,12 @@
 import classNames from 'classnames'
 import React from 'react'
 import cls from '../../styles/game-board.module.scss';
-import { IPlayer } from '../../../../store/quick-game/quick-game.d';
-
 
 interface IPlayerStickerProps {
     direction: string;
     className?: string;
     players: any// IPlayer[];
 }
-
 
 const PlayerSticker: React.FC<IPlayerStickerProps> = ({ 
     direction,

@@ -10,22 +10,33 @@ interface IProps {
 const AutoCounter:React.FC<IProps> = ({...props}) => {
   const [counter, setCounter] = useState<number>(props.counter);
   const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
-  const tick = function (time: number){
-    if( props.disabled ) {
-      if(timeoutRef.current) clearTimeout(timeoutRef.current);
+  
+  const tick = function (time: number) {
+    if (props.disabled) {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
       return;
-    } 
-    if( time < 0 ) return (setCounter(0), props?.callback && props?.callback(0));
-    timeoutRef.current = setTimeout(
-      () => (setCounter(time - 1), tick(time - 1), props?.setTimeEndAuction && props?.setTimeEndAuction(time-1)),
-      1000
-    );
-  }
-  useEffect(()=>{
-    tick(counter)
-    return () => {
-      if(timeoutRef.current) clearTimeout(timeoutRef.current);
     }
+
+    if (time < 0) {
+      setCounter(0);
+      if (props?.callback) props.callback(0);
+      return;
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setCounter(time - 1);
+      tick(time - 1);
+      if (props?.setTimeEndAuction) props.setTimeEndAuction(time - 1);
+    }, 1000);
+  };
+
+  useEffect(()=>{
+    tick(counter);
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+
+    // eslint-disable-next-line
   },[props.counter])
 
   return (

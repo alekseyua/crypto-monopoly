@@ -42,14 +42,15 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 				return card ? acc + +card.cost : acc;
 			}, 0);
 			setTotalFrom(exchageData.price_from + total);
-	}, [exchageData]);
+	}, [exchageData, cards]);
+
 	useEffect(() => {
-			const total = exchageData?.propertys_to?.reduce((acc, cardId) => {
-				const card = cards.find(c => +c.id === +cardId);
-				return card ? acc + +card.cost : acc;
-			}, 0);
-			setTotalTo(exchageData.price_to + total);
-		}, [exchageData.propertys_to, cards]);
+    const total = exchageData?.propertys_to?.reduce((acc, cardId) => {
+      const card = cards.find((c) => +c.id === +cardId);
+      return card ? acc + +card.cost : acc;
+    }, 0);
+    setTotalTo(exchageData.price_to + total);
+  }, [exchageData.propertys_to, exchageData.price_to, cards]);
 
 	return (
 		<div className={styles['gib__container']}>

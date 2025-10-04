@@ -1,5 +1,4 @@
 import { StoreonStore } from "storeon";
-import { v4 } from "uuid";
 import { _INIT } from "../auth/auth";
 import { HeaderName, HeaderNameEnum } from "./header.d";
 

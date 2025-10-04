@@ -1,6 +1,5 @@
 import type { ICard, IDataQG, IPlayer, ISpecialCard } from '../../store/quick-game/quick-game.d';
 import cls from './styles/game-board.module.scss';
-import { GameField } from './components/game-field/GameField';
 import Parking from './components/Parking/Parking';
 import Police from './components/Police/Police';
 import Jail from './components/Jail/Jail';

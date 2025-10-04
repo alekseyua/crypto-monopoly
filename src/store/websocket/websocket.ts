@@ -1,9 +1,5 @@
 import { v4 } from "uuid";
-import { URL_QGS } from "../../api/config";
-import { getLocaleStore } from "../../helpers/helper";
-import { _INIT } from "../auth/auth";
 import { StoreonStore } from "storeon";
-import { SET_LIST_QG, UPDATE_LIST_QG } from "../quick-game/quick-game";
 
 export const WEBSOCKET_CONNECT = v4();
 export const WEBSOCKET_DISCONNECT = v4();

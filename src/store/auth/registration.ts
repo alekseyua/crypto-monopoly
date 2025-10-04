@@ -7,7 +7,7 @@ import { setErrorTimming } from "../helperStore/helperStore";
 import { API_CONFIRM_EMAIL, API_DUPLICATE_CODE, API_GET_SECRET_QUETION } from "../../api/config";
 import { GET_DUBLICATE_CODE_RECOVERY, SET_ERROR_RECOVERY } from "./recovery";
 import { IMessage, SET_MESSAGE } from "../message/message";
-import { NAV_MAIN_PAGE, NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
+import { NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
 import { GET_USERS, SET_USERS_NULL } from "../users/users";
 import { RESET_ACHIVMENT_PLAYER_QG, RESET_DATA_ACTION_CARD, RESET_EXCHANGE_DATA, RESET_LIST_CARDS_QG, RESET_QG, RET_DATA_PLAYER_QG, RET_LIST_QG } from "../quick-game/quick-game";
 

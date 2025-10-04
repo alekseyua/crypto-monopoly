@@ -1,9 +1,7 @@
 import { Button, Label, Offset } from '../../shared/UI';
 import cls from './styles/activity-history.module.css';
 
-const FormActivityHistory = ({
-    
-}) => {
+const FormActivityHistory = () => {
     return (
         <div
             className={cls.containerActivityHistory}
@@ -15,7 +13,7 @@ const FormActivityHistory = ({
                     __html: '<p style="color: red">09.09.23 12:25</p>'}}
                 />
                 <span dangerouslySetInnerHTML={{
-                    __html: '<b>Подозрительная активность.</b> Попытка входа c устройства Windows 10, США, г.Нью - Йорк. '}}
+                    __html: '<b>Подозрительная активность.</b> Попытка входа c устройства Windows 10, США, г.Нью - Йорк.'}}
                 />
                 <Offset mb={15} />
                 <Button className={cls.btnItemActivityHistory}>Подтвердить вход</Button>

@@ -25,7 +25,8 @@ const Root = () => {
 		if(!user.id){
 			dispatch(GET_USERS)
 		}
-	},[])
+	},[dispatch, user]);
+
 	return (
 		<>
 		<span className='goto'></span>

@@ -1,4 +1,4 @@
-import React, { Children, CSSProperties } from 'react'
+import React from 'react'
 import Modal from './Modal'
 
 interface IProps{

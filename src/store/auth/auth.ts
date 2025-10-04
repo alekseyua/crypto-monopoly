@@ -5,7 +5,7 @@ import { NAV_AUTH_PAGE, NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
 import { setErrorTimming } from "../helperStore/helperStore";
 import { v4 } from "uuid";
 import { StoreonStore } from "storeon";
-import { delay, getLocaleStore, removeLocaleStore, setLocaleStore } from "../../helpers/helper";
+import { delay, getLocaleStore, removeLocaleStore } from "../../helpers/helper";
 import { SET_DATA_PROFILE } from "../profile/profile";
 
 export const _INIT = '@init';

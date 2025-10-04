@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react'
+import React from 'react'
 import styles from './styles/modal.module.scss';
 import { Button, Offset } from '../../shared/UI';
 import classNames from 'classnames';

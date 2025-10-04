@@ -1,6 +1,5 @@
 import { GameBoard } from '../../../models/GameBoard/GameBoard';
-import { IMessageQG } from '../../../store/message/message';
-import { ICard, IMassagesFeed, IPlayer, ISpecialCard } from '../../../store/quick-game/quick-game.d';
+import { ICard, IPlayer, ISpecialCard } from '../../../store/quick-game/quick-game.d';
 import EventsHistoryListContainer from '../../MainGame/component/events-history-list/EventsHistoryListContainer';
 import FieldListPlayersQGContainer from '../../MainGame/component/FieldListPlayersQuickGame/FieldListPlayersQuickGameContainer';
 

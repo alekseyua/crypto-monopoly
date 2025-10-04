@@ -1,7 +1,6 @@
 import { StoreonStore } from "storeon";
 import { _INIT } from "../auth/auth";
 import { v4 } from "uuid";
-import { data } from "react-router-dom";
 
 export const SET_MODAL = v4();
 

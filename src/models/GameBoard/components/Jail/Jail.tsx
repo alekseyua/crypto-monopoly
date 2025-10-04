@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import React from 'react'
-import { jail, park } from '../../../../assets'
+import { jail } from '../../../../assets'
 import cls from '../../styles/game-board.module.scss';
 import { IPlayer } from '../../../../store/quick-game/quick-game.d';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';

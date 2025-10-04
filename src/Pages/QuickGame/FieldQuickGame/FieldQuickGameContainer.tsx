@@ -50,7 +50,6 @@ type keyPreview = {
     | "info_board_actions_special_card" //  кнопок действий
     | "plus_extra_move" // когда шанс +2 хода у текущего игрока
     | "wait-move" // ожидаем ход текущего игрока
-    | "wait"
     | "buy_or_auction_special_card"
     | "move_to" // на шансе есть возможность перейти на другую карту
     | "pay_or_add_chance"
@@ -59,7 +58,6 @@ type keyPreview = {
     | "jail"
     | "pay_tax_or_add_card_chance"
     | "pay_for_freedom" // Заплатить за освобождение
-    | "wait_move";
   cardId: number;
 }; // нет данных для действий
 
@@ -339,6 +337,7 @@ const handleCardOnField = (card_id: number): void => {
 			/>
 		);
 		}
+		// eslint-disable-next-line
 	}, [listSelectUserPreview, stateExchange]);
 	
 	useEffect(() => {
@@ -523,9 +522,9 @@ const handleCardOnField = (card_id: number): void => {
 		} else if (!isMovePlayer && !isAuctions && !isActions) {
 			// нет хода и нет данных для действий
 			return {
-			key: "wait_move",
-			cardId: 0,
-			};
+        key: "wait-move",
+        cardId: 0,
+      };
 		}
 
 		if (isAuctions && !isExpressAirlineCruise) {
@@ -547,10 +546,10 @@ const handleCardOnField = (card_id: number): void => {
 			};
 
 		// для шанса и казны
-		const listChanceOrCommunityCard = ["chance", "community"];
+		// const listChanceOrCommunityCard = ["chance", "community"];
 
 		// для обычных карт
-		const listCard = ["card"];
+		// const listCard = ["card"];
 		const actions: ActionTypes = dataActions.actions;
 		console.log("----- список действий ----------");
 		console.log({ ...actions });
@@ -613,9 +612,9 @@ const handleCardOnField = (card_id: number): void => {
 			};
 		}
 		return {
-			key: "wait",
-			cardId,
-		};
+      key: "wait-move",
+      cardId,
+    };
 		});
 
 		if (isKeyPresentInHash(exchangeData, "price_from")) {
@@ -632,18 +631,12 @@ const handleCardOnField = (card_id: number): void => {
 			/>
 		);
 		}
-		let dataAction: keyPreview = getAction(dataPlayerQG, actionCardData); //? 'current_move' : 'wait';
+		let dataAction: keyPreview = getAction(dataPlayerQG, actionCardData);
 		console.log("%cKEY: " + dataAction.key, "color: green");
 		const card = quickGame.cards.filter(
 		(el: ICard | ISpecialCard) => el.id === dataAction.cardId
 		)[0];
 		switch (dataAction.key) {
-		case "wait":
-			setActionCardView(<Wait playerCurrentMove={dataPlayerQG} />);
-			break;
-		case "wait_move": // ожидание хода
-			setActionCardView(<Wait playerCurrentMove={dataPlayerQG} />);
-			break;
 		case "wait-move":
 			setActionCardView(<Wait playerCurrentMove={dataPlayerQG} />);
 			break;
@@ -858,6 +851,7 @@ const handleCardOnField = (card_id: number): void => {
 			// setActionCardView(<GameInfoBoard wait/>)
 			break;
 		}
+		// eslint-disable-next-line
 	}, [actionCardData, dataPlayerQG, exchangeData, infoMassagePopup]);
 
   // setIsChangeCard после заваршения обмена очистить, когда уходим со
