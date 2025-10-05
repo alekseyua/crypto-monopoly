@@ -124,20 +124,17 @@ const InfoCard: React.FC<IProps> = ({
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
-            {/* <Button
-              type='transparent'
-              p={10}
-            >
+            <Button type="transparent" p={10}>
               <InnerBtnContextSpaceBetween>
-                <Text
-                  text={'Карты из коллекции'}
-                />
+                <Text text={"Карты из коллекции"} />
                 <Text
                   fontWeight={900}
-                  text={'2 из 5 ?'}
+                  text={
+                    (card as ICard)?.card_info?.collection_amount + ""
+                  }
                 />
               </InnerBtnContextSpaceBetween>
-            </Button> */}
+            </Button>
           </ContainerInfoTwoColumnGIB>
 
           <Offset mt={10} />
@@ -166,11 +163,7 @@ const InfoCard: React.FC<IProps> = ({
               }}
             >
               <InnerBtnContextSpaceBetween>
-                <Text
-                  text={
-                    "Купить дом" 
-                  }
-                />
+                <Text text={"Купить дом"} />
                 <Text
                   text={card?.card_info?.prices?.house + ""}
                   iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}

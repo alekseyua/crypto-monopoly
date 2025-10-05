@@ -121,7 +121,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
-            {/* <Button
+            <Button
               type='transparent'
               p={10}
             >
@@ -131,10 +131,12 @@ const InfoSpecialCard: React.FC<IProps> = ({
                 />
                 <Text
                   fontWeight={900}
-                  text={'2 из 5 ?'}
+                  text={
+                                        (card as ISpecialCard)?.card_info?.collection_amount + ""
+                  }
                 />
               </InnerBtnContextSpaceBetween>
-            </Button> */}
+            </Button>
             <Button type="transparent" p={10}>
               <InnerBtnContextSpaceBetween>
                 <Text text={"С коллекцией"} />
