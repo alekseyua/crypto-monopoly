@@ -389,6 +389,27 @@ const handleCardOnField = (card_id: number): void => {
 	infoMassagePopup.message, onMove, quickGame.cards
   ]);
 
+  useEffect(() => {
+    if (!!!(actionCardData?.card_id && actionCardData?.auction_data?.card_id))
+      return;
+    if (actionCardView.key === "AuctionContainer") {
+      setActionCardView(
+        <AuctionContainer
+          handleCard={handleCard}
+          key={"AuctionContainer"}
+          game_id={quickGame.id}
+          card_id={actionCardData?.auction_data.card_id}
+          startPrice={+actionCardData?.auction_data?.start_price}
+          cardInfo={actionCardData?.auction_data?.card_info}
+          highest_bid={actionCardData?.auction_data.highest_bid}
+          endTime={actionCardData?.auction_data?.end_time_sec}
+          showInfoCard="place-bet"
+          resetData={actionCardData?.auction_data?.highest_bid}
+        />
+      );
+    }
+  }, [actionCardData?.auction_data?.highest_bid]);
+
 	useEffect(() => {
 		setIdCardForChanceGetOrRemoveHouse(null);
 
@@ -809,31 +830,35 @@ const handleCardOnField = (card_id: number): void => {
 			break;
 		case "start_auction_one_card":
 			setActionCardView(
-			<AuctionContainer
-				handleCard={handleCard}
-				game_id={quickGame.id}
-				card_id={actionCardData?.auction_data.card_id}
-				startPrice={+actionCardData?.auction_data?.start_price}
-				cardInfo={actionCardData?.auction_data?.card_info}
-				highest_bid={actionCardData?.auction_data.highest_bid}
-				endTime={actionCardData?.auction_data?.end_time_sec}
-				showInfoCard="auction-card"
-			/>
-			);
+        <AuctionContainer
+          handleCard={handleCard}
+          key={"AuctionContainer"}
+          game_id={quickGame.id}
+          card_id={actionCardData?.auction_data.card_id}
+          startPrice={+actionCardData?.auction_data?.start_price}
+          cardInfo={actionCardData?.auction_data?.card_info}
+          highest_bid={actionCardData?.auction_data.highest_bid}
+          endTime={actionCardData?.auction_data?.end_time_sec}
+          showInfoCard="auction-card"
+          resetData={actionCardData?.auction_data?.highest_bid}
+        />
+      );
 			break;
 		case "start_auction_express_airline_cruise":
 			setActionCardView(
-			<AuctionContainer
-				handleCard={handleCard}
-				game_id={quickGame.id}
-				card_id={actionCardData?.auction_data.card_id}
-				startPrice={+actionCardData?.auction_data?.start_price}
-				cardInfo={actionCardData?.auction_data?.card_info}
-				highest_bid={actionCardData?.auction_data.highest_bid}
-				endTime={actionCardData?.auction_data?.end_time_sec}
-				showInfoCard={"auction-special-card"}
-			/>
-			);
+        <AuctionContainer
+          handleCard={handleCard}
+          game_id={quickGame.id}
+          key={"AuctionContainer"}
+          card_id={actionCardData?.auction_data.card_id}
+          startPrice={+actionCardData?.auction_data?.start_price}
+          cardInfo={actionCardData?.auction_data?.card_info}
+          highest_bid={actionCardData?.auction_data.highest_bid}
+          endTime={actionCardData?.auction_data?.end_time_sec}
+          showInfoCard={"auction-special-card"}
+          resetData={actionCardData?.auction_data?.highest_bid}
+        />
+      );
 			break;
 		case "plus_extra_move":
 			setActionCardView(

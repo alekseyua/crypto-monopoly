@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import styles from './styles/counter.module.scss';
+import React, { useEffect, useState, useRef } from "react";
+import styles from "./styles/counter.module.scss";
 
 interface IProps {
   counter: number;
@@ -7,41 +7,53 @@ interface IProps {
   callback?: (time: number) => void;
   setTimeEndAuction?: (time: number) => void;
 }
-const AutoCounter:React.FC<IProps> = ({...props}) => {
-  const [counter, setCounter] = useState<number>(props.counter);
-  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
-  
-  const tick = function (time: number) {
-    if (props.disabled) {
+
+const AutoCounter: React.FC<IProps> = ({
+  counter: initialCounter,
+  disabled,
+  callback,
+  setTimeEndAuction,
+}) => {
+  const [counter, setCounter] = useState<number>(initialCounter);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Сброс при изменении входящего counter
+  useEffect(() => {
+    setCounter(initialCounter);
+  }, [initialCounter]);
+
+  // Основной эффект запуска таймера
+  useEffect(() => {
+    if (disabled) {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       return;
     }
 
-    if (time < 0) {
+    if (counter < 0) {
       setCounter(0);
-      if (props?.callback) props.callback(0);
+      callback?.(0);
       return;
     }
 
-    timeoutRef.current = setTimeout(() => {
-      setCounter(time - 1);
-      tick(time - 1);
-      if (props?.setTimeEndAuction) props.setTimeEndAuction(time - 1);
-    }, 1000);
-  };
+   timeoutRef.current = setTimeout(() => {
+     const newTime = counter - 1;
+     setCounter(newTime);
 
-  useEffect(()=>{
-    tick(counter);
+     if (setTimeEndAuction) {
+       setTimeEndAuction(newTime);
+     }
+
+     if (newTime < 0 && callback) {
+       callback(0);
+     }
+   }, 1000);
+
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
+  }, [counter, disabled]); // Следим за counter и disabled
 
-    // eslint-disable-next-line
-  },[props.counter])
+  return <span className={styles["counter__container"]}>{counter}</span>;
+};
 
-  return (
-    <span className={styles['counter__container']}> {counter} </span>
-  )
-}
-
-export default AutoCounter
+export default AutoCounter;

@@ -345,13 +345,13 @@
 					font-family: Manrope;
 					@include adaptiv-font(12, 6);
 					
-					font-weight: 500;
+					font-weight: 300;
 					width: 100%;
 					
 					>p,
 					div {
-					@include adaptiv-font(14, 2);
-						font-weight: 500;
+					@include adaptiv-font(12, 2);
+						font-weight: 300;
 						display: flex;
 						align-items: center;
 						text-wrap: nowrap;

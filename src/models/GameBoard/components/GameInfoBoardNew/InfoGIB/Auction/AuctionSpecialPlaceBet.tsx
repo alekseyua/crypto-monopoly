@@ -25,17 +25,19 @@ interface IProps {
   highest_bid: number;
   game_id: number;
   card_id: number;
+  resetTimer: boolean;
 }
 
 export const AuctionSpecialPlaceBet: React.FC<IProps> = ({
+  game_id,
+  card_id,
   endTime,
   cardInfo,
   startPrice,
-  handleChangeScreen,
+  resetTimer,
   highest_bid,
-  game_id,
-  card_id,
   handleCard,
+  handleChangeScreen,
 }: IProps) => {
   const [currentBet, setCurrentBet] = React.useState<number>(highest_bid);
   const [isClick, setIsClick] = React.useState<boolean>(false);
@@ -66,7 +68,13 @@ export const AuctionSpecialPlaceBet: React.FC<IProps> = ({
       <ContainerInfoBodyGIB p={0}>
         <Text>
           Окончание торгов:
-          {<AutoCounter counter={endTime} callback={() => {}} />}
+          {
+            <AutoCounter
+              counter={endTime}
+              callback={() => {}}
+              disabled={resetTimer}
+            />
+          }
         </Text>
         <Offset mt={20} />
         <ContainerOneBtn>
@@ -114,7 +122,7 @@ export const AuctionSpecialPlaceBet: React.FC<IProps> = ({
           <Button
             fillColor="#FFE4B5"
             p={10}
-            disabled={isClick || (!currentBet || currentBet < startPrice)}
+            disabled={isClick || !currentBet || currentBet < startPrice}
             className={styles["gib__btn-action-place-bet-auction"]}
             onClick={() => {
               temporaryDisableBtn(2000, setIsClick);
@@ -145,7 +153,7 @@ export const AuctionSpecialPlaceBet: React.FC<IProps> = ({
           <Button
             fillColor="#FFE4B5"
             p={10}
-            disabled={isClick || (!currentBet || currentBet < startPrice)}
+            disabled={isClick || !currentBet || currentBet < startPrice}
             className={styles["gib__btn-action-place-bet-auction"]}
             onClick={() => {
               temporaryDisableBtn(2000, setIsClick);

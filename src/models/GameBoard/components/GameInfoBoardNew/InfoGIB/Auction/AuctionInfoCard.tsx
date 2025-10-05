@@ -20,11 +20,13 @@ interface Iprops {
   endTime: number;
   cardInfo: ICardInfo;
   handleChangeScreen: ({ path }: { path: string }) => void;
-  setTimeEndAuction?: (s:any) => void;
+  setTimeEndAuction?: (s: any) => void;
+  resetTimer: boolean;
 }
 export const AuctionInfoCard: React.FC<Iprops> = ({
   endTime,
   cardInfo,
+  resetTimer,
   handleChangeScreen,
   setTimeEndAuction,
 }: Iprops) => {
@@ -62,6 +64,7 @@ export const AuctionInfoCard: React.FC<Iprops> = ({
             <AutoCounter
               counter={endTime}
               callback={() => {}}
+              disabled={resetTimer}
               setTimeEndAuction={setTimeEndAuction}
             />
           }

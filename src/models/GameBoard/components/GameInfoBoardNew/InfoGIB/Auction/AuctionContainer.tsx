@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AuctionInfoCard } from './AuctionInfoCard'
 import { AuctionPlaceBet } from './AuctionPlaceBet'
 import { ICardInfo, ISpecialCardInfo } from '../../../../../../store/quick-game/quick-game.d';
@@ -15,6 +15,7 @@ export interface IAuctionProps {
   endTime: number;
   handleCard: (rest:any) => void;
   handleChangeScreen?: (params: { path: string }) => void;
+  resetData?: any;
 }
 
 const AuctionContainer: React.FC<IAuctionProps> = ({
@@ -22,6 +23,7 @@ const AuctionContainer: React.FC<IAuctionProps> = ({
   game_id,
   card_id,
   cardInfo,
+  resetData,
   showInfoCard,
   handleCard,
   startPrice,
@@ -32,6 +34,27 @@ const AuctionContainer: React.FC<IAuctionProps> = ({
     setScreen(path as 'auction-card' | 'place-bet')
   }
   const [timeEndAuction, setTimeEndAuction] = useState(endTime);
+  const [resetTimer, setResetTimer] = useState<boolean>(false);
+  console.log(
+    "%cresetData " + resetData,
+    "color: yellow",
+    { endTime },
+    timeEndAuction,
+    resetTimer
+  );
+
+  useEffect(() => {
+    if (!!resetData) {
+      setResetTimer(true);
+      setTimeout(() => {
+        setResetTimer(false);
+      }, 100);
+      setTimeout(()=>{
+        setTimeEndAuction(endTime);
+      },200);
+    }
+  }, [resetData]);
+
   if( screen === 'place-bet'  && showInfoCard === 'auction-card' ) {
     return (
       <AuctionPlaceBet
@@ -44,6 +67,7 @@ const AuctionContainer: React.FC<IAuctionProps> = ({
         handleChangeScreen={handleChangeScreen}
         endTime={timeEndAuction}
         setTimeEndAuction={setTimeEndAuction}
+        resetTimer={resetTimer}
       />
     );
     } else
@@ -58,6 +82,7 @@ const AuctionContainer: React.FC<IAuctionProps> = ({
         highest_bid={highest_bid}
         handleChangeScreen={handleChangeScreen}
         endTime={timeEndAuction}
+        resetTimer={resetTimer}
       />
     );
     }
@@ -67,6 +92,7 @@ const AuctionContainer: React.FC<IAuctionProps> = ({
         endTime={timeEndAuction}
         cardInfo={cardInfo as ISpecialCardInfo}
         handleChangeScreen={handleChangeScreen}
+        resetTimer={resetTimer}
       />
     );
     }
@@ -78,6 +104,7 @@ const AuctionContainer: React.FC<IAuctionProps> = ({
         cardInfo={cardInfo as ICardInfo}
         handleChangeScreen={handleChangeScreen}
         setTimeEndAuction={setTimeEndAuction}
+        resetTimer={resetTimer}
       />
     );
 }
