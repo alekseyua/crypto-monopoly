@@ -10,7 +10,7 @@ import Title from '../../../../shared/UI/Title/Title';
 import { IActionCard } from '../../../../store/quick-game/quick-game.d';
 import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer';
 
-interface IGameInfoBoardBuyOrAuctionProps {
+interface IBayOrAuctionProps {
 	labelColors?: string[];
 	labelTextColors?: string[];
 	actions: IActionCard;
@@ -22,7 +22,7 @@ interface IGameInfoBoardBuyOrAuctionProps {
 	timeEndMove: number;
 }
 
-export const GameInfoBoardPayOrAddChance: React.FC<IGameInfoBoardBuyOrAuctionProps> = ({
+export const GameInfoBoardPayOrAddChance: React.FC<IBayOrAuctionProps> = ({
 	labelColors = ['transparent', '#65B99E'],
 	labelTextColors = ['#000000', '#ffffff'],
 	card_cost,
@@ -32,7 +32,7 @@ export const GameInfoBoardPayOrAddChance: React.FC<IGameInfoBoardBuyOrAuctionPro
 	handleCard,
 	actions,
 	timeEndMove,
-}: IGameInfoBoardBuyOrAuctionProps) => {
+}: IBayOrAuctionProps) => {
 	const [amountHouses, setAmountHouses] = React.useState<number>(1);
 	const [ isClick, setIsClick ] = React.useState<boolean>(false);
 	

@@ -13,7 +13,6 @@ import ContainerInfoFooterGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoFo
 import ContainerInfoHeaderGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB";
 import { temporaryDisableBtn } from "../../../../../../helpers/helper";
 
-
 interface IInfoChanceOrCommunityProps {
   onMove: (params: any) => void;
   title?: string;
@@ -26,16 +25,16 @@ interface IInfoChanceOrCommunityProps {
 }
 
 export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
-	onMove,
-	actions,
-	title = 'Время вашего хода',
-	// titleBtns,
+  onMove,
+  actions,
+  title = "Время вашего хода",
+  // titleBtns,
   cards,
   typeCard,
-	content,
-	cardIdWhereMoveTo,
+  content,
+  cardIdWhereMoveTo,
 }: IInfoChanceOrCommunityProps) => {
-  const [ isClick, setIsClick ] =  React.useState(false); 
+  const [isClick, setIsClick] = React.useState(false);
   const getNameBtn = useCallback(function (name: string) {
     if (name === undefined) return "";
     switch (name) {
@@ -73,7 +72,11 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
       />
       <ContainerInfoHeaderGIB>
         <ContainerOneBtn>
-          <Button p={12} variant="gradient" gradientColors={["#726CED", "#70DCF1"]}>
+          <Button
+            p={12}
+            variant="gradient"
+            gradientColors={["#726CED", "#70DCF1"]}
+          >
             {title}
           </Button>
         </ContainerOneBtn>
@@ -125,7 +128,7 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
                         action: a,
                         card_id: cardIdWhereMoveTo,
                       };
-                      if(a === 'add_card'){
+                      if (a === "add_card") {
                         params = { card_id: cardIdWhereMoveTo };
                       }
                       onMove(params);

@@ -91,7 +91,7 @@ export const quickGame = (store: StoreonStore) => {
   // -------- player data
   const initDataPlayerQG: IPlayer = {
     id: 0,
-    user: '',
+    user: "",
     balance: "",
     color: "",
     is_creater: false,
@@ -107,17 +107,20 @@ export const quickGame = (store: StoreonStore) => {
     card_data: {},
     auction_data: {},
     choose_data: {},
-    status: 'waiting',
+    status: "waiting",
     bill_data: {
       balance: 0,
       property: 0,
       capital: 0,
       jackpot: 0,
-      rank:0
+      rank: 0,
     },
-    username: '',
-    move_end_time_sec:0,
-    messages:[]
+    username: "",
+    move_end_time_sec: 0,
+    messages: [],
+    dice_roll_1: 0,
+    dice_roll_2: 0,
+    is_concluded: true
   };
 
   store.on(_INIT, () => ({ dataPlayerQG: initDataPlayerQG }));

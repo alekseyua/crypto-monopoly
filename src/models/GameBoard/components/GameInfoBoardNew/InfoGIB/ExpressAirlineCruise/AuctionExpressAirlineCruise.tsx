@@ -135,7 +135,8 @@ export const AuctionExpressAirlineCruise: React.FC<IAuctionExpressAirlineCruiseP
                 <Text
                   fontWeight={900}
                   text={
-                    (card as ISpecialCard)?.card_info?.collection_amount + ""
+                    (card as ISpecialCard)?.card_info?.info?.collection_amount +
+                    ""
                   }
                 />
               </InnerBtnContextSpaceBetween>

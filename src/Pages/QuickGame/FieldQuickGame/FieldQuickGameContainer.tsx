@@ -10,7 +10,7 @@ import {
 } from "../../../store/quick-game/quick-game";
 import { GameInfoBoard } from "../../../models/GameBoard/components/GameInfoBoard/GameInfoBoard";
 import { MoveBoardQG } from "../../../models/GameBoard/components/GameInfoBoard/MoveBoardQuickGame";
-import { GameInfoBoardBuyOrAuction } from "../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardBuyOrAuction";
+import { BayOrAuction } from "../../../models/GameBoard/components/GameInfoBoardNew/BayOrAuction/BayOrAuction";
 import { useNavigate } from "react-router-dom";
 import {
   ICard,
@@ -23,7 +23,7 @@ import {
   IUserActions,
 } from "../../../store/quick-game/quick-game.d";
 import { ExpressAirlineCruise } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ExpressAirlineCruise/ExpressAirlineCruise";
-import { GameInfoBoardMoveToMoveTo } from "../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardMoveTo";
+import { MoveTo } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/MoveTo/MoveTo";
 import { isKeyPresentInHash } from "../../../helpers/helper";
 import { GameInfoBoardPayOrAddChance } from "../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardPayOrAddChance";
 import { GameInfoBoardPayTaxOrAddCardChance } from "../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardPayTaxOrAddCardChance";
@@ -33,12 +33,12 @@ import { GameInfoBoardShowExchange } from "../../../models/GameBoard/components/
 import ActionsCardContainerStackScreen from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ActionsCard/ActionsCardContainerStackScreen";
 import Wait from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/Wait/Wait";
 import { InfoJail } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/Jail/InfoJail";
-import { InfoChanceOrCommunity } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ChanceOrCommunity/InfoChanceOrCommunity";
 import { ShowMassagePopup } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ShowMassagePopup/ShowMassagePopup";
 import { StoreonDispatch } from "storeon";
 import { SET_HEADER_NAME_IS_SHOW } from "../../../store/header/header";
 import { HeaderNameEnum } from "../../../store/header/header.d";
 import { IUser } from "../../../store/users/user.d";
+import { InfoChanceOrCommunity } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ChanceOrCommunity/InfoChanceOrCommunity";
 
 type keyPreview = {
   key:
@@ -663,7 +663,7 @@ const handleCardOnField = (card_id: number): void => {
 			break;
 		case "move_to":
 			setActionCardView(
-			<GameInfoBoardMoveToMoveTo
+			<MoveTo
 				moveTo={actionCardData?.data_actions.card}
 				handleMoveTo={handleMoveTo}
 				game_id={quickGame?.id}
@@ -672,7 +672,7 @@ const handleCardOnField = (card_id: number): void => {
 			break;
 		case "buy_or_auction_card":
 			setActionCardView(
-			<GameInfoBoardBuyOrAuction
+			<BayOrAuction
 				actions={actionCardData?.data_actions.actions}
 				card_cost={
 				actionCardData?.data_actions?.card_info?.features?.base_cost

@@ -9,18 +9,19 @@ interface IProps {
   onClick: () => void;
 }
 
-const RollDiceContainer:React.FC<IProps> = ({
+const RollDiceContainer: React.FC<IProps> = ({
   roleDice1,
   roleDice2,
+  onClick,
 }) => {
-    const cube1 = useRef<HTMLDivElement>(null);
-    const cube2 = useRef<HTMLDivElement>(null);
-    const [role1] = useState<number>(roleDice1);
-    const [role2] = useState<number>(roleDice2);
-    
-    // Assigning 0 to randomSize to the array
-    const handleClickDice = useCallback(
-      function (e: React.MouseEvent<HTMLElement>) {
+  const cube1 = useRef<HTMLDivElement>(null);
+  const cube2 = useRef<HTMLDivElement>(null);
+  const [role1] = useState<number>(roleDice1);
+  const [role2] = useState<number>(roleDice2);
+
+  // Assigning 0 to randomSize to the array
+  const handleClickDice = useCallback(
+    function (e: React.MouseEvent<HTMLElement>) {
       const faceRotationMap: Record<number, [number, number]> = {
         1: [0, 0], // front
         2: [0, 180], // back
@@ -31,9 +32,6 @@ const RollDiceContainer:React.FC<IProps> = ({
       };
       const [rotateX1, rotateY1] = faceRotationMap[role1];
       const [rotateX2, rotateY2] = faceRotationMap[role2];
-        console.log(rotateX1, rotateY1);
-        console.log(rotateX2, rotateY2);
-        
 
       // Добавим лишние обороты для реалистичного вращения
       const extraSpinsX = 360 * 3; // 3 оборота
@@ -57,10 +55,10 @@ const RollDiceContainer:React.FC<IProps> = ({
           rotateX2 + extraSpinsX
         }deg) rotateY(${rotateY2 + extraSpinsY}deg)`;
       }
+      onClick && onClick();
     },
     [role1, role2]
   );
-
 
   return (
     <section

@@ -1,3 +1,4 @@
+import { useStoreon } from 'storeon/react';
 import { logo } from '../../../../assets';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import { Button, Offset } from '../../../../shared/UI';
@@ -8,6 +9,7 @@ import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfo
 import ContainerInfoTwoColumnGIB from '../GameInfoBoardNew/UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
 import styles from './styles/gib.module.scss';
 import React from 'react';
+import { IPlayer } from '../../../../store/quick-game/quick-game.d';
 
 interface IMoveBoardQGProps {
 	onMove: (params: any) => void;
@@ -17,6 +19,13 @@ interface IMoveBoardQGProps {
 	timeEndMove: number;
 }
 
+type EventsStore = null;
+
+type StateStore = {
+  dataPlayerQG: IPlayer
+};
+
+
 export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 	onMove,
 	action,
@@ -25,7 +34,8 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 	timeEndMove,
 }: IMoveBoardQGProps) => {
 	  const [ isClick, setIsClick ] =  React.useState(false); 
-	
+    const { dataPlayerQG } = useStoreon<StateStore, EventsStore>("dataPlayerQG");
+    console.log({ dataPlayerQG });
 	return (
     <div className={styles["gib__container"]}>
       {/* header */}
@@ -82,17 +92,21 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
               justifyContent: "center",
             }}
           >
-            <RollDiceContainer roleDice1={1} roleDice2={2} onClick={()=>{
-				onMove({
-					action,
-				});
-			}}/>
+            <RollDiceContainer
+              roleDice1={dataPlayerQG.dice_roll_1}
+              roleDice2={dataPlayerQG.dice_roll_2}
+              onClick={() => {
+                onMove({
+                  action,
+                });
+              }}
+            />
           </div>
         )}
       </div>
       <Offset mt={10} />
       {/* footer */}
-      <GameInfoBoardFooterContainer />
+      <GameInfoBoardFooterContainer style={{ width: 'calc(100% - 30px)', margin: '0 15px'}}/>
 
       <Offset mt={10} />
     </div>

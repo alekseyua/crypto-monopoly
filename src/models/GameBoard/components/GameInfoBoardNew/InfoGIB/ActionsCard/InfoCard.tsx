@@ -130,7 +130,7 @@ const InfoCard: React.FC<IProps> = ({
                 <Text
                   fontWeight={900}
                   text={
-                    (card as ICard)?.card_info?.collection_amount + ""
+                    (card as ICard)?.card_info?.info?.collection_amount + ""
                   }
                 />
               </InnerBtnContextSpaceBetween>

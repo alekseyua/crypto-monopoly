@@ -74,192 +74,206 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 		}, []);
 
 	return (
-		<div
-			onClick={() => !isGrayBlur && type !== 'chance' && type !== 'community' && handleCard(id)}
-			className={classNames({
-				[styles['card-field__container']]: true,
-				[styles['card-field__container--' + direction]]: direction,
-				[styles[`${className}`]]: className,
-				[styles[type]]: type,
-				[styles['card-field__is-pawn']]: owner?.is_pawn
-				// chance | city | community | cruise | express | airline
-			})}
-			style={{
-				backgroundColor: type === 'chance' ? '#E7EFFD' : '',
-				filter: isGrayBlur ? 'blur(3px) grayscale(100%)' : '',
-			}}
-		>
-			<div
-				className={styles['card-field__container-wrap']}
-				style={{
-					borderRadius: activeCardForSelect ? 7 : 0,
-				}}
-			>
-				<div
-					className={classNames({
-						[styles['card-field__container-body']]: true,
-						[styles[`card-field__container-body--${direction}`]]: !!direction,
-					})}
+    <div
+      onClick={() =>
+        !isGrayBlur &&
+        type !== "chance" &&
+        type !== "community" &&
+        handleCard(id)
+      }
+      className={classNames({
+        [styles["card-field__container"]]: true,
+        [styles["card-field__container--" + direction]]: direction,
+        [styles[`${className}`]]: className,
+        [styles[type]]: type,
+        [styles["card-field__is-pawn"]]: owner?.is_pawn,
+        // chance | city | community | cruise | express | airline
+      })}
+      style={{
+        backgroundColor: type === "chance" ? "#E7EFFD" : "",
+        filter: isGrayBlur ? "blur(3px) grayscale(100%)" : "",
+      }}
+    >
+      <div
+        className={styles["card-field__container-wrap"]}
+        style={{
+          borderRadius: activeCardForSelect ? 7 : 0,
+        }}
+      >
+        <div
+          className={classNames({
+            [styles["card-field__container-body"]]: true,
+            [styles[`card-field__container-body--${direction}`]]: !!direction,
+          })}
+        >
+          {/* photo */}
+          <div
+            className={classNames({
+              [styles["card-field__image"]]: true,
+              [styles[`card-field__image--${direction}`]]: !!direction,
+              [styles[`card-field__image--${type}`]]: type,
+            })}
+            style={{
+              backgroundImage: `url(${image_card ?? fieldBg}) `, //center/cover no-repeat
+            }}
+          ></div>
+          {/* body card */}
+          <div
+            className={classNames({
+              [styles["card-field__text-container"]]: true,
+              [styles[`card-field__text-container--${direction}`]]: !!direction,
+            })}
+          >
+            <div
+              style={{ ...initStyleColor, ...styleBayCard }}
+              className={classNames({
+                [styles["card-field__owner-card"]]: true,
+                [styles[`card-field__owner-card--${direction}`]]: !!direction,
+              })}
+            ></div>
 
-				>
-					{/* photo */}
-					<div
-						className={classNames({
-							[styles['card-field__image']]: true,
-							[styles[`card-field__image--${direction}`]]: !!direction,
-							[styles[`card-field__image--${type}`]]: type,
-						})}
-						style={{
-							backgroundImage: `url(${image_card ?? fieldBg}) `, //center/cover no-repeat
-						}}
-					></div>
-					{/* body card */}
-					<div
-						className={classNames({
-							[styles['card-field__text-container']]: true,
-							[styles[`card-field__text-container--${direction}`]]: !!direction,
-						})}
-					>
-						<div style={{ ...initStyleColor, ...styleBayCard }} className={
-							classNames({
-								[styles['card-field__owner-card']]: true,
-								[styles[`card-field__owner-card--${direction}`]]: !!direction,
-							})
-						}></div>
+            <>
+              <div
+                className={classNames({
+                  [styles["card-field__text-title"]]: true,
+                  [styles[`card-field__text-title--${direction}`]]: !!direction,
+                  [styles[`card-field__text-title--build`]]:
+                    !!owner?.houses || !!owner?.hotels,
+                })}
+              >
+                {!(type === "chance" || type === "community") && name}
+                {!!owner?.hotels ? (
+                  <div
+                    className={
+                      styles[`card-field__text-title--build-hotel-${direction}`]
+                    }
+                  >
+                    <Icon src={icons.hotelCard} width="25" height="12" />
+                  </div>
+                ) : !!owner?.houses ? (
+                  <div
+                    className={
+                      styles[`card-field__text-title--build-h-${direction}`]
+                    }
+                  >
+                    {new Array(owner?.houses)
+                      .fill("")
+                      .map((h: any, i: number) => {
+                        return (
+                          <Icon
+                            key={i}
+                            src={icons.home}
+                            width="12px"
+                            height="12px"
+                            rotate={
+                              direction === "left"
+                                ? 270
+                                : direction === "right"
+                                ? 270
+                                : 0
+                            }
+                          />
+                        );
+                      })}
+                  </div>
+                ) : null}
+              </div>
+              {players && players?.length > 0 && (
+                <PlayerSticker
+                  className={styles["card-name__sticker"]}
+                  direction={direction}
+                  players={[
+                    ...players,
+                    ...players,
+                    ...players,
+                    ...players,
+                    ...players,
+                    ...players,
+                  ]}
+                />
+              )}
+            </>
+          </div>
+        </div>
+        {/* header (price) */}
+        <div
+          style={initStyleColor}
+          className={classNames({
+            [styles["card-field__text-header-card"]]: true,
+            [styles[`card-field__text-header-card--${direction}`]]: !!direction,
+          })}
+        >
+          {type === "chance" ? (
+            <div>Шанс</div>
+          ) : type === "community" ? (
+            <div>Казна</div>
+          ) : (
+            <div>
+              {cardCost}{" "}
+              <Icon
+                className={styles["card-field__qg-currency"]}
+                width="10px"
+                height="10px"
+                src={icons.qgCurrencySvgWhite}
+              />
+            </div>
+          )}
+        </div>
+        {/* gradiant */}
+        {type !== "chance" && type !== "community" && (
+          // gradient над карточкой
+          <div
+            className={classNames({
+              [styles["card-field__white-gradiant"]]: true,
+              [styles[`card-field__white-gradiant--${direction}`]]: !!direction,
+              // [styles[`card-field__image--${type}`]]: type,
+            })}
+          ></div>
+        )}
+      </div>
 
-
-
-						<>
-							<div className={classNames({
-								[styles['card-field__text-title']]: true,
-								[styles[`card-field__text-title--${direction}`]]: !!direction,
-								[styles[`card-field__text-title--build`]]: !!owner?.houses || !!owner?.hotels,
-							})}
-							>
-								{!(type === 'chance' || type === 'community') && name}
-								{
-									!!owner?.hotels ?
-										<div className={styles[`card-field__text-title--build-hotel-${direction}`]}>
-											<Icon src={icons.hotelCard} width='25' height='12' />
-
-										</div>
-										: !!owner?.houses ?
-											<div className={styles[`card-field__text-title--build-h-${direction}`]}>
-												{new Array(owner?.houses).fill('').map((h: any, i: number) => {
-													return (
-														<Icon
-														key={i}
-														src={icons.home}
-														width="12px"
-														height="12px"
-														rotate={direction === 'left'? 270 : direction === 'right'? 270 : 0}
-														/>
-													);
-												})}
-											</div>
-											: null
-
-								}
-							</div>
-							{
-								players &&
-								players?.length > 0 &&
-								<PlayerSticker
-									className={styles['card-name__sticker']}
-									direction={direction}
-									players={players}
-								/>
-							}
-						</>
-					</div>
-				</div>
-				{/* header (price) */}
-				<div style={initStyleColor}
-					className={classNames({
-						[styles['card-field__text-header-card']]: true,
-						[styles[`card-field__text-header-card--${direction}`]]: !!direction,
-
-					})}>
-					{type === 'chance' ? (
-						<div>Шанс</div>
-					) : type === 'community' ? (
-						<div>Казна</div>
-					) : (
-						<div>{cardCost} <Icon
-							className={styles['card-field__qg-currency']}
-							width='10px'
-							height='10px'
-							src={icons.qgCurrencySvgWhite}
-						/>
-						</div>
-					)}
-				</div>
-				{/* gradiant */}
-				{type !== 'chance' && type !== 'community' && (
-					// gradient над карточкой
-					<div
-						className={classNames({
-							[styles['card-field__white-gradiant']]: true,
-							[styles[`card-field__white-gradiant--${direction}`]]: !!direction,
-							// [styles[`card-field__image--${type}`]]: type,
-						})}
-					></div>
-				)}
-
-
-			</div>
-
-
-			{onField && (
-				<div className={classNames({
-					[styles['onfield__container']]: true,
-					[styles[`onfield__container--${direction}`]]: !!direction,
-
-				})}
-					style={initStyleOnFieldColor}
-				>
-					<div className={
-						classNames({
-							[styles['onfield__soles-icons']]: true,
-							[styles[`onfield__soles-icons--${direction}`]]: !!direction,
-
-						})
-					}
-					>
-						<motion.div
-							style={{ display: 'inline' }}
-							initial={{ opacity: 0 }}
-							animate={{ opacity: [0, 1] }}
-							transition={{
-								repeat: Infinity,
-								repeatType: 'reverse',
-								duration: 1,
-							}}>
-							<Icon
-								src={LeftSoleIcon}
-								width={'7px'}
-								height={'17px'}
-							/>
-						</motion.div>
-						<motion.div
-							style={{ display: 'inline' }}
-							initial={{ opacity: 0 }}
-							animate={{ opacity: [0, 1] }}
-							transition={{
-								repeat: Infinity,
-								repeatType: 'reverse',
-								duration: 1,
-								delay: 1,
-							}}>
-							<Icon
-								src={RightSoleIcon}
-								width={'7px'}
-								height={'17px'}
-							/>
-						</motion.div>
-					</div>
-				</div>
-			)}
-		</div>
-	);
+      {onField && (
+        <div
+          className={classNames({
+            [styles["onfield__container"]]: true,
+            [styles[`onfield__container--${direction}`]]: !!direction,
+          })}
+          style={initStyleOnFieldColor}
+        >
+          <div
+            className={classNames({
+              [styles["onfield__soles-icons"]]: true,
+              [styles[`onfield__soles-icons--${direction}`]]: !!direction,
+            })}
+          >
+            <motion.div
+              style={{ display: "inline" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1] }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "reverse",
+                duration: 1,
+              }}
+            >
+              <Icon src={LeftSoleIcon} width={"7px"} height={"17px"} />
+            </motion.div>
+            <motion.div
+              style={{ display: "inline" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1] }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "reverse",
+                duration: 1,
+                delay: 1,
+              }}
+            >
+              <Icon src={RightSoleIcon} width={"7px"} height={"17px"} />
+            </motion.div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 });

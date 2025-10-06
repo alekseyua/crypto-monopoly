@@ -45,16 +45,16 @@ interface ISpecialCard {
 }
 
 interface ISpecialCardInfo {
-    "base_cost": number;
-    "name": string;
-    "one_card_tax": number;
-    "two_card_tax": number;
-    "three_card_tax": number;
-    "four_card_tax": number;
-    "monopoly_tax": number;
-    "card_type": string;
-    "collection_amount": string;
-    "start_price": number;
+  base_cost: number;
+  name: string;
+  one_card_tax: number;
+  two_card_tax: number;
+  three_card_tax: number;
+  four_card_tax: number;
+  monopoly_tax: number;
+  card_type: string;
+  start_price: number;
+  info: ICardInfoData;
 }
 
 
@@ -116,8 +116,9 @@ export interface ICardAuctionData {
 }
 
 export interface ICardInfoData {
-    "name": string;
-    "country_name": string;
+  name: string;
+  country_name: string;
+  collection_amount: string;
 }
 
 export interface ICardPriceData {
@@ -140,7 +141,6 @@ export interface ICardInfo {
   start_price?: number; // ???
   highest_bid?: number; // ???
   base_cost?: number; // ???
-  collection_amount: string;
 }
 
 export interface ICardAuctionDataPrices {
@@ -288,6 +288,9 @@ interface IPlayer {
   username: string;
   move_end_time_sec: number;
   messages: IMassagesFeed[];
+  dice_roll_1: number;
+  dice_roll_2: number;
+  is_concluded: boolean
 }
 
 interface IInfoMassagePopup {

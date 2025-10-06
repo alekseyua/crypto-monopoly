@@ -586,18 +586,25 @@
             //card-field__text-title--bottom
             &--bottom{
                 writing-mode: sideways-lr;
-                padding-bottom: 5px;
-                bottom: 0;
                 position: relative;
-                display: flex;
-                align-items: center;
                 height: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                display: flex;
+                flex-direction: column-reverse;
+                align-items: flex-end;
+                padding-top: 5px;
             }
             //card-field__text-title--left
             &--left{
-                left: 0;
+                width: 100%;
+                right: 0;
                 position: relative;
-                padding-left: 5px;
+                padding-right: 5px;
+                display: flex;
+                justify-content: flex-end;
+                
             }
             //card-field__text-title--right
             &--right{
