@@ -49,8 +49,6 @@
 	justify-content: flex-start;
 	width: 100%;
 	aspect-ratio: 1 / 1;
-	/* квадрат */
-	// border: 2px solid #333;
 	padding: 1px;
 	box-sizing: border-box;
 	gap: 4px;
@@ -78,6 +76,7 @@
 	border-left: 2px solid #a6a6a6;
 	border-bottom: 2px solid #a6a6a6;
 	border-radius: 0 0 0 14px;
+	align-items: flex-end;
 	&--isconcluded{
 	}
 }

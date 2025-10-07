@@ -536,48 +536,48 @@
                 //card-field__text-title--build-hotel-left
                 &-hotel-left{
                     position: absolute;
-                    transform: rotate(0deg) translate(-3px, 19px);
+                        transform: rotate(0deg) translate(3px, 20px);
                 }
                 //card-field__text-title--build-hotel-bottom
                 &-hotel-bottom{
                     position: absolute;
-                    transform: rotate(90deg) translate(-3px, -15px);
+                    transform: rotate(90deg) translate(4px, -17px)
                 }
                 //card-field__text-title--build-hotel-right
                 &-hotel-right{
                     position: absolute;
                     transform: rotate(0deg) translate(-3px, 19px);
                 }
-                //card-field__text-title-build-h-top
-                &-h-top{
+                //card-field__text-title-build-house-top
+                &-house-top{
                     position: absolute;
                     z-index: 999;
-                    transform: rotate(270deg) translate(30%, -11%);
+                    transform: rotate(270deg) translate(35%, -51%);
                     
                         &>span {
                             margin-left: 5px;
                         }
                 }
-                //card-field__text-title-build-h-left
-                &-h-left{
+                //card-field__text-title-build-house-left
+                &-house-left{
                     position: absolute;
-                    transform: rotate(90deg) translate(70%, -30%);
+                    transform: rotate(90deg) translate(-40%, 37%);
                     &>span {
                             margin-top: 5px;
                         }
                 }
-                //card-field__text-title-build-h-bottom
-                &-h-bottom{
+                //card-field__text-title-build-house-bottom
+                &-house-bottom{
                     position: absolute;
-                    transform: rotate(270deg) translate(27%, 110%);
+                    transform: rotate(270deg) translate(-40%, 320%);
                     &>span{
                         margin-left: 5px;
                     }
                 }
-                //card-field__text-title-build-h-right
-                &-h-right{
+                //card-field__text-title-build-house-right
+                &-house-right{
                     position: absolute;
-                    transform: rotate(90deg) translate(-60%, -40%);
+                    transform: rotate(90deg) translate(0, -40%);
                     &>span {
                             margin-top: 5px;
                         }
@@ -595,6 +595,8 @@
                 flex-direction: column-reverse;
                 align-items: flex-end;
                 padding-top: 5px;
+                padding-right: 10px;
+                left: 4px;
             }
             //card-field__text-title--left
             &--left{

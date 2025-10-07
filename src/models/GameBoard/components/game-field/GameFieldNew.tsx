@@ -153,7 +153,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
                 ) : !!owner?.houses ? (
                   <div
                     className={
-                      styles[`card-field__text-title--build-h-${direction}`]
+                      styles[`card-field__text-title--build-house-${direction}`]
                     }
                   >
                     {new Array(owner?.houses)

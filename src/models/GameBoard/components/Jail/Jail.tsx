@@ -77,7 +77,7 @@ const Jail: React.FC<IJailProps> = ({
           {players && players?.length > 0 && (
             <PlayerSticker
               direction="bottom"
-              reverse
+              // reverse
               players={players.filter((p: IPlayer) => p.is_concluded)}
             />
           )}
