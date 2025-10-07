@@ -9,6 +9,7 @@ interface IPlayerStickerProps {
     className?: string;
     players: IPlayer[];
     reverse?: boolean;
+    countRows?: number;
 }
 
 const PlayerSticker: React.FC<IPlayerStickerProps> = ({ 
@@ -16,11 +17,13 @@ const PlayerSticker: React.FC<IPlayerStickerProps> = ({
     className,
     reverse,
     players,
+    countRows,
 }: IPlayerStickerProps) => {
     return (
       <div
         className={classNames({
           [cls["players__container"]]: true,
+          [cls["players__container--" + countRows]]: countRows,
           [cls["players__container--reverse"]]: reverse,
           [cls[`players__container--${direction}`]]: !!direction,
           [`${className}`]: !!className,

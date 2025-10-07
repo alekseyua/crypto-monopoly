@@ -36,7 +36,6 @@
 			'visited visited jail jail jail jail'
 			'visited visited jail jail jail jail'
 			'visited visited jail jail jail jail'
-			
 			;
 		position: relative;
 		width: 100%;
@@ -52,15 +51,17 @@
 	aspect-ratio: 1 / 1;
 	/* квадрат */
 	// border: 2px solid #333;
-	padding: 4px;
+	padding: 1px;
 	box-sizing: border-box;
 	gap: 4px;
 	overflow: hidden;
+	grid-area: visited;
+	position: relative;
 }
 .jail__player-sticker-concluded-container {
 	// border: 1px solid red;
-	width: 100%;
-	height: 100%;
+	// width: 100%;
+	// height: 100%;
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -72,12 +73,38 @@
 	align-items: flex-start;
 	justify-content: flex-end;
 	padding: 5px;
+	width: 80%;
+	height: 80%;
+	border-left: 2px solid #a6a6a6;
+	border-bottom: 2px solid #a6a6a6;
+	border-radius: 0 0 0 14px;
 	&--isconcluded{
-		width: 70%;
-		height: 70%;
-		border-left: 2px solid #333;
-		border-bottom: 2px solid #333;
 	}
+}
+
+.jail__text-visited--bottom{
+	position: absolute;
+	width: 100%;
+	left: 30%;
+	bottom: 4%;
+	letter-spacing: 3px;
+		font-weight: 900;
+		font-family: Manrope;
+}
+.jail__text-visited--left{
+	position: absolute;
+	width: 100%;
+	// right: 4%;
+	left: 4%;
+	bottom: 40%;
+	writing-mode: vertical-rl;
+		/* или vertical-lr */
+	text-orientation: mixed;
+	display: flex;
+	align-items: flex-end;
+	letter-spacing: 3px;
+	font-weight: 900;
+	font-family: Manrope;
 }
 
 .field {
@@ -232,6 +259,12 @@
 		grid-auto-flow: column;
 		grid-template-rows: repeat(3, 1fr);
 		// width: 100%;
+		&--1{
+			grid-template-rows: repeat(1, 1fr);
+		}
+		&--2{
+			grid-template-rows: repeat(2, 1fr);
+		}
 		//players__container--left
 		&--left{
 			justify-content: start;

@@ -184,11 +184,11 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
                   direction={direction}
                   players={[
                     ...players,
-                    ...players,
-                    ...players,
-                    ...players,
-                    ...players,
-                    ...players,
+                    // ...players,
+                    // ...players,
+                    // ...players,
+                    // ...players,
+                    // ...players,
                   ]}
                 />
               )}
