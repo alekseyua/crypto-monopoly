@@ -4,6 +4,7 @@ import RollDice from "./RollDice";
 import { IRoleDiceStore } from "../../../store/quick-game/quick-game.d";
 import { RESET_ROLL_DICE_QG } from "../../../store/quick-game/quick-game";
 import { useStoreon } from "storeon/react";
+import { Offset } from "../Offset/Offset";
 
 interface IProps {
   roleDice1: number;
@@ -24,13 +25,11 @@ const RollDiceContainer: React.FC<IProps> = ({
   onClick,
 }) => {
   const { roleDiceStore, dispatch } = useStoreon<StateStore, EventStore>("roleDiceStore");
+  const [ isClick, setIsClick ] = useState<boolean>(false);
   const cube1 = useRef<HTMLDivElement>(null);
   const cube2 = useRef<HTMLDivElement>(null);
 
-  const [role1, setRole1] = useState<number>(6);
-  const [role2, setRole2] = useState<number>(6);
-
-  const rotateDice = useCallback(
+  const rotateDice = 
     (r1: number, r2: number) => {
       const faceRotationMap: Record<number, [number, number]> = {
         1: [0, 0],
@@ -58,31 +57,25 @@ const RollDiceContainer: React.FC<IProps> = ({
           rotateX2 + extraSpinsX
         }deg) rotateY(${rotateY2 + extraSpinsY}deg)`;
       }
-
-      onClick && onClick();
-    },
-    [onClick]
-  );
+    };
 
   // Запускаем анимацию через 3 секунды после загрузки
-  // useEffect(() => {
-  //   console.log(
-  //     "%cROLEDICE = " + roleDiceStore.rd1 + " : " + roleDiceStore.rd2,
-  //     "color: green"
-  //   );
-  //   if (roleDiceStore.rd1 === 0 || roleDiceStore.rd2 === 0) return;
-  //     const timer = setTimeout(() => {
-  //       // setRole1(roleDice1 === 0 ? 6 : roleDice1);
-  //       // setRole2(roleDice2 === 0 ? 6 : roleDice2);
-  //       rotateDice(roleDiceStore.rd1, roleDiceStore.rd2);
-  //     }, 3000);
+  useEffect(() => {
+    console.log(
+      "%cROLEDICE = " + roleDiceStore.rd1 + " : " + roleDiceStore.rd2,
+      "color: green"
+    );
+    if (roleDiceStore.rd1 === 0 || roleDiceStore.rd2 === 0) return;
+      const timer = setTimeout(() => {
+        setIsClick(true);
+        rotateDice(roleDiceStore.rd1, roleDiceStore.rd2);
+      }, 0);
 
-  //   return () => {
-  //     clearTimeout(timer);
-  //     dispatch(RESET_ROLL_DICE_QG);
-  //   };
-  // }, [roleDiceStore.rd1, roleDiceStore.rd2, rotateDice]);
-  // }, [roleDice1, roleDice2, rotateDice]);
+    return () => {
+      clearTimeout(timer);
+      dispatch(RESET_ROLL_DICE_QG);
+    };
+  }, [roleDiceStore.rd1, roleDiceStore.rd2]);
 
   return (
     <section
@@ -90,11 +83,16 @@ const RollDiceContainer: React.FC<IProps> = ({
       style={{
         width: "100px",
         height: "100px",
+        pointerEvents: isClick ? "none" : "all",
       }}
-      onClick={() => roleDiceStore.rd1 !==0 &&  roleDiceStore.rd2 !==0 && rotateDice(roleDiceStore.rd1, roleDiceStore.rd2)}
+      onClick={() => {
+        setIsClick(true);
+        onClick();
+      }}
     >
-      <RollDice ref={cube1} />
-      <RollDice ref={cube2} />
+      <RollDice ref={cube1} left={-10} />
+      {/* <Offset mr={10} /> */}
+      <RollDice ref={cube2} left={10} />
     </section>
   );
 };

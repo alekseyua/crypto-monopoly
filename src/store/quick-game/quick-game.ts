@@ -196,7 +196,7 @@ export const quickGame = (store: StoreonStore) => {
           id: 0,
           name: "",
         },
-        card_type: '',
+        card_type: "",
         // move_end_time_sec: 0,
       },
       card_id: 0,
@@ -222,6 +222,7 @@ export const quickGame = (store: StoreonStore) => {
       message: "",
       type_card: "",
     },
+    show_dice_roll: false,
   };
 
   store.on(_INIT, () => ({ dataPlayerQG: initDataPlayerQG }));
@@ -338,10 +339,15 @@ export const quickGame = (store: StoreonStore) => {
               res.game_data &&
               res.game_data.players.filter((p: any) => +p.user === profileID);
             dispatch(SET_DATA_PLAYER_QG, currentPlayer[0]); // данные пользователя в игре
-            dispatch(SET_ROLL_DICE_QG, {
-              rd1: currentPlayer[0].dice_roll_1,
-              rd2: currentPlayer[0].dice_roll_2,
-            });
+            console.log("%c" + currentPlayer[0].show_dice_roll, "color: red");
+            if (currentPlayer[0].show_dice_roll){
+              dispatch(SET_ROLL_DICE_QG, {
+                rd1: currentPlayer[0].dice_roll_1,
+                rd2: currentPlayer[0].dice_roll_2,
+              });
+            }else{
+              dispatch(RESET_ROLL_DICE_QG);
+            }
             dispatch(OPEN_WS_FEED_NEWS_QG, { game_id: res.game_data.id }); // открываем ws для фида новостей игры
 
             // set dice roll

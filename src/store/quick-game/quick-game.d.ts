@@ -327,6 +327,7 @@ interface IPlayer {
   dice_roll_2: number;
   avatar?: string;
   is_concluded: boolean;
+  show_dice_roll: boolean;
 }
 
 interface ICardData {

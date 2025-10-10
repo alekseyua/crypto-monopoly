@@ -4,12 +4,17 @@ import styles from './styles/roll-dice.module.scss';
 
 const RollDice = forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
+  React.HTMLAttributes<HTMLDivElement > & { left: number }
 >(({ ...props }, ref) => {
   return (
     <section
       className={styles["container"]}
-      style={{ "--cube-size": "50px" } as React.CSSProperties}
+      style={
+        {
+          "--cube-size": "50px",
+          left: (props as any).left,
+        } as React.CSSProperties
+      }
     >
       <div id={styles["cube"]} ref={ref}>
         <div className={styles["front"]}>
