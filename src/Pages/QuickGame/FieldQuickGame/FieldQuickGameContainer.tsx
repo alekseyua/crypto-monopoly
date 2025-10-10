@@ -7,12 +7,15 @@ import {
   GET_CARD_ACTION_QG,
   GET_LIST_QG,
   MOVE_TO,
+  RESET_ROLL_DICE_QG,
 } from "../../../store/quick-game/quick-game";
 import { GameInfoBoard } from "../../../models/GameBoard/components/GameInfoBoard/GameInfoBoard";
 import { MoveBoardQG } from "../../../models/GameBoard/components/GameInfoBoard/MoveBoardQuickGame";
 import { BayOrAuction } from "../../../models/GameBoard/components/GameInfoBoardNew/BayOrAuction/BayOrAuction";
 import { useNavigate } from "react-router-dom";
 import {
+  CardDataDataActionsJailType,
+  CardDataDataActionsType,
   ICard,
   IChooseDataActions,
   IDataContainer,
@@ -63,17 +66,6 @@ type keyPreview = {
 
 interface IFildQG {}
 
-type ActionTypes = {
-  auction: boolean;
-  buy: boolean;
-  pay: boolean;
-  add_card: boolean;
-  move: boolean;
-  add_chance: boolean;
-  move_to: any;
-  pay_tax_or_add_card_chance: boolean; // оплатить налог или получить карту шанса
-  roll_the_dice_freedom: boolean; //кинуть кубики(без передвижения)
-};
 export interface IStateExchange {
   propertys_from: string[];
   price_from: number;
@@ -147,10 +139,11 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
   const onMove = useCallback(
     (params: any) => {
       dispatch(SEND_ACTION_CARD_QG, params);
-	const listException = ["end_move", 
+	    const listException = ["end_move", 
 		// "return_house", "get_house"
 	];
-	if (listException.includes(params.action)) return;
+	if (listException.includes(params.action)) {
+    return setTimeout(()=>dispatch(RESET_ROLL_DICE_QG),5000)}; // что бы полностью обнулить данные
       if (params.action === "add_card") {
         return dispatch(GET_CARD_ACTION_QG, { chance: true });
       }
@@ -418,21 +411,21 @@ const handleCardOnField = (card_id: number): void => {
 			const startTime = performance.now();
 			const result = func(...args);
 			const endTime = performance.now();
-			console.log(
-			"Runtime duration ",
-			(endTime - startTime).toFixed(2),
-			"ms"
-			);
+			// console.log(
+			// "Runtime duration ",
+			// (endTime - startTime).toFixed(2),
+			// "ms"
+			// );
 			return result;
 		};
 		};
-		console.log( ' popap show = ',
-      infoMassagePopup.show,
-      "&& (",
-      dataPlayerQG.current_move,
-      " ) - current move or auction - 	",
-      isKeyPresentInHash(actionCardData, "auction_data")
-    );
+		// console.log( ' popap show = ',
+    //   infoMassagePopup.show,
+    //   "&& (",
+    //   dataPlayerQG.current_move,
+    //   " ) - current move or auction - 	",
+    //   isKeyPresentInHash(actionCardData, "auction_data")
+    // );
 		if (
       infoMassagePopup.show && (dataPlayerQG.current_move ||
       isKeyPresentInHash(actionCardData, "auction_data"))
@@ -463,27 +456,27 @@ const handleCardOnField = (card_id: number): void => {
 		if (isChoose) typeCard = data.choose_data.card_type;
 		const isMovePlayer = player.current_move;
 		//
-		console.log(
-			"%c----- data ----------",
-			"color: yellow",
-			"\n",
-			{ isActions },
-			"\n",
-			{ isAuctions },
-			"\n",
-			{ isChoose },
-			"\n",
-			data
-		);
-		console.log(
-			"%cisMovePlayer: " +
-			isMovePlayer +
-			"\ncardId: " +
-			cardId +
-			"\ntypeCard: " +
-			typeCard,
-			"color: yellow"
-		);
+		// console.log(
+		// 	"%c----- data ----------",
+		// 	"color: yellow",
+		// 	"\n",
+		// 	{ isActions },
+		// 	"\n",
+		// 	{ isAuctions },
+		// 	"\n",
+		// 	{ isChoose },
+		// 	"\n",
+		// 	data
+		// );
+		// console.log(
+		// 	"%cisMovePlayer: " +
+		// 	isMovePlayer +
+		// 	"\ncardId: " +
+		// 	cardId +
+		// 	"\ntypeCard: " +
+		// 	typeCard,
+		// 	"color: yellow"
+		// );
 
 		const keyAction: "data_actions" | "auction_data" | null = isActions
 			? "data_actions"
@@ -571,7 +564,7 @@ const handleCardOnField = (card_id: number): void => {
 
 		// для обычных карт
 		// const listCard = ["card"];
-		const actions: ActionTypes = dataActions.actions;
+		const actions: CardDataDataActionsType = dataActions.actions;
 		console.log("----- список действий ----------");
 		console.log({ ...actions });
 		console.log({cardId});
@@ -659,7 +652,7 @@ const handleCardOnField = (card_id: number): void => {
 		)[0];
 		switch (dataAction.key) {
 		case "wait-move":
-			setActionCardView(<Wait playerCurrentMove={dataPlayerQG} />);
+			setActionCardView(<Wait playerCurrentMove={quickGame.players.filter( (p:IPlayer) => p.current_move)[0]} />);
 			break;
 		case "move_to":
 			setActionCardView(
@@ -672,56 +665,64 @@ const handleCardOnField = (card_id: number): void => {
 			break;
 		case "buy_or_auction_card":
 			setActionCardView(
-			<BayOrAuction
-				actions={actionCardData?.data_actions.actions}
-				card_cost={
-				actionCardData?.data_actions?.card_info?.features?.base_cost
-				}
-				handleCard={handleCard}
-				game_id={quickGame.id}
-				card_id={dataAction.cardId}
-				dataCard={actionCardData?.data_actions?.card_info}
-				timeEndMove={dataPlayerQG.move_end_time_sec}
-			/>
-			);
+        <BayOrAuction
+          actions={
+            actionCardData?.data_actions.actions as CardDataDataActionsType
+          }
+          card_cost={
+            actionCardData?.data_actions?.card_info?.features?.base_cost
+          }
+          handleCard={handleCard}
+          game_id={quickGame.id}
+          card_id={dataAction.cardId}
+          dataCard={actionCardData?.data_actions?.card_info}
+          timeEndMove={dataPlayerQG.move_end_time_sec}
+        />
+      );
 			break;
 		case "pay_or_add_chance":
 			setActionCardView(
-			<GameInfoBoardPayOrAddChance
-				actions={actionCardData?.data_actions?.actions}
-				card_cost={
-				actionCardData?.data_actions?.card_info?.features?.base_cost
-				}
-				handleCard={handleCard}
-				game_id={quickGame.id}
-				card_id={dataAction.cardId}
-				dataCard={actionCardData?.data_actions?.card_info}
-				timeEndMove={dataPlayerQG.move_end_time_sec}
-			/>
-			);
+        <GameInfoBoardPayOrAddChance
+          actions={
+            actionCardData?.data_actions?.actions as CardDataDataActionsType
+          }
+          card_cost={
+            actionCardData?.data_actions?.card_info?.features?.base_cost
+          }
+          handleCard={handleCard}
+          game_id={quickGame.id}
+          card_id={dataAction.cardId}
+          dataCard={actionCardData?.data_actions?.card_info}
+          timeEndMove={dataPlayerQG.move_end_time_sec}
+        />
+      );
 			break;
 		case "pay_tax_or_add_card_chance":
 			setActionCardView(
-			<GameInfoBoardPayTaxOrAddCardChance
-				actions={actionCardData?.data_actions?.actions}
-				handleCard={handleCard}
-				game_id={quickGame.id}
-				card_id={dataAction.cardId}
-				timeEndMove={dataPlayerQG.move_end_time_sec}
-			/>
-			);
+        <GameInfoBoardPayTaxOrAddCardChance
+          actions={
+            actionCardData?.data_actions?.actions as CardDataDataActionsType
+          }
+          handleCard={handleCard}
+          game_id={quickGame.id}
+          card_id={dataAction.cardId}
+          timeEndMove={dataPlayerQG.move_end_time_sec}
+        />
+      );
 			break;
 		case "buy_or_auction_special_card":
 			setActionCardView(
-			<ExpressAirlineCruise
-				actions={actionCardData?.data_actions?.actions}
-				handleCard={handleCard}
-				game_id={quickGame.id}
-				card_id={dataAction.cardId}
-				timeEndMove={dataPlayerQG.move_end_time_sec}
-				card={card}
-			/>
-			);
+        <ExpressAirlineCruise
+          actions={
+            actionCardData?.data_actions?.actions as CardDataDataActionsType
+          }
+          handleCard={handleCard}
+          game_id={quickGame.id}
+          card_id={dataAction.cardId}
+          timeEndMove={dataPlayerQG.move_end_time_sec}
+          card={card}
+        />
+      );
 			break;
 		case "info_board_actions":
 			setActionCardView(
@@ -759,15 +760,17 @@ const handleCardOnField = (card_id: number): void => {
 			break;
 		case "jail":
 			setActionCardView(
-			<InfoJail
-				actions={actionCardData?.data_actions?.actions}
-				card_cost={actionCardData?.data_actions?.card_info?.base_cost}
-				handleCard={handleCard}
-				game_id={quickGame.id}
-				card_id={dataAction.cardId}
-				dataCard={actionCardData?.data_actions?.card_info}
-			/>
-			);
+        <InfoJail
+          actions={
+            actionCardData?.data_actions?.actions as CardDataDataActionsJailType
+          }
+          card_cost={actionCardData?.data_actions?.card_info?.base_cost}
+          handleCard={handleCard}
+          game_id={quickGame.id}
+          card_id={dataAction.cardId}
+          dataCard={actionCardData?.data_actions?.card_info}
+        />
+      );
 			break;
 
 		case "current_move":

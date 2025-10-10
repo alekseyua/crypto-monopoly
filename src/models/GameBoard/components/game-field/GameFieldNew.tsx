@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import { CSSProperties, useEffect } from 'react';
 import classNames from 'classnames';
-import { IPlayer, ownerCard } from '../../../../store/quick-game/quick-game.d';
+import { IPlayer, IOwnerCard } from '../../../../store/quick-game/quick-game.d';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';
 import React from 'react';
 
@@ -23,7 +23,7 @@ interface IGameFieldNew {
 	players?: IPlayer[];
 	playerCurrentMove: IPlayer;
 	cardCost: string;
-	owner: ownerCard;
+	owner: IOwnerCard;
 	id: number;
 	isGrayBlur: boolean;
 	activeCardForSelect: boolean;
@@ -69,9 +69,9 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 		// ...styleBayCard,
 	}
 
-	useEffect(() => {
-			console.log('%cRENDER GameFieldNew QIUICK GAME container', 'color: red')
-		}, []);
+	// useEffect(() => {
+	// 		console.log('%cRENDER GameFieldNew QIUICK GAME container', 'color: red')
+	// 	}, []);
 
 	return (
     <div

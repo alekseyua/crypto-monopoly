@@ -4,7 +4,7 @@ import { Button, Offset } from "../../../../../../shared/UI";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
 import Text from "../../../../../../shared/UI/Text/Text";
 import Title from "../../../../../../shared/UI/Title/Title";
-import { IActionCard } from "../../../../../../store/quick-game/quick-game.d";
+import { CardDataDataActionsJailType } from "../../../../../../store/quick-game/quick-game.d";
 import ContainerGIB from "../../UIContainerGIB/ContainerGIB";
 import ContainerInfoBodyGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB";
 import ContainerInfoHeaderGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB";
@@ -13,18 +13,26 @@ import { temporaryDisableBtn } from "../../../../../../helpers/helper";
 
 
 interface IInfoJailProps {
-	labelColors?: string[];
-	labelTextColors?: string[];
-	wait?: boolean;
-	buy_or_auction_card?: boolean;
+  labelColors?: string[];
+  labelTextColors?: string[];
+  wait?: boolean;
+  buy_or_auction_card?: boolean;
 
-	actions: IActionCard;
-	numberField?: number;
-	card_cost?: number;
-	game_id: number;
-	card_id: number;
-	dataCard: any //IDataContainer;
-	handleCard?: ({ game_id, card_id, action }: { action: string; game_id: number, card_id: number }) => void;
+  actions: CardDataDataActionsJailType;
+  numberField?: number;
+  card_cost?: number;
+  game_id: number;
+  card_id: number;
+  dataCard: any; //IDataContainer;
+  handleCard?: ({
+    game_id,
+    card_id,
+    action,
+  }: {
+    action: string;
+    game_id: number;
+    card_id: number;
+  }) => void;
 }
 
 export const InfoJail: React.FC<IInfoJailProps> = ({

@@ -11,7 +11,7 @@ import ContainerInfoFooterGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoFo
 import ContainerInfoBodyGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB";
 import ContainerInfoGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoGIB";
 import {
-  IActionCard,
+  CardDataDataActionsType,
   ICard,
   ISpecialCard,
 } from "../../../../../../store/quick-game/quick-game.d";
@@ -26,7 +26,7 @@ interface IExpressAirlineCruiseProps {
   card: ICard | ISpecialCard;
   game_id: number;
   card_id: number;
-  actions: IActionCard;
+  actions: CardDataDataActionsType;
   handleCard?: ({
     game_id,
     card_id,

@@ -9,7 +9,7 @@ import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfo
 import ContainerInfoTwoColumnGIB from '../GameInfoBoardNew/UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
 import styles from './styles/gib.module.scss';
 import React from 'react';
-import { IPlayer } from '../../../../store/quick-game/quick-game.d';
+import { IPlayer, IRoleDiceStore } from '../../../../store/quick-game/quick-game.d';
 
 interface IMoveBoardQGProps {
 	onMove: (params: any) => void;
@@ -22,7 +22,8 @@ interface IMoveBoardQGProps {
 type EventsStore = null;
 
 type StateStore = {
-  dataPlayerQG: IPlayer
+  dataPlayerQG: IPlayer;
+  roleDiceStore :IRoleDiceStore;
 };
 
 
@@ -34,8 +35,12 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 	timeEndMove,
 }: IMoveBoardQGProps) => {
 	  const [ isClick, setIsClick ] =  React.useState(false); 
-    const { dataPlayerQG } = useStoreon<StateStore, EventsStore>("dataPlayerQG");
-    console.log({ dataPlayerQG });
+    const { dataPlayerQG, roleDiceStore } = useStoreon<StateStore, EventsStore>(
+      "dataPlayerQG",
+      "roleDiceStore"
+    );
+    
+    console.log({ roleDiceStore });
 	return (
     <div className={styles["gib__container"]}>
       {/* header */}

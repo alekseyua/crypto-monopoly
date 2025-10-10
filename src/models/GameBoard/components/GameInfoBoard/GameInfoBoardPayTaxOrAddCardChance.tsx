@@ -3,14 +3,14 @@ import styles from './styles/gib.module.scss';
 import React from 'react';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import Title from '../../../../shared/UI/Title/Title';
-import { IActionCard } from '../../../../store/quick-game/quick-game.d';
+import { CardDataDataActionsType } from '../../../../store/quick-game/quick-game.d';
 import { temporaryDisableBtn } from '../../../../helpers/helper';
 import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer';
 
 interface IGameInfoBoardPayTaxOrAddCardChanceProps {
 	game_id: number;
 	card_id: number;
-	actions: IActionCard;
+	actions: CardDataDataActionsType;
 	handleCard?: ({ game_id, card_id, action }: { action: string, game_id: number, card_id?: number, chance?: boolean }) => void;
 	timeEndMove: number;
 }

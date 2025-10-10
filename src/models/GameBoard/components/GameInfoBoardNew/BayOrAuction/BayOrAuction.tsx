@@ -6,7 +6,7 @@ import { InfoBoardLabel } from '../../GameInfoBoard/UI/Label/info-board-label';
 import AutoCounter from '../../../../../Component/AutoCounter/AutoCounter';
 import { getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../../helpers/helper';
 import Title from '../../../../../shared/UI/Title/Title';
-import { IActionCard } from '../../../../../store/quick-game/quick-game.d';
+import { CardDataDataActionsType } from '../../../../../store/quick-game/quick-game.d';
 import GameInfoBoardFooterContainer from '../FooterGIB/GameInfoBoardFooterContainer';
 import ContainerGIB from '../UIContainerGIB/ContainerGIB';
 import ContainerInfoHeaderGIB from '../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
@@ -20,7 +20,7 @@ import ContainerInfoGIB from '../UIContainerGIB/InfoGIB/ContainerInfoGIB';
 interface IBayOrAuctionProps {
 	labelColors?: string[];
 	labelTextColors?: string[];
-	actions: IActionCard;
+	actions: CardDataDataActionsType;
 	card_cost?: number;
 	game_id: number;
 	card_id: number;

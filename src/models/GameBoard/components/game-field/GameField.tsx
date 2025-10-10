@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import { CSSProperties, useEffect } from 'react';
 import classNames from 'classnames';
-import { IPlayer, ownerCard } from '../../../../store/quick-game/quick-game.d';
+import { IPlayer, IOwnerCard } from '../../../../store/quick-game/quick-game.d';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';
 
 interface IGameField {
@@ -22,7 +22,7 @@ interface IGameField {
 	name: string;
 	players?: IPlayer[];
 	cardCost: string;
-	owner: any//ownerCard | {};
+	owner: any//IOwnerCard | {};
 	handleCard: (id: number)=> void;
 	id: number;
 	isGrayBlur: boolean;

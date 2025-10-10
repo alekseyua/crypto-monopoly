@@ -1,47 +1,48 @@
-interface ownerCard {
+interface IOwnerCard {
   player: IPlayer;
   can_build: boolean;
   is_pawn: boolean;
   hotels: number;
   houses: number;
-  card_info: ICardInfo | ISpecialCardInfo;
+  // card_info: ICardInfo | ISpecialCardInfo;
 }
 
 interface ICard {
-    "id": number;
-    "name": string;
-    "card_number": number;
-    "type_card": string;
-    "image": string;
-    "bgc_header": string;
-    "cost": string;
-    "board": null; // ?????????/
-    "owner": ownerCard; // ?????????/
-    "players": IPlayer[], // ?????????/
-    "city": ICardCity;
-    "card_info": ICardInfo;
+  id: number;
+  name: string;
+  card_number: number;
+  type_card: string;
+  cost: string;
+  owner: IOwnerCard;
+  // board: null; // ?????????/
+  city: ICardCity | CardCitySpecialCard;
+  image: string;
+  bgc_header: string;
+  players: IPlayer[];
+  card_info: ICardInfoCards | ISpecialCardInfoChanceCommunity; // <==================== ??????????????
 }
 
 interface ISpecialCard {
-    "id": number;
-    "name": string;
-    "card_number": number;
-    "type_card": string;
-    "cost": string;
-    "owner": {
-        "player": IPlayer,
-        "can_build": boolean;
-        "is_pawn": boolean;
-        "houses": number;
-        "hotels": number;
-        "card_info": ISpecialCardInfo
-    },
-    "board": null,
-    "city": "",
-    "image": string;
-    "bgc_header": string;
-    "players": IPlayer[],
-    "card_info": ISpecialCardInfo
+  id: number;
+  name: string;
+  card_number: number;
+  type_card: string;
+  cost: string;
+  owner: IOwnerCard;
+  board: null;
+  city: "";
+  image: string;
+  bgc_header: string;
+  players: IPlayer[];
+  card_info: ISpecialCardInfo;
+}
+
+interface ISpecialCardInfoChanceCommunity {
+  base_cost: number;
+  card_type: string;
+  monopoly_tax: number;
+  name: string;
+  one_card_tax: number;
 }
 
 interface ISpecialCardInfo {
@@ -65,6 +66,8 @@ interface ICardCity {
     name: string;
     country: string;
 }
+type CardCitySpecialCard = string;
+
 interface IDataCardFeatures {
     base_cost: number;
     house_taxes: IHouseTaxes[];
@@ -77,22 +80,38 @@ interface IDataCardPrice {
     house: number;
 }
 
+interface IDataActionsStore {
+  actions: CardDataDataActionsType | CardDataDataActionsJailType;
+  card: IDataActionsCard;
+  card_type: string
+  card_info: ICardInfo;
+  info: ICardInfoData;
+  prices: IDataCardPrice;
+  features: IDataCardFeatures;
+  card_id: number;
+  move_end_time_sec: number;
+}
+interface IDataActions {
+  actions: CardDataDataActionsType | CardDataDataActionsJailType;
+  card?: IDataActionsCard;
+  card_type: string
+  card_info?: ICardInfo;
+
+  // info: ICardInfoData;
+  // prices: IDataCardPrice;
+  // features: IDataCardFeatures;
+  // card_id: number;
+  // move_end_time_sec: number;
+}
+
+interface IDataActionsCard {
+  id: number;
+  name: string;
+}
 
 export interface IDataContainer {
   [key]: {} | number;
-  data_actions: {
-    info: ICardInfoData;
-    prices: IDataCardPrice;
-    features: IDataCardFeatures;
-    actions: IActionCard;
-    card_info: ICardInfo;
-    card_id: number;
-    card: {
-      id: number;
-      name: string;
-    };
-    move_end_time_sec: number;
-  };
+  data_actions: IDataActionsStore;
   auction_data: IAuctionData;
   choose_data: IChooseData;
   card_id: number;
@@ -122,15 +141,22 @@ export interface ICardInfoData {
 }
 
 export interface ICardPriceData {
-    "hotel": number,
-    "house": number
+  hotel: number;
+  house: number;
 }
 
 export interface ICardFeaturesData {
-    "base_cost": number,
-    "house_taxes": IHouseTaxes[],
-    "monopoly_tax": number,
-    "one_card_tax": number
+  base_cost: number;
+  house_taxes: IHouseTaxes[];
+  monopoly_tax: number;
+  one_card_tax: number;
+}
+
+export interface ICardInfoCards{
+  info: ICardInfoData;
+  prices: ICardPriceData;
+  features: ICardFeaturesData;
+  card_type: string;
 }
 
 export interface ICardInfo {
@@ -138,6 +164,7 @@ export interface ICardInfo {
   prices: ICardPriceData;
   features: ICardFeaturesData;
   card_type: string;
+
   start_price?: number; // ???
   highest_bid?: number; // ???
   base_cost?: number; // ???
@@ -180,42 +207,50 @@ interface IUserActions {
 
 }
 
-interface ICardData {
-    "status": "success" | string,
-    "card_id": number,
-    "message": string,
-    "data_actions": {
-        "actions": IActionCard;
-        "card_info": ICardInfo,
-        "card_id": number,
-        card: {}
-    }
-}
+// interface ICardData {
+//     "status": "success" | string,
+//     "card_id": number,
+//     "message": string,
+//     "data_actions": {
+//         "actions": CardDataDataActionsType;
+//         "card_info": ICardInfo,
+//         "card_id": number,
+//         card: {}
+//     }
+// }
+
 type ActionTypes = "buy" | "auction";
 
-interface IActionCard {
-    // [key in ActionTypes]: boolean;
-    buy: boolean;
-    auction: boolean;
-    add_card: boolean;
-    pay: boolean;
-    add_chance: boolean;
-    pay_for_freedom: boolean;
-    roll_the_dice: boolean;
-    freedom_card: boolean;
-}
+type CardDataDataActionsJailType = {
+  pay_for_freedom: boolean;
+  roll_the_dice: boolean;
+  freedom_card: boolean;
+};
+
+type CardDataDataActionsType = {
+  auction: boolean;
+  buy: boolean;
+  pay: boolean;
+  add_card: boolean;
+  move: boolean;
+  add_chance: boolean;
+  move_to: boolean;
+  pay_tax_or_add_card_chance: boolean; // оплатить налог или получить карту шанса
+  roll_the_dice_freedom: boolean; //кинуть кубики(без передвижения)
+};
 
 interface IDataQG {
-    "id": number;
-    "cards": ICard[] | ISpecialCard[];
-    "name": string;
-    "players": IPlayer[];
-    "current_turn": number;
-    "is_start": boolean;
-    "bet_amount": string;
-    "turn_time": number;
-    "start_money": string;
-    "max_players": number;
+  id: number;
+  // auctions:[];
+  cards: ICard[] | ISpecialCard[];
+  // name: string;
+  players: IPlayer[];
+  // current_turn: number;
+  // is_start: boolean;
+  // bet_amount: string;
+  // turn_time: number;
+  // start_money: string;
+  // max_players: number;
 }
 
 interface ISocket {
@@ -267,37 +302,43 @@ interface IExchangeData {
 interface IPlayer {
   id: number;
   user: string;
-  avatar?: string;
-  balance: string;
+  username: string;
+  // balance: string;
   color: string;
-  is_creater: boolean;
-  is_start_fast_game: boolean;
-  fast_game_id: number;
-  is_start_main_game: boolean;
-  main_game_id: number | null;
+  // is_creater: boolean;
+  // is_start_fast_game: boolean;
+  // fast_game_id: number;
+  // is_start_main_game: boolean;
+  // main_game_id: number | null;
   properties: Property[];
-  bankrupt: boolean;
+  // bankrupt: boolean;
   current_card: number;
   move_number: number;
   current_move: boolean;
-  card_data: Record<string, unknown>;
+  card_data: ICardData;
   auction_data: Record<string, unknown>;
-  choose_data: ChooseData | Record<string, never>;
+  choose_data: IChooseData | Record<string, never>;
+  exchange_data: Record<string, never>;
   bill_data: BillData;
   status: statusPlayer;
-  username: string;
   move_end_time_sec: number;
-  messages: IMassagesFeed[];
+  popup_data: IInfoMassagePopup;
   dice_roll_1: number;
   dice_roll_2: number;
-  is_concluded: boolean
+  avatar?: string;
+  is_concluded: boolean;
 }
 
+interface ICardData {
+  card_id: number;
+  data_actions: IDataActions;
+};
 interface IInfoMassagePopup {
-    "show": boolean;
-    "message": string;
-    "type_card": string;
+  show: boolean;
+  message: string;
+  type_card: string;
 }
+
 type nameAchivments = {
     "name" : string;
 }
@@ -349,25 +390,35 @@ interface IChooseData {
   card_info: ICardInfo;
 };
 
-export type {
-    ICard,
-    ISocket,
-    IDataQG,
-    IPlayer,
-    IListQGs,
-    ownerCard,
-    ICardData,
-    IChooseData,
-    IActionCard,
-    StatusPlayer,
-    IUserActions,
-    ISpecialCard,
-    IExchangeData,
-    IMassagesFeed,
-    IDataContainer,
-    IAchivmentPlayer,
-    ISpecialCardInfo,
-    IInfoMassagePopup,
-    IChooseDataActions,
-    IHighestBidderData,
+interface IRoleDiceStore {
+    rd1: number;
+    rd2: number;
 }
+
+export type {
+  ICard,
+  ISocket,
+  IDataQG,
+  IPlayer,
+  IListQGs,
+  ICardCity,
+  ICardData,
+  IOwnerCard,
+  IChooseData,
+  StatusPlayer,
+  IUserActions,
+  ISpecialCard,
+  IDataActions,
+  IExchangeData,
+  IMassagesFeed,
+  IDataContainer,
+  IRoleDiceStore,
+  IAchivmentPlayer,
+  ISpecialCardInfo,
+  IInfoMassagePopup,
+  IDataActionsStore,
+  IChooseDataActions,
+  IHighestBidderData,
+  CardDataDataActionsType,
+  CardDataDataActionsJailType,
+};

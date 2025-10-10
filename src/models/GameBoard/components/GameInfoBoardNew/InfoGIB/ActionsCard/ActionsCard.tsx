@@ -6,7 +6,7 @@ import ContainerOneBtn from '../../ControllerGIB/ContainerOneBtn';
 import Text from '../../../../../../shared/UI/Text/Text';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import ContainerInfoGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoGIB';
-import { ICard, IChooseDataActions } from '../../../../../../store/quick-game/quick-game.d';
+import { ICard, ICardCity, IChooseDataActions } from '../../../../../../store/quick-game/quick-game.d';
 import { temporaryDisableBtn } from '../../../../../../helpers/helper';
 import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
 import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
@@ -112,7 +112,7 @@ const ActionsCard: React.FC<IProps> = ({
                 textColor="#FFFFFF"
                 p={12}
               >
-                {card?.city?.country || "?"}
+                {(card?.city as ICardCity)?.country || "?"}
               </Button>
             </ContainerInfoTwoColumnGIB>
           )}

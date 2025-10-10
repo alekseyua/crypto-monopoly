@@ -4,7 +4,7 @@ import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHe
 import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
 import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
 import ContainerInfoGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoGIB';
-import { ICard, IChooseDataActions } from '../../../../../../store/quick-game/quick-game.d';
+import { ICard, ICardCity, ICardInfoCards, IChooseDataActions } from '../../../../../../store/quick-game/quick-game.d';
 import { Button, Offset } from '../../../../../../shared/UI';
 import Title from '../../../../../../shared/UI/Title/Title';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
@@ -82,7 +82,7 @@ const InfoCard: React.FC<IProps> = ({
               textColor="#FFFFFF"
               p={12}
             >
-              {card?.city?.name || "Город не выбран"}
+              {(card?.city as ICardCity)?.name || "Город не выбран"}
             </Button>
             <Button
               type="fill"
@@ -90,7 +90,7 @@ const InfoCard: React.FC<IProps> = ({
               textColor="#FFFFFF"
               p={12}
             >
-              {card?.city?.country || "Страна не выбран"}
+              {(card?.city as ICardCity)?.country || "Страна не выбран"}
             </Button>
           </ContainerInfoTwoColumnGIB>
         </ContainerInfoHeaderGIB>
@@ -119,7 +119,10 @@ const InfoCard: React.FC<IProps> = ({
               <InnerBtnContextSpaceBetween>
                 <Text text={"Налог"} />
                 <Text
-                  text={card?.card_info?.features?.one_card_tax + ""}
+                  text={
+                    (card?.card_info as ICardInfoCards)?.features
+                      ?.one_card_tax + ""
+                  }
                   iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
                 />
               </InnerBtnContextSpaceBetween>
@@ -130,7 +133,8 @@ const InfoCard: React.FC<IProps> = ({
                 <Text
                   fontWeight={900}
                   text={
-                    (card as ICard)?.card_info?.info?.collection_amount + ""
+                    (card?.card_info as ICardInfoCards)?.info
+                      ?.collection_amount + ""
                   }
                 />
               </InnerBtnContextSpaceBetween>
@@ -144,7 +148,10 @@ const InfoCard: React.FC<IProps> = ({
               <InnerBtnContextSpaceBetween>
                 <Text text={"С коллекцией"} />
                 <Text
-                  text={card?.card_info?.features?.monopoly_tax + ""}
+                  text={
+                    (card?.card_info as ICardInfoCards)?.features
+                      ?.monopoly_tax + ""
+                  }
                   iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
                 />
               </InnerBtnContextSpaceBetween>
@@ -165,7 +172,7 @@ const InfoCard: React.FC<IProps> = ({
               <InnerBtnContextSpaceBetween>
                 <Text text={"Купить дом"} />
                 <Text
-                  text={card?.card_info?.prices?.house + ""}
+                  text={(card?.card_info as ICardInfoCards)?.prices?.house + ""}
                   iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
                 />
               </InnerBtnContextSpaceBetween>
@@ -200,15 +207,18 @@ const InfoCard: React.FC<IProps> = ({
                       </Button>
                     )}
                     С{" "}
-                    {card?.card_info?.features?.house_taxes &&
+                    {(card?.card_info as ICardInfoCards)?.features
+                      ?.house_taxes &&
                       getPriceTaxesFromHouses(
                         amountHouses,
-                        card?.card_info?.features?.house_taxes
+                        (card?.card_info as ICardInfoCards)?.features
+                          ?.house_taxes
                       )?.name}
                     {
                       // dataCard.features?.house_taxes &&
                       amountHouses <
-                      card?.card_info?.features?.house_taxes?.length ? (
+                      (card?.card_info as ICardInfoCards)?.features?.house_taxes
+                        ?.length ? (
                         <Button
                           component={"div"}
                           type="fill-round"
@@ -236,10 +246,10 @@ const InfoCard: React.FC<IProps> = ({
                 </Text>
                 <Text
                   text={
-                    card?.card_info?.features?.house_taxes &&
+                    (card?.card_info as ICardInfoCards)?.features?.house_taxes &&
                     getPriceTaxesFromHouses(
                       amountHouses,
-                      card?.card_info?.features?.house_taxes
+                      (card?.card_info as ICardInfoCards)?.features?.house_taxes
                     )?.price + ""
                   }
                   iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
@@ -268,7 +278,7 @@ const InfoCard: React.FC<IProps> = ({
               <InnerBtnContextSpaceBetween>
                 <Text text={"Купить отель"} />
                 <Text
-                  text={card?.card_info?.prices?.hotel + ""}
+                  text={(card?.card_info as ICardInfoCards)?.prices?.hotel + ""}
                   iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
                 />
               </InnerBtnContextSpaceBetween>
