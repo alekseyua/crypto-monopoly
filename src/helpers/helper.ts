@@ -25,6 +25,7 @@ export function setLocaleStoreObj(data: []) {
 
 export const isKeyPresentInHash = function (table: Record<any, any> | undefined, key: string | null): boolean {
   if (table === undefined) return false;
+  if (table === null) return false;
   if (key === null) return !!Object.keys(table).length;
   return Object.prototype.hasOwnProperty.call(table, key) && (table[key] !== undefined);
 }

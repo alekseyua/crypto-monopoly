@@ -1,0 +1,89 @@
+@import '../../../../styles/mixin.scss';
+
+.header-qg {
+    &__mobile{
+        //header-qg__mobile-container
+        &-container {
+            background: #F8F9FF;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 999;
+            max-width: 100%;
+            width: 100%;
+            // border: 1px solid #092bb0;
+            border-radius: 35px 35px 0 0;
+            max-height: 170px;
+            overflow: hidden;
+            //header-qg__mobile-container--open
+                &--open {
+                    background: #F8F9FF;
+                    padding: 10px;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 999;
+                    max-width: 100%;
+                    width: 100%;
+                    border: 1px solid #092bb0;
+                    border-radius: 35px 35px 0 0;
+                    overflow: hidden;
+                    max-height: 50%;
+                    height: 100%;
+                    transition: max-height 0.3s ease-in-out;
+                }
+        }
+        //header-qg__modal-header-cont
+        &-header-cont{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow: hidden;
+            @include adaptiv-value('min-width', 650, 100, 2);
+            
+            //header-qg__mobile-header-cont--inner
+            &--inner{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                //header-qg__mobile-header-cont--inner-right
+                &-right{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+            }
+        }
+    }
+    //header-qg__container
+    &__container{
+        background: #F8F9FF;
+        padding: 10px;
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 99;
+        max-width: 100%;
+    }
+    //header-qg__logo
+    &__logo {
+        max-height: 43px;
+        width: auto;
+    }
+    //header-qg__header-cont
+    &__header-cont{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    //header-qg__header-nav
+    &__header-nav{
+        display: flex;
+        align-items: center;
+        // justify-content: space-between;
+        gap: 20px;
+        flex: 1 1;
+        @include adaptiv-value('min-width', 650, 100, 2);
+    }
+}

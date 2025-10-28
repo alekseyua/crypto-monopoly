@@ -455,28 +455,6 @@ const handleCardOnField = (card_id: number): void => {
 			.type_card; // тип карты на которой стоим
 		if (isChoose) typeCard = data.choose_data.card_type;
 		const isMovePlayer = player.current_move;
-		//
-		// console.log(
-		// 	"%c----- data ----------",
-		// 	"color: yellow",
-		// 	"\n",
-		// 	{ isActions },
-		// 	"\n",
-		// 	{ isAuctions },
-		// 	"\n",
-		// 	{ isChoose },
-		// 	"\n",
-		// 	data
-		// );
-		// console.log(
-		// 	"%cisMovePlayer: " +
-		// 	isMovePlayer +
-		// 	"\ncardId: " +
-		// 	cardId +
-		// 	"\ntypeCard: " +
-		// 	typeCard,
-		// 	"color: yellow"
-		// );
 
 		const keyAction: "data_actions" | "auction_data" | null = isActions
 			? "data_actions"

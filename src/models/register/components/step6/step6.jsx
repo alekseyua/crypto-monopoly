@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Input, Label, WrapperCard } from '../../../../shared/UI';
-import cls from './Step6.module.css';
+import cls from './Step6.module.scss';
 import { useMask } from '@react-input/mask';
 import { useStoreon } from 'storeon/react';
 

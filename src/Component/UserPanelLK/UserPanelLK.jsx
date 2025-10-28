@@ -20,11 +20,9 @@ const UserPanelLK = ({ handleOpenLKMenu, handleLogout, user, isOpenLKMenu}) => {
         {/* {user?.username ?? 'Войти'} */}
       </div>
       
-      {
-        isOpenLKMenu && 
-          <div className={cls['header-menu-lk-btn__dropdown-container']}>
+        <div className={`${cls['header-menu-lk-btn__dropdown-container']} ${isOpenLKMenu && cls['active']}`}>
             <Link to={NAV_PROFILE}>Настройки</Link>
-            <br />
+            {/* <br /> */}
             {
               // user?.username 
               !!user.id
@@ -32,7 +30,6 @@ const UserPanelLK = ({ handleOpenLKMenu, handleLogout, user, isOpenLKMenu}) => {
                 : <Link to={NAV_AUTH_PAGE} >Войти</Link>            
             }
           </div>
-      }
     </div>
   )
 }

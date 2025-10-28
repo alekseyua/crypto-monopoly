@@ -71,7 +71,7 @@ import hotelCard from './icons/hotel-card.svg';
 
 import home from './icons/home1.svg';
 import communityOpacity from './icons/community-opacity.svg';
-
+import asset from './icons/asset.svg';
 
 export const icons = {
   home,
@@ -95,7 +95,12 @@ export const icons = {
   qgCurrencySvgWhite,
   chance: ChanceIcon,
   rightArrow: RightArrowIcon,
-}
+  arrowDown: DropdownArrow,
+  search: SearchIcon,
+  moneyBag,
+  capital,
+  asset,
+};
 
 export {
   logo,

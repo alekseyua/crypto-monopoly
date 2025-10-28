@@ -1,5 +1,5 @@
 import { Button, Input, Label, WrapperCard } from '../../../../shared/UI';
-import cls from './step1.module.css';
+import cls from './step1.module.scss';
 import { useStoreon } from 'storeon/react';
 
 export const Step1 = ({
@@ -11,8 +11,8 @@ export const Step1 = ({
 
 	return <WrapperCard>
 			<div className={cls.labels}>
-				<Label text={'Регистрация через почту'} type={'gradient'} />
-				<Label text={`${regStep} из 6`} />
+				<Label p={11} text={'Регистрация через почту'} type={'gradient'} />
+				<Label p={11} text={`${regStep} из 5`} />
 			</div>
 			<div className={cls.cardBody}>
 				<Input
@@ -21,9 +21,7 @@ export const Step1 = ({
 					label={errorReg? errorReg : 'Почта'}
 					error={errorReg}
 					id={'mail'}
-					style={{
-									padding: '24px 25px'
-								}}
+					className={cls.authInput}
 				/>
 				<Button
 					onClick={() => handleNextStep()}

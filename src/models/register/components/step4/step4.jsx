@@ -4,7 +4,7 @@ import { useStoreon } from 'storeon/react';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import { delay } from '../../../../helpers/helper';
 import { closeEye, openEye } from '../../../../assets';
-import cls from './step4.module.css';
+import cls from './step4.module.scss';
 
 export const Step4 = ({
 	handleNextStep,
@@ -29,8 +29,8 @@ export const Step4 = ({
 	return (
 		<WrapperCard>
 			<div className={cls.labels}>
-				<Label text={'Придумайте пароль'} type={'gradient'} />
-				<Label text={`${regStep} из 6`} />
+				<Label p={11} text={'Придумайте пароль'} type={'gradient'} />
+				<Label p={11}  text={`${regStep} из 5`} />
 			</div>
 			<div className={cls.cardBody}>
 				<div className={cls.inputs}>
@@ -42,9 +42,7 @@ export const Step4 = ({
 						}
 						type={showPassword ? 'text' : 'password'}
 						id={'password'}
-						style={{
-									padding: '24px 25px'
-								}}
+						className={cls.authInput}
 						iconRight={
 							// regStep === 3
 							// ? 
@@ -65,9 +63,7 @@ export const Step4 = ({
 						id={'repeatPassword'}
 						error={errorReg ? errorReg : regData.password !== regData.repeatPassword}
 						type={showPasswordConfirm ? 'text' : 'password'}
-style={{
-									padding: '24px 25px'
-								}}
+						className={cls.authInput}
 						// label={errorReg? errorReg : ''}
 						iconRight={
 							// regStep === 3 ? 
@@ -84,7 +80,7 @@ style={{
 				{errorReg && <Label text={errorReg} />}
 				<Button
 					onClick={() => handleNextStep()}
-					p={24}
+					p={23}
 					type='fill'
 					fillColor='#726CED'
 					textColor='#fff'

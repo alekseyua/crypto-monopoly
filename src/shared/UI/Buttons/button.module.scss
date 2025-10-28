@@ -55,14 +55,14 @@
 		);
 		color: white;
 	}
-	//rounded
-	&.rounded {
-		padding: 18px 26px;
-		border-radius: 99px;
-		font-size: 15px;
-	}
 }
 
+//rounded
+.rounded {
+	// padding: 18px 26px;
+	border-radius: 99px;
+	font-size: 15px;
+}
 
 .button.disabled {
 	pointer-events: none !important;

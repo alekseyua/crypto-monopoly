@@ -1,0 +1,23 @@
+.button__open-menu{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #E9ECFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: relative;
+    z-index: 2;
+    &--active{
+        background: var(--color-bg-secondary-hover);
+    }
+
+    img{
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+    }
+}

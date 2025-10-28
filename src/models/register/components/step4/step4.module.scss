@@ -25,3 +25,10 @@
 	top: 50%;
 	transform: translate(0,-50%);
 }
+.authInput {
+	padding: 18px 20px;
+
+	@media (max-width: 768px) {
+		padding: 18px 10px;
+	}
+}

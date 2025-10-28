@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, Label, WrapperCard } from '../../../../shared/UI';
-import cls from './step5.module.css';
+import cls from './step5.module.scss';
 import { useStoreon } from 'storeon/react';
 import ListSecureQuestion from './Components/ListSecureQuestion';
 import { GET_SECURE_QUESTION, INC_REG_STEP } from '../../../../store/auth/registration';
@@ -55,7 +55,7 @@ export const Step5 = ({
 		<WrapperCard>
 			<div className={cls.labels}>
 				<Label text={'Секретные вопросы'} type={'gradient'} />
-				<Label text={`${regStep} из 6`} type={'default'} />
+				<Label text={`${regStep} из 5`} type={'default'} />
 			</div>
 			<div className={cls.cardBody}>
 				<Label type={'transparent'} text={errorReg ? errorReg : `Заполните секретные вопросы на выбор для восстановления акаунта в случае утери доступа`} 

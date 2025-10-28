@@ -59,6 +59,16 @@ export const recovery = (store: StoreonStore) => {
                 removeLocaleStore("token");
                 removeLocaleStore("refresh");
                 const res = await api.post(API_RESEND_CODE, recoveryData);
+                console.log('res 0', res);
+                if(res === undefined) {
+                  setErrorTimming(
+                    SET_ERROR_RECOVERY,
+                    'Ошибка сети, попробуйте позже',
+                    dispatch,
+                    1500
+                  );
+                  return;
+                }
                 if (res?.status === 400) {
                   setErrorTimming(
                     SET_ERROR_RECOVERY,
@@ -71,18 +81,20 @@ export const recovery = (store: StoreonStore) => {
             }
             if(recoveryStep === 2) {
                 const res = await api.get(API_CHECK_CODE, recoveryData);
-                if(res?.status === 400){
-                    setErrorTimming(
-                      SET_ERROR_RECOVERY,
-                      res?.data?.error,
-                      dispatch,
-                      2500
-                    );
-                  return 
+                console.log('res 1', res);
+                if (res?.status === 400 || res?.status === 500) {
+                  setErrorTimming(
+                    SET_ERROR_RECOVERY,
+                    res?.data?.error,
+                    dispatch,
+                    2500
+                  );
+                  return;
                 }
             }
             if(recoveryStep === 3) {
                 const res = await api.post(API_CHANGE_CURRENT_PASSWORD, recoveryData);
+                console.log('res 2', res);
                 if (res?.status === 400) {
                   setErrorTimming(
                     SET_ERROR_RECOVERY,

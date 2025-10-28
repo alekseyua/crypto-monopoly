@@ -1,4 +1,4 @@
-import cls from './step3.module.css';
+import cls from './step3.module.scss';
 import { Button, Input, Label, WrapperCard } from '../../../../../shared/UI';
 import { useStoreon } from 'storeon/react';
 import Icon from '../../../../../shared/UI/Icon/Icon';
@@ -18,8 +18,8 @@ export const Step3 = ({
 	return (
 		<WrapperCard>
 			<div className={cls.labels}>
-				<Label text={'Придумайте пароль'} type={'gradient'} />
-				<Label text={`${recoveryStep} из 3`} />
+				<Label p={11} text={'Придумайте пароль'} type={'gradient'} />
+				<Label p={11} text={`${recoveryStep} из 3`} />
 			</div>
 			<div className={cls.cardBody}>
 				<div className={cls.inputs}>
@@ -29,9 +29,7 @@ export const Step3 = ({
 						label={
 							'Пароль должен содержать минимум 8 символов на латинице или цифры, 1 и более символов заглавныеи минимум 1 знак: _-<>{}#№!?*'
 						}
-						style={{
-									padding: '24px 25px'
-								}}
+						className={cls.authInput}
 						type={showPassword ? 'text' : 'password'}
 						id={'password'}
 						iconRight={<Icon
@@ -46,13 +44,11 @@ export const Step3 = ({
 					/>
 					<Input
 						value={recoveryData.repeatPassword}
+						className={cls.authInput}
 						onChange={(e) => handleSetRegData({ repeatPassword: e.target.value })}
 						id={'repeatPassword'}
 						error={errorRecovery ? errorRecovery : recoveryData.repeatPassword !== recoveryData.new_password}
 						type={showPasswordConfirm ? 'text' : 'password'}
-style={{
-									padding: '24px 25px'
-								}}
 						label={errorRecovery? errorRecovery : ''}
 						iconRight={<Icon
 							src={showPasswordConfirm ? openEye : closeEye}
@@ -66,6 +62,7 @@ style={{
 				{errorRecovery && <Label text={errorRecovery} />}
 				<Button
 					onClick={() => handleNextStep()}
+					p={23}
 					type='filled'
 					fillColor='#726CED'
 					textColor='#fff'

@@ -1,4 +1,4 @@
-import cls from './label.module.css';
+import styles from './label.module.scss';
 
 interface ILabel {
 	p?: string;
@@ -34,7 +34,7 @@ export const Label:React.FC<ILabel> = ({
 	return (
 		<div
 			onClick={onClick}
-			className={`${cls.label} ${variant && cls[variant]} ${type && cls[type]} ${className} ${error ? cls.error : ''}`}
+			className={`${styles.label} ${variant && styles[variant]} ${type && styles[type]} ${className} ${error ? styles.error : ''}`}
 			style={{
 				textAlign: center? 'center' : 'left',
 				...style,

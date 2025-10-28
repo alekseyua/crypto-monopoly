@@ -18,8 +18,8 @@ export const TopUsers = () => {
 	return (
 		<WrapperCard>
 			<div className={cls.cardLabels}>
-				<Label text={'Топ игроков за неделю'} type={'gradient'} />
-				<Label text={'Полный список'} />
+				<Label p={11} text={'Топ игроков за неделю'} type={'gradient'} />
+				<Label p={11} text={'Полный список'} />
 			</div>
 			<div style={{ height }} className={cls.topUsers}>
 				<TopUser ref={topusersCardRef} />

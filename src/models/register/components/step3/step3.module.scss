@@ -7,5 +7,13 @@
 .cardBody {
 	display: grid;
 	gap: 12px;
-    margin-top: 25px;
+	margin-top: 25px;
+}
+
+.authInput {
+	padding: 18px 20px;
+
+	@media (max-width: 768px) {
+		padding: 18px 10px;
+	}
 }

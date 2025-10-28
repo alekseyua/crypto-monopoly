@@ -4,8 +4,9 @@ import UserPanel from './UserPanel'
 import { useEffect, useState } from 'react';
 import { GET_USERS } from '../../store/users/users';
 import { IDataQG, IPlayer } from '../../store/quick-game/quick-game.d';
-import { NavigateFunction } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { IUser } from '../../store/users/user.d';
+import UserPanelMobile from './UserPanelMobile';
 
 const quickGameMenu = [
   {
@@ -30,7 +31,7 @@ const mainGameMenu = [
     link: "/",
   },
   {
-    id: "thing",
+    id: "asset",
     name: "Имущество",
     price: 0,
     link: "/",
@@ -53,20 +54,30 @@ interface Events {
   [GET_USERS]: IUser;
 }
 
-const UserPanelContainer = ({ navigate }: {navigate: NavigateFunction}) => {
-    const { user, isQG, quickGame, dataPlayerQG, dispatch } = useStoreon<StateStore, Events>('user', 'isQG', 'quickGame', 'dataPlayerQG');
-    const [isDropDownMenuOpen, setIsDropDownMenuOpen ] = useState(false);
-    const [userInfo, setUserInfo ] = useState(mainGameMenu)
+interface UserPanelContainerProps {
+  isMobile?: boolean;
+}
 
-    const handleNavigateTo = (link: string) => {
-        navigate(link)
-    }
+const UserPanelContainer: React.FC<UserPanelContainerProps> = ({
+  isMobile,
+}) => {
+  const { user, isQG, quickGame, dataPlayerQG, dispatch } = useStoreon<
+    StateStore,
+    Events
+  >("user", "isQG", "quickGame", "dataPlayerQG");
+  const navigate: NavigateFunction = useNavigate();
+  const [isDropDownMenuOpen, setIsDropDownMenuOpen] = useState(false);
+  const [userInfo, setUserInfo] = useState(mainGameMenu);
 
-    
-    useEffect(() => {
-        if (quickGame?.id) {
-        const dataUserPanel = dataPlayerQG.bill_data;
-        !!dataUserPanel && setUserInfo(
+  const handleNavigateTo = (link: string) => {
+    navigate(link);
+  };
+
+  useEffect(() => {
+    if (quickGame?.id) {
+      const dataUserPanel = dataPlayerQG.bill_data;
+      !!dataUserPanel &&
+        setUserInfo(
           quickGameMenu.map((item) =>
             item.id === "balance"
               ? {
@@ -81,42 +92,55 @@ const UserPanelContainer = ({ navigate }: {navigate: NavigateFunction}) => {
               : { ...item }
           )
         );
-      } else {
-        // напалняем меню инфой
-        if (user?.username) {
-          setUserInfo(
-            mainGameMenu.map((item) =>
-              item.id === "balance"
-                ? {
-                    ...item,
-                    price: user.balance,
-                  }
-                : { ...item }
-            )
-          );
-        }
+    } else {
+      // напалняем меню инфой
+      if (user?.username) {
+        setUserInfo(
+          mainGameMenu.map((item) =>
+            item.id === "balance"
+              ? {
+                  ...item,
+                  price: user.balance,
+                }
+              : { ...item }
+          )
+        );
       }
-    }, [user, quickGame, dataPlayerQG]);
-
-    useEffect(() => {
-        // получаем юзеров
-        !user?.username && user?.id && dispatch(GET_USERS, undefined as undefined);
-    }, [user, dispatch]);
-
-    const handleOpenDropDownMenu = () => {
-        // Implement dropdown menu logic here
-        setIsDropDownMenuOpen(state=>!state);
     }
+  }, [user, quickGame, dataPlayerQG]);
+
+  useEffect(() => {
+    // получаем юзеров
+    !user?.username && user?.id && dispatch(GET_USERS, undefined as undefined);
+  }, [user, dispatch]);
+
+  const handleOpenDropDownMenu = () => {
+    // Implement dropdown menu logic here
+    setIsDropDownMenuOpen((state) => !state);
+  };
+  if(isMobile) {
+    console.log('UserPanelContainer render', isMobile);
     return (
-        <UserPanel
-            user={user}
-            userInfo={userInfo}
-            isQG={isQG}
-            handleNavigateTo={handleNavigateTo}
-            isDropDownMenuOpen={isDropDownMenuOpen}
-            handleOpenDropDownMenu={handleOpenDropDownMenu}
-        />
-    )
-}
+      <UserPanelMobile
+        user={user}
+        userInfo={userInfo}
+        isQG={isQG}
+        handleNavigateTo={handleNavigateTo}
+        isDropDownMenuOpen={isDropDownMenuOpen}
+        handleOpenDropDownMenu={handleOpenDropDownMenu}
+      />
+    );
+  }
+  return (
+    <UserPanel
+      user={user}
+      userInfo={userInfo}
+      isQG={isQG}
+      handleNavigateTo={handleNavigateTo}
+      isDropDownMenuOpen={isDropDownMenuOpen}
+      handleOpenDropDownMenu={handleOpenDropDownMenu}
+    />
+  );
+};
 
 export default withRouter(UserPanelContainer)

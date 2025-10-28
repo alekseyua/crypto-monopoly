@@ -4,7 +4,7 @@
     //header__container
     &__container{
         background: #F8F9FF;
-        padding: 20px;
+        padding: 10px;
         position: sticky;
         top: 0;
         left: 0;
@@ -44,16 +44,14 @@
 
 .headerCont {
     display: flex;
-    /* grid-template-columns: auto auto; */
-    /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
     justify-content: space-between;
     align-items: center;
-
 }
 
 .navHeader{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     flex: 1 1;
     /* min-width: 650px; */
     @include adaptiv-value('min-width', 650, 100, 2);

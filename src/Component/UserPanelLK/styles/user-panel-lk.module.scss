@@ -5,9 +5,9 @@
     // .header-menu-lk-btn__container
     &__container {
         padding: 9px;
-        @include adaptiv-value(padding-right, 10,5,1);
-        @include adaptiv-value(padding-left, 10,5,1);
-        min-width: 135px; 
+        @include adaptiv-value(padding-right, 10, 5, 1);
+        @include adaptiv-value(padding-left, 10, 5, 1);
+        min-width: 135px;
         display: flex;
         align-items: center;
         position: relative;
@@ -22,8 +22,8 @@
             top: 50%;
             right: 15px;
             transform: translateY(-65%) rotate(45deg);
-            @include adaptiv-value(width, 6,4,1);
-            @include adaptiv-value(height, 6,4,1);
+            @include adaptiv-value(width, 6, 4, 1);
+            @include adaptiv-value(height, 6, 4, 1);
             background-color: transparent;
             border-width: 1px;
             border-style: solid;
@@ -39,42 +39,55 @@
             transition: transform .4s;
         }
     }
+
     // .header-menu-lk-btn__avatar
-    &__avatar{
+    &__avatar {
         width: 32px;
         height: 32px;
         border-radius: 50%;
     }
+
     // .header-menu-lk-btn__username{
-    &__username{
-        @include adaptiv-font(14,8);
+    &__username {
+        @include adaptiv-font(14, 8);
 
         font-weight: 700;
         margin-left: 10px;
         margin-right: 20px;
         color: #000;
     }
+
     // .header-menu-lk-btn__dropdown-container
-    &__dropdown-container{
+    &__dropdown-container {
         display: flex;
         align-items: flex-start;
         /* justify-content: space-between; */
         width: 100%;
-        padding: 45px 15px;
+        padding: 35px 15px 15px;
         position: absolute;
         background-color: #d6dbf5;
         left: 0;
-        top: 30px;
-        z-index: -1;
-        border-radius:  0 0 20px 20px;
+        // top: 30px;
+        pointer-events: none;
+        border-radius: 0 0 20px 20px;
         flex-direction: column;
-        &>a{
-        width: 150px;
-        white-space: nowrap;
-        overflow: hidden; 
-        text-overflow: ellipsis;
-        text-align: start;
+        opacity: 0;
+        z-index: -1;
+        transform: translateY(40px);
+        transition: opacity .3s, transform .5s;
+        &.active{
+            opacity: 1;
+            transform: translateY(60px);
+            pointer-events: auto;
+
+        }
+        &>a {
+            width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: start;
+            margin-bottom: 10px;
         }
     }
 }
-

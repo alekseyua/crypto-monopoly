@@ -1,0 +1,28 @@
+// Если все классы относятся к одному компоненту (например, AuthCard), можно сделать так:
+
+.labels {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	// Пример: стили для label внутри блока .labels
+	.label {
+		margin-right: 8px;
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+.cardBody {
+	display: grid;
+	gap: 12px;
+	margin-top: 25px;
+}
+
+.authInput {
+	padding: 18px 20px;
+	@media (max-width: 768px) {
+		padding: 18px 10px;
+	}
+}

@@ -10,7 +10,7 @@ const RecoveryPasswordContainer = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-
+  
   const handleSetRecData = (data) => dispatch(SET_RECOVERY_TO_STORE, data);
   const handleNextStep = (obj = {}) => dispatch(GET_RECOVERY_PASSWORD, { redirect: navigate, ...obj });
   const handlePrevStep = (obj = {}) => dispatch(DESC_RECOVERY_STEP, obj)

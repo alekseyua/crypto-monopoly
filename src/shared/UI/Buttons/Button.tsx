@@ -91,7 +91,7 @@ export const Button: React.FC<IButton & PropsComponent> = ({
 		'--fill-color': fillColor,
 		'--text-color': textColor,
 	}
-	if(p?.toString()) buttonStyle = {...buttonStyle, padding: `${p}px`};
+	if(p) buttonStyle = {...buttonStyle, padding: `${p}px`};
 	if(borderColor) buttonStyle = {...buttonStyle, border: `1px solid ${borderColor}`};
 	if (component === 'button') {
 		return (
@@ -163,6 +163,13 @@ export const Button: React.FC<IButton & PropsComponent> = ({
           error && styles.error,
           className
         )}
+        style={{
+          pointerEvents: error ? "none" : "all",
+          ...style,
+          ...(error ? { backgroundColor: "var(--bg-color-error)" } : {}),
+          ...(disabled ? { cursor: "not-allowed" } : {}),
+          ...buttonStyle,
+        }}
         {...props}
       >
         {children}

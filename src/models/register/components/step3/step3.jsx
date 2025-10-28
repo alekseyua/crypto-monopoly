@@ -1,4 +1,4 @@
-import cls from './step3.module.css';
+import cls from './step3.module.scss';
 import { Button, Input, Label, WrapperCard } from '../../../../shared/UI';
 import { useStoreon } from 'storeon/react';
 
@@ -13,8 +13,8 @@ export const Step3 = ({
 	return (
 		<WrapperCard>
 			<div className={cls.labels}>
-				<Label text={'Придумайте никнейм'} type={'gradient'} />
-				<Label text={`${regStep} из 6`} />
+				<Label p={11} text={'Придумайте никнейм'} type={'gradient'} />
+				<Label p={11} text={`${regStep} из 5`} />
 			</div>
 			<div className={cls.cardBody}>
 				<Input
@@ -23,10 +23,8 @@ export const Step3 = ({
 					label={
 						errorReg? errorReg : 'Никнейм должен содержать не более 12 символовбез пробелов и только на латинице. Допускаются знаки:_-<>{}#№!?*'
 					}
+					className={cls.authInput}
 					error={errorReg}
-					style={{
-									padding: '24px 25px'
-								}}
 					id={'mail'}
 				/>
 				<Button

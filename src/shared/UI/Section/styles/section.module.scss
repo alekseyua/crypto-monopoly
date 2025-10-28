@@ -1,0 +1,14 @@
+.containerWrapper {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 40px;
+    &.scroll{
+        overflow-y: auto;   
+    }
+}
+
+.containerMobileWrapper {
+    // padding: 0 0 75px;
+    overflow-y: auto;
+}
