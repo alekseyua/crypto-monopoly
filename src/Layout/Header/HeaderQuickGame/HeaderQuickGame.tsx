@@ -6,6 +6,7 @@ import Section from "../../../shared/UI/Section/Section";
 import UserPanelMainModeNotification from "../../../Component/UserPanelNotification/UserPanelMainModeNotification";
 import ButtonOpenMenu from "../../../shared/UI/Buttons/ButtonOpenMenu/ButtonOpenMenu";
 import React from "react";
+import BlockWrapper from "../../../shared/UI/Block/BlockWrapper";
 
 interface HeaderQuickGameProps {
   isMobile?: boolean;
@@ -27,40 +28,42 @@ const HeaderQuickGame: React.FC<HeaderQuickGameProps> = ({
         ]
       }
     >
-      <Section isScroll={false}>
-        {isMobile ? (
-          <div
-            className={
-              styles["header-qg__mobile-header-cont"]
-            }
-          >
-            <div className={styles["header-qg__mobile-header-cont--inner"]}>
-              <BurgerContainer isMobile />
-              <div
-                className={styles["header-qg__mobile-header-cont--inner-right"]}
-              >
-                <ButtonOpenMenu
-                  handlerOpenMenu={(v: boolean) => setIsDropDownMenuOpen(v)}
-                />
-                <UserPanelMainModeNotification />
+      <BlockWrapper>
+        <Section isScroll={false}>
+          {isMobile ? (
+            <div
+              className={
+                styles["header-qg__mobile-header-cont"]
+              }
+            >
+              <div className={styles["header-qg__mobile-header-cont--inner"]}>
+                <BurgerContainer isMobile />
+                <div
+                  className={styles["header-qg__mobile-header-cont--inner-right"]}
+                >
+                  <ButtonOpenMenu
+                    handlerOpenMenu={(v: boolean) => setIsDropDownMenuOpen(v)}
+                  />
+                  <UserPanelMainModeNotification />
+                </div>
               </div>
+              <UserPanelContainer isMobile />
             </div>
-            <UserPanelContainer isMobile />
-          </div>
-        ) : (
-          <div className={styles["header-qg__header-cont"]}>
-            <div className={styles["header-qg__header-nav"]}>
-              <img
-                className={styles["header-qg__logo"]}
-                src={logo}
-                alt="Logo"
-              />
-              <BurgerContainer />
+          ) : (
+            <div className={styles["header-qg__header-cont"]}>
+              <div className={styles["header-qg__header-nav"]}>
+                <img
+                  className={styles["header-qg__logo"]}
+                  src={logo}
+                  alt="Logo"
+                />
+                <BurgerContainer />
+              </div>
+              <UserPanelContainer />
             </div>
-            <UserPanelContainer />
-          </div>
-        )}
-      </Section>
+          )}
+        </Section>  
+      </BlockWrapper>
     </header>
   );
 };

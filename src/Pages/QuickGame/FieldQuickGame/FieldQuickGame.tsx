@@ -1,4 +1,5 @@
 import { GameBoard } from '../../../models/GameBoard/GameBoard';
+import BlockWrapper from '../../../shared/UI/Block/BlockWrapper';
 import { ICard, IPlayer, ISpecialCard } from '../../../store/quick-game/quick-game.d';
 import EventsHistoryListContainer from '../../MainGame/component/events-history-list/EventsHistoryListContainer';
 import FieldListPlayersQGContainer from '../../MainGame/component/FieldListPlayersQuickGame/FieldListPlayersQuickGameContainer';
@@ -37,7 +38,7 @@ export const FieldQG: React.FC<IQG> = ({
 }: IQG) => {
   return (
     <section className={cls.MainGameSection}>
-      <div className="wrapper">
+      <BlockWrapper>
         <div className={cls["quick-game__container"]}>
           <FieldListPlayersQGContainer
             heightGameBoard={heightGameBoard}
@@ -60,7 +61,7 @@ export const FieldQG: React.FC<IQG> = ({
           </div>
           <EventsHistoryListContainer heightGameBoard={heightGameBoard} />
         </div>
-      </div>
+      </BlockWrapper>
     </section>
   );
 };

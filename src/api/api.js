@@ -28,6 +28,7 @@ class ApiService {
       })
       this.api.interceptors.response.use( async (response)=>{
         if(response.config.url === API_GET_TOKEN && response?.data?.access){
+          console.log('*********************************', JSON.parse(response.config.data))
           const email = JSON.parse(response.config.data).email
           setLocaleStore("token", response?.data?.access);
           setLocaleStore('email', email)
@@ -100,6 +101,7 @@ class ApiService {
     // Метод GET-запроса
     async get(endpoint, params = {}) {
       try {
+        console.log({ userClear: params, user: initDataParamsPostOrGet(params) })
         const response = await this.api.get(endpoint, {
           params: initDataParamsPostOrGet(params),
         });

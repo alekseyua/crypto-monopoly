@@ -79,6 +79,8 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
         !isGrayBlur &&
         type !== "chance" &&
         type !== "community" &&
+        type !== "super_tax" &&
+        type !== "income_tax" &&
         handleCard(id)
       }
       className={classNames({
@@ -141,7 +143,8 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
                     !!owner?.houses || !!owner?.hotels,
                 })}
               >
-                {!(type === "chance" || type === "community") && name}
+                {/* add income_tax and super_tax */}
+                {!(type === "chance" || type === "community") && name} 
                 {!!owner?.hotels ? (
                   <div
                     className={
@@ -207,6 +210,10 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
             <div>Шанс</div>
           ) : type === "community" ? (
             <div>Казна</div>
+            ) : type === "super_tax" ? (
+                <div></div>
+              ) : type === "income_tax" ? (
+                <div></div>
           ) : (
             <div>
               {cardCost}{" "}
@@ -220,7 +227,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
           )}
         </div>
         {/* gradiant */}
-        {type !== "chance" && type !== "community" && (
+        {type !== "chance" && type !== "community" && type !== "super_tax" && type !== "income_tax" && (
           // gradient над карточкой
           <div
             className={classNames({

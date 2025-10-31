@@ -64,7 +64,8 @@
     &__desc-container {
         display: flex;
         flex-direction: column;
-        gap: 5px;  
+        gap: 5px;
+        padding: 5px;
     }
     //card-players-preview__name
     &__name{
@@ -81,6 +82,7 @@
     &__container-balance-capital{
         display: flex;
         gap: 10px;
+        flex-wrap: wrap;
     }
     // card-players-preview__balance-capital
     &__balance-capital {

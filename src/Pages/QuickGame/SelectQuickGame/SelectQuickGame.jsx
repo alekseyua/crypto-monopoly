@@ -6,10 +6,11 @@ import { Button, WrapperCard } from '../../../shared/UI';
 import cls from '../styles/quick-game.module.scss';
 import { AchievementsPreviewModuleContainer } from '../../../models/achivments/AchievementsPreviewModuleContainer';
 import Section from '../../../shared/UI/Section/Section';
+import BlockWrapper from '../../../shared/UI/Block/BlockWrapper';
 
 export const SelectQG = ({ handleGetRefCode }) => /* разбить на контейнерные компоненты*/ /* для удобства и читабельности кода*/ /* и для возможности динамического добавления новых компонентов*/ /* в будущем, если потребуется расширить функционал приложения*/ /* (например, добавить еще одну категорию достижений или пользователей)*/ /* лучше всего сделать это в отдельных компонентах,*/ /* и вызывать их внутри основного компонента QG*/ /* таким образом, в коде станет более читаемым и понятным*/ /* и удобно будет расширять его в будущем*/ /* (например, добавив новую категор*/ (
 	<Section>
-		<div className='wrapper'>
+		<BlockWrapper>
 			<div className={cls.quickGameCont}>
 
 				<div className={cls.quickGameUserInfo}>
@@ -40,6 +41,6 @@ export const SelectQG = ({ handleGetRefCode }) => /* разбить на кон�
 				{/* list games */}
 				<TableSelectQuickGamesContainer />
 			</div>
-		</div>
+		</BlockWrapper>
 	</Section>
 );
