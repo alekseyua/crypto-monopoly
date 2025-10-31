@@ -67,7 +67,7 @@
 
         >span {
             width: 40%;
-            height: 2px;
+            height: 1px;
             background-color: #000;
             position: relative;
 
@@ -148,7 +148,7 @@
 
                 &::before {
                     bottom: -6px;
-                    transform: rotate(-45deg) translate(3px, -3px);
+                    transform: rotate(-45deg) translate(3px, -2px);
                 }
             }
         }

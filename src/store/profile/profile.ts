@@ -24,8 +24,7 @@ export const SET_PAYMENT_DATA = 'profile/set_payment_data' as const;
 export const profile = (store: StoreonStore) => {
   // profile logic
   //...
-  store.on(
-    UPDATE_PHOTO_AVATAR_PROFILE,
+  store.on( UPDATE_PHOTO_AVATAR_PROFILE,
     async (store: any, payload: IPayloadUpdatePhotoAvatar, { dispatch }) => {
       try {
         const formData = new FormData();

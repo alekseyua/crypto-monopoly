@@ -1,6 +1,6 @@
 import { Button, WrapperCard } from '../../../../shared/UI';
 
-import cls from './RulesInfoCards.module.css';
+import cls from './RulesInfoCards.module.scss';
 import icon1 from '../../assets/icons/rule-card-icon-1.png';
 import icon2 from '../../assets/icons/rule-card-icon-2.png';
 import closedBook from '../../assets/imgs/closed-book-main-mode.png';

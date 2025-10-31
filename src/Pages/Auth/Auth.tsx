@@ -33,6 +33,10 @@ const Auth = () => {
               <b> Land Of Monopoly</b> на всех популярных платформах.
             </p>
             <img src={authImg} alt="Devices" />
+            <div className={cls['footer__corporation']}>© Land Of Monopoly
+              Русский
+              English
+              все языки »‎ </div>
           </div>
           <Outlet />
         </div>

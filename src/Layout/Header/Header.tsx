@@ -5,6 +5,7 @@ import UserPanelContainer from '../../models/UserPanel/UserPanelContainer';
 import { Button } from '../../shared/UI';
 import { getLocaleStore } from '../../helpers/helper';
 import { NAV_ALL_ACHIEVEMENTS } from '../../routers/config-nav';
+import BlockWrapper from '../../shared/UI/Block/BlockWrapper';
 
 
 const Header:React.FC = () => {
@@ -17,7 +18,7 @@ const Header:React.FC = () => {
 
 					</header>
 					: <header className={styles['header__container']}>
-						<div className='wrapper'>
+						<BlockWrapper>
 							<div className={styles.headerCont}>
 								<div className={styles.navHeader}>
 									<img className={styles['header__logo']} src={logo} alt='Logo' />
@@ -38,7 +39,7 @@ const Header:React.FC = () => {
 										: <UserPanelContainer />
 								}
 							</div>
-						</div>
+						</BlockWrapper>
 					</header>
 
 			}

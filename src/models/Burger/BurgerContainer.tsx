@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from 'react'
-import { NAV_ABOUT, NAV_ALL_ACHIEVEMENTS, NAV_MAIN_PAGE, NAV_QG_SELECT_PAGE } from '../../routers/config-nav';
+import { NAV_ABOUT, NAV_ALL_ACHIEVEMENTS, NAV_MAIN_PAGE, NAV_QG_SELECT_PAGE, NAV_RULES_PAGE } from '../../routers/config-nav';
 import withRouter from '../../HOC/withRouter';
 import Burger from './Burger';
 import { CREATE_NEW_QG } from '../../store/quick-game/quick-game';
@@ -33,7 +33,7 @@ const BurgerContainer: React.FC<IBurgerContainer> = ({
     {
       id: 2,
       title: "Правила игры",
-      link: NAV_ALL_ACHIEVEMENTS,
+      link: NAV_RULES_PAGE,
       active: false,
     },
     {

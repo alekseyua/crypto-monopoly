@@ -1,5 +1,5 @@
 import { QuestionDropdown } from '../../UI';
-import cls from './Questions.module.css';
+import cls from './Questions.module.scss';
 
 export const Questions = ({
 	questions

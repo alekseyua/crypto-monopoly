@@ -26,6 +26,7 @@
         align-items: center;
         padding: 40px 0;
         gap: 40px;
+        position: relative;
         @media (max-width: 1400px) {
             gap: 20px;
         }
@@ -43,6 +44,12 @@
 .authInfo {
     flex: 1 1 75%;
     grid-column: 1 / 8;
+    height: calc(100% - 20px);
+    margin-top: 100px;
+        position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
     @media (max-width: 1400px) {
         grid-column: 1 / 7;
     }
@@ -72,4 +79,10 @@
 .authForm {
     flex: 1;
     width: 100%;
+}
+
+.footer__corporation{
+    position: relative;
+    display: block;
+    bottom: 0;
 }

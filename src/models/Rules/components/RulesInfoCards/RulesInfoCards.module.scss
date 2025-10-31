@@ -3,6 +3,9 @@
 	grid-template-columns: 1fr 1fr;
 	gap: 34px;
 	margin-bottom: 60px;
+	@media (max-width:992px) {
+		grid-template-columns: 1fr;
+	}
 }
 
 .icon {
@@ -15,6 +18,10 @@
 	grid-template-columns: 5fr 2fr;
 	align-items: center;
 	gap: 50px;
+	@media (max-width: 1280px) {
+		display: flex;
+		flex-direction: column;
+	}
 }
 
 .ruleCardHeader {
@@ -22,6 +29,7 @@
 	align-items: center;
 	gap: 18px;
 	margin-bottom: 35px;
+	
 }
 
 .ruleCardHeader h3 {
@@ -38,6 +46,9 @@
 
 .ruleCardImgCont {
 	position: relative;
+	@media (max-width: 1280px) {
+		width: 30%;
+	}
 }
 
 .ruleCardImgCont a {
@@ -47,4 +58,7 @@
 	padding: 15px;
 	top: 50%;
 	transform: translateY(-50%) translateX(-30%);
+	@media (max-width: 1280px) {
+		min-width: 250px;
+	}
 }
