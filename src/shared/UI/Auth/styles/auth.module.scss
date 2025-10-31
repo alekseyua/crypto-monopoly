@@ -1,0 +1,15 @@
+.auth{
+    //auth__container-form
+    &__container-form{
+        grid-column: 9 / 13;
+        gap: 15px;
+        display: grid;
+        @media (max-width: 1400px) {
+            grid-column: 8 / 13;
+        }
+        @media (max-width: 768px) {
+            width: 100%;
+            max-width: 500px;
+        }
+    }
+}

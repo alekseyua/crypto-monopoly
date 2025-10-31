@@ -5,6 +5,7 @@ import AuthPartners from "../../Component/AuthPartners/AuthPartners";
 import Icon from "../../shared/UI/Icon/Icon";
 import { closeEye, openEye } from "../../assets";
 import RecoveryPasswordContainer from "./RecoveryPassword/RecoveryPasswordContainer";
+import ContainerAuthForm from "../../shared/UI/Auth/ContainerAuthForm";
 
 export const LoginUser = ({
 	error,
@@ -20,7 +21,7 @@ export const LoginUser = ({
 }) => {
 
 	return (
-		<div className={cls.registerCont}>
+		<ContainerAuthForm>
 
 			{
 				isRecoveryPassword
@@ -92,6 +93,6 @@ export const LoginUser = ({
 					onClick={handlerRedirectRegit}
 				>Зарегистрироваться</Button>
 			</WrapperCard>
-		</div>
+		</ContainerAuthForm>
 	);
 };

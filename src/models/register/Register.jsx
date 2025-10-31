@@ -8,6 +8,7 @@ import { Step5 } from './components/step5/step5';
 import { useStoreon } from 'storeon/react';
 import AuthPartners from '../../Component/AuthPartners/AuthPartners';
 import cls from './register.module.css';
+import ContainerAuthForm from '../../shared/UI/Auth/ContainerAuthForm';
 
 export const Register = ({
 	error,
@@ -38,7 +39,7 @@ export const Register = ({
 	}, [regStep, handleGetDuplicateCode, handleNextStep, handlePrevStep,handleRegistration,handleSetRegData]);
 
 	return (
-		<div className={cls.registerCont}>
+		<ContainerAuthForm>
 			{changeSteps()}
 			{
 				regStep !==5 &&
@@ -66,6 +67,6 @@ export const Register = ({
 
 				</div>
 }
-		</div>
+		</ContainerAuthForm>
 	);
 };
