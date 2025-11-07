@@ -4,7 +4,6 @@ import { ICard, IPlayer, ISpecialCard } from '../../../store/quick-game/quick-ga
 import EventsHistoryListContainer from '../../MainGame/component/events-history-list/EventsHistoryListContainer';
 import FieldListPlayersQGContainer from '../../MainGame/component/FieldListPlayersQuickGame/FieldListPlayersQuickGameContainer';
 
-
 import cls from '../styles/quick-game.module.scss';
 
 interface IQG {
@@ -48,7 +47,7 @@ export const FieldQG: React.FC<IQG> = ({
             handleClickUserPreview={handleClickUserPreview}
             isChangeCard={isChangeCard}
           />
-          <div>
+          <div style={{ gridArea: 'main'}}>
             <GameBoard
               innerRef={innerRef}
               ActionCard={ActionCard}

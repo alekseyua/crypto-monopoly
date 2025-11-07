@@ -18,12 +18,28 @@
     	width: 58.11%; /// ????????????????????
 		// @include adaptiv-value(width,58.11, 50, 3);
 		aspect-ratio: 1 / 1;
-		background: #ffffff;
+		// background: #ffffff;
 		position: absolute;
 		left: 50%;
 		top: 50%;
 		transform: translate(-50%, -50%);
 		overflow: hidden;
+		z-index: 1;
+
+		//game-board__info--mobile
+		&--mobile{
+			position: fixed;
+			bottom: 100px;
+			width: 100%;
+			z-index: 998;
+			max-width: 100%;
+			left: 0;
+			width: 100%;
+			border: 1px solid #092bb0;
+			border-radius: 35px 35px 0 0;
+			max-height: 120px;
+			overflow: hidden;
+		}
   }
 }
 
@@ -257,6 +273,12 @@
 		display: grid;
 		grid-auto-flow: column;
 		grid-template-rows: repeat(3, 1fr);
+		@media (max-width: 975px) {
+			grid-template-rows: repeat(2, 1fr);
+		}
+		@media (max-width: 668px) {
+			grid-template-rows: repeat(1, 1fr);
+		}
 		// width: 100%;
 		&--1{
 			grid-template-rows: repeat(1, 1fr);

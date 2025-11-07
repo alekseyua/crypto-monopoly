@@ -9,10 +9,13 @@
 }
 
 .quickGamesHeader {
+	margin-bottom: 20px;
 	display: flex;
 	justify-content: space-between;
 	align-items: start;
 	gap: 30px;
+	overflow: hidden;
+	flex-wrap: wrap;
 }
 
 .flex {
@@ -22,11 +25,10 @@
 }
 
 .flex:nth-of-type(2) {
-	justify-content: end;
-}
-
-.quickGamesHeader {
-    margin-bottom: 20px;
+	justify-content: flex-end;
+	@media (max-width: 992px) {
+		justify-content: flex-start;
+	}
 }
 
 .allGames {

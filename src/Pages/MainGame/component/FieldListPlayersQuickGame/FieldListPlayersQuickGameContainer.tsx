@@ -3,6 +3,8 @@ import { IPlayer } from '../../../../store/quick-game/quick-game.d';
 import FieldListPlayersQG from './FieldListPlayersQuickGame'
 import { useStoreon } from 'storeon/react';
 import { SEND_ACTION_CARD_QG } from '../../../../store/quick-game/quick-game';
+import { useWindowWidth } from '../../../../hooks/useWindowWidth';
+import { Button } from '../../../../shared/UI';
 
 interface IFieldListPlayersQGProps {
   players: IPlayer[];
@@ -21,6 +23,7 @@ const FieldListPlayersQGContainer: React.FC<IFieldListPlayersQGProps> = ({
   listSelectUserPreview,
   handleClickUserPreview,
 }: IFieldListPlayersQGProps) => {
+    const width = useWindowWidth();
   const {showRate, dispatch} = useStoreon('showRate',);
   const [isOpenListPlayers, setIsOpenListPlayers ] = useState<boolean>(true);
   const [listPlayers, setListPlayers ] = useState<IPlayer[]>([...players]);
@@ -60,6 +63,15 @@ const FieldListPlayersQGContainer: React.FC<IFieldListPlayersQGProps> = ({
     } else if( sortingListPlayers === 'capital'){
       setSortingListPlayers('rate')
     }
+  }
+  if (width < 678){
+      return <Button
+        onClick={()=>console.log('click ')}
+        fillColor='#726CED'
+        type='filled'
+        p={12}
+        textColor='#fff'
+      >Список игроков</Button>
   }
   return (
     <FieldListPlayersQG

@@ -25,7 +25,7 @@ export const Rules = () => {
 
 	return (
 		<section className={`${cls.rulesSection}`}>
-			<BlockWrapper>
+			<BlockWrapper style={{ padding: '0 40px' }}>
 				<RulesInfoCards />
 				<QuestionsRulesContainer />
 			</BlockWrapper>

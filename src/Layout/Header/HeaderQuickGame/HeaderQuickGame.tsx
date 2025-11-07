@@ -28,8 +28,9 @@ const HeaderQuickGame: React.FC<HeaderQuickGameProps> = ({
         ]
       }
     >
-      <BlockWrapper>
-        <Section isScroll={false}>
+      <BlockWrapper style={{ padding: '0 40px' }}>
+
+        <Section isScroll={false} isShadowBottom={!isDropDownMenuOpen}>
           {isMobile ? (
             <div
               className={

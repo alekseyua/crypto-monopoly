@@ -6,7 +6,7 @@
         &-container {
             background: #F8F9FF;
             padding: 10px;
-            position: absolute;
+            position: fixed;
             bottom: 0;
             left: 0;
             z-index: 999;
@@ -14,19 +14,19 @@
             width: 100%;
             // border: 1px solid #092bb0;
             border-radius: 35px 35px 0 0;
-            max-height: 170px;
+            max-height: 120px;
+            // box-shadow: inset 0px -45px 0 10px #000;
             overflow: hidden;
             //header-qg__mobile-container--open
                 &--open {
                     background: #F8F9FF;
                     padding: 10px;
-                    position: absolute;
+                    position: fixed;
                     bottom: 0;
                     left: 0;
                     z-index: 999;
                     max-width: 100%;
                     width: 100%;
-                    border: 1px solid #092bb0;
                     border-radius: 35px 35px 0 0;
                     overflow: hidden;
                     max-height: 50%;
@@ -41,7 +41,7 @@
             gap: 10px;
             overflow: hidden;
             @include adaptiv-value('min-width', 650, 100, 2);
-            
+            height: 100%;
             //header-qg__mobile-header-cont--inner
             &--inner{
                 display: flex;

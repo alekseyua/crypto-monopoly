@@ -10,6 +10,7 @@ import ContainerInfoTwoColumnGIB from '../GameInfoBoardNew/UIContainerGIB/InfoGI
 import styles from './styles/gib.module.scss';
 import React from 'react';
 import { IPlayer, IRoleDiceStore } from '../../../../store/quick-game/quick-game.d';
+import { useWindowWidth } from '../../../../hooks/useWindowWidth';
 
 interface IMoveBoardQGProps {
 	onMove: (params: any) => void;
@@ -34,6 +35,8 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 	titleBtn = 'Походить',
 	timeEndMove,
 }: IMoveBoardQGProps) => {
+    const width = useWindowWidth();
+    const isMobile = width < 992;
 	  const [ isClick, setIsClick ] =  React.useState(false); 
     const { dataPlayerQG, roleDiceStore } = useStoreon<StateStore, EventsStore>(
       "dataPlayerQG",
@@ -41,12 +44,19 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
     );
     
     console.log({ roleDiceStore });
+    const handleClickMove = () => {
+      onMove({
+        action,
+      });
+      setIsClick(true);
+      setTimeout(()=>setIsClick(false),1000);
+    }
 	return (
     <div className={styles["gib__container"]}>
       {/* header */}
       {title ? (
         <>
-          <Offset mt={30} />
+          {!isMobile  && <Offset mt={30} />}
           <div className={styles["gib__header-container--timer"]}>
             <Title className={styles["gib__title"]} title={title} />
             (
@@ -59,18 +69,13 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
           </div>
         </>
       ) : (
-        <Offset mt={30} />
+        !isMobile && <Offset mt={30} />
       )}
       {/* btn */}
       <div className={styles["gib__btns-container--btn-one"]}>
         <Button
           disabled={isClick}
-          onClick={() => {
-            setIsClick(true);
-            onMove({
-              action,
-            });
-          }}
+          onClick={handleClickMove}
         >
           {titleBtn}
         </Button>
@@ -100,11 +105,7 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
             <RollDiceContainer
               roleDice1={dataPlayerQG.dice_roll_1}
               roleDice2={dataPlayerQG.dice_roll_2}
-              onClick={() => {
-                onMove({
-                  action,
-                });
-              }}
+              onClick={handleClickMove}
             />
           </div>
         )}

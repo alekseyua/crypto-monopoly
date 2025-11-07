@@ -3,23 +3,16 @@ import ContainerGIB from '../../UIContainerGIB/ContainerGIB';
 import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
 import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
 import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
-import { IPlayer } from '../../../../../../store/quick-game/quick-game.d';
 import { Offset } from '../../../../../../shared/UI';
 import Title from '../../../../../../shared/UI/Title/Title';
 import { icons } from '../../../../../../assets';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
-import { useWindowWidth } from '../../../../../../hooks/useWindowWidth';
 
 interface IProps {
-  playerCurrentMove: IPlayer | null;
 }
 
-const Wait: React.FC<IProps> = ({
-  playerCurrentMove,
+const Empty: React.FC<IProps> = ({
 }: IProps) => {
-  const width = useWindowWidth();
-      const isMobile = width < 992;
-  if(!playerCurrentMove?.username) return null;
   return (
     <ContainerGIB>
       <Icon
@@ -30,31 +23,24 @@ const Wait: React.FC<IProps> = ({
       />
       <Offset mt={5} />
       <ContainerInfoHeaderGIB>
-        {!isMobile  && <Offset mt={20} />}
-       
-        <Title
-          title={'Ожидайте свой ход'}
-          tag='h3'
-          center
-        />
+        <Offset mt={30} />
       </ContainerInfoHeaderGIB>
 
       <ContainerInfoBodyGIB>
+        <Title
+          title={'Сделайте «щипок» пальцами чтобы управлять размером поля'}
+          tag='h3'
+          center
+        />
 
       </ContainerInfoBodyGIB>
 
       <ContainerInfoFooterGIB>
 
-      <Title
-        title={`Сейчас ходит игрок ${playerCurrentMove.username}`}
-        tag='h6'
-        center
-      />
-      <Offset mt={30} />
       </ContainerInfoFooterGIB>
 
     </ContainerGIB>
   )
 }
 
-export default Wait
+export default Empty     

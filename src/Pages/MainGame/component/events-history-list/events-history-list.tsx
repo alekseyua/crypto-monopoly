@@ -24,6 +24,7 @@ export const EventsHistoryList: React.FC<IEventHistoryList> = ({
       className={cls.side}
       style={{
         height: !isOpen ? 200 : heightGameBoard,
+        gridArea: 'history',
       }}
     >
       <CollapsibleCard

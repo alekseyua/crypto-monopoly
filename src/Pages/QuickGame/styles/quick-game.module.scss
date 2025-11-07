@@ -4,6 +4,11 @@
 	grid-template-columns: 2fr 4fr 2fr;
 	padding: 20px 0;
 	gap: 2%;
+	@media (max-width:1480px) {
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: 'main main'
+							 'players history';
+	}
 }
 .quickGameCont {
 	display: grid;

@@ -18,7 +18,7 @@ const Header:React.FC = () => {
 
 					</header>
 					: <header className={styles['header__container']}>
-						<BlockWrapper>
+						<BlockWrapper style={{ padding: '0 40px' }}>
 							<div className={styles.headerCont}>
 								<div className={styles.navHeader}>
 									<img className={styles['header__logo']} src={logo} alt='Logo' />

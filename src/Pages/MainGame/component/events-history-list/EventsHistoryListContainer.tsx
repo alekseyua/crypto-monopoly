@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { EventsHistoryList } from './events-history-list';
 import { IDataQG, IMassagesFeed } from '../../../../store/quick-game/quick-game.d';
 import { useStoreon } from 'storeon/react';
+import { useWindowWidth } from '../../../../hooks/useWindowWidth';
+import { Button } from '../../../../shared/UI';
 interface IProps {
   heightGameBoard: number;
 }
@@ -17,6 +19,8 @@ const EventsHistoryListContainer: React.FC<IProps> = ({
     quickGame: IDataQG;
     feedNewsMessages: IMassagesFeed[];
   } = useStoreon("quickGame", "feedNewsMessages");
+	const width = useWindowWidth();
+
 	
 	const handleClickOpen = () => {
 		setIsOpen((prev) => !prev);
@@ -40,6 +44,16 @@ const EventsHistoryListContainer: React.FC<IProps> = ({
 		}
 	}
 
+
+	if (width < 678){
+		return <Button
+			onClick={() => console.log('click ')}
+			fillColor='#726CED'
+			type='filled'
+			p={12}
+			textColor='#fff'
+		>История событий</Button>
+	}
 	return (
     <EventsHistoryList
       heightGameBoard={heightGameBoard}

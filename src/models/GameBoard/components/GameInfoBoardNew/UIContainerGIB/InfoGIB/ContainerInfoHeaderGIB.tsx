@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from '../../styles/gib.module.scss';
+import { useWindowWidth } from '../../../../../../hooks/useWindowWidth';
 
 interface IProps {
     children?: React.ReactNode;
@@ -12,8 +13,10 @@ const ContainerInfoHeaderGIB:React.FC<IProps> = ({
     style,
     children
 }: IProps) => {
+    const width = useWindowWidth();
     const customStyle: React.CSSProperties = {};
     if(p) customStyle.padding = p;
+    if(width < 992) customStyle.padding = 10
     return (
         <div className={styles['gib__container-info-header']}
         style={{

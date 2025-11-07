@@ -6,6 +6,7 @@
         width: 100%;
         height: 100%;
         background-color: rgba(233, 236, 255, 0.2);
+        position: relative;
         // overflow: hidden;
         
     }
@@ -43,16 +44,17 @@
         padding-left: 40px;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        // align-items: center;
         border-radius: 0 10px 10px 0;
         width: 100%;
         height: 100%;
+        position: relative;
        //card-players-preview__body--move
        &--move{
         padding-left: 40px;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        // align-items: center;
         border-radius: 0 10px 10px 0;
         width: 100%;
         height: 100%;
@@ -64,8 +66,13 @@
     &__desc-container {
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        // gap: 5px;
         padding: 5px;
+        position: relative;
+    }
+    //card-players-preview__settings-or-exit
+    &__settings-or-exit{
+        align-self: center;
     }
     //card-players-preview__name
     &__name{
@@ -81,8 +88,29 @@
     //card-players-preview__container-balance-capital
     &__container-balance-capital{
         display: flex;
-        gap: 10px;
+        // gap: 10px;
         flex-wrap: wrap;
+        &::-webkit-scrollbar {
+            width: 1px;
+        }
+    
+        &::-webkit-scrollbar-track {
+            border-radius: 99px;
+            background: #f1f1f1;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            border-radius: 99px;
+            background: #888;
+        }
+        @media (max-width: 1480px) {
+            max-width: 120px;
+            overflow-y: hidden;
+        }
+        @media (max-width: 1280px) {
+            max-width: 100%;
+            overflow-y: auto;
+        }
     }
     // card-players-preview__balance-capital
     &__balance-capital {

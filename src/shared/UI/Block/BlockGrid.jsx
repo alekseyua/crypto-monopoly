@@ -1,4 +1,4 @@
-import cls from './styles/block-grid.module.css';
+import cls from './styles/block-grid.module.scss';
 
 const BlockGrid = ({
     style={},
