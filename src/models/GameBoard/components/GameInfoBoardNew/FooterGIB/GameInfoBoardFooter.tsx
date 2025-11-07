@@ -68,7 +68,7 @@ const GameInfoBoardFooter:React.FC<IProps> = ({
         <Button
           className={styles["gib-footer__btns-btn--position"]}
           type="fill"
-          p={5}
+          p={10}
           style={{
             backgroundColor: bgcBtn ? bgcBtn : "#D6DBF5",
           }}

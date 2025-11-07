@@ -53,7 +53,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
 
   const { scale, position, dragging, eventHandlers } = useZoomPan({
     minScale: 1,
-    maxScale: 3,
+    maxScale: 2,
     contentWidth,
     contentHeight,
     containerWidth: containerSize.w,

@@ -28,7 +28,7 @@ const HeaderQuickGame: React.FC<HeaderQuickGameProps> = ({
         ]
       }
     >
-      <BlockWrapper style={{ padding: '0 40px' }}>
+      <BlockWrapper style={{ padding: isMobile? '0 10px' :'0 40px' }}>
 
         <Section isScroll={false} isShadowBottom={!isDropDownMenuOpen}>
           {isMobile ? (

@@ -23,13 +23,14 @@ const Empty: React.FC<IProps> = ({
       />
       <Offset mt={5} />
       <ContainerInfoHeaderGIB>
-        <Offset mt={30} />
+        <Offset mt={20} />
       </ContainerInfoHeaderGIB>
 
       <ContainerInfoBodyGIB>
         <Title
           title={'Сделайте «щипок» пальцами чтобы управлять размером поля'}
-          tag='h3'
+          tag='h5'
+          style={{padding: 20, fontWeight:300}}
           center
         />
 

@@ -21,7 +21,7 @@ const BlockSheet: React.FC<IProps> = ({ children }) => {
     useEffect(()=>{
         if (currentWrapRef.current){
             const heightWrap = (currentWrapRef.current as HTMLElement).clientHeight;
-            setSheetHeight(heightWrap - 80);
+            setSheetHeight(heightWrap - 100);
         }
     },[])
 
