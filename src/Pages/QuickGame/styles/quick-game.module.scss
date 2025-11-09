@@ -2,9 +2,10 @@
 	display: grid;
 	// grid-template-columns: 0.3fr 1fr 0.3fr;
 	grid-template-columns: 2fr 4fr 2fr;
+	grid-template-areas: 'players main history';
 	padding: 20px 0;
 	gap: 2%;
-	@media (max-width:1480px) {
+	@media (max-width:992px) {
 		grid-template-columns: 1fr 1fr;
 		grid-template-areas: 'main main'
 							 'players history';
