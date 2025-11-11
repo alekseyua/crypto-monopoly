@@ -50,7 +50,7 @@ export const EventsHistoryList: React.FC<IEventHistoryList> = ({
                   withButton={false}
                 >
                   <h3>{m.player_name}</h3>
-                  <p>{m.message}</p>
+                  <span dangerouslySetInnerHTML={{ __html: m.message }} />
                 </Event>
               ))}
         </div>

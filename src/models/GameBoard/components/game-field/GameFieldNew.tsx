@@ -4,7 +4,7 @@ import fieldBg from '../../assets/images/field1-bg.png';
 import { icons, LeftSoleIcon, RightSoleIcon } from '../../../../assets';
 import { motion } from 'framer-motion';
 import Icon from '../../../../shared/UI/Icon/Icon';
-import { CSSProperties } from 'react';
+import { CSSProperties, useEffect } from 'react';
 import classNames from 'classnames';
 import { IPlayer, IOwnerCard } from '../../../../store/quick-game/quick-game.d';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';
@@ -51,12 +51,24 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 	playerCurrentMove,
 	activeCardForSelect,
 }: IGameFieldNew) => {
-	let styleBayCard = {};
+  const [styleBayCard, setStyleBayCard] = React.useState<CSSProperties>({});
 	// console.log(players?.length, {players})
-	const isOwnerCard = !!owner && Object.keys(owner).length && Object.keys(owner.player).length;
-	if (isOwnerCard) {
-		styleBayCard = { ...styleBayCard, background: `linear-gradient(to ${direction}, ${owner.player.color} 0%, rgba(255, 255, 255, 0) 100%)` } //
-	}
+  useEffect(() => {
+    const isOwnerCard = !!owner && Object.keys(owner).length && owner?.player?.user;
+    setStyleBayCard((prev) => {
+      if (isOwnerCard) {
+        return { ...prev, background: `linear-gradient(to ${direction}, ${owner.player.color} 0%, rgba(255, 255, 255, 0) 100%)` }
+      }else{
+        if (prev.background) {
+          const newPrev = { ...prev };
+          delete newPrev.background;
+          return newPrev;
+        }
+      }
+      return prev;
+    });
+  }, [owner, direction]);
+
 	const initStyleOnFieldColor: CSSProperties & Record<string, string> = {
 		'--onField-gradient-color1': playerCurrentMove.color,
 		'--onField-gradient-color2': playerCurrentMove.color
