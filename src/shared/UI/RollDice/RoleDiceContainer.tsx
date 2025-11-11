@@ -1,10 +1,9 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./styles/roll-dice.module.scss";
 import RollDice from "./RollDice";
 import { IRoleDiceStore } from "../../../store/quick-game/quick-game.d";
 import { RESET_ROLL_DICE_QG } from "../../../store/quick-game/quick-game";
 import { useStoreon } from "storeon/react";
-import { Offset } from "../Offset/Offset";
 
 interface IProps {
   roleDice1: number;
@@ -20,8 +19,6 @@ type EventStore = {
 };
 
 const RollDiceContainer: React.FC<IProps> = ({
-  roleDice1,
-  roleDice2,
   onClick,
 }) => {
   const { roleDiceStore, dispatch } = useStoreon<StateStore, EventStore>("roleDiceStore");
@@ -75,7 +72,7 @@ const RollDiceContainer: React.FC<IProps> = ({
       clearTimeout(timer);
       dispatch(RESET_ROLL_DICE_QG);
     };
-  }, [roleDiceStore.rd1, roleDiceStore.rd2]);
+  }, [roleDiceStore.rd1, roleDiceStore.rd2, dispatch]);
 
   return (
     <section
