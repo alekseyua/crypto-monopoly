@@ -593,6 +593,30 @@
 			position: relative;
 			padding: 10px;
 			margin: 0 15px;
+			/* WebKit (Chrome, Safari) */
+				&::-webkit-scrollbar {
+					width: 0px;
+					opacity: 0;
+				}
+			
+				&::-webkit-scrollbar-thumb {
+					background-color: transparent;
+					transition: background-color 0.3s;
+				}
+			
+				&:hover::-webkit-scrollbar-thumb {
+					background-color: var(--bg-color-scroll);
+				}
+			
+				&::-webkit-scrollbar-track {
+					background-color: transparent;
+				}
+			
+				/* Firefox */
+				&* {
+					scrollbar-width: thin;
+					scrollbar-color: var(--bg-color-scroll) transparent;
+				}
 		
 			//gib__body-container--auction
 			&--auction{
