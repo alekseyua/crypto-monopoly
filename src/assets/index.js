@@ -76,6 +76,7 @@ import asset from './icons/asset.svg';
 export const icons = {
   home,
   logo,
+  cross: Cross,
   success,
   actions,
   crossBlack,

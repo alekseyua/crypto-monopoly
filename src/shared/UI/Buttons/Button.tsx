@@ -5,12 +5,12 @@ import classNames from 'classnames';
 
 interface buttonProps{
 	component?: 'button';
-	onClick: ()=>void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement> ;
 }
 
 interface divProps{
 	component?: 'div';
-	onClick?: ()=>void;
+  onClick?: React.MouseEventHandler<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement> ;
 }
 
 interface linkProps {
@@ -94,10 +94,18 @@ export const Button: React.FC<IButton & PropsComponent> = ({
 	if(p) buttonStyle = {...buttonStyle, padding: `${p}px`};
 	if(borderColor) buttonStyle = {...buttonStyle, border: `1px solid ${borderColor}`};
 	if (component === 'button') {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (disabled) return;
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault(); // чтобы пробел не скроллил страницу
+        (onClick as any)?.(e as React.KeyboardEvent<HTMLButtonElement>);
+      }
+    };
 		return (
       <button
         type={typeBtn}
-        onClick={onClick}
+        onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
+        onKeyDown={handleKeyDown}
         className={classNames(
           styles.button,
           type && styles[type],
@@ -125,7 +133,7 @@ export const Button: React.FC<IButton & PropsComponent> = ({
 	if (component === 'div') {
 		return (
       <div
-        onClick={onClick}
+        onClick={onClick as React.MouseEventHandler<HTMLDivElement>}
         className={classNames(
           styles.button,
           type && styles[type],

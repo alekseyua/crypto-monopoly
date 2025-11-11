@@ -15,6 +15,8 @@ import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFo
 import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
 import ButtonBack from '../../../../../../shared/UI/Buttons/ButtonBack/ButtonBack';
 import InnerBtnContextSpaceBetween from '../../ControllerGIB/InnerBtnContextSpaceBetween';
+import Icon from '../../../../../../shared/UI/Icon/Icon';
+import { icons } from '../../../../../../assets';
 
 interface IProps {
   handleChangeScreen: (newScreen: 'action-card' | 'action-special-card' | 'actions') => void;
@@ -46,6 +48,20 @@ const ActionsCard: React.FC<IProps> = ({
   return (
     <ContainerGIB>
       <Offset mt={5} />
+      <Button
+        type="transparent"
+        borderColor='transparent'
+        disabled={isClick}
+        onClick={() => {
+          temporaryDisableBtn(2000, setIsClick);
+          handleAction({
+            action: "clean_chose_actions",
+            card_id,
+          });
+        }}
+      >
+        <Icon src={icons.crossBlack} width={'20'} height='20' style={{position: 'absolute', right:20 }}/>
+      </Button>
       <Title title={"Действия с картой"} tag="h3" fontWeight={500} />
       <Offset mt={15} />
       <ContainerOneBtn>

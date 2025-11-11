@@ -30,7 +30,11 @@ const FormInputCreateQGContainer:React.FC = () => {
     }));
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.type === 'keydown') {
+      e.preventDefault();
+      if ((e as React.KeyboardEvent<HTMLButtonElement>).keyCode !== 32 && (e as React.KeyboardEvent<HTMLButtonElement>).keyCode !== 13) return
+    }
     dispatch(CREATE_NEW_QG, params)
     dispatch(SET_MODAL, { isOpen: false });
   }

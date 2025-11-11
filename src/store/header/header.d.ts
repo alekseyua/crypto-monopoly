@@ -4,6 +4,7 @@ type HeaderName =
   | HeaderNameEnum.AUTH
   | HeaderNameEnum.QUICK_GAME
   | HeaderNameEnum.RULES
+  | HeaderNameEnum.RULES_DETAIL
 
 enum HeaderNameEnum {
     AUTH= "auth",
@@ -11,6 +12,7 @@ enum HeaderNameEnum {
     PROFILE = "profile",
     QUICK_GAME = "quick_game",
     RULES = "rules",
+    RULES_DETAIL = "NAV_GAME_RULES"
 }
 
 export { HeaderName, HeaderNameEnum };

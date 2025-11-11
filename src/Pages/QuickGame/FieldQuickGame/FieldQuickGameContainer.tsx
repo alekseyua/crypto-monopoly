@@ -42,6 +42,7 @@ import { SET_HEADER_NAME_IS_SHOW } from "../../../store/header/header";
 import { HeaderNameEnum } from "../../../store/header/header.d";
 import { IUser } from "../../../store/users/user.d";
 import { InfoChanceOrCommunity } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ChanceOrCommunity/InfoChanceOrCommunity";
+import { NAV_QG_SELECT_PAGE } from "../../../routers/config-nav";
 
 type keyPreview = {
   key:
@@ -124,10 +125,18 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 
   const actionCardData =
     dataActionCardQG[(user.id + "") as keyof IUserActions];
+    
+    // useEffect(() => {
+    //   console.log('%cISACTIVE ===================== ' + quickGame.is_active, 'color: lightblue');
+    //   if (!quickGame.is_active) {
+    //     navigate(NAV_QG_SELECT_PAGE)
+    //   }
+    // }, [quickGame]);
 
-	useEffect(() => {
+  useEffect(() => {
     dispatch(SET_HEADER_NAME_IS_SHOW, HeaderNameEnum.QUICK_GAME);
-  }, [dispatch]);
+  }, [dispatch]); 
+  
 
   const redirectTo = useCallback(
     (path: string) => {

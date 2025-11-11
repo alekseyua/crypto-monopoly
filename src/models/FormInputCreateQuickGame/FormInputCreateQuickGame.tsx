@@ -9,7 +9,7 @@ import { Button, Input } from '../../shared/UI';
 // max_players: 2,
 interface IFormInputCreateQG{
   handleChangeInput: (e: string | number, key: string)=> void;
-  handleSubmit: ()=> void;
+  handleSubmit: (e: React.MouseEvent<HTMLButtonElement>)=> void;
   paramsError: any;
 }
 const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({

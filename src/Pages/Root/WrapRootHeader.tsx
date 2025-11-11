@@ -7,6 +7,7 @@ import HeaderAuth from '../../Layout/Header/HeaderAuth';
 import HeaderQuickGame from '../../Layout/Header/HeaderQuickGame/HeaderQuickGame';
 import React from 'react';
 import HeaderRules from '../../Layout/Header/HeaderRules';
+import RulesHeader from '../AllGameRules/components/rules-header/rules-header';
 
 interface StateStore{
   headerName: string;
@@ -32,6 +33,8 @@ const WrapRootHeader = () => {
         Object.keys(user).length ? <HeaderQuickGame isMobile={isMobile} /> : <HeaderRules />
       ) : headerName === HeaderNameEnum.PROFILE ? (
         <HeaderProfileContainer />
+      ) : headerName === HeaderNameEnum.RULES_DETAIL ? (
+        <RulesHeader />
       ) : (
         <div style={{ height: "60px" }}>error header</div>
       )}

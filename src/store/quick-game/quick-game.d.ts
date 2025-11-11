@@ -241,6 +241,7 @@ type CardDataDataActionsType = {
 
 interface IDataQG {
   id: number;
+  is_active: boolean; //Если он false,уходим с игры 
   // auctions:[];
   cards: ICard[] | ISpecialCard[];
   // name: string;

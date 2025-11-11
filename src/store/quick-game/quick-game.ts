@@ -234,6 +234,7 @@ export const quickGame = (store: StoreonStore) => {
   const initDataQG: IDataQG = {
     id: 0,
     cards: [],
+    is_active: false,
     // auctions:[],
     // name: "",
     players: [],
@@ -330,6 +331,9 @@ export const quickGame = (store: StoreonStore) => {
 
           // ===================== current game quick ====================
           if (Object.keys(res).includes("game_data")) {
+            if(!res.game_data.is_active) {
+              return payload.redirectTo(NAV_QG_SELECT_PAGE);
+            }
             // одна игра
             if (res.game_data?.cards && res.game_data?.cards.length) {
               dispatch(SET_LIST_CARDS_QG, res.game_data.cards); // список карт в игре
@@ -339,7 +343,7 @@ export const quickGame = (store: StoreonStore) => {
               res.game_data &&
               res.game_data.players.filter((p: any) => +p.user === profileID);
             dispatch(SET_DATA_PLAYER_QG, currentPlayer[0]); // данные пользователя в игре
-            console.log("%c" + currentPlayer[0]?.show_dice_roll, "color: red");
+            // console.log("%c" + JSON.stringify(currentPlayer[0], null, 4), "color: red");
             if (
               isKeyPresentInHash(currentPlayer[0], "show_dice_roll") &&
               currentPlayer[0].show_dice_roll
