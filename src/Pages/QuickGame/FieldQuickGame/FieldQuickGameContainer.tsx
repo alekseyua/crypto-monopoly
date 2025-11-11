@@ -42,7 +42,6 @@ import { SET_HEADER_NAME_IS_SHOW } from "../../../store/header/header";
 import { HeaderNameEnum } from "../../../store/header/header.d";
 import { IUser } from "../../../store/users/user.d";
 import { InfoChanceOrCommunity } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ChanceOrCommunity/InfoChanceOrCommunity";
-import { NAV_QG_SELECT_PAGE } from "../../../routers/config-nav";
 
 type keyPreview = {
   key:
