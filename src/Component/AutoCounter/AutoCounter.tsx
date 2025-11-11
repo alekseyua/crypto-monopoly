@@ -51,6 +51,7 @@ const AutoCounter: React.FC<IProps> = ({
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [counter, disabled]); // Следим за counter и disabled
 
   return <span className={styles["counter__container"]}>{counter}</span>;

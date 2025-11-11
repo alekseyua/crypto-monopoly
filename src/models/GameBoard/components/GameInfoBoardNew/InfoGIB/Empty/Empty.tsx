@@ -11,8 +11,7 @@ import Icon from '../../../../../../shared/UI/Icon/Icon';
 interface IProps {
 }
 
-const Empty: React.FC<IProps> = ({
-}: IProps) => {
+const Empty: React.FC<IProps> = () => {
   return (
     <ContainerGIB>
       <Icon

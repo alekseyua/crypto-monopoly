@@ -4,7 +4,7 @@ import fieldBg from '../../assets/images/field1-bg.png';
 import { icons, LeftSoleIcon, RightSoleIcon } from '../../../../assets';
 import { motion } from 'framer-motion';
 import Icon from '../../../../shared/UI/Icon/Icon';
-import { CSSProperties, useEffect } from 'react';
+import { CSSProperties } from 'react';
 import classNames from 'classnames';
 import { IPlayer, IOwnerCard } from '../../../../store/quick-game/quick-game.d';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';

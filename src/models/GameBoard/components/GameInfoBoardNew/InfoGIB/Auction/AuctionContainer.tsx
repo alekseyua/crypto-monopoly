@@ -35,13 +35,6 @@ const AuctionContainer: React.FC<IAuctionProps> = ({
   }
   const [timeEndAuction, setTimeEndAuction] = useState(endTime);
   const [resetTimer, setResetTimer] = useState<boolean>(false);
-  console.log(
-    "%cresetData " + resetData,
-    "color: yellow",
-    { endTime },
-    timeEndAuction,
-    resetTimer
-  );
 
   useEffect(() => {
     if (!!resetData) {
@@ -53,6 +46,7 @@ const AuctionContainer: React.FC<IAuctionProps> = ({
         setTimeEndAuction(endTime);
       },200);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resetData]);
 
   if( screen === 'place-bet'  && showInfoCard === 'auction-card' ) {

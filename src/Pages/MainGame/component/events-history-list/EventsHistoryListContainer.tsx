@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { EventsHistoryList } from './events-history-list';
 import { IDataQG, IMassagesFeed } from '../../../../store/quick-game/quick-game.d';
 import { useStoreon } from 'storeon/react';

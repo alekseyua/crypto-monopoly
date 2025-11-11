@@ -1,5 +1,5 @@
 import React from "react";
-import { icons, logo } from "../../../../../../assets";
+import { icons } from "../../../../../../assets";
 import { temporaryDisableBtn } from "../../../../../../helpers/helper";
 import { Button, Offset } from "../../../../../../shared/UI";
 import Icon from "../../../../../../shared/UI/Icon/Icon";

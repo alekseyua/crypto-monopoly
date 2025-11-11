@@ -401,7 +401,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
                               height="15px"
                               src={icons.qgCurrencySvg}
                             />
-                          ) : undefined
+                          ) : null
                         }
                         iconRight={
                           !!stateExchange.price_to && !isSetInputPriceTo ? (
@@ -424,7 +424,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
                               height="17px"
                               onClick={() => handleApplyInput("price_to_reset")}
                             />
-                          ) : undefined
+                            ) : null
                         }
                       />
                     </>

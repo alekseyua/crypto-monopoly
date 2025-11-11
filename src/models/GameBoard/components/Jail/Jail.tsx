@@ -4,7 +4,6 @@ import { jail } from "../../../../assets";
 import cls from "../../styles/game-board.module.scss";
 import { IPlayer } from "../../../../store/quick-game/quick-game.d";
 import PlayerSticker from "../PlayerSticker/PlayerSticker";
-import Text from "../../../../shared/UI/Text/Text";
 
 interface IJailProps {
   image_card?: string;
@@ -15,8 +14,6 @@ interface IJailProps {
 }
 
 const Jail: React.FC<IJailProps> = ({
-  image_card,
-  name,
   headerBgc,
   players,
   isGrayBlur = false,
@@ -26,7 +23,6 @@ const Jail: React.FC<IJailProps> = ({
       className={classNames({
         [cls["field"]]: true,
         [cls["leftBottom"]]: true,
-        // [cls["jail-grid"]]: true,
       })}
       style={{
         filter: isGrayBlur ? "blur(3px) grayscale(100%)" : "",
@@ -89,111 +85,3 @@ const Jail: React.FC<IJailProps> = ({
 };
 
 export default Jail;
-
-
-{/* <PlayerSticker
-  countRows={2}
-  reverse
-  direction="right"
-  players={[
-    {
-      id: 0,
-      user: "",
-      balance: "",
-      color: "",
-      is_creater: false,
-      is_start_fast_game: false,
-      fast_game_id: 0,
-      is_start_main_game: false,
-      main_game_id: null,
-      properties: [],
-      bankrupt: false,
-      current_card: 0,
-      move_number: 0,
-      current_move: false,
-      card_data: {},
-      auction_data: {},
-      choose_data: {},
-      status: "waiting",
-      bill_data: {
-        balance: 0,
-        property: 0,
-        capital: 0,
-        jackpot: 0,
-        rank: 0,
-      },
-      username: "",
-      move_end_time_sec: 0,
-      messages: [],
-      dice_roll_1: 0,
-      dice_roll_2: 0,
-      is_concluded: false,
-    },
-    {
-      id: 0,
-      user: "",
-      balance: "",
-      color: "",
-      is_creater: false,
-      is_start_fast_game: false,
-      fast_game_id: 0,
-      is_start_main_game: false,
-      main_game_id: null,
-      properties: [],
-      bankrupt: false,
-      current_card: 0,
-      move_number: 0,
-      current_move: false,
-      card_data: {},
-      auction_data: {},
-      choose_data: {},
-      status: "waiting",
-      bill_data: {
-        balance: 0,
-        property: 0,
-        capital: 0,
-        jackpot: 0,
-        rank: 0,
-      },
-      username: "",
-      move_end_time_sec: 0,
-      messages: [],
-      dice_roll_1: 0,
-      dice_roll_2: 0,
-      is_concluded: false,
-    },
-    {
-      id: 0,
-      user: "",
-      balance: "",
-      color: "",
-      is_creater: false,
-      is_start_fast_game: false,
-      fast_game_id: 0,
-      is_start_main_game: false,
-      main_game_id: null,
-      properties: [],
-      bankrupt: false,
-      current_card: 0,
-      move_number: 0,
-      current_move: false,
-      card_data: {},
-      auction_data: {},
-      choose_data: {},
-      status: "waiting",
-      bill_data: {
-        balance: 0,
-        property: 0,
-        capital: 0,
-        jackpot: 0,
-        rank: 0,
-      },
-      username: "",
-      move_end_time_sec: 0,
-      messages: [],
-      dice_roll_1: 0,
-      dice_roll_2: 0,
-      is_concluded: false,
-    },
-  ]}
-/>; */}

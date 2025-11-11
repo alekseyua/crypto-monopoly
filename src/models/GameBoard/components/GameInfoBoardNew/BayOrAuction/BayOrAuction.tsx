@@ -2,7 +2,6 @@ import { icons } from '../../../../../assets';
 import { Button, Offset } from '../../../../../shared/UI';
 import Icon from '../../../../../shared/UI/Icon/Icon';
 import React from 'react';
-import { InfoBoardLabel } from '../../GameInfoBoard/UI/Label/info-board-label';
 import AutoCounter from '../../../../../Component/AutoCounter/AutoCounter';
 import { getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../../helpers/helper';
 import Title from '../../../../../shared/UI/Title/Title';
@@ -62,7 +61,6 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
 		});
 	}
 
-  const styles: any = {};
 	return (
     <ContainerGIB style={{ background: "#ffffffff" }}>
       {/* header */}

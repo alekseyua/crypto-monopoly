@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '../../Layout/Header/Header';
 import HeaderProfileContainer from '../../models/HeaderProfile/HeaderProfileContainer';
 import { useStoreon } from 'storeon/react';
-import { HeaderName, HeaderNameEnum } from '../../store/header/header.d';
+import { HeaderNameEnum } from '../../store/header/header.d';
 import HeaderAuth from '../../Layout/Header/HeaderAuth';
 import HeaderQuickGame from '../../Layout/Header/HeaderQuickGame/HeaderQuickGame';
 import React from 'react';

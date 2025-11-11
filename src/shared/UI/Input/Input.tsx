@@ -5,8 +5,8 @@ interface IInput
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   id: string;
   type: string;
-  iconLeft?: React.ReactElement;
-  iconRight?: React.ReactElement;
+  iconLeft?: React.ReactElement | null;
+  iconRight?: React.ReactElement | null;
   label?: string;
   errorText?: string;
   styleWrap?: React.CSSProperties;

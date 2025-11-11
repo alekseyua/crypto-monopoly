@@ -1,10 +1,8 @@
 import { Label } from '../../shared/UI';
 import styles from './styles/user-panel.module.scss';
-import UserPanelMainModeLK from '../../Component/UserPanelLK/UserPanelMainModeLK';
 import Icon from '../../shared/UI/Icon/Icon';
 import { DropdownArrow, icons } from '../../assets';
 import { IUser } from '../../store/users/user';
-import UserPanelMainModeNotification from '../../Component/UserPanelNotification/UserPanelMainModeNotification';
 
 interface IProps {
   userInfo: any
@@ -23,7 +21,6 @@ const UserPanelMobile:React.FC<IProps> = ({
   handleOpenDropDownMenu, 
   isDropDownMenuOpen 
 }) => {
-  console.log('UserPanelMobile render', isDropDownMenuOpen);
   return (
     <div className={`${styles['header-menu-btn__user-panel-container--mobile']}`} >
         {
@@ -83,7 +80,6 @@ const UserPanelMobile:React.FC<IProps> = ({
             );
           })
         }
-      {/* <UserPanelMainModeLK user={user}/> */}
 
     </div>
   )

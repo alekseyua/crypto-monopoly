@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Button, Label } from "../../shared/UI";
+import { Label } from "../../shared/UI";
 import styles from "./burger.module.scss";
 
 interface IBurger {

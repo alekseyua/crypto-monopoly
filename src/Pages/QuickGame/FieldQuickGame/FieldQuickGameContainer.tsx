@@ -401,6 +401,7 @@ const handleCardOnField = (card_id: number): void => {
         />
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [actionCardData?.auction_data?.highest_bid]);
 
 	useEffect(() => {
@@ -408,24 +409,10 @@ const handleCardOnField = (card_id: number): void => {
 
 		const logFunc = function (func: Function) {
 		return (...args: any[]) => {
-			const startTime = performance.now();
 			const result = func(...args);
-			const endTime = performance.now();
-			// console.log(
-			// "Runtime duration ",
-			// (endTime - startTime).toFixed(2),
-			// "ms"
-			// );
 			return result;
 		};
 		};
-		// console.log( ' popap show = ',
-    //   infoMassagePopup.show,
-    //   "&& (",
-    //   dataPlayerQG.current_move,
-    //   " ) - current move or auction - 	",
-    //   isKeyPresentInHash(actionCardData, "auction_data")
-    // );
 		if (
       infoMassagePopup.show && (dataPlayerQG.current_move ||
       isKeyPresentInHash(actionCardData, "auction_data"))
