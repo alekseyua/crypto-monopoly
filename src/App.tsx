@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useNetworkStatus } from './hooks/useNetworkStatus';
 
 function App() {
-	const { online, quality, type } = useNetworkStatus(5000);
+	const { quality } = useNetworkStatus(5000);
 	useEffect(() => {
 		const preventZoom = (e: any) => {
 			if (e.touches.length > 1) e.preventDefault();
