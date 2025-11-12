@@ -60,8 +60,12 @@ export const SET_ACHIVMENT_PLAYER_QG = v4();
 export const RESET_ACHIVMENT_PLAYER_QG = v4();
 
 export const CLOSE_WSOCKET = v4();
+
+
 // feed news quick game
 export const OPEN_WS_FEED_NEWS_QG = v4();
+export const CLOSE_WSOCKET_FEED = 'close/ws_feed_qg' as const;
+
 
 //set dice roll quick game
 export const SET_ROLL_DICE_QG = "set/role_dice" as const;
@@ -355,6 +359,8 @@ export const quickGame = (store: StoreonStore) => {
             } else {
               dispatch(RESET_ROLL_DICE_QG);
             }
+            console.log("%cOPEN_FEED_WS" + JSON.stringify({ID: res.game_data.id}, null, 4), "color: red");
+
             dispatch(OPEN_WS_FEED_NEWS_QG, { game_id: res.game_data.id }); // открываем ws для фида новостей игры
 
             // set dice roll
@@ -561,4 +567,10 @@ export const quickGame = (store: StoreonStore) => {
       });
     connectFeedWS();
   });
-};
+  store.on(CLOSE_WSOCKET_FEED, () => {
+    if (socket.feed && socket.feed?.readyState === WebSocket.OPEN) {
+      socket.feed.close();
+    }
+  });
+
+}

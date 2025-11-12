@@ -8,6 +8,7 @@ import {
   GET_LIST_QG,
   MOVE_TO,
   RESET_ROLL_DICE_QG,
+  CLOSE_WSOCKET_FEED,
 } from "../../../store/quick-game/quick-game";
 import { GameInfoBoard } from "../../../models/GameBoard/components/GameInfoBoard/GameInfoBoard";
 import { MoveBoardQG } from "../../../models/GameBoard/components/GameInfoBoard/MoveBoardQuickGame";
@@ -134,6 +135,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 
   useEffect(() => {
     dispatch(SET_HEADER_NAME_IS_SHOW, HeaderNameEnum.QUICK_GAME);
+    return () => dispatch(CLOSE_WSOCKET_FEED);
   }, [dispatch]); 
   
 
