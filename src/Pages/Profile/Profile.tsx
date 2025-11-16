@@ -10,6 +10,7 @@ import FormAdditinalAccountDetails from "../../Component/FormAdditinalAccountDet
 import FormHistoryTransaction from "../../Component/FormHistoryTransaction/FormHistoryTransaction";
 import BalanceProfileContainer from "../../Component/FormBalanceProfile/BalanceProfileContainer";
 import { IUser } from "../../store/users/user";
+import BlockWrapper from "../../shared/UI/Block/BlockWrapper";
 
 
 interface DashboardButton {
@@ -67,6 +68,8 @@ const Profile: FC<ProfileProps> = ({
   const isSecurityActive = dashboardProfile?.button?.[1]?.status === "active";
 
   return (
+    <BlockWrapper>
+
     <div className={styles["profile__container"]}>
       <div
         className={styles["profile__field-container"]}
@@ -126,6 +129,7 @@ const Profile: FC<ProfileProps> = ({
         )}
       </div>
     </div>
+    </BlockWrapper>
   );
 };
 

@@ -72,10 +72,14 @@ import hotelCard from './icons/hotel-card.svg';
 import home from './icons/home1.svg';
 import communityOpacity from './icons/community-opacity.svg';
 import asset from './icons/asset.svg';
+import moon from './icons/moon.svg';
+import setting from './icons/setting.svg';
 
 export const icons = {
   home,
+  moon,
   logo,
+  setting,
   cross: Cross,
   success,
   actions,
@@ -101,6 +105,7 @@ export const icons = {
   moneyBag,
   capital,
   asset,
+  userAvatar: avatar,
 };
 
 export {

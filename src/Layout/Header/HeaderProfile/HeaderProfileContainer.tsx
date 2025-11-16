@@ -1,8 +1,8 @@
 import { useStoreon } from 'storeon/react'
-import withRouter from '../../HOC/withRouter'
+import withRouter from '../../../HOC/withRouter'
 import React, { useEffect } from 'react';
 import HeaderProfile from './HeaderProfile';
-import { SWITCH_DASHBOARD_PROFILE } from '../../store/profile/profile';
+import { SWITCH_DASHBOARD_PROFILE } from '../../../store/profile/profile';
 
 interface IProps {
     navigate: (path: string | number) => void;

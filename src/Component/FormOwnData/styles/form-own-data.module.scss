@@ -5,10 +5,16 @@
     border-radius: 22px;
     padding: 26px;
     gap: 10px;
+    grid-template-columns: 1fr;
     grid-template-areas: "photo data data"
                          "photo data data"
                          "info info info";
     height: fit-content;
+    @media (max-width: 992px) {
+    grid-template-areas: "photo photo photo"
+            "data data data"
+            "info info info";
+    }
 }
 
 .conAvatar{

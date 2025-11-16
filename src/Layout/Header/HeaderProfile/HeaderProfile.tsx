@@ -1,7 +1,8 @@
-import { Button, Label } from '../../shared/UI';
+import { Button, Label } from '../../../shared/UI';
 import styles from "./styles/header-profile.module.scss";
-import { BackArrow, IconChat } from '../../assets';
-import Icon from '../../shared/UI/Icon/Icon';
+import { BackArrow, IconChat } from '../../../assets';
+import Icon from '../../../shared/UI/Icon/Icon';
+import BlockWrapper from '../../../shared/UI/Block/BlockWrapper';
 
 interface IProps {
   dashboardProfile: any;
@@ -11,7 +12,10 @@ interface IProps {
 
 const HeaderProfile:React.FC<IProps> = ({ dashboardProfile, handleNavigateTo, username}) => {
   return (
+    <BlockWrapper>
+
     <div className={styles["header-profile__container"]}>
+
       <div className={styles["header-profile__container--left"]}>
         <Button
           type="rounded"
@@ -108,6 +112,7 @@ const HeaderProfile:React.FC<IProps> = ({ dashboardProfile, handleNavigateTo, us
         </div>
       </div>
     </div>
+    </BlockWrapper>
   );
 }
 

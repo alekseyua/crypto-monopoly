@@ -1,4 +1,5 @@
 import { GameBoard } from '../../../models/GameBoard/GameBoard';
+import { Offset } from '../../../shared/UI';
 import BlockWrapper from '../../../shared/UI/Block/BlockWrapper';
 import { ICard, IPlayer, ISpecialCard } from '../../../store/quick-game/quick-game.d';
 import EventsHistoryListContainer from '../../MainGame/component/events-history-list/EventsHistoryListContainer';
@@ -60,6 +61,7 @@ export const FieldQG: React.FC<IQG> = ({
           </div>
           <EventsHistoryListContainer heightGameBoard={heightGameBoard} />
         </div>
+        <Offset mb={160} />
       </BlockWrapper>
     </section>
   );

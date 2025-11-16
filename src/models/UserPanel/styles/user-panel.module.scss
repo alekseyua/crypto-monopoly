@@ -36,7 +36,7 @@
             justify-content: space-between;
             padding: 0 15px 0 0;
             position: relative;
-            z-index: -12;
+            z-index: 0;
         }
     }
     // .header-menu-btn__inner-wrap
@@ -50,11 +50,13 @@
         border-radius: 99px;
         // .header-menu-btn__inner-wrap--mobile
         &--mobile{
+            flex: 1 1 auto;
+            max-width: 280px;
             display: grid;
             grid-auto-flow: column;
             background-color: #E9ECFF;
             border-radius: 99px;
-            width: 30%;
+            // width: 30%;
             height: 40px;
             align-items: center;
             padding: 0 15px 0 0;

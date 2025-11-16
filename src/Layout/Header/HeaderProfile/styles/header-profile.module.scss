@@ -12,12 +12,16 @@
         top: 0;
         background-color: #fff;
         border-radius: 99px;
-        margin: 15px 69px 0;
         //header-profile__container--left
         &--left{
             display: flex;
             flex-wrap: nowrap;
             align-items: center;
+        }
+        @media (max-width: 1280px) {
+            flex-direction: column;
+            align-items: flex-start;
+            border-radius: 20px;
         }
     }
     //header-profile__name
@@ -37,6 +41,10 @@
             justify-content: space-between;
             width: 100%;
             gap: 10px;
+    @media (max-width: 992px) {
+                flex-direction: column;
+                align-items: stretch;
+    }
             /* padding: 20px 0; */
             //header-profile__btns-container--left
             &--left{
@@ -52,6 +60,10 @@
                 gap: 10px;
                 flex-wrap: nowrap;
                 justify-content: flex-end;
+    @media (max-width: 992px) {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
             }
         }
         //header-profile__btns-item--chat
@@ -92,7 +104,7 @@
     display: flex;
     border-radius: 99px;
     background-color: #e9ecff;
-    padding: 8px;
+    padding: 10px;
 }
 
 .nameButtonChatBtn{

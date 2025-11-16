@@ -3,8 +3,10 @@ import styles from './styles/user-panel.module.scss';
 import Icon from '../../shared/UI/Icon/Icon';
 import { DropdownArrow, icons } from '../../assets';
 import { IUser } from '../../store/users/user';
+import UserPanelMainModeLK from '../../Component/UserPanelLK/UserPanelMainModeLK';
 
 interface IProps {
+  isMobile?: boolean
   userInfo: any
   isQG: any
   user: IUser;
@@ -15,28 +17,21 @@ interface IProps {
 
 const UserPanelMobile:React.FC<IProps> = ({ 
   userInfo, 
-  isQG, 
   user, 
+  isMobile,
   handleNavigateTo, 
-  handleOpenDropDownMenu, 
   isDropDownMenuOpen 
 }) => {
   return (
     <div className={`${styles['header-menu-btn__user-panel-container--mobile']}`} >
         {
           !!user.id && userInfo?.map((info:any, i: number) => {
-            // !!user?.username && userInfo?.map( (info, i) => {
             const { name, price, link, id } = info;
-            console.log('id = ',id)
             return (
               <div
                 key={i}
-                onClick={() =>
-                  isQG ? handleOpenDropDownMenu() : handleNavigateTo(link)
-                }
-                className={`${styles["header-menu-btn__container--mobile"]} ${
-                  isQG && styles["containerButtonQG"]
-                }`}
+                onClick={() => handleNavigateTo(link)}
+                className={`${styles["header-menu-btn__container--mobile"]}`}
                 style={{
                   top: isDropDownMenuOpen? i * 70 : 0,
                 }}
@@ -57,7 +52,7 @@ const UserPanelMobile:React.FC<IProps> = ({
                       // iconRight={isQG && info.id === 'balance' && <Icon style={{ transform: isDropDownMenuOpen && 'rotate(180deg) translateY(6px)' }} src={DropdownArrow} width={12} height={12} />}
                     />
                   </div>
-                  {id === "balance" && (
+                  {id === "balance" && !isMobile && (
                     <Icon
                       className={styles["header-menu-btn__price-icon"]}
                       src={DropdownArrow}
@@ -80,7 +75,6 @@ const UserPanelMobile:React.FC<IProps> = ({
             );
           })
         }
-
     </div>
   )
 }

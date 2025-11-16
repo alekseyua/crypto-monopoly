@@ -520,7 +520,7 @@ export const quickGame = (store: StoreonStore) => {
             ...payload,
           })
         );
-      }, 10000);
+      }, 1000);
     }
   });
 

@@ -23,7 +23,9 @@ const FieldListPlayersQGContainer: React.FC<IFieldListPlayersQGProps> = ({
   listSelectUserPreview,
   handleClickUserPreview,
 }: IFieldListPlayersQGProps) => {
-    const width = useWindowWidth();
+  const width = useWindowWidth();
+  const isMobile = width <= 992;
+  const [showFeetHistory, setShowFeetHistory] = useState<boolean>(isMobile);
   const {showRate, dispatch} = useStoreon('showRate',);
   const [isOpenListPlayers, setIsOpenListPlayers ] = useState<boolean>(true);
   const [listPlayers, setListPlayers ] = useState<IPlayer[]>([...players]);
@@ -64,30 +66,34 @@ const FieldListPlayersQGContainer: React.FC<IFieldListPlayersQGProps> = ({
       setSortingListPlayers('rate')
     }
   }
-  if (width < 678){
+  if (isMobile && showFeetHistory) {
       return <Button
-        onClick={()=>console.log('click ')}
+        onClick={() => setShowFeetHistory(false)}
         fillColor='#726CED'
         type='filled'
-        p={12}
+      p={12}
         textColor='#fff'
       >Список игроков</Button>
   }
-  return (
-    <FieldListPlayersQG
-      sortingListPlayers={sortingListPlayers}
-      handleSorting={handleSorting}
-      heightGameBoard={heightGameBoard}
-      players={listPlayers}
-      dataPlayerQG={dataPlayerQG}
-      listSelectUserPreview={listSelectUserPreview}
-      handleClickUserPreview={handleClickUserPreview}
-      handleSettingCard={handleSettingCard}
-      isOpenListPlayers={isOpenListPlayers}
-      handleClickOpen={handleClickOpen}
-      isOpenModal={isOpenModal}
-    />
-  )
+  if(!showFeetHistory){
+    return (
+      <FieldListPlayersQG
+        isMobile={isMobile}
+        setShowFeetHistory={setShowFeetHistory}
+        sortingListPlayers={sortingListPlayers}
+        handleSorting={handleSorting}
+        heightGameBoard={heightGameBoard}
+        players={listPlayers}
+        dataPlayerQG={dataPlayerQG}
+        listSelectUserPreview={listSelectUserPreview}
+        handleClickUserPreview={handleClickUserPreview}
+        handleSettingCard={handleSettingCard}
+        isOpenListPlayers={isOpenListPlayers}
+        handleClickOpen={handleClickOpen}
+        isOpenModal={isOpenModal}
+      />
+    )
+  }
 }
 
 export default FieldListPlayersQGContainer

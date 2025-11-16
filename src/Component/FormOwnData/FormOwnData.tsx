@@ -1,5 +1,5 @@
 import React from "react";
-import cls from "./styles/form-own-data.module.css";
+import cls from "./styles/form-own-data.module.scss";
 import { IconCamera, icons } from "../../assets";
 import Icon from "../../shared/UI/Icon/Icon";
 import { IUser } from "../../store/users/user";

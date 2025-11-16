@@ -2,7 +2,7 @@ import { BackArrow, SearchIcon } from '../../../../assets';
 import { Button } from '../../../../shared/UI';
 import BlockWrapper from '../../../../shared/UI/Block/BlockWrapper';
 import Icon from '../../../../shared/UI/Icon/Icon';
-import cls from './rules-header.module.css';
+import cls from './rules-header.module.scss';
 
  const RulesHeader = () => {
 	return (
@@ -17,7 +17,7 @@ import cls from './rules-header.module.css';
 						variant='rounded'>
 						<Icon  src={BackArrow}  width={16} height={16} />
 					</Button>
-					<h2>«‎Основной режим»‎</h2>
+					<h2>Основной режим</h2>
 				</div>
 				<div className={cls.headerButtons}>
 					<div className={cls.search}>
@@ -27,12 +27,14 @@ import cls from './rules-header.module.css';
 							<Icon src={SearchIcon} width={14} height={14} style={{marginRight: 10, top: 5}}/>
 						</button>
 					</div>
-					<Button variant='rounded' type='gradient' p={15}>
-						Описание правил
-					</Button>
-					<Button variant='rounded' type='filled' p={15}>
-						Описание интерфейса
-					</Button>
+					<div className={cls.contButtons} >
+						<Button variant='rounded' type='gradient' p={15}>
+							Описание правил
+						</Button>
+						<Button variant='rounded' type='filled' p={15}>
+							Описание интерфейса
+						</Button>
+					</div>
 				</div>
 		</header>
 			</BlockWrapper>

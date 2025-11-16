@@ -2,16 +2,17 @@ import { Link } from 'react-router-dom'
 
 import cls from './styles/user-panel-lk.module.scss';
 import { NAV_AUTH_PAGE, NAV_PROFILE, NAV_REG_PAGE } from '../../routers/config-nav';
+import { icons } from '../../assets';
 
 const UserPanelLK = ({ handleOpenLKMenu, handleLogout, user, isOpenLKMenu}) => {
   return (
     <div
-      className={`${cls['header-menu-lk-btn__container']} ${isOpenLKMenu && cls.active}`}
+      className={`${cls['header-menu-lk-btn__container-item']} ${isOpenLKMenu && cls.active}`}
       onClick={handleOpenLKMenu}
     >
       <img
         className={cls['header-menu-lk-btn__avatar']}
-        src={user.photo ?? 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png'}
+        src={user.photo ?? icons.userAvatar}
         alt='User'
       />
 

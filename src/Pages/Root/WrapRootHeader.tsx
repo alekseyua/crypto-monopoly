@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../../Layout/Header/Header';
-import HeaderProfileContainer from '../../models/HeaderProfile/HeaderProfileContainer';
+import HeaderProfileContainer from '../../Layout/Header/HeaderProfile/HeaderProfileContainer';
 import { useStoreon } from 'storeon/react';
 import { HeaderNameEnum } from '../../store/header/header.d';
 import HeaderAuth from '../../Layout/Header/HeaderAuth';

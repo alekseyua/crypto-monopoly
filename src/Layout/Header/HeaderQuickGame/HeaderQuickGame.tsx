@@ -7,15 +7,25 @@ import UserPanelMainModeNotification from "../../../Component/UserPanelNotificat
 import ButtonOpenMenu from "../../../shared/UI/Buttons/ButtonOpenMenu/ButtonOpenMenu";
 import React from "react";
 import BlockWrapper from "../../../shared/UI/Block/BlockWrapper";
+import { useStoreon } from "storeon/react";
+import { IUser } from "../../../store/users/user.d";
+import UserPanelMainModeLK from "../../../Component/UserPanelLK/UserPanelMainModeLK";
 
 interface HeaderQuickGameProps {
   isMobile?: boolean;
+}
+
+interface StateStore {
+  user: IUser;
 }
 
 const HeaderQuickGame: React.FC<HeaderQuickGameProps> = ({
   isMobile = false,
 }) => {
   const [isDropDownMenuOpen, setIsDropDownMenuOpen] = React.useState(false);
+    const { user } = useStoreon<
+      StateStore
+    >("user");
   return (
     <header
       className={
@@ -28,10 +38,11 @@ const HeaderQuickGame: React.FC<HeaderQuickGameProps> = ({
         ]
       }
     >
-      <BlockWrapper style={{ padding: isMobile? '0 10px' :'0 40px' }}>
+      <BlockWrapper style={{ padding: isMobile? '0 0px' :'0 40px' }}>
 
         <Section isScroll={false} isShadowBottom={!isDropDownMenuOpen}>
           {isMobile ? (
+            <div className={styles["header-qg__mobile-bottom-container"]}>
             <div
               className={
                 styles["header-qg__mobile-header-cont"]
@@ -49,6 +60,9 @@ const HeaderQuickGame: React.FC<HeaderQuickGameProps> = ({
                 </div>
               </div>
               <UserPanelContainer isMobile />
+
+            </div>
+              <UserPanelMainModeLK user={user} isMobile />
             </div>
           ) : (
             <div className={styles["header-qg__header-cont"]}>

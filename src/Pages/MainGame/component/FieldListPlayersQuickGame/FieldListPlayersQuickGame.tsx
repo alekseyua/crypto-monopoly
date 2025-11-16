@@ -1,5 +1,7 @@
+import { icons } from '../../../../assets';
 import CardPlayersPreview from '../../../../Component/Cards/CardPlayersPreview/CardPlayersPreview';
 import { Button, Offset } from '../../../../shared/UI';
+import Icon from '../../../../shared/UI/Icon/Icon';
 import { IPlayer } from '../../../../store/quick-game/quick-game.d';
 import styles from './styles/list-player.module.scss';
 
@@ -15,6 +17,8 @@ interface IFieldListPlayersQGProps {
   isOpenModal: string;
   sortingListPlayers: string;
   heightGameBoard: number;
+  isMobile?: boolean;
+  setShowFeetHistory: (b: boolean)=>void;
 }
 
 
@@ -30,6 +34,8 @@ const FieldListPlayersQG: React.FC<IFieldListPlayersQGProps> = ({
   handleSorting,
   sortingListPlayers,
   heightGameBoard,
+  isMobile,
+  setShowFeetHistory,
 }: IFieldListPlayersQGProps) => {
   return (
     <div className={styles['list-player__container']}
@@ -43,8 +49,11 @@ const FieldListPlayersQG: React.FC<IFieldListPlayersQGProps> = ({
           fillColor={'#726CED'}
           textColor='#fff'
           p={12}
+          className={styles['list-player__btn']}
         // onClick={handleBuyCard}
-        >Список игроков
+        >
+          {isMobile && <Icon src={icons.rightArrow} width={'12'} height={'12'} className={styles['list-player__btns-icon']} onClick={() => setShowFeetHistory(true)}/>}
+          Список игроков
         </Button>
         <Button
           type='filled'
@@ -92,7 +101,7 @@ const FieldListPlayersQG: React.FC<IFieldListPlayersQGProps> = ({
         }
         <Offset mb={20} />
       </ul>
-      <div className={styles['list-player__btns-container--full']}>
+      {!isMobile && <div className={styles['list-player__btns-container--full']}>
         <Button
           type='filled'
           fillColor='#fff'
@@ -104,7 +113,7 @@ const FieldListPlayersQG: React.FC<IFieldListPlayersQGProps> = ({
         >
           {isOpenListPlayers ? 'Свернуть' : 'Развернуть'}
         </Button>
-      </div>
+      </div>}
     </div>
   )
 }

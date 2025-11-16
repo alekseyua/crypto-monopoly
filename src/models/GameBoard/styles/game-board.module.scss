@@ -103,8 +103,12 @@
 	left: 30%;
 	bottom: 4%;
 	letter-spacing: 3px;
-		font-weight: 900;
-		font-family: Manrope;
+	font-weight: 900;
+	font-family: Manrope;
+	@include adaptiv-font(16,8);
+	@media (max-width: 1400px) {
+	left: 20%;
+	}
 }
 .jail__text-visited--left{
 	position: absolute;
@@ -120,6 +124,7 @@
 	letter-spacing: 3px;
 	font-weight: 900;
 	font-family: Manrope;
+	@include adaptiv-font(16, 10);
 }
 
 .field {

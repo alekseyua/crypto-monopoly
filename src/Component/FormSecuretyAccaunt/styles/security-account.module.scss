@@ -5,7 +5,13 @@
     display: grid;
     gap: 20px;
     grid-template-areas: "desc desc desc"
-                         "google sms email"   ;
+                         "google sms email";
+    @media (max-width: 992px) {
+    grid-template-areas: "desc desc desc"
+            "google google google"
+            "sms sms sms"
+            "email email email";
+    }
 }
 
 

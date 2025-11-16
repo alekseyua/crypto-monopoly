@@ -119,9 +119,9 @@ const UserPanelContainer: React.FC<UserPanelContainerProps> = ({
     setIsDropDownMenuOpen((state) => !state);
   };
   if(isMobile) {
-    console.log('UserPanelContainer render', isMobile);
     return (
       <UserPanelMobile
+        isMobile={isMobile}
         user={user}
         userInfo={userInfo}
         isQG={isQG}

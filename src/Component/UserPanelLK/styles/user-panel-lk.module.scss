@@ -4,42 +4,95 @@
 
     // .header-menu-lk-btn__container
     &__container {
-        padding: 9px;
-        @include adaptiv-value(padding-right, 10, 5, 1);
-        @include adaptiv-value(padding-left, 10, 5, 1);
-        min-width: 135px;
-        display: flex;
-        align-items: center;
-        position: relative;
-        border-radius: 99px;
-        background-color: #e9ecff;
-        justify-content: flex-start;
-        cursor: pointer;
-
-        &::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-65%) rotate(45deg);
-            @include adaptiv-value(width, 6, 4, 1);
-            @include adaptiv-value(height, 6, 4, 1);
-            background-color: transparent;
-            border-width: 1px;
-            border-style: solid;
-            border-left: #000;
-            border-top: #000;
-            transition: background-color .3s;
-            transition: transform .4s;
+        &--mobile-wrapper{
+            background-color: #E9ECFF;
+            width: 100%;
+            border-radius: 50px 50px 0 0;
+            left: 0;
+            position: relative;
+            // min-height: 500px;
+            padding: 20px;
+            //#E9ECFF
+            min-height: calc(50vh - 200px);
+            display: flex;
+            gap: 10px;
         }
+        //header-menu-lk-btn__container-item
+        &-item {
+            padding: 9px;
+            @include adaptiv-value(padding-right, 10, 5, 1);
+            @include adaptiv-value(padding-left, 10, 5, 1);
+            min-width: 135px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            border-radius: 99px;
+            background-color: #D6DBF5;
+            justify-content: flex-start;
+            cursor: pointer;
+            &::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                right: 15px;
+                transform: translateY(-65%) rotate(45deg);
+                @include adaptiv-value(width, 6, 4, 1);
+                @include adaptiv-value(height, 6, 4, 1);
+                background-color: transparent;
+                border-width: 1px;
+                border-style: solid;
+                border-left: #000;
+                border-top: #000;
+                transition: background-color .3s;
+                transition: transform .4s;
+            }
 
-        // .header-menu-lk-btn__container
-        &.active::after {
-            transform: rotate(-135deg);
-            transition: transform .4s;
+            // .header-menu-lk-btn__container
+            &.active::after {
+                transform: rotate(-135deg);
+                transition: transform .4s;
+            }
+            //header-menu-lk-btn__container-item--mobile
+            &--mobile {
+                padding: 15px;
+                display: flex;
+                align-items: center;
+                @include adaptiv-value(padding-right, 10, 5, 1);
+                @include adaptiv-value(padding-left, 10, 5, 1);
+                width: 100%;
+                height: 40px;
+                border-radius: 99px;
+                background-color: #D6DBF5;
+                justify-content: flex-start;
+                cursor: pointer;
+            }
         }
     }
 
+    //header-menu-lk-btn__theme
+    &__theme {
+        // width: 32px;
+        // height: 32px;
+        border-radius: 99px;
+        padding: 15px 35px;
+        background-color: #D6DBF5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        cursor: pointer;
+    }
+    //header-menu-lk-btn__setting
+    &__setting{
+        border-radius: 99px;
+        padding: 15px 35px;
+        background-color: #D6DBF5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        cursor: pointer;
+    }
     // .header-menu-lk-btn__avatar
     &__avatar {
         width: 32px;

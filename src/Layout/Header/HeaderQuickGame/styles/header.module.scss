@@ -2,6 +2,14 @@
 
 .header-qg {
     &__mobile{
+        // header-qg__mobile-bottom-container
+        &-bottom-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            justify-content: space-around;
+        }
         //header-qg__mobile-container
         &-container {
             background: #F8F9FF;
@@ -20,7 +28,7 @@
             //header-qg__mobile-container--open
                 &--open {
                     background: #F8F9FF;
-                    padding: 10px;
+                    padding: 10px 0;
                     position: fixed;
                     bottom: 0;
                     left: 0;
@@ -42,11 +50,14 @@
             overflow: hidden;
             @include adaptiv-value('min-width', 650, 100, 2);
             height: 100%;
+            width: 100%;
+            padding: 10px 20px;
             //header-qg__mobile-header-cont--inner
             &--inner{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                z-index: 999;
                 //header-qg__mobile-header-cont--inner-right
                 &-right{
                     display: flex;

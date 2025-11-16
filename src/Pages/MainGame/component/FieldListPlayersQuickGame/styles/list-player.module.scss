@@ -11,7 +11,12 @@
         padding: 30px;
         border-radius: 25px;
         grid-area: players;
-
+        @media (max-width: 992px) {
+            position: absolute;
+            z-index: 9999;
+            width: calc(100% - 20px);
+            min-height: calc(100vh - 120px);
+        }
         // list-player__container-wrapper
         &-wrapper {
             display: flex;
@@ -42,12 +47,42 @@
             background-color: rgba(233, 236, 255, 0.4);
         }
     }
+    //list-player__btns-icon
+    &__btns-icon {
+        margin-right: 8px;
+        transform: rotate(180deg);
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            width: calc(100% + 12px);
+            height: calc(100% + 12px);
+            border-radius: 50%;
+            background: #E9ECFF;
+            z-index: -1;
+        }
+    }
+    //list-player__btn
+    &__btn{
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+    }
     //list-player__btns-container--btn-two
     &__btns-container--btn-two{
         width: 100%;
         display: grid;
         grid-template-columns: 1fr .87fr;
         gap: 20px;
+
+        @media (max-width: 992px) {
+            position: absolute;
+            bottom: 46px;
+            left: 0;
+            padding: 0 10px;
+        }
     }
     //list-player__btns-container--full
     &__btns-container--full{

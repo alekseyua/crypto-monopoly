@@ -25,7 +25,9 @@
             overflow: hidden;
             overflow-y: auto;
             @media (max-width: 992px) {
-                padding: 3px;
+                padding: 10px 3px;
+                width: 95%;
+                
             }
         }
     }
@@ -38,6 +40,7 @@
     }
     //modal__content
     &__content{
+        margin-top: 10px;
         background-color: #fff;
         padding: 20px;
         width: 400px;
