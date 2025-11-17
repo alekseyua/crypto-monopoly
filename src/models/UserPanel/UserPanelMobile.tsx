@@ -3,7 +3,6 @@ import styles from './styles/user-panel.module.scss';
 import Icon from '../../shared/UI/Icon/Icon';
 import { DropdownArrow, icons } from '../../assets';
 import { IUser } from '../../store/users/user';
-import UserPanelMainModeLK from '../../Component/UserPanelLK/UserPanelMainModeLK';
 
 interface IProps {
   isMobile?: boolean

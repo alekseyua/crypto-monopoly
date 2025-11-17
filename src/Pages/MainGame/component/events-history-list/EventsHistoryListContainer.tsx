@@ -5,7 +5,7 @@ import { useStoreon } from 'storeon/react';
 import { useWindowWidth } from '../../../../hooks/useWindowWidth';
 import { Button } from '../../../../shared/UI';
 interface IProps {
-  heightGameBoard: number;
+	heightGameBoard: number;
 }
 
 const EventsHistoryListContainer: React.FC<IProps> = ({
@@ -13,15 +13,17 @@ const EventsHistoryListContainer: React.FC<IProps> = ({
 }) => {
 	const [isOpen, setIsOpen] = useState(true);
 	const {
-    quickGame,
-    feedNewsMessages,
-  }: {
-    quickGame: IDataQG;
-    feedNewsMessages: IMassagesFeed[];
-  } = useStoreon("quickGame", "feedNewsMessages");
+		quickGame,
+		feedNewsMessages,
+	}: {
+		quickGame: IDataQG;
+		feedNewsMessages: IMassagesFeed[];
+	} = useStoreon("quickGame", "feedNewsMessages");
 	const width = useWindowWidth();
+	const isMobile = width <= 992;
+	const [showFeetHistory, setShowFeetHistory] = useState<boolean>(isMobile);
 
-	
+
 	const handleClickOpen = () => {
 		setIsOpen((prev) => !prev);
 	}
@@ -45,9 +47,9 @@ const EventsHistoryListContainer: React.FC<IProps> = ({
 	}
 
 
-	if (width < 678){
+	if (isMobile && showFeetHistory) {
 		return <Button
-			onClick={() => console.log('click ')}
+			onClick={() => setShowFeetHistory(false)}
 			fillColor='#726CED'
 			type='filled'
 			p={12}
@@ -55,15 +57,17 @@ const EventsHistoryListContainer: React.FC<IProps> = ({
 		>История событий</Button>
 	}
 	return (
-    <EventsHistoryList
-      heightGameBoard={heightGameBoard}
-      isOpen={isOpen}
-      handleClick={handleClick}
-      handleClickOpen={handleClickOpen}
-      messages={feedNewsMessages}
-      players={quickGame.players}
-    />
-  );
+		<EventsHistoryList
+			heightGameBoard={heightGameBoard}
+			setShowFeetHistory={setShowFeetHistory}
+			isMobile={isMobile}
+			isOpen={isOpen}
+			handleClick={handleClick}
+			handleClickOpen={handleClickOpen}
+			messages={feedNewsMessages}
+			players={quickGame.players}
+		/>
+	);
 };
 
 export default EventsHistoryListContainer

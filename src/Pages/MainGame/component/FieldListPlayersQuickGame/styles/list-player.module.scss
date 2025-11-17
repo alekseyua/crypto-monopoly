@@ -8,6 +8,7 @@
         flex-direction: column;
         position: relative;
         background-color: #F6F8FF;
+        background: linear-gradient(to bottom, #F6F8FF 0%, #E9ECFF 100%);
         padding: 30px;
         border-radius: 25px;
         grid-area: players;
@@ -76,12 +77,19 @@
         display: grid;
         grid-template-columns: 1fr .87fr;
         gap: 20px;
-
-        @media (max-width: 992px) {
+        //list-player__btns-container--btn-two--mobile
+        &--mobile{
+            background-color: #F8F9FF;
+            border-radius: 99px;
+            padding: 10px 10px;
             position: absolute;
             bottom: 46px;
             left: 0;
-            padding: 0 10px;
+            width: calc(100% - 30px);
+            display: grid;
+            grid-template-columns: 1fr .87fr;
+            gap: 20px;
+            margin: 0 15px;
         }
     }
     //list-player__btns-container--full

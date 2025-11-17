@@ -2,7 +2,7 @@ import { RightArrowIcon } from '../../../../assets';
 import CollapsibleCard from '../../../../shared/UI/collapsible-card/collapsible-card';
 import { IMassagesFeed, IPlayer } from '../../../../store/quick-game/quick-game.d';
 import { Event } from '../../UI/event/event';
-import cls from './events-history-list.module.css';
+import cls from './events-history-list.module.scss';
 interface IEventHistoryList {
   messages: IMassagesFeed[];
   isOpen: boolean;
@@ -10,18 +10,22 @@ interface IEventHistoryList {
   handleClickOpen: () => void;
   heightGameBoard: number;
   players: IPlayer[];
+  setShowFeetHistory: (b: boolean)=>void;
+  isMobile?: boolean;
 }
 export const EventsHistoryList: React.FC<IEventHistoryList> = ({
   isOpen,
   messages,
   handleClick,
   players,
+  isMobile,
   heightGameBoard,
   handleClickOpen,
+  setShowFeetHistory,
 }: IEventHistoryList) => {
   return (
     <div
-      className={cls.side}
+      className={isMobile? cls['side--mobile'] : cls.side}
       style={{
         height: !isOpen ? 200 : heightGameBoard,
         gridArea: 'history',
@@ -35,6 +39,8 @@ export const EventsHistoryList: React.FC<IEventHistoryList> = ({
         isOpen={isOpen}
         handleClickOpen={handleClickOpen}
         handleClick={handleClick}
+        setShowFeetHistory={setShowFeetHistory}
+        isMobile={isMobile}
       >
         <div className={cls.allEvents} id={"container-list-history"}>
           {!!messages?.length &&

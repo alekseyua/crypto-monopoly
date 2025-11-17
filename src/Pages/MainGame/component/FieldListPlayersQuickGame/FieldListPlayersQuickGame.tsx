@@ -40,14 +40,15 @@ const FieldListPlayersQG: React.FC<IFieldListPlayersQGProps> = ({
   return (
     <div className={styles['list-player__container']}
       style={{
-        height: !isOpenListPlayers ? 200 : heightGameBoard
+        height: !isOpenListPlayers ? 200 : heightGameBoard,
       }}
     >
-      <div className={styles['list-player__btns-container--btn-two']}>
+      <div className={styles[isMobile ? 'list-player__btns-container--btn-two--mobile' : 'list-player__btns-container--btn-two']}
+      >
         <Button
           type='filled'
-          fillColor={'#726CED'}
-          textColor='#fff'
+          fillColor={isMobile? 'transparent' : '#726CED'}
+          textColor={isMobile? '#000' : '#fff'}
           p={12}
           className={styles['list-player__btn']}
         // onClick={handleBuyCard}

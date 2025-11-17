@@ -1,3 +1,5 @@
+
+import { icons } from '../../../assets';
 import { Button } from '../Buttons/Button';
 import Icon from '../Icon/Icon';
 
@@ -14,6 +16,8 @@ interface ICollapsibleCard{
 	handleClick: (status: 'up' | 'down')=>void;
 	btnClassname: string;
 	handleClickOpen: ()=>void;
+	setShowFeetHistory: (b: boolean)=>void;
+	isMobile?: boolean;
 }
 const CollapsibleCard:React.FC<ICollapsibleCard> = ({
 	isOpen,
@@ -21,17 +25,22 @@ const CollapsibleCard:React.FC<ICollapsibleCard> = ({
 	Icon1,
 	Icon2,
 	children,
+	isMobile,
 	icon1Size = [12, 13],
 	icon2Size = [12, 13],
 	handleClick,
 	btnClassname,
 	handleClickOpen,
+	setShowFeetHistory,
 }) => {
 
 	return (
-		<div className={cls.collapsible}>
-			<div className={cls.cardHeader}>
-				<div className={cls.label}>{title}</div>
+		<div className={isMobile? cls['collapsible--mobile'] : cls.collapsible}>
+			<div className={isMobile? cls['cardHeader--mobile'] : cls.cardHeader}>
+				<div className={isMobile? cls['label--mobile'] : cls.label}>
+					{isMobile && <Icon src={icons.rightArrow} width={'12'} height={'12'} className={cls['feeds__btns-icon-back']} onClick={() => setShowFeetHistory(true)} />}
+
+					{title}</div>
 				<div className={cls.btns}>
 					<Button disabled={!isOpen} className={`${cls.btn} ${btnClassname}`} type='outline' onClick={()=>handleClick('down')}>
 						{Icon1 && <Icon src={Icon1} width={icon1Size[0]+''} height={icon1Size[1]+''} />}
@@ -44,12 +53,12 @@ const CollapsibleCard:React.FC<ICollapsibleCard> = ({
 			<div className={`${cls.collapseBody} ${isOpen ? cls.open : ''}`}>
 				<div>{children}</div>
 			</div>
-			<Button
+			{!isMobile  && <Button
 				onClick={() => handleClickOpen()}
 				className={cls.collapseBtn}
 				type='outline'>
 				{isOpen? 'Свернуть' : 'Развернуть'}
-			</Button>
+			</Button>}
 		</div>
 	);
 };
