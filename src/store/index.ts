@@ -11,11 +11,30 @@ import { websocket } from './websocket/websocket';
 import { modal } from './modal/modal';
 import { headerStore } from './header/header';
 import { error } from './error/error';
+import { rule } from './rules/rule';
+
+import { IRule } from './rules/rule.type';
 
 // Initial state, reducers and business logic are packed in independent modules
 
+export interface IState {
+  authStore: any;
+  quickGame: any;
+  users: any;
+  profile: any;
+  message: any;
+  registration: any;
+  recovery: any;
+  referal: any;
+  websocket: any;
+  modal: any;
+  headerStore: any;
+  error: any;
+  rules: IRule[];
+}
 
-export const store = createStoreon([
+export const store = createStoreon < IState >([
+  rule,
   users,
   error,
   modal,

@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { NAV_ABOUT, NAV_ALL_ACHIEVEMENTS, NAV_AUTH_PAGE, NAV_BALANCE, NAV_GAME_RULES, NAV_MAIN_PAGE, NAV_QG_FIELD_PAGE, NAV_QG_SELECT_PAGE, NAV_REG_PAGE, NAV_RULES_PAGE } from "./config-nav";
 import SelectQGContainer from "../Pages/QuickGame/SelectQuickGame/SelectQuickGameContainer";
-import AllGameRules from "../Pages/AllGameRules/AllGameRules";
 import { MobileMainGame } from "../Pages/mobile-main-game/mobile-main-game";
 import { Auction } from "../Pages/auction/auction";
 import { Deposit } from "../Pages/deposit/deposit";
@@ -17,6 +16,7 @@ import { Rules } from "../models/Rules/Rules";
 import BalanceContainer from "../Pages/Balance/BalanceContainer";
 import WrapRootHeader from "../Pages/Root/WrapRootHeader";
 import AboutContainer from "../Pages/About/AboutContainer";
+import AllGameRulesContainer from "../Pages/AllGameRules/AllGameRulesContainer";
 
 export const router = createBrowserRouter([
 	{
@@ -71,7 +71,7 @@ export const router = createBrowserRouter([
 					},
 					{
 						path: NAV_GAME_RULES,
-						element: <AllGameRules />,
+						element: <AllGameRulesContainer />,
 					},
 					{
 						path: NAV_ABOUT,

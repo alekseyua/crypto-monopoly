@@ -23,7 +23,7 @@ const variants = {
 				variants={variants}
 				animate={isOpen ? 'open' : 'closed'}
 				className={`${cls.cardText} ${isOpen ? cls.open : ''}`}>
-				{rule}
+					<span dangerouslySetInnerHTML={{__html: rule}}></span>
 			</motion.p>
 			<Button type='outline' onClick={() => setIsOpen((prev) => !prev)}>
 				{isOpen ? 'Свернуть' : 'Развернуть'}

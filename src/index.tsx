@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './styles/main.scss';
 import { StoreContext } from 'storeon/react'
-import { store } from './store/index.js'
+import { store } from './store/index'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
