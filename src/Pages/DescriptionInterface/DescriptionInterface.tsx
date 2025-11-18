@@ -34,8 +34,7 @@ const DescriptionInterface: React.FC = () => {
             <div
                 ref={containerRef}
                 style={{
-                    // width: "100vw",
-                    // height: "100vh",
+                    height: "100vh",
                     overflow: "hidden",
                     touchAction: "none",
                     cursor: scale > 1 ? (dragging ? "grabbing" : "grab") : "default",
