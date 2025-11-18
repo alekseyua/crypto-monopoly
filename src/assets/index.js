@@ -74,6 +74,7 @@ import communityOpacity from './icons/community-opacity.svg';
 import asset from './icons/asset.svg';
 import moon from './icons/moon.svg';
 import setting from './icons/setting.svg';
+import interFace from './images/interface.svg';
 
 export const icons = {
   home,
@@ -91,6 +92,7 @@ export const icons = {
   balance,
   homeCard,
   hotelCard,
+  interFace,
   documentBlue,
   documentBlack,
   qgCurrencySvg,

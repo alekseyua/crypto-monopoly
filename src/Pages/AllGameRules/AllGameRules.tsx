@@ -12,12 +12,10 @@ const arr = Array.from(Array(10).keys());
 
 interface IProps {
 	rules?: { id: number; title: string; rule: string }[];
-	onSearchChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const AllGameRules:React.FC<IProps> = ({
 	rules,
-	onSearchChange,
 }) => {
 	
 

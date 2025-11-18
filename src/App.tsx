@@ -1,7 +1,7 @@
 import { RouterProvider } from 'react-router-dom';
-import { router } from './routers/roters.jsx';
 import { useEffect } from 'react';
 import { useNetworkStatus } from './hooks/useNetworkStatus';
+import { router } from './routers/routers';
 
 function App() {
 	const { quality } = useNetworkStatus(5000);

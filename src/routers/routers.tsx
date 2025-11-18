@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { NAV_ABOUT, NAV_ALL_ACHIEVEMENTS, NAV_AUTH_PAGE, NAV_BALANCE, NAV_GAME_RULES, NAV_MAIN_PAGE, NAV_QG_FIELD_PAGE, NAV_QG_SELECT_PAGE, NAV_REG_PAGE, NAV_RULES_PAGE } from "./config-nav";
+import { NAV_ABOUT, NAV_ALL_ACHIEVEMENTS, NAV_AUTH_PAGE, NAV_BALANCE, NAV_DESC_INTERFACE, NAV_GAME_RULES, NAV_MAIN_PAGE, NAV_PROFILE, NAV_QG_FIELD_PAGE, NAV_QG_SELECT_PAGE, NAV_REG_PAGE, NAV_RULES_PAGE } from "./config-nav";
 import SelectQGContainer from "../Pages/QuickGame/SelectQuickGame/SelectQuickGameContainer";
 import { MobileMainGame } from "../Pages/mobile-main-game/mobile-main-game";
 import { Auction } from "../Pages/auction/auction";
@@ -17,6 +17,7 @@ import BalanceContainer from "../Pages/Balance/BalanceContainer";
 import WrapRootHeader from "../Pages/Root/WrapRootHeader";
 import AboutContainer from "../Pages/About/AboutContainer";
 import AllGameRulesContainer from "../Pages/AllGameRules/AllGameRulesContainer";
+import DescriptionInterface from "../Pages/DescriptionInterface/DescriptionInterface";
 
 export const router = createBrowserRouter([
 	{
@@ -42,10 +43,6 @@ export const router = createBrowserRouter([
 						],
 					},
 					{
-						path: NAV_RULES_PAGE,
-						element: <Rules />,
-					},
-					{
 						path: NAV_QG_SELECT_PAGE,
 						element: <SelectQGContainer />,
 					},
@@ -66,12 +63,20 @@ export const router = createBrowserRouter([
 						element: <AllAchievementsContainer />,
 					},
 					{
-						path: '/profile',
+						path: NAV_PROFILE,
 						element: <ProfileContainer />,
+					},
+					{
+						path: NAV_RULES_PAGE,
+						element: <Rules />,
 					},
 					{
 						path: NAV_GAME_RULES,
 						element: <AllGameRulesContainer />,
+					},
+					{
+						path: NAV_DESC_INTERFACE,
+						element: <DescriptionInterface />,
 					},
 					{
 						path: NAV_ABOUT,
