@@ -26,6 +26,11 @@ const HeaderQuickGame: React.FC<HeaderQuickGameProps> = ({
     const { user } = useStoreon<
       StateStore
     >("user");
+
+  const handleOpenMobileMenu = (status: boolean) =>{
+    if (status) return setIsDropDownMenuOpen(status);
+    setIsDropDownMenuOpen(s=>!s);
+  }
   return (
     <header
       className={
@@ -49,12 +54,13 @@ const HeaderQuickGame: React.FC<HeaderQuickGameProps> = ({
               }
             >
               <div className={styles["header-qg__mobile-header-cont--inner"]}>
-                <BurgerContainer isMobile />
+                  <BurgerContainer isMobile handleOpenMobileMenu={handleOpenMobileMenu} />
                 <div
                   className={styles["header-qg__mobile-header-cont--inner-right"]}
                 >
                   <ButtonOpenMenu
-                    handlerOpenMenu={(v: boolean) => setIsDropDownMenuOpen(v)}
+                      handlerOpenMenu={handleOpenMobileMenu}
+                      isDropDownMenuOpen={isDropDownMenuOpen}
                   />
                   <UserPanelMainModeNotification />
                 </div>
@@ -83,7 +89,3 @@ const HeaderQuickGame: React.FC<HeaderQuickGameProps> = ({
   );
 };
 export default HeaderQuickGame;
-/**
- * 1) если NAV_ALL_ACHIEVEMENTS то показываем только лого по центру и опускаем вниз закругляя кроя
- * 2) если authorization показываем кнопки о проекте и правила игры
- */

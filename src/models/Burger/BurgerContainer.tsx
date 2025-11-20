@@ -10,11 +10,13 @@ import { useNavigate } from 'react-router-dom';
 interface IBurgerContainer {
   location: any,
   isMobile?: boolean,
+  handleOpenMobileMenu?: (v: boolean)=>void;
 }
 
 const BurgerContainer: React.FC<IBurgerContainer> = ({
   location,
   isMobile,
+  handleOpenMobileMenu,
 }) => {
   const navigate = useNavigate();
   const [openBurger, setOpenBurger] = useState(false);
@@ -38,16 +40,17 @@ const BurgerContainer: React.FC<IBurgerContainer> = ({
       link: NAV_RULES_PAGE,
       active: false,
     },
-    {
-      id: 3,
-      title: "О проекте", 
-      link: NAV_ABOUT,
-      active: false,
-    },
+    // {
+    //   id: 3,
+    //   title: "О проекте", 
+    //   link: NAV_ABOUT,
+    //   active: false,
+    // },
   ]);
 
   const handleActiveItemMenu = (id: number) => {
     handleBurger();
+    // handleOpenMobileMenu && handleOpenMobileMenu(false)
     navigate(listMenu.filter((item) => item.id === id)[0].link);
     setListMenu(
       listMenu?.map((item) => {
@@ -66,7 +69,11 @@ const BurgerContainer: React.FC<IBurgerContainer> = ({
     });
   }, [location.pathname]);
 
-  const handleBurger = () => setOpenBurger((state) => !state);
+  const handleBurger = () => {
+    setOpenBurger((state) => !state)
+    handleOpenMobileMenu && handleOpenMobileMenu(true);
+
+  };
 
   const handleAddQG = () => {
     // add action

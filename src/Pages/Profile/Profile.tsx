@@ -68,7 +68,7 @@ const Profile: FC<ProfileProps> = ({
   const isSecurityActive = dashboardProfile?.button?.[1]?.status === "active";
 
   return (
-    <BlockWrapper>
+    <BlockWrapper >
 
     <div className={styles["profile__container"]}>
       <div

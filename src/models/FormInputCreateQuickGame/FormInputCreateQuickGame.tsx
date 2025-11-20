@@ -50,7 +50,7 @@ const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
           onChange={(e) => handleChangeInput(e.target.value, "bet_amount")}
           type="number"
           id="bet_amount"
-          placeholder="Введите сумму для входа в игру"
+          placeholder="Введите сумму для входа в игру от 1$ до 1000$"
           min={1}
           style={{
             padding: "14px 25px",

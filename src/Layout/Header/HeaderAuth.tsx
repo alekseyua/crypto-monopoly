@@ -16,7 +16,7 @@ const HeaderAuth: React.FC = () => {
 				<Button variant="rounded" component="link" to="/rules" p={15}>
 				Правила игры
 				</Button>
-				<Button variant="rounded" p={15}>О проекте</Button>
+				{/* <Button variant="rounded" p={15}>О проекте</Button> */}
 			</nav>
         </div>
       </BlockWrapper>
@@ -24,7 +24,3 @@ const HeaderAuth: React.FC = () => {
   );
 };
 export default HeaderAuth;
-/**
- * 1) если NAV_ALL_ACHIEVEMENTS то показываем только лого по центру и опускаем вниз закругляя кроя
- * 2) если authorization показываем кнопки о проекте и правила игры
- */

@@ -19,7 +19,7 @@ const HeaderRules: React.FC = () => {
             <Button variant="rounded" component="link" to={NAV_AUTH_PAGE} style={{padding: '15px 35px'}}>
               Войти
             </Button>
-            <Button variant="rounded" p={15} to={NAV_ABOUT}>О проекте</Button>
+            {/* <Button variant="rounded" p={15} to={NAV_ABOUT}>О проекте</Button> */}
           </nav>
         </div>
       </BlockWrapper>
@@ -27,7 +27,3 @@ const HeaderRules: React.FC = () => {
   );
 };
 export default HeaderRules;
-/**
- * 1) если NAV_ALL_ACHIEVEMENTS то показываем только лого по центру и опускаем вниз закругляя кроя
- * 2) если authorization показываем кнопки о проекте и правила игры
- */

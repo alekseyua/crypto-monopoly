@@ -156,42 +156,6 @@ export const profile = (store: StoreonStore) => {
   };
   store.on(_INIT, () => ({ dashboardProfile: initDashboardProfile }));
 
-  // store.on(GET_DASHBOARD_PROFILE, () => {
-  //   return {
-  //     dashboardProfile: {
-  //       name: "Sam Venchester",
-  //       button: [
-  //         {
-  //           name: "Общая информация", // Кнопка для перехода в раздел с общей информацией аккаунта (активная кнопка)
-  //           type: "common",
-  //           status: "active",
-  //         },
-  //         {
-  //           name: "Безопасность", // Кнопка для перехода в раздел безопасности аккаунта
-  //           type: "security",
-  //           status: "inactive", // Кнопка-слайдер для перехода между двумя вкладками страницы
-  //         },
-  //         {
-  //           name: "Чат поддержки", // Кнопка для перехода в чат с поддержкой, здесь же отображается счетчик новых сообщений от поддержки (дублируется в уведомления на сайте)
-  //           amount_messages: 0,
-  //           type: "chat",
-  //           status: "inactive", // Кнопка-слайдер для перехода между двумя вкладками страницы
-  //         },
-  //         {
-  //           name: "Аккаунт", // Кнопка-слайдер для перехода между двумя вкладками страницы
-  //           type: "account",
-  //           status: "active",
-  //         },
-  //         {
-  //           name: "Баланс",
-  //           type: "balance",
-  //           status: "inactive", // Кнопка-слайдер для перехода между двумя вкладками страницы
-  //         },
-  //       ],
-  //     },
-  //   };
-  // });
-
   store.on(SET_DATA_PROFILE, (data: any, payload) => ({
     profile: {
       ...data.profile,

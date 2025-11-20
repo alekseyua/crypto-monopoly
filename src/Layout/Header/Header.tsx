@@ -34,7 +34,7 @@ const Header:React.FC = () => {
 											<Button variant='rounded' component='link' to='/rules'>
 												Правила игры
 											</Button>
-											<Button variant='rounded'>О проекте</Button>
+											{/* <Button variant='rounded'>О проекте</Button> */}
 										</nav>
 										: <UserPanelContainer />
 								}
@@ -46,8 +46,4 @@ const Header:React.FC = () => {
 		</>  
 	);
 };
-export default Header
-/**
- * 1) если NAV_ALL_ACHIEVEMENTS то показываем только лого по центру и опускаем вниз закругляя кроя
- * 2) если authorization показываем кнопки о проекте и правила игры
- */ 
+export default Header;

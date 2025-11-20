@@ -12,7 +12,7 @@ interface IProps {
 
 const HeaderProfile:React.FC<IProps> = ({ dashboardProfile, handleNavigateTo, username}) => {
   return (
-    <BlockWrapper>
+    <BlockWrapper isWithoutBottomIndent>
 
     <div className={styles["header-profile__container"]}>
 
