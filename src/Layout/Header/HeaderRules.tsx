@@ -4,7 +4,7 @@ import styles from "./styles/header.module.scss";
 import logo from "../../assets/images/logo.png";
 import { Button } from "../../shared/UI";
 import BlockWrapper from "../../shared/UI/Block/BlockWrapper";
-import { NAV_ABOUT, NAV_AUTH_PAGE } from "../../routers/config-nav";
+import { NAV_AUTH_PAGE } from "../../routers/config-nav";
 
 const HeaderRules: React.FC = () => {
   return (

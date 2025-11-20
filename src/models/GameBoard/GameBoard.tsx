@@ -103,7 +103,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
 
             {cards?.map((card: ICard | ISpecialCard, index: number) => {
               const playerCurrentMoveOnField: IPlayer = card.players.filter((p: IPlayer) => p.current_move)[0];
-
+              if (!card) return (<h1>Failed to receive data card</h1>);
               if (card.card_number === 21) {
                 // {/* **************** Parcking **************** */ }
                 return (

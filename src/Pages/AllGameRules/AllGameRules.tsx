@@ -6,10 +6,6 @@ import Masonry, { ResponsiveMasonryProps, MasonryProps } from "react-responsive-
 import { ResponsiveMasonry } from "react-responsive-masonry";
 import BlockWrapper from '../../shared/UI/Block/BlockWrapper';
 
-const arr = Array.from(Array(10).keys());
-
-
-
 interface IProps {
 	rules?: { id: number; title: string; rule: string }[];
 }
