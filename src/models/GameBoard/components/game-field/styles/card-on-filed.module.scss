@@ -15,18 +15,21 @@
         align-items: center;
         justify-content: center;
         display: block;
+        &[data-active="true"]:hover::after{
+            // opacity: 1;
+            filter:grayscale(1)
+        }
         &::after {
                 content: "🔍"; /* Лупа */
                 position: absolute;
                 font-size: 16px;
-                
                 opacity: 0;
                 transition: opacity 0.2s ease;
                 pointer-events: none;
                 z-index: 12;
             }
         &:hover{
-            &.card-field__container::after{
+            &::after{
                 opacity: 1;
             }
         }
@@ -669,6 +672,7 @@
         place-content: center;
         left: 0;
         transform: translateX(-100%);
+        z-index: 9999;
 
         //onfield__container--top
         &--top {

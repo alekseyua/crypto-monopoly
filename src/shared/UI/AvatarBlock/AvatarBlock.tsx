@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './styles/avatar.module.scss';
 import { adjustColorBrightness } from '../../../helpers/helper';
+import { icons } from '../../../assets';
 
 interface IProps {
   avatar?: string | undefined;
@@ -36,7 +37,7 @@ const AvatarBlock: React.FC<IProps> = ({
 
       ></span>
       <img
-        src={avatar ?? 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png'}
+        src={avatar ?? icons.userAvatar}
         alt="avatar"
         className={styles['avatar__container--image']}
         style={{

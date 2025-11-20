@@ -67,7 +67,7 @@ export const Step3 = ({
 					fillColor='#726CED'
 					textColor='#fff'
 					disabled={
-						!(recoveryData.new_password.trim().length !== 0 && recoveryData.repeatPassword.trim().length !== 0 && recoveryData.new_password.trim() === recoveryData.repeatPassword.trim())
+						!(recoveryData?.new_password?.trim().length !== 0 && recoveryData?.repeatPassword?.trim().length !== 0 && recoveryData?.new_password?.trim() === recoveryData?.repeatPassword?.trim())
 					}>
 					Далее
 				</Button>

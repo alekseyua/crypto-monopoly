@@ -27,6 +27,7 @@ import AchivmentExcursionIcon from "./icons/achivment-excursion-icon.svg";
 // import IconBack from "../../assets/icons/back-arrow.svg";
 import IconChat from "./icons/chat.svg";
 import avatar from "./images/fake-avatar.png";
+import avatar2 from './images/avatar.png'
 import IconCamera from "./icons/camera.svg";
 import DropdownArrow from "./icons/drpodown-arrow.svg";
 import IconDateFilter from "./icons/date-filter.svg";
@@ -107,7 +108,7 @@ export const icons = {
   moneyBag,
   capital,
   asset,
-  userAvatar: avatar,
+  userAvatar: avatar2,
 };
 
 export {

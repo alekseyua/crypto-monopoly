@@ -85,7 +85,7 @@ export const Step4 = ({
 					fillColor='#726CED'
 					textColor='#fff'
 					disabled={
-						!(regData.password.trim().length !== 0 && regData.repeatPassword.trim().length !== 0 && regData.password.trim() === regData.repeatPassword.trim())
+						!(regData?.password?.trim()?.length !== 0 && regData?.repeatPassword?.trim()?.length !== 0 && regData?.password?.trim() === regData?.repeatPassword?.trim())
 					}>
 					Далее
 				</Button>

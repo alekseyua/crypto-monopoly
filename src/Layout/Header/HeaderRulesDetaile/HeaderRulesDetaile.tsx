@@ -46,13 +46,13 @@ const HeaderRulesDetail = () => {
 					<h2>Основной режим</h2>
 				</div>
 				<div className={cls.headerButtons}>
-					<div className={cls.search}>
+					{isActiveBtn === 'rules' && <div className={cls.search}>
 						<input type='text' value={inpuText} style={{ paddingRight: 25 }} placeholder='Как часто можно ходить...' onChange={onSearchChange} />
 						<button>
 							{/* <SearchIcon width={14} height={14} /> */}
 							<Icon src={SearchIcon} width={'14'} height={'14'} style={{ marginRight: 10, top: 5 }} />
 						</button>
-					</div>
+					</div>}
 					<div className={cls.contButtons} >
 						<motion.div
 							animate={{ scale: isActiveBtn === "rules" ? 1.05 : 1 }}

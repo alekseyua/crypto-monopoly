@@ -33,7 +33,7 @@ export const Step3 = ({
 					type='fill'
 					fillColor='#726CED'
 					textColor='#fff'
-					disabled={regData.username.trim().length === 0}>
+					disabled={regData?.username?.trim()?.length === 0}>
 					Далее
 				</Button>
 			</div>

@@ -22,6 +22,7 @@ interface IGameFieldNew {
 	name: string;
 	players?: IPlayer[];
 	playerCurrentMove: IPlayer;
+  playerCurrentMoveOnField: IPlayer;
 	cardCost: string;
 	owner: IOwnerCard;
 	id: number;
@@ -49,6 +50,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 	isGrayBlur = false,
 	handleCard,
 	playerCurrentMove,
+  playerCurrentMoveOnField,
 	activeCardForSelect,
 }: IGameFieldNew) => {
   const [styleBayCard, setStyleBayCard] = React.useState<CSSProperties>({});
@@ -70,8 +72,8 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
   }, [owner, direction]);
 
 	const initStyleOnFieldColor: CSSProperties & Record<string, string> = {
-		'--onField-gradient-color1': playerCurrentMove.color,
-		'--onField-gradient-color2': playerCurrentMove.color
+    '--onField-gradient-color1': playerCurrentMoveOnField?.color ?? 'transparent',
+    '--onField-gradient-color2': playerCurrentMoveOnField?.color ?? 'transparent',
 	}
 
 	const initStyleColor: CSSProperties & Record<string, string> = {
@@ -84,7 +86,6 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 	// useEffect(() => {
 	// 		console.log('%cRENDER GameFieldNew QIUICK GAME container', 'color: red')
 	// 	}, []);
-
 	return (
     <div
       onClick={() =>
@@ -103,6 +104,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
         [styles["card-field__is-pawn"]]: owner?.is_pawn,
         // chance | city | community | cruise | express | airline
       })}
+      data-active={!playerCurrentMove.current_move}
       style={{
         backgroundColor: type === "chance" ? "#E7EFFD" : "",
         filter: isGrayBlur ? "blur(3px) grayscale(100%)" : "",
@@ -250,7 +252,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
           ></div>
         )}
       </div>
-
+{/* нужно вынести в отдельный модуль */}
       {onField && (
         <div
           className={classNames({

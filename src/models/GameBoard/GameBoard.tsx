@@ -63,6 +63,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
   if (!dataPlayerQG) return;
   const cards: (ICard | ISpecialCard)[] = quickGame.cards;
   const isMobile = width < 992
+  console.log({ playerCurrentMove })
   return (
     <>
       <div
@@ -81,6 +82,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
             transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
             transformOrigin: "center center",
             transition: dragging ? "none" : "transform 0.1s ease-out",
+            padding: '23px',
           }}
         >
           <div ref={innerRef} className={cls["game-board"]}>
@@ -100,6 +102,8 @@ export const GameBoard: React.FC<IGameBoard> = ({
             </div>}
 
             {cards?.map((card: ICard | ISpecialCard, index: number) => {
+              const playerCurrentMoveOnField: IPlayer = card.players.filter((p: IPlayer) => p.current_move)[0];
+
               if (card.card_number === 21) {
                 // {/* **************** Parcking **************** */ }
                 return (
@@ -151,6 +155,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
                   />
                 );
               }
+
               return (
                 <GameFieldNew
                   key={card.card_number}
@@ -162,6 +167,8 @@ export const GameBoard: React.FC<IGameBoard> = ({
                   type={card.type_card}
                   handleCard={handleCard}
                   playerCurrentMove={playerCurrentMove}
+                  playerCurrentMoveOnField={playerCurrentMoveOnField}
+
                   direction={
                     // 1 Circle
                     // 11 jail

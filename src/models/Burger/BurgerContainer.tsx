@@ -5,6 +5,7 @@ import Burger from './Burger';
 import { CREATE_NEW_QG } from '../../store/quick-game/quick-game';
 import { useStoreon } from 'storeon/react';
 import BurgerMobile from './BurgerMobile';
+import { useNavigate } from 'react-router-dom';
 
 interface IBurgerContainer {
   location: any,
@@ -15,6 +16,7 @@ const BurgerContainer: React.FC<IBurgerContainer> = ({
   location,
   isMobile,
 }) => {
+  const navigate = useNavigate();
   const [openBurger, setOpenBurger] = useState(false);
   const { dispatch, isQG } = useStoreon("isQG");
   const [listMenu, setListMenu] = useState([
@@ -38,7 +40,7 @@ const BurgerContainer: React.FC<IBurgerContainer> = ({
     },
     {
       id: 3,
-      title: "О проекте",
+      title: "О проекте", 
       link: NAV_ABOUT,
       active: false,
     },
@@ -46,6 +48,7 @@ const BurgerContainer: React.FC<IBurgerContainer> = ({
 
   const handleActiveItemMenu = (id: number) => {
     handleBurger();
+    navigate(listMenu.filter((item) => item.id === id)[0].link);
     setListMenu(
       listMenu?.map((item) => {
         return item.id === id
