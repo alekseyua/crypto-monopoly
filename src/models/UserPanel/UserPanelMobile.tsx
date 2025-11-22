@@ -62,12 +62,12 @@ const UserPanelMobile:React.FC<IProps> = ({
                 </div>
                 <div className={styles["header-menu-btn__price-container"]}>
                   <div className={styles["header-menu-btn__price"]}>
-                    {`${price}`}
-                    {id === "jackpot" ? (
+                    {`${price} $`}
+                    {/* {id === "jackpot" ? (
                       "$"
                     ) : (
                       <Icon src={icons.qgCurrencySvg} width="15" up={1} />
-                    )}
+                    )} */}
                   </div>
                 </div>
               </div>

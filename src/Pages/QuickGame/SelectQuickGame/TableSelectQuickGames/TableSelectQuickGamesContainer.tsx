@@ -4,7 +4,7 @@ import { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SET_MODAL } from '../../../../store/modal/modal';
 import FormInputCreateQGContainer from '../../../../models/FormInputCreateQuickGame/FormInputCreateQuickGameContainer';
-import { DISCONNECT_LIST_QG, GET_LIST_QG, JOIN_QG } from '../../../../store/quick-game/quick-game';
+import { DISCONNECT_LIST_QG, CONNECT_WS_QG, JOIN_QG } from '../../../../store/quick-game/quick-game';
 import { IListQGs } from '../../../../store/quick-game/quick-game.d';
 import { StoreonDispatch } from 'storeon';
 import { IUser } from '../../../../store/users/user.d';
@@ -41,7 +41,8 @@ const TableSelectQuickGamesContainer = () => {
 
     useEffect(() => {
       // нужно ли переоткрывать ли соединение при смене страницы ???
-      dispatch(GET_LIST_QG, { action: "get_games", redirectTo });
+      console.log('%cOPEN LIST GAMES', 'color: green')
+      dispatch(CONNECT_WS_QG, { action: "get_games", redirectTo });
       return () =>
         dispatch(DISCONNECT_LIST_QG, { action: "get_games", redirectTo });
     }, [dispatch, redirectTo]);

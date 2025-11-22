@@ -129,34 +129,34 @@ export const rgbToRgba = function (rgb: string, alpha: number) {
 }
 
 export function connectWebSocket(socket: WebSocket, callback: (res: any) => any, action: string = 'pending') {
+  const url = new URL(socket.url);
+  const name = url.searchParams.get('action');
   if (socket === undefined) return
   socket.onopen = () => {
-    console.warn("WebSocket open: ");
+    console.warn("WebSocket open: ", name);
   }
   socket.onerror = (error: any) => {
-    console.error("ReadyState = ", error?.target?.readyState, "WebSocket error: ", error);
-    if (error?.target?.readyState === WebSocket.CLOSED) {
-      return
-    }
+    console.error("ReadyState = ", error?.target?.readyState, "WebSocket ", name, " error: ", error);
+    if (error?.target?.readyState === WebSocket.CLOSED) return;
     socket.close(); // Закрываем соединение при ошибке
   }
   socket.onclose = (e: CloseEvent) => {
-    console.warn("WebSocket close code: ", e?.code, typeof e?.code);
-    if (e?.code === 1006) {
-      // Попробуем переподключиться через 2 секунды
-      // setTimeout(connectWebSocket, 2000);
-      return console.log('close websocket error 1006')
-    }
-    if (e?.code === 1000) {
-      return console.log('close from client websocket code 1000')
-    }
-    // setTimeout(connectWebSocket, 2000);  
+    console.warn("WebSocket %c" + name + "  close code: ", 'color: red',  e?.code);
+    // if (e?.code === 1006) {
+    //   // Попробуем переподключиться через 2 секунды
+    //   // setTimeout(connectWebSocket, 2000);
+    //   return console.log("close websocket  ", name, "  error 1006")
+    // }
+    // if (e?.code === 1000) {
+    //   return console.log("close from client websocket  ", name, "  code 1000")
+    // }
+    // // setTimeout(connectWebSocket, 2000);  
   }
   socket.onmessage = (event: MessageEvent) => {
     callback(JSON.parse(event.data));
     if (action === 'close') {
       // принудительно закрываем
-      console.log('принудительно закрываем Websocket')
+      console.log("Командой принудительно закрываем Websocket", name )
       socket.close();
     }
     return

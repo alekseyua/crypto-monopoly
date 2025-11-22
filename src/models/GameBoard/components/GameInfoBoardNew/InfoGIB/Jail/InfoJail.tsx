@@ -90,7 +90,7 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
             <Text text={"Заплатить за освобождение"} />
           </Button>
           <Text
-            text={"Оплатить штраф и выйти из тюрьмы."}
+            text={"Заплатить за освобождение - оплатить штраф 50 МОНО и выйти из тюрьмы."}
             fontWeight={300}
             fontSize={12}
             color={"rgba(78, 76, 109, 1)"}
@@ -110,7 +110,7 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
           </Button>
 
           <Text
-            text={"нужно уточнить текст. >?"}
+            text={"Кинуть кубики - если вам выпадет дубль вы выйдите из тюрьмы, если за 3 хода вам не выпалит дубль вам придется оплатить штраф 50 МОНО."}
             fontWeight={300}
             fontSize={12}
             color={"rgba(78, 76, 109, 1)"}
@@ -129,7 +129,7 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
           </Button>
 
           <Text
-            text={"нужно уточнить текст. >?"}
+            text={"Использовать «Карта свободы» - если у вас есть «Карта свободы» вы можете использовать ее для выхода из тюрьмы."}
             fontWeight={300}
             fontSize={12}
             color={"rgba(78, 76, 109, 1)"}

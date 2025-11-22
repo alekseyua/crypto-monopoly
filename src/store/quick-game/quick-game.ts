@@ -31,7 +31,7 @@ export const RESET_LIST_CARDS_QG = v4();
 export const SET_LIST_CARDS_QG = v4();
 export const CREATE_NEW_QG = v4();
 export const JOIN_QG = v4();
-export const GET_LIST_QG = v4();
+export const CONNECT_WS_QG = v4();
 export const SET_LIST_QG = v4();
 export const RET_LIST_QG = v4();
 export const SET_QG = v4();
@@ -134,35 +134,13 @@ export const quickGame = (store: StoreonStore) => {
   const initDataPlayerQG: IPlayer = {
     id: 0,
     user: "",
-    // balance: "",
     color: "",
-    // is_creater: false,
-    // is_start_fast_game: false,
-    // fast_game_id: 0,
-    // is_start_main_game: false,
-    // main_game_id: null,
     properties: [],
-    // bankrupt: false,
     current_card: 0,
     move_number: 0,
     current_move: false,
     card_data: {
       data_actions: {
-        // info: {
-        //   name: "",
-        //   country_name: "",
-        //   collection_amount: "",
-        // },
-        // prices: {
-        //   hotel: 0,
-        //   house: 0,
-        // },
-        // features: {
-        //   base_cost: 0,
-        //   house_taxes: [],
-        //   monopoly_tax: 0,
-        //   one_card_tax: 0,
-        // },
         actions: {
           buy: false,
           auction: false,
@@ -195,13 +173,11 @@ export const quickGame = (store: StoreonStore) => {
           highest_bid: 0,
           base_cost: 0,
         },
-        // card_id: 0,
         card: {
           id: 0,
           name: "",
         },
         card_type: "",
-        // move_end_time_sec: 0,
       },
       card_id: 0,
     },
@@ -239,15 +215,7 @@ export const quickGame = (store: StoreonStore) => {
     id: 0,
     cards: [],
     is_active: false,
-    // auctions:[],
-    // name: "",
     players: [],
-    // current_turn: 0,
-    // is_start: false,
-    // bet_amount: "",
-    // turn_time: 0,
-    // start_money: "",
-    // max_players: 0,
   };
   store.on(_INIT, () => ({ quickGame: initDataQG }));
   store.on(RESET_QG, () => ({ quickGame: initDataQG }));
@@ -273,10 +241,9 @@ export const quickGame = (store: StoreonStore) => {
   store.on(DISCONNECT_LIST_QG, async (_, payload, { dispatch }) => {
     socket.get_games?.close();
   });
-  store.on(GET_LIST_QG, async (storage: any, payload, { dispatch }) => {
+  store.on(CONNECT_WS_QG, async (storage: any, payload, { dispatch }) => {
     const URL = getUrlWebsocket(URL_QGS, payload);
-    // const URL = getUrlWebsocket(URL_QGS, { action: 'get_games' });
-
+    // ??????
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       return socket.get_games.send(JSON.stringify({ action: "get_games" }));
     }
@@ -288,6 +255,8 @@ export const quickGame = (store: StoreonStore) => {
           if (!!storage.profile?.id) {
             profileID = storage.profile?.id;
           }
+          // =================== messages временно ============================
+
           if (res?.message) {
             dispatch(SET_MESSAGE_QUICK_GAME, {
               title: `User from id = ${profileID}`,
@@ -314,40 +283,32 @@ export const quickGame = (store: StoreonStore) => {
             ]);
             return;
           }
-          // // ===================== achivments player======================
-          // if (Object.keys(res).includes('user_data')) {
-          //   if (Object.keys(res.user_data).includes('player_data')) {
-          //     if (Object.keys(res.user_data.player_data).includes('achievements')) {
-          //       dispatch(SET_ACHIVMENT_PLAYER_QG, res.user_data.player_data.achievements)
-          //     }else {
-          //       dispatch(RESET_ACHIVMENT_PLAYER_QG)
-          //     }
-          //   }
-          // }
           // =============================================================
-
           // ===================== list games quick ======================
           if (Object.keys(res).includes("games_data")) {
             // список игр
             dispatch(SET_LIST_QG, res.games_data);
           }
           // =============================================================
-
           // ===================== current game quick ====================
-          if (Object.keys(res).includes("game_data")) {
+          if (isKeyPresentInHash(res, "game_data")) {
             if(!res.game_data.is_active) {
               return payload.redirectTo(NAV_QG_SELECT_PAGE);
             }
+            // открываем ws для фида новостей игры
+            dispatch(OPEN_WS_FEED_NEWS_QG, { game_id: res.game_data.id }); 
             // одна игра
-            if (res.game_data?.cards && res.game_data?.cards.length) {
-              dispatch(SET_LIST_CARDS_QG, res.game_data.cards); // список карт в игре
-            }
             dispatch(SET_QG, res.game_data);
             const currentPlayer: IPlayer[] =
               res.game_data &&
               res.game_data.players.filter((p: any) => +p.user === profileID);
+            if(!currentPlayer && !currentPlayer[0]) console.error('Failed to retrieve current player data');
             dispatch(SET_DATA_PLAYER_QG, currentPlayer[0]); // данные пользователя в игре
-            // console.log("%c" + JSON.stringify(currentPlayer[0], null, 4), "color: red");
+            // список карточек в игре
+            if (res.game_data?.cards && res.game_data?.cards.length) {
+              dispatch(SET_LIST_CARDS_QG, res.game_data.cards); // список карт в игре
+            }
+            // значения выпавших кубиков
             if (
               isKeyPresentInHash(currentPlayer[0], "show_dice_roll") &&
               currentPlayer[0].show_dice_roll
@@ -359,41 +320,23 @@ export const quickGame = (store: StoreonStore) => {
             } else {
               dispatch(RESET_ROLL_DICE_QG);
             }
-            console.log("%cOPEN_FEED_WS" + JSON.stringify({ID: res.game_data.id}, null, 4), "color: red");
 
-            dispatch(OPEN_WS_FEED_NEWS_QG, { game_id: res.game_data.id }); // открываем ws для фида новостей игры
-
-            // set dice roll
-
-            //choose_data
-            // ====================== ERROR ============================
-            // if (isKeyPresentInHash(currentPlayer[0]?.card_data, "actions")) {
-            //   console.log(
-            //     "%c ALARM into 'card_data' has a key 'actions'",
-            //     "color: red",
-            //     " player id",
-            //     currentPlayer[0]?.user
-            //   );
-            // }
             // ====================== info message popup ============================
-            if (
-              isKeyPresentInHash(currentPlayer[0], "popup_data") &&
-              Object.keys(currentPlayer[0]).includes("popup_data")
-            ) {
+            if (isKeyPresentInHash(currentPlayer[0], "popup_data")) {
               // кратковременные сообщения
               dispatch(SET_INFO_MESSAGE_POPUP, currentPlayer[0].popup_data);
             }
             // =========================================================
+            type PRIORITIES = {
+              CHOOSE_DATA: 0,
+              AUCTION_DATA: 1,
+              CARD_DATA: 2,
+              EXCHANGE_DATA: 3
+            }
             let choose_data: IChooseData | undefined = undefined;
             if (isKeyPresentInHash(currentPlayer[0]?.choose_data, "actions")) {
-              choose_data = {
-                actions: currentPlayer[0]?.choose_data?.actions,
-                card_id: currentPlayer[0]?.choose_data?.card_id,
-                card_type: currentPlayer[0]?.choose_data?.card_type,
-                card_info: currentPlayer[0]?.choose_data?.card_info,
-              };
+              choose_data = {...currentPlayer[0]?.choose_data as IChooseData};
             }
-            // await delay(1000); // ждем 1 секунду, чтобы данные успели сохраниться
             if (
               isKeyPresentInHash(currentPlayer[0]?.card_data, "data_actions")
             ) {
@@ -493,20 +436,20 @@ export const quickGame = (store: StoreonStore) => {
         })
       );
     }
-    return dispatch(GET_LIST_QG, { action: "get_games" });
+    return dispatch(CONNECT_WS_QG, { action: "get_games" });
   });
   store.on(MOVE_TO, (state: any, payload, { dispatch }) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       return socket.get_games.send(JSON.stringify(payload));
     }
-    return dispatch(GET_LIST_QG, { action: "get_games" });
+    return dispatch(CONNECT_WS_QG, { action: "get_games" });
   });
 
   store.on(JOIN_QG, (state: any, payload, { dispatch }) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       return socket.get_games.send(JSON.stringify(payload));
     }
-    return dispatch(GET_LIST_QG, { action: "get_games" });
+    return dispatch(CONNECT_WS_QG, { action: "get_games" });
   });
 
   store.on(GET_CARD_ACTION_QG, (store: any, payload) => {
@@ -544,14 +487,12 @@ export const quickGame = (store: StoreonStore) => {
   });
   // feds news quick game
   store.on(OPEN_WS_FEED_NEWS_QG, (state: any, payload, { dispatch }) => {
-    const URL = getUrlWebsocket(URL_FEED_QG, payload);
+    const URL = getUrlWebsocket(URL_FEED_QG, {...payload, action: 'feed'});
     if (socket.feed && socket.feed?.readyState === WebSocket.OPEN) {
       return;
     }
-    // console.log("open ws feed news quick game", URL);
     const connectFeedWS = () =>
       connectWebSocket((socket.feed = new WebSocket(URL)), async (res: any) => {
-        // console.log("feed news quick game", res);
         if (isKeyPresentInHash(res, "send_data")) {
           if (isKeyPresentInHash(res.send_data, "achievements")) {
             dispatch(SET_ACHIVMENT_PLAYER_QG, res.send_data.achievements);

@@ -28,7 +28,6 @@ class ApiService {
       })
       this.api.interceptors.response.use( async (response)=>{
         if(response.config.url === API_GET_TOKEN && response?.data?.access){
-          console.log('*********************************', JSON.parse(response.config.data))
           const email = JSON.parse(response.config.data).email
           setLocaleStore("token", response?.data?.access);
           setLocaleStore('email', email)
@@ -43,16 +42,12 @@ class ApiService {
               profileData: res
             }
           }
-          console.log({authResponse})
           return authResponse;
         }
-        // console.log('step 5 interceptors',response)
         return response
       }, async (error)=>{
-      // console.log('step 4 interceptors')
         
         const originResponse = error.config;
-        console.log({ error }, error.status);
         if( error?.status === 401){
           try {
             if (
@@ -101,7 +96,6 @@ class ApiService {
     // Метод GET-запроса
     async get(endpoint, params = {}) {
       try {
-        console.log({ userClear: params, user: initDataParamsPostOrGet(params) })
         const response = await this.api.get(endpoint, {
           params: initDataParamsPostOrGet(params),
         });
@@ -158,7 +152,7 @@ class ApiService {
   
     // Обработка ошибок
     handleError(error) {
-      console.log({error})
+      console.error({error})
       if (error.response) {
         console.error('Ошибка ответа:', error.response.status, error.response.data?.detail);
       } else if (error.request) {

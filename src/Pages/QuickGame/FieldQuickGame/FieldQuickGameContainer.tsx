@@ -5,7 +5,7 @@ import {
   SEND_ACTION_CARD_QG,
   DISCONNECT_LIST_QG,
   GET_CARD_ACTION_QG,
-  GET_LIST_QG,
+  CONNECT_WS_QG,
   MOVE_TO,
   RESET_ROLL_DICE_QG,
   CLOSE_WSOCKET_FEED,
@@ -150,16 +150,16 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
     (params: any) => {
       dispatch(SEND_ACTION_CARD_QG, params);
 	    const listException = ["end_move", 
-		// "return_house", "get_house"
-	];
-	if (listException.includes(params.action)) {
-    return setTimeout(()=>dispatch(RESET_ROLL_DICE_QG),5000)}; // что бы полностью обнулить данные
+        // "return_house", "get_house"
+      ];
+      if (listException.includes(params.action)) {
+        return setTimeout(() => dispatch(RESET_ROLL_DICE_QG), 5000)
+      }; // что бы полностью обнулить данные
       if (params.action === "add_card") {
         return dispatch(GET_CARD_ACTION_QG, { chance: true });
       }
-      //else if (params.action === "end_move") {
+      if (params.action === "get_house") return;
       dispatch(GET_CARD_ACTION_QG);
-      //}
     },
     [dispatch]
   );
@@ -320,7 +320,7 @@ const handleCardOnField = (card_id: number): void => {
 	// нужно ли переоткрывать ли соединение при смене страницы ???
 	useEffect(() => {
 		const game_id = quickGame.id;
-		game_id && dispatch(GET_LIST_QG, { action: "game", game_id, redirectTo });
+		game_id && dispatch(CONNECT_WS_QG, { action: "game", game_id, redirectTo });
 		return () => dispatch(DISCONNECT_LIST_QG, { action: "game", redirectTo });
 	}, [dispatch, quickGame.id, redirectTo]);
 
@@ -443,6 +443,8 @@ const handleCardOnField = (card_id: number): void => {
 		const isActions: boolean = isKeyPresentInHash(data, "data_actions");
 		const isAuctions: boolean = isKeyPresentInHash(data, "auction_data");
 		const isChoose: boolean = isKeyPresentInHash(data, "choose_data");
+      console.log({ data, isChoose })
+
 		const listCards = quickGame.cards;
 		let cardId = data?.card_id;
 		if (isAuctions) cardId = data.auction_data.card_id;
@@ -466,7 +468,6 @@ const handleCardOnField = (card_id: number): void => {
 		);
 
 		// Варианты actions
-
 		//sell,exchange,build,pawn,redeem, auction
 		if (isChoose && isMovePlayer && !isExpressAirlineCruise) {
 			//   показывает действия в игре по клику карточки
@@ -621,7 +622,7 @@ const handleCardOnField = (card_id: number): void => {
 		);
 		}
 		let dataAction: keyPreview = getAction(dataPlayerQG, actionCardData);
-		console.log("%cKEY: " + dataAction.key, "color: green");
+    console.log("%cKEY: " + dataAction.key, "color: green", quickGame.players);
 		const card = quickGame.cards.filter(
 		(el: ICard | ISpecialCard) => el.id === dataAction.cardId
 		)[0];

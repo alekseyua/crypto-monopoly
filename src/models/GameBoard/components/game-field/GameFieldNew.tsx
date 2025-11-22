@@ -104,7 +104,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
         [styles["card-field__is-pawn"]]: owner?.is_pawn,
         // chance | city | community | cruise | express | airline
       })}
-      data-active={!playerCurrentMove.current_move}
+      data-active={playerCurrentMove.current_move}
       style={{
         backgroundColor: type === "chance" ? "#E7EFFD" : "",
         filter: isGrayBlur ? "blur(3px) grayscale(100%)" : "",

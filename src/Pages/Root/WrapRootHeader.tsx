@@ -20,7 +20,6 @@ const WrapRootHeader = () => {
     user,
   } = useStoreon<StateStore>("headerName", 'user');
   const [isMobile] = React.useState(window.innerWidth <= 768);
-  console.log({user})
   return (
     <>
       {headerName === HeaderNameEnum.MAIN_GAME ? (

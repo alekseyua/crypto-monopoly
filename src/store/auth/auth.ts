@@ -7,6 +7,8 @@ import { v4 } from "uuid";
 import { StoreonStore } from "storeon";
 import { delay, getLocaleStore, removeLocaleStore } from "../../helpers/helper";
 import { SET_DATA_PROFILE } from "../profile/profile";
+import { GET_USERS } from "../users/users";
+import { GET_DUBLICATE_CODE_RECOVERY, SET_RECOVERY_STEP, SET_RECOVERY_TO_STORE } from "./recovery";
 
 export const _INIT = '@init';
 
@@ -20,6 +22,7 @@ export const RESET_AUTH: string = v4();
 export const RESET_AUTH_STEP: string = v4();
 export const RESET_AUTH_STORE: string = v4();
 export const SET_ERROR_AUTH: string = v4();
+export const SET_AUTH_STEP: string = 'auth/set/step' as const;
 
 export const authStore = (store: StoreonStore) => {
 // auth
@@ -29,13 +32,15 @@ export const authStore = (store: StoreonStore) => {
     store.on(RESET_AUTH_STEP, () => ({ authStep: initAuthStep }));
     store.on(INC_AUTH_STEP, ({authStep}: any)=>({authStep: authStep + 1}));
     store.on(DESC_AUTH_STEP, ({authStep}: any)=>({authStep: authStep - 1}));
+    store.on(SET_AUTH_STEP, ({authStep}: any, payload)=>({authStep: payload}));
+
     
     const initErrorAuth = '';
     store.on(_INIT, ()=>({errorAuth: initErrorAuth}));
     store.on(SET_ERROR_AUTH, (_,data)=>({errorAuth: data}));
     store.on(RESET_AUTH, (_, data, { dispatch }) => {
-    dispatch(RESET_AUTH_STEP);
-    dispatch(RESET_AUTH_STORE);
+      dispatch(RESET_AUTH_STEP);
+      dispatch(RESET_AUTH_STORE);
     });
     
     const initAuthData = {
@@ -51,6 +56,28 @@ export const authStore = (store: StoreonStore) => {
     })
 
     store.on(GET_AUTH, async ({authData}: any,data, {dispatch})=>{
+      const callback = async (res: any) =>{
+        switch (res?.data?.state_registration) {
+          case 0:
+            const email = res?.data.email;
+            dispatch(GET_DUBLICATE_CODE_RECOVERY, { email});
+            dispatch(SET_RECOVERY_TO_STORE, {email}); // сохраняем почту в стейт востановления
+            await delay(500);
+            dispatch(SET_AUTH_STEP, 3); // что бы попасть в раздел восстановления
+            dispatch(SET_RECOVERY_STEP,2); // попасть на нужный шаг 
+            break;
+          default:
+              break;
+        }
+      
+        setErrorTimming(
+          SET_ERROR_AUTH,
+          res?.data?.state_registration_text,
+          dispatch,
+          3500
+        );
+              }
+      if(authData?.email) dispatch(GET_USERS, {callback, email: authData.email})
       if (authData?.email && !authData.password.length) {
           return dispatch(INC_AUTH_STEP);
     }

@@ -9,6 +9,7 @@ import Title from '../../../../../../shared/UI/Title/Title';
 import { icons } from '../../../../../../assets';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
 import { useWindowWidth } from '../../../../../../hooks/useWindowWidth';
+import Preloader from '../../../../../../Component/Preloader/Preloader';
 
 interface IProps {
   playerCurrentMove: IPlayer | null;
@@ -19,7 +20,9 @@ const Wait: React.FC<IProps> = ({
 }: IProps) => {
   const width = useWindowWidth();
       const isMobile = width < 992;
-  if(!playerCurrentMove?.username) return null;
+      console.log('%cPLAYER current move ' + playerCurrentMove?.username, 'color: red')
+  if (!playerCurrentMove?.username) return <Preloader />;
+  
   return (
     <ContainerGIB>
       <Icon

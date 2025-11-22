@@ -63,7 +63,6 @@ export const GameBoard: React.FC<IGameBoard> = ({
   if (!dataPlayerQG) return;
   const cards: (ICard | ISpecialCard)[] = quickGame.cards;
   const isMobile = width < 992
-  console.log({ playerCurrentMove })
   return (
     <>
       <div

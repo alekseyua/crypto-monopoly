@@ -168,7 +168,7 @@ const CardPlayersPreview: React.FC<IPropsCardPlayersPreview> = ({
             className={
               styles["card-players-preview__container-balance-capital"]
             }
-            data-tooltip-id="preview-balance-capital"
+            data-tooltip-id={"preview-balance-capital" + id}
           >
             <div className={styles["card-players-preview__balance-capital"]}>
               <div>
@@ -209,7 +209,7 @@ const CardPlayersPreview: React.FC<IPropsCardPlayersPreview> = ({
             </div>
 
             <Tooltip
-              id="preview-balance-capital"
+              id={"preview-balance-capital" + id}
               style={{
                 backgroundColor: "rgba(201, 202, 207, 0.93)",
                 color: "#000",

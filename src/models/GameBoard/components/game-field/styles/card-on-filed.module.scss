@@ -17,17 +17,18 @@
         display: block;
         &[data-active="true"]:hover::after{
             // opacity: 1;
-            filter:grayscale(1)
+            filter: grayscale(0);
         }
         &::after {
-                content: "🔍"; /* Лупа */
-                position: absolute;
-                font-size: 16px;
-                opacity: 0;
-                transition: opacity 0.2s ease;
-                pointer-events: none;
-                z-index: 12;
-            }
+            content: "🔍"; /* Лупа */
+            filter:grayscale(1);
+            position: absolute;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+            z-index: 12;
+        }
         &:hover{
             &::after{
                 opacity: 1;
@@ -42,7 +43,7 @@
             width: 6.41%;
             top: 0;
             &::after {
-                top: 80%;
+                top: 20%;
                 left: 50%;
                 transform: translate(-50%, -80%);
             }
@@ -75,7 +76,7 @@
             right: 0;
             &::after {
                 top: 50%;
-                left: 20%;
+                right: 10%;
                 transform: translate(-20%, -50%);
             }
 

@@ -24,7 +24,7 @@ export const LoginUser = ({
 		<ContainerAuthForm>
 
 			{
-				isRecoveryPassword
+				isRecoveryPassword || authStep === 3
 					? < RecoveryPasswordContainer />
 					: <WrapperCard>
 						<div className={cls.labels}>

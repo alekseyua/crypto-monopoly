@@ -18,7 +18,6 @@ export const AchievementsPreviewModule:React.FC<IProps> = ({
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		console.log('%cRENDER ACHIVMENT LIST SELECT QIUICK GAME', 'color: red', listAchivmentPlayer)
 		const height =
 			2 * achivmentCardRef.current?.offsetHeight +
 			achivmentCardRef.current?.offsetHeight / 1.5 || 0;

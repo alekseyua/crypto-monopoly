@@ -1,6 +1,6 @@
 import { StoreonStore } from "storeon";
 import api from "../../api/api";
-import { _INIT } from "./auth";
+import { _INIT, GET_AUTH, RESET_AUTH_STEP, SET_AUTH_TO_STORE } from "./auth";
 import { v4 } from "uuid";
 import { setErrorTimming } from "../helperStore/helperStore";
 import { API_CHANGE_CURRENT_PASSWORD, API_CHECK_CODE, API_DUPLICATE_CODE, API_RESEND_CODE } from "../../api/config";
@@ -10,7 +10,9 @@ export const INC_RECOVERY_STEP = v4();
 export const DESC_RECOVERY_STEP = v4();
 export const SET_RECOVERY_TO_STORE = v4();
 export const RESET_RECOVERY = v4();
+export const SET_RECOVERY_STEP: string = 'recovery/set/step';
 export const RESET_RECOVERY_STEP = v4();
+
 export const RESET_RECOVERY_STORE = v4();
 export const GET_DUBLICATE_CODE_RECOVERY = v4();
 export const GET_RECOVERY_PASSWORD = v4();
@@ -27,6 +29,8 @@ export const recovery = (store: StoreonStore) => {
     const initRecoveryStep = 1;
     store.on(_INIT, () => ({ recoveryStep: initRecoveryStep }));
     store.on(RESET_RECOVERY_STEP, () => ({ recoveryStep: initRecoveryStep }));
+    store.on(SET_RECOVERY_STEP, (_,payload) => ({ recoveryStep: payload }));
+
     store.on(INC_RECOVERY_STEP, ({recoveryStep}: any) => ({recoveryStep: recoveryStep + 1}));    
     store.on(DESC_RECOVERY_STEP, ({recoveryStep}: any)=>({recoveryStep: recoveryStep - 1}));
     const initErrorRecovery = "";
@@ -91,10 +95,11 @@ export const recovery = (store: StoreonStore) => {
                   );
                   return;
                 }
-            }
-            if(recoveryStep === 3) {
+              }
+              if(recoveryStep === 3) {
                 const res = await api.post(API_CHANGE_CURRENT_PASSWORD, recoveryData);
-                console.log('res 2', res);
+                console.log('res 2', res, {recoveryData});
+                
                 if (res?.status === 400) {
                   setErrorTimming(
                     SET_ERROR_RECOVERY,
@@ -108,6 +113,16 @@ export const recovery = (store: StoreonStore) => {
                 if (res?.status === 200) {
                   dispatch(SET_ISRECOVERY_PASSWORD, false);
                   dispatch(RESET_RECOVERY_STEP);
+                  dispatch(RESET_AUTH_STEP);
+                  // ложим данные в стейт авторизации
+                  dispatch(SET_AUTH_TO_STORE, {
+                    email: recoveryData.email,
+                    password: recoveryData.new_password
+                  } );
+                  await delay(500);
+                  // делаем автоматический вход
+                  dispatch(GET_AUTH);
+                  
                 }
             }
             await delay(500);
