@@ -42,6 +42,19 @@ const InfoCard: React.FC<IProps> = ({
   return (
     <ContainerGIB>
       <Offset mt={5} />
+      <Button
+        type="transparent"
+        borderColor='transparent'
+        disabled={isClick}
+        onClick={() => {
+          temporaryDisableBtn(2000, setIsClick);
+          handleBack({
+            action: "clean_chose_actions",
+          });
+        }}
+      >
+        <Icon src={icons.crossBlack} width={'20'} height='20' style={{ position: 'absolute', right: 20 }} />
+      </Button>
       <Title title={"Действия с картой"} tag="h3" fontWeight={500} />
       <Offset mt={15} />
       <ContainerOneBtn>

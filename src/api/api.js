@@ -13,7 +13,8 @@ class ApiService {
           'Content-Type': 'application/json',
         },
       });
-      this.api.interceptors.request.use((config)=>{
+
+      this.api.interceptors.request.use((config) => {
         if (
           !getLocaleStore("token") ||
           getLocaleStore("token") === null ||
@@ -26,6 +27,7 @@ class ApiService {
           )}`;
         return config;
       })
+
       this.api.interceptors.response.use( async (response)=>{
         if(response.config.url === API_GET_TOKEN && response?.data?.access){
           const email = JSON.parse(response.config.data).email
@@ -45,8 +47,9 @@ class ApiService {
           return authResponse;
         }
         return response
-      }, async (error)=>{
-        
+      },
+      
+      async (error) => {
         const originResponse = error.config;
         if( error?.status === 401){
           try {
@@ -88,6 +91,13 @@ class ApiService {
           }
         }else if( error.response.status === 400){
           return error.response
+        } else if (error.status === 404) {
+          const err = new Error(error.response.data.error);
+          return Promise.reject(error); 
+          throw {
+            status: 404,
+            error: err,
+          };
         }
 
       })
@@ -109,6 +119,10 @@ class ApiService {
       } catch (error) {
         this.handleError(error);
         if(error?.response?.status === 401) return {detail: error.response.data.detail} /// ?
+        if(error?.response?.status === 404) return {
+          error: error.response.data.error,
+          status: 404,
+        }
         if(error?.response?.status === 400) return {error: error.response.data.error} 
       }
     }

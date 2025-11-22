@@ -115,11 +115,12 @@ export const recovery = (store: StoreonStore) => {
                   dispatch(RESET_RECOVERY_STEP);
                   dispatch(RESET_AUTH_STEP);
                   // ложим данные в стейт авторизации
+                  await delay(200);
                   dispatch(SET_AUTH_TO_STORE, {
                     email: recoveryData.email,
                     password: recoveryData.new_password
                   } );
-                  await delay(500);
+                  await delay(200);
                   // делаем автоматический вход
                   dispatch(GET_AUTH);
                   

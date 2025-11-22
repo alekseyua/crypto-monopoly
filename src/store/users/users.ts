@@ -22,6 +22,7 @@ export const users = (store: StoreonStore) => {
       const email: string | undefined =
         payload?.email ?? getLocaleStore("email");
       const res = await api.get(API_GET_USER, { email: email?.trim() });
+      console.log({res})
       if (typeof callback === "function")
         callback(res as { data: { id: number } });
       if (res?.status === 200) {

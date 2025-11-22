@@ -105,17 +105,18 @@ export const registration = (store: StoreonStore) => {
       payload: EventMapDuplicateCode[T]
     )=>void
   }
+  
   store.on(
     GET_DUBLICATE_CODE_REG,
     async ({ regData }: any, data, { dispatch }: DuplicateCodeDispatch) => {
       const res = await api.post(API_DUPLICATE_CODE, regData);
-      console.log({ res });
+      // console.log({ res });
       if (res?.status === 400) {
         setErrorTimming(SET_ERROR_RECOVERY, res?.error, dispatch, 1500);
         return;
       }
-     !!res?.data?.detail.length &&
-        dispatch(SET_MESSAGE, [{ title: "Дубликат кода", desc: res?.data?.detail[0] }]);
+    //  !!res?.data?.detail.length &&
+    //     dispatch(SET_MESSAGE, [{ title: "Дубликат кода", desc: res?.data?.detail[0] }]);
     }
   );
   const initRegData = {
@@ -220,12 +221,12 @@ export const registration = (store: StoreonStore) => {
         dispatch(RESET_REG_STEP);
         return data.callbackReg();
       }
-      dispatch(SET_MESSAGE, [
-        {
-          title: `Регистрация шаг ${data?.key}`,
-          desc: res?.data?.detail,
-        },
-      ]);
+      // dispatch(SET_MESSAGE, [
+      //   {
+      //     title: `Регистрация шаг ${data?.key}`,
+      //     desc: res?.data?.detail,
+      //   },
+      // ]);
       return data.callback(true);
     } else {
         alert('error, contact technical support ' + res?.status)
