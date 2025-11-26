@@ -1,6 +1,6 @@
 import { useStoreon } from 'storeon/react';
 import { LoginUser } from './LoginUser';
-import { GET_AUTH, RESET_AUTH, SET_AUTH_TO_STORE } from '../../store/auth/auth';
+import { DESC_AUTH_STEP, GET_AUTH, RESET_AUTH, SET_AUTH_TO_STORE } from '../../store/auth/auth';
 import { delay } from '../../helpers/helper';
 import { useEffect, useState } from 'react';
 import withRouter from '../../HOC/withRouter';
@@ -39,6 +39,8 @@ const LoginUserContainer: React.FC<IProps> = ({ navigate }) => {
 			dispatch(RESET_AUTH)
 		}
 	}, [dispatch])
+
+	const handleStepBack = () => dispatch(DESC_AUTH_STEP)
 	return (
 		<LoginUser
 			error={error}
@@ -46,6 +48,7 @@ const LoginUserContainer: React.FC<IProps> = ({ navigate }) => {
 			authStep={authStep}
 			handleLogin={handleLogin}
 			showPassword={showPassword}
+			handleStepBack={handleStepBack}
 			isRecoveryPassword={isRecoveryPassword}
 			handleSetAuthData={handleSetAuthData}
 			handleShowPassword={handleShowPassword}

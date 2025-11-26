@@ -8,6 +8,7 @@ const RecoveryPassword = ({
   showPassword,
   handleNextStep,
   handlePrevStep,
+  handleStepBack,
   handleSetRecData,
   handleShowPassword,
   showPasswordConfirm,
@@ -17,7 +18,7 @@ const RecoveryPassword = ({
   const changeSteps = useCallback(() => {
     switch (recoveryStep) {
       case 1:
-        return <Step1 handleSetRegData={handleSetRecData} handleNextStep={handleNextStep} />;
+        return <Step1 handleSetRegData={handleSetRecData} handleNextStep={handleNextStep} handleStepBack={handleStepBack} />;
       case 2:
         return <Step2 
           handleNextStep={handleNextStep} 

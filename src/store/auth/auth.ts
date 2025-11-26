@@ -76,6 +76,7 @@ export const authStore = (store: StoreonStore) => {
     store.on(SET_AUTH_TO_STORE, ({authData}: any,data) => {
       let authDataNew = { ...authData };
         for(let key of Object.keys(data)){
+          if (key === 'email') store.dispatch(SET_RECOVERY_TO_STORE, {email: data[key]})
           authDataNew = { ...authDataNew,[key]:data[key]}
         }
         return  {authData: authDataNew}

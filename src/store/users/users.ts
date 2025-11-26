@@ -3,8 +3,8 @@ import { API_GET_USER } from "../../api/config.js";
 import { StoreonStore } from "storeon";
 import { v4 } from "uuid";
 import { _INIT } from "../auth/auth";
-import { getLocaleStore } from "../../helpers/helper";
-import { IUserPayload } from "./user.d";
+import { deepEqual, getLocaleStore } from "../../helpers/helper";
+import { IUser, IUserPayload } from "./user.d";
 
 export const SET_USERS: string = v4();
 export const GET_USERS = 'profile/GET_USERS' as const;
@@ -17,16 +17,21 @@ export const users = (store: StoreonStore) => {
     store.on(SET_USERS, (_, payload) => ({ user: payload }));
     store.on(SET_USERS_NULL, () => ({ user: initUser }));
     
-    store.on(GET_USERS, async (_, payload: IUserPayload, { dispatch }) => {
+  store.on(GET_USERS, async (state, payload: IUserPayload, { dispatch }) => {
+      const { user }:any= state;
       const callback = payload?.callback;
       const email: string | undefined =
         payload?.email ?? getLocaleStore("email");
       const res = await api.get(API_GET_USER, { email: email?.trim() });
       console.log({res})
-      if (typeof callback === "function")
-        callback(res as { data: { id: number } });
-      if (res?.status === 200) {
-        dispatch(SET_USERS, res.data);
+      if (!deepEqual(res?.data, user)){
+        console.log('not equal')
+
+        if (typeof callback === "function")
+          callback(res as { data: { id: number } });
+        if (res?.status === 200) {
+          dispatch(SET_USERS, res.data);
+        }
       }
     });
 }

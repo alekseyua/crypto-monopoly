@@ -285,7 +285,7 @@ export const quickGame = (store: StoreonStore) => {
           }
           // =============================================================
           // ===================== list games quick ======================
-          if (Object.keys(res).includes("games_data")) {
+          if (isKeyPresentInHash(res, "games_data")) {
             // список игр
             dispatch(SET_LIST_QG, res.games_data);
           }
@@ -408,12 +408,14 @@ export const quickGame = (store: StoreonStore) => {
     if (!!!storage?.profile?.id || storage?.profile?.id === undefined) {
       dispatch(GET_USERS, {
         callback: (res: { data: { id: number } }) => {
+          console.log('%c response user data ' + res?.data.id, 'color: red')
           connectWS(res?.data?.id);
+
         },
       }); // данные пользователя в игре
       return;
     }
-    connectWS();
+    connectWS();  
 
     // для хода мне нужно знать даные пользователя game_data ->
     // данные по действиям с картой получаем в card_data

@@ -3,7 +3,7 @@ import { Button, Input, Label, WrapperCard } from "../../shared/UI";
 import cls from './login.module.scss';
 import AuthPartners from "../../Component/AuthPartners/AuthPartners";
 import Icon from "../../shared/UI/Icon/Icon";
-import { closeEye, openEye } from "../../assets";
+import { closeEye, icons, openEye } from "../../assets";
 import RecoveryPasswordContainer from "./RecoveryPassword/RecoveryPasswordContainer";
 import ContainerAuthForm from "../../shared/UI/Auth/ContainerAuthForm";
 
@@ -13,6 +13,7 @@ export const LoginUser = ({
 	authData,
 	handleLogin,
 	showPassword,
+	handleStepBack,
 	handleSetAuthData,
 	isRecoveryPassword,
 	handleShowPassword,
@@ -28,15 +29,18 @@ export const LoginUser = ({
 					? < RecoveryPasswordContainer />
 					: <WrapperCard>
 						<div className={cls.labels}>
-							<Label p={11} text={'Авторизация'} type={'gradient'} />
-							<Label p={11} text={`${authStep} из 2`} />
+							{authStep === 2 ? <Icon src={icons.rightArrow} rotate={180} onClick={handleStepBack}/> : <div></div>}
+							<div className={cls.contLabel}>
+								<Label p={11} text={'Авторизация'} type={'gradient'} />
+								<Label p={5} text={`${authStep} из 2`} />
+							</div>
 						</div>
 						<div className={cls.cardBody}>
 							<Input
 								className={cls.authInput}
 								value={authStep === 2 ? authData.password : authData.email}
 								onChange={(e) => handleSetAuthData(authStep === 2 ? { password: e.target.value } : { email: e.target.value })}
-								label={error ? error : authStep === 2 ? 'Введите пароль' : 'Почта или никнейм'}
+								label={error ? error : authStep === 2 ? 'Введите пароль' : 'Почта'}
 								type={authStep === 2 ? showPassword ? 'text' : 'password' : 'text'}
 								id={authStep === 2 ? 'password' : 'email'}
 								error={error}

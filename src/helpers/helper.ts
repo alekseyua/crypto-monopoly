@@ -23,6 +23,11 @@ export function setLocaleStoreObj(data: []) {
   }
 }
 
+export const deepEqual = (a: {}, b: {}) => {
+  return JSON.stringify(a) === JSON.stringify(b);
+}
+
+
 export const isKeyPresentInHash = function (table: Record<any, any> | undefined, key: string | null): boolean {
   if (table === undefined) return false;
   if (table === null) return false;

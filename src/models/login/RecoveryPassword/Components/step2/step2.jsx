@@ -1,4 +1,6 @@
+import { icons } from '../../../../../assets';
 import { Button, Input, Label, WrapperCard } from '../../../../../shared/UI';
+import Icon from '../../../../../shared/UI/Icon/Icon';
 import cls from './Step2.module.scss';
 import { useStoreon } from 'storeon/react';
 
@@ -12,9 +14,16 @@ export const Step2 = ({
 
 	return (
 		<WrapperCard>
-			<div className={cls.labels}>
+			{/* <div className={cls.labels}>
 				<Label p={11} text={'Проверка почты'} type={'gradient'} />
 				<Label p={11} text={`${recoveryStep} из 3`} />
+			</div> */}
+			<div className={cls.labels}>
+				<Icon src={icons.rightArrow} rotate={180} onClick={handlePrevStep} />
+				<div className={cls.contLabel}>
+					<Label p={11} text={'Проверка почты'} type={'gradient'} />
+					<Label p={5} text={`${recoveryStep} из 3`} />
+				</div>
 			</div>
 			<div className={cls.cardBody}>
 				<Input

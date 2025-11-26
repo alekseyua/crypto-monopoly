@@ -4,7 +4,7 @@ import { Register } from './Register';
 import { useEffect, useState } from 'react';
 import { NAV_AUTH_PAGE } from '../../routers/config-nav';
 import { SET_REF_CODE } from '../../store/auth/referal';
-import { DESC_REG_STEP, GET_DUBLICATE_CODE_REG, GET_REG, INC_REG_STEP, RESET_REG, SET_REG_TO_STORE } from '../../store/auth/registration';
+import { DESC_REG_STEP, GET_DUBLICATE_CODE_REG, GET_REG, INC_REG_STEP, RESET_REG, SET_REG_STEP, SET_REG_TO_STORE } from '../../store/auth/registration';
 import { NavigateFunction } from 'react-router-dom';
 
 interface IProps {
@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const RegitUserContainer: React.FC<IProps> = ({ navigate }) => {
-	const { dispatch, regData, errorReg } = useStoreon('regData', 'errorReg')
+	const { dispatch, regData, errorReg, user } = useStoreon('regData', 'errorReg', 'user')
 	const [error, setError] = useState('');
 
 	const handleSetRegData = (data: any) => dispatch(SET_REG_TO_STORE, data);
@@ -24,6 +24,14 @@ const RegitUserContainer: React.FC<IProps> = ({ navigate }) => {
 	useEffect(() => {
 		setError(errorReg)
 	}, [errorReg])
+
+	useEffect(()=>{
+		if (user.state_registration === 1){
+			dispatch(SET_REG_STEP, 3)
+		} else if (user.state_registration === 2) {
+			dispatch(SET_REG_STEP, 4)
+		}
+	}, [user]);
 
 	useEffect(() => {
 		// localhost:3000/authorization/register?referal_code=nCulctaV

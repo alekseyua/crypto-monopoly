@@ -3,7 +3,7 @@ import { useStoreon } from 'storeon/react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { delay } from '../../../helpers/helper';
-import { DESC_RECOVERY_STEP, GET_DUBLICATE_CODE_RECOVERY, GET_RECOVERY_PASSWORD, RESET_RECOVERY, SET_RECOVERY_TO_STORE } from '../../../store/auth/recovery';
+import { DESC_RECOVERY_STEP, GET_DUBLICATE_CODE_RECOVERY, GET_RECOVERY_PASSWORD, RESET_RECOVERY, SET_ISRECOVERY_PASSWORD, SET_RECOVERY_TO_STORE } from '../../../store/auth/recovery';
 
 const RecoveryPasswordContainer = () => {
   const { dispatch, recoveryStep } = useStoreon("recoveryStep");
@@ -37,6 +37,9 @@ const RecoveryPasswordContainer = () => {
     dispatch(GET_DUBLICATE_CODE_RECOVERY)
   }
 
+    const handleStepBack = () => dispatch(SET_ISRECOVERY_PASSWORD, false);
+  
+
   return (
 
     <RecoveryPassword
@@ -44,6 +47,7 @@ const RecoveryPasswordContainer = () => {
       recoveryStep={recoveryStep}
       handleNextStep={handleNextStep}
       handlePrevStep={handlePrevStep}
+      handleStepBack={handleStepBack}
       handleSetRecData={handleSetRecData}
       handleShowPassword={handleShowPassword}
       showPasswordConfirm={showPasswordConfirm}
