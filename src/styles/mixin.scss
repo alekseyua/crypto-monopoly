@@ -7,36 +7,58 @@
   $maxWidthContainer: 1600;
   $maxWidth: 1920;
   $minWidth: 320px;
+@mixin adaptiv-value($property, $startValue, $minValue, $type) {
+	@if $type ==4 {
+		// For properties like transform, opacity, letter-spacing, etc.
+		#{$property}: #{$startValue};
 
-@mixin adaptiv-value($property,$startSize,$minSize,$type) {
-	$addSize: $startSize - $minSize;
-	@if $type == 1 {
-		//только если меньше контейнера
-		#{$property}: $startSize + px;
-		@media (max-width: #{$maxWidthContainer + px}) {
-			#{$property}: calc(#{$minSize+px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320})) !important;
-		}
-	} @else if $type == 2 {
-		//только больше контейнера
-		#{$property}: $startSize + px;
-		@media (max-width: #{$maxWidthContainer + px}) {
-			#{$property}: calc(#{$minSize+px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})) !important;
-		}
-	} @else if $type == 3 { 
-		//только % 
-		// Адаптивное значение в процентах
-		// Адаптивное значение в процентах
-		#{$property}: calc(#{ $startSize + '%'});
 		@media (max-width: #{$maxWidthContainer}px) {
-			#{$property}: calc(#{ $minSize + '%'} + #{$addSize} * ((100vw - 320px) / #{ $maxWidth - 320 })) !important;
+			#{$property}: #{$minValue};
 		}
 	}
+
 	@else {
-		//всегда
-		#{$property}: calc(#{$minSize+px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})) !important;
+		$addSize: $startValue - $minValue;
+
+		@if $type ==1 {
+			#{$property}: #{$startValue}px;
+
+			@media (max-width: #{$maxWidthContainer}px) {
+				#{$property}: calc(#{$minValue}px + #{$addSize} * ((100vw - 320px) / (#{$maxWidthContainer} - 320))) !important;
+			}
+		}
+
+		@else if $type ==2 {
+			#{$property}: #{$startValue}px;
+
+			@media (max-width: #{$maxWidthContainer}px) {
+				#{$property}: calc(#{$minValue}px + #{$addSize} * ((100vw - 320px) / (#{$maxWidth} - 320))) !important;
+			}
+		}
+
+		@else if $type ==3 {
+			#{$property}: #{$startValue}#{'%'};
+
+			@media (max-width: #{$maxWidthContainer}px) {
+				#{$property}: unquote("calc(#{$minValue}% + #{$addSize} * ((100vw - 320px) / (#{$maxWidth} - 320)))") !important;
+			}
+		}
+
+		@else {
+			#{$property}: calc(#{$minValue}px + #{$addSize} * ((100vw - 320px) / (#{$maxWidth} - 320))) !important;
+		}
 	}
 }
 
+@mixin adaptiv-scale($start, $min) {
+	$add: $start - $min;
+
+	transform: scale(#{$start});
+
+	@media (max-width: 1200px) {
+		transform: scale(calc(#{$min} + #{$add} * ((100vw - 320px) / (1200 - 320))));
+	}
+}
 
 @function truncate($string, $length: 5) {
   @if str-length($string) > $length {

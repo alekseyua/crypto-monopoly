@@ -4,11 +4,14 @@ import cls from './step5.module.scss';
 import { useStoreon } from 'storeon/react';
 import ListSecureQuestion from './Components/ListSecureQuestion';
 import { GET_SECURE_QUESTION, INC_REG_STEP } from '../../../../store/auth/registration';
+import Icon from '../../../../shared/UI/Icon/Icon';
+import { icons } from '../../../../assets';
 
 
 
 
 export const Step5 = ({
+	handlePrevStep,
 	handleRegistration,
 }) => {
 	const { dispatch, regStep, secureQuestions, errorReg } = useStoreon('errorReg', 'regStep', 'secureQuestions');
@@ -54,8 +57,11 @@ export const Step5 = ({
 	return (
 		<WrapperCard>
 			<div className={cls.labels}>
-				<Label text={'Секретные вопросы'} type={'gradient'} />
-				<Label text={`${regStep} из 5`} type={'default'} />
+				<Icon src={icons.rightArrow} rotate={180} onClick={handlePrevStep} />
+				<div className={cls.contLabel}>
+					<Label p={11} text={'Секретные вопросы'} type={'gradient'} />
+					<Label p={5} text={`${regStep} из 5`} type={'default'} />
+				</div>
 			</div>
 			<div className={cls.cardBody}>
 				<Label type={'transparent'} text={errorReg ? errorReg : `Заполните секретные вопросы на выбор для восстановления акаунта в случае утери доступа`} 

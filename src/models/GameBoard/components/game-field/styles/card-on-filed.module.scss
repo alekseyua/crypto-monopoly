@@ -354,11 +354,10 @@
 
         &--right {
 
-            // position: absolute;
             // card-field__image--community
-            &.card-field__image--community {
+            &.card-field__image--community,
+            &.card-field__image--super_tax {
                 background-size: 30px 30px;
-
                 &::after {
                     content: '';
                     position: absolute;
@@ -374,14 +373,12 @@
                 }
             }
         }
-
         &--left {
 
             // position: absolute;
             // card-field__image--community
             &.card-field__image--community {
                 background-size: 30px 30px;
-
                 &::after {
                     content: '';
                     position: absolute;
@@ -402,9 +399,9 @@
 
             // position: absolute;
             // card-field__image--community
-            &.card-field__image--community {
+            &.card-field__image--community,
+            &.card-field__image--incoming_tax {
                 background-size: 30px 30px;
-
                 &::after {
                     content: '';
                     position: absolute;
@@ -480,7 +477,8 @@
             right: 0;
             left: auto;
             flex-direction: row-reverse;
-            justify-content: flex-end;
+            position: relative;
+            // justify-content: flex-end;
         }
         
         //card-field__text-container--top
@@ -523,6 +521,7 @@
             -webkit-line-clamp: 1;
             // overflow: hidden;
             white-space: pre;
+            height: 100%;
             //card-field__text-title--build
             &--build{
                font-weight: 300;
@@ -557,7 +556,7 @@
                     position: absolute;
                     z-index: 999;
                     transform: rotate(270deg) translate(35%, -51%);
-                    
+                    @include adaptiv-value(transform, rotate(270deg) translate(35%, -72%), rotate(270deg) translate(35%, -72%), 4);
                         &>span {
                             margin-left: 5px;
                         }
@@ -565,15 +564,17 @@
                 //card-field__text-title-build-house-left
                 &-house-left{
                     position: absolute;
-                    transform: rotate(90deg) translate(-40%, 37%);
+                    @include adaptiv-value(transform, rotate(90deg) translate(115%, 37%), rotate(90deg) translate(80%, 37%), 4);
                     &>span {
-                            margin-top: 5px;
+                            @include adaptiv-value(transform, rotate(270deg) scale(1), rotate(270deg) scale(0.6), 4);
+                            @include adaptiv-value(margin-top, 3,1,1);
                         }
                 }
                 //card-field__text-title-build-house-bottom
                 &-house-bottom{
                     position: absolute;
                     transform: rotate(270deg) translate(-40%, 320%);
+                    @include adaptiv-value(transform, rotate(270deg) translate(-40%, 320%), rotate(270deg) translate(-40%, 320%), 4);
                     &>span{
                         margin-left: 5px;
                     }
@@ -582,9 +583,10 @@
                 &-house-right{
                     position: absolute;
                     transform: rotate(90deg) translate(0, -40%);
+                    @include adaptiv-value(transform, rotate(90deg) translate(0,-40%), rotate(90deg) translate(0,-40%), 4);
                     &>span {
-                            margin-top: 5px;
-                        }
+                        @include adaptiv-value(margin-top, 3, 1, 1);
+                    }
                 }
             }
             //card-field__text-title--bottom
@@ -610,7 +612,7 @@
                 padding-right: 5px;
                 display: flex;
                 justify-content: flex-end;
-                
+                align-items: center
             }
             //card-field__text-title--right
             &--right{

@@ -1,9 +1,12 @@
 import cls from './step3.module.scss';
 import { Button, Input, Label, WrapperCard } from '../../../../shared/UI';
 import { useStoreon } from 'storeon/react';
+import Icon from '../../../../shared/UI/Icon/Icon';
+import { icons } from '../../../../assets';
 
 export const Step3 = ({
 	handleNextStep,
+	handlePrevStep,
 	handleSetRegData,
 }) => {
 	const { regStep,regData, errorReg } = useStoreon('regStep','regData', 'errorReg')
@@ -13,8 +16,11 @@ export const Step3 = ({
 	return (
 		<WrapperCard>
 			<div className={cls.labels}>
-				<Label p={11} text={'Придумайте никнейм'} type={'gradient'} />
-				<Label p={11} text={`${regStep} из 5`} />
+				<Icon src={icons.rightArrow} rotate={180} onClick={handlePrevStep} />
+				<div className={cls.contLabel}>
+					<Label p={11} text={'Регистрация через почту'} type={'gradient'} />
+					<Label p={5} text={`${regStep} из 5`} />
+				</div>
 			</div>
 			<div className={cls.cardBody}>
 				<Input

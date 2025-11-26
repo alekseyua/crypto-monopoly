@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Button, Input, Label, WrapperCard } from '../../../../shared/UI';
 import cls from './Step2.module.scss';
 import { useStoreon } from 'storeon/react';
+import Icon from '../../../../shared/UI/Icon/Icon';
+import { icons } from '../../../../assets';
 
 export const Step2 = ({
 	handleNextStep,
@@ -21,8 +23,11 @@ export const Step2 = ({
 	return (
 		<WrapperCard>
 			<div className={cls.labels}>
-				<Label p={11} text={'Проверка почты'} type={'gradient'} />
-				<Label p={11} text={`${regStep} из 5`} />
+				<Icon src={icons.rightArrow} rotate={180} onClick={handlePrevStep}/>
+				<div className={cls.contLabel}>
+					<Label p={11} text={'Регистрация через почту'} type={'gradient'} />
+					<Label p={5} text={`${regStep} из 5`} />
+				</div>
 			</div>
 			<div className={cls.cardBody}>
 				<Input

@@ -32,7 +32,7 @@ export const UserInGameRoom: React.FC<IProps> = ({
           <Icon src={EnterIcon} width={"26px"} height={"26px"} />
         )}
       </div>
-      <p>{player?.user ? player.user : isJoinGame ? "" : <b>Войти</b>}</p>
+      <p>{player?.username ? player.username : isJoinGame ? "" : <b>Войти</b>}</p>
     </div>
   );
 };

@@ -29,11 +29,11 @@ export const Register = ({
 			case 2:
 				return <Step2 handleSetRegData={handleSetRegData} handlePrevStep={handlePrevStep} handleNextStep={handleNextStep} handleGetDuplicateCode={handleGetDuplicateCode }/>;
 				case 3:
-					return <Step4 handleSetRegData={handleSetRegData} handleNextStep={handleNextStep} />;
+				return <Step4 handleSetRegData={handleSetRegData} handleNextStep={handleNextStep} handlePrevStep={handlePrevStep} />;
 					case 4:
-						return <Step3 handleSetRegData={handleSetRegData} handleNextStep={handleNextStep}  />;
+				return <Step3 handleSetRegData={handleSetRegData} handleNextStep={handleNextStep} handlePrevStep={handlePrevStep} />;
 			case 5:
-				return <Step5 handleSetRegData={handleSetRegData} handleRegistration={handleRegistration} handleNextStep={handleNextStep} />;			
+				return <Step5 handleSetRegData={handleSetRegData} handleRegistration={handleRegistration} handleNextStep={handleNextStep} handlePrevStep={handlePrevStep} />;			
 			default : return <></>
 		}
 	}, [regStep, handleGetDuplicateCode, handleNextStep, handlePrevStep,handleRegistration,handleSetRegData]);

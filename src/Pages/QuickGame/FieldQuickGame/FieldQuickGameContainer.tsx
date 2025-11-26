@@ -449,9 +449,9 @@ const handleCardOnField = (card_id: number): void => {
 		let cardId = data?.card_id;
 		if (isAuctions) cardId = data.auction_data.card_id;
 		let typeCard =
-			cardId &&
+      cardId && !!listCards.length && 
 			listCards.filter((c: ICard | ISpecialCard) => c.id === cardId)[0]
-			.type_card; // тип карты на которой стоим
+			?.type_card; // тип карты на которой стоим
 		if (isChoose) typeCard = data.choose_data.card_type;
 		const isMovePlayer = player.current_move;
 
