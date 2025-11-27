@@ -179,7 +179,7 @@ export const registration = (store: StoreonStore) => {
       if (res?.data?.error?.length) {
         setErrorTimming(SET_ERROR_REG, res?.data?.error, dispatch, 2000);
         const callback = async (res: {data: IUser}) =>{
-          if (res.data.state_registration === 4 || res.data.state_registration === 4){
+          if (res.data.state_registration === 3 || res.data.state_registration === 4){
             dispatch(SET_AUTH_TO_STORE,{email: res.data.email})
           }
             await delay(2000);

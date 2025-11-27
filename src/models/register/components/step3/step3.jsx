@@ -27,7 +27,7 @@ export const Step3 = ({
 					value={regData.username}
 					onChange={(e) => handleSetRegData({username: e.target.value})}
 					label={
-						errorReg? errorReg : 'Никнейм должен содержать не более 12 символовбез пробелов и только на латинице. Допускаются знаки:_-<>{}#№!?*'
+						errorReg? errorReg : 'Никнейм должен содержать не более 12 символов без пробелов и только на латинице. Допускаются знаки:_-<>{}#№!?*'
 					}
 					className={cls.authInput}
 					error={errorReg}

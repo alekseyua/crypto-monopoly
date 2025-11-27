@@ -24,10 +24,10 @@ const Root = () => {
 		if (!user.id) return;
 
 		const token = getLocaleStore('token');
-
-		if (token && (user.state_registration === 3 || user.state_registration === 4)) {
+		console.log('here')
+		if (token && (user.state_registration === 5 || user.state_registration === 4 || user.state_registration === 3)) {
 			navigate(NAV_QG_SELECT_PAGE);
-		} else if (!token && (user.state_registration === 5 || user.state_registration === 4)) {
+		} else if (!token && (user.state_registration === 5 || user.state_registration === 4 || user.state_registration === 3)) {
 			navigate(NAV_AUTH_PAGE);
 		} else {
 			navigate(NAV_REG_PAGE);
