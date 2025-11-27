@@ -54,7 +54,6 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 	activeCardForSelect,
 }: IGameFieldNew) => {
   const [styleBayCard, setStyleBayCard] = React.useState<CSSProperties>({});
-	// console.log(players?.length, {players})
   useEffect(() => {
     const isOwnerCard = !!owner && Object.keys(owner).length && owner?.player?.user;
     setStyleBayCard((prev) => {
@@ -83,9 +82,6 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
 		// ...styleBayCard,
 	}
 
-	useEffect(() => {
-			console.log('%cRENDER GameFieldNew QIUICK GAME container', 'color: red', type)
-		}, []);
 	return (
     <div
       onClick={() =>

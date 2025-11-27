@@ -242,18 +242,21 @@ export const quickGame = (store: StoreonStore) => {
     socket.get_games?.close();
   });
   store.on(CONNECT_WS_QG, async (storage: any, payload, { dispatch }) => {
+    // if(!storage?.user?.id) return;
+    console.log({ storage })
     const URL = getUrlWebsocket(URL_QGS, payload);
     // ??????
-    if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
-      return socket.get_games.send(JSON.stringify({ action: "get_games" }));
-    }
+    // if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
+    //   return socket.get_games.send(JSON.stringify({ action: "get_games" }));
+    // }
 
     const connectWS = (profileID?: number) =>
       connectWebSocket(
         (socket.get_games = new WebSocket(URL)),
         async (res: any) => {
-          if (!!storage.profile?.id) {
-            profileID = storage.profile?.id;
+          // debugger
+          if (!!storage?.user?.id) {
+            profileID = storage?.user?.id;
           }
           // =================== messages временно ============================
 
@@ -271,7 +274,7 @@ export const quickGame = (store: StoreonStore) => {
                 desc: res.message,
               },
             ]);
-            socket.get_games?.close();
+            // socket.get_games?.close();
             return payload.redirectTo(NAV_QG_SELECT_PAGE);
           }
           if (res?.error) {
@@ -396,16 +399,19 @@ export const quickGame = (store: StoreonStore) => {
             } else {
               dispatch(SET_EXCHANGE_DATA, {});
             }
-          } else {
-            dispatch(RESET_QG);
-            payload?.redirectTo && payload.redirectTo(NAV_QG_SELECT_PAGE);
           }
+          // else {
+          //   dispatch(RESET_QG);
+          //   payload?.redirectTo && payload.redirectTo(NAV_QG_SELECT_PAGE);
+          // }
           // =============================================================
         }
       );
 
     // if(!socket.get_games && socket.get_games?.readyState !== WebSocket.OPEN) {
-    if (!!!storage?.profile?.id || storage?.profile?.id === undefined) {
+      console.log('===================================', { ssss: storage?.user?.id })
+    if (!!!storage?.user?.id || storage?.user?.id === undefined) {
+
       dispatch(GET_USERS, {
         callback: (res: { data: { id: number } }) => {
           console.log('%c response user data ' + res?.data.id, 'color: red')
@@ -415,7 +421,10 @@ export const quickGame = (store: StoreonStore) => {
       }); // данные пользователя в игре
       return;
     }
-    connectWS();  
+    console.log('%cCONNECT counter ' + socket.get_games?.readyState, 'color: yellow');
+    if(socket.get_games?.readyState !== WebSocket.OPEN){
+      connectWS(storage?.user?.id);  
+    } 
 
     // для хода мне нужно знать даные пользователя game_data ->
     // данные по действиям с картой получаем в card_data
@@ -438,20 +447,20 @@ export const quickGame = (store: StoreonStore) => {
         })
       );
     }
-    return dispatch(CONNECT_WS_QG, { action: "get_games" });
+    // return dispatch(CONNECT_WS_QG, { action: "get_games" });
   });
   store.on(MOVE_TO, (state: any, payload, { dispatch }) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       return socket.get_games.send(JSON.stringify(payload));
     }
-    return dispatch(CONNECT_WS_QG, { action: "get_games" });
+    // return dispatch(CONNECT_WS_QG, { action: "get_games" });
   });
 
   store.on(JOIN_QG, (state: any, payload, { dispatch }) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       return socket.get_games.send(JSON.stringify(payload));
     }
-    return dispatch(CONNECT_WS_QG, { action: "get_games" });
+    // return dispatch(CONNECT_WS_QG, { action: "get_games" });
   });
 
   store.on(GET_CARD_ACTION_QG, (store: any, payload) => {
@@ -507,12 +516,12 @@ export const quickGame = (store: StoreonStore) => {
             dispatch(SET_FEED_NEWS_MESSAGE_QG, []);
           }
         }
-      });
+    });
     connectFeedWS();
   });
   store.on(CLOSE_WSOCKET_FEED, () => {
     if (socket.feed && socket.feed?.readyState === WebSocket.OPEN) {
-      socket.feed.close();
+      // socket.feed.close();
     }
   });
 

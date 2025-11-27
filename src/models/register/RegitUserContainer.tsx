@@ -25,7 +25,7 @@ const RegitUserContainer: React.FC<IProps> = ({ navigate }) => {
 		setError(errorReg)
 	}, [errorReg])
 
-	useEffect(()=>{
+	useEffect(()=>{	
 		if (user.state_registration === 1){
 			dispatch(SET_REG_STEP, 3)
 		} else if (user.state_registration === 2) {
