@@ -29,6 +29,7 @@ export const Step1 = ({
 					label={errorRecovery? errorRecovery : 'Почта'}
 					error={errorRecovery}
 					id={'mail'}
+					onEnter={() => (recoveryData.email.includes('@') && recoveryData.email.includes('.') && recoveryData.email.length !== 0) && handleNextStep()}
 				/>
 				<Button
 					onClick={() => handleNextStep()}

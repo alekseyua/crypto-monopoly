@@ -17,6 +17,7 @@ interface IInput
   leftText?: string;
   isSpanWidth?: boolean;
   error?: string;
+  onEnter?: () => void;
 }
 
 export const Input = forwardRef<HTMLInputElement, IInput>(function Input(
@@ -38,6 +39,7 @@ export const Input = forwardRef<HTMLInputElement, IInput>(function Input(
     iconRight,
     value,
     error,
+    onEnter,
     ...props
   },
   ref
@@ -49,6 +51,12 @@ export const Input = forwardRef<HTMLInputElement, IInput>(function Input(
   const handleErrorInput = (error = "") => {
     setErrorInput(error);
     setTimeout(() => setErrorInput(""), 1600);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onEnter?.();
+    }
   };
 
   useEffect(() => {
@@ -124,6 +132,7 @@ export const Input = forwardRef<HTMLInputElement, IInput>(function Input(
           max={max}
           {...props}
           onChange={handlerChangeInput}
+          onKeyDown={handleKeyDown}
         />
         {/* Призрачный span для измерения ширины текста */}
         <span

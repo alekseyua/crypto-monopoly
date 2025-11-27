@@ -38,6 +38,11 @@ export const Step2 = ({
 					error={errorReg}
 					id={'mail'}
 					className={cls.authInput}
+					onEnter={() => emailCode
+						? true
+						: emailCode?.match(/\d/g)?.length
+							? emailCode?.match(/\d/g)?.length < 5
+							: true && handleNextStep()}
 					iconRight={<div className={`${errorReg? cls.error : ''} ${cls.dublicateCode}`} onClick={handleGetDuplicateCode}>Дублировать код</div>}
 				/>
 				<div className={cls.btns}>

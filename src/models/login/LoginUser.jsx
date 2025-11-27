@@ -53,6 +53,12 @@ export const LoginUser = ({
 										height={20}
 									/>
 									: null}
+								onEnter={() => (authStep === 1 ? (
+									(authData.email.length > 0)
+									|| (error)
+								)
+									: (authData.password.length > 0)) && handleLogin()}
+
 							/>
 							<div className={cls.authController}>
 								{

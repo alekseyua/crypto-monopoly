@@ -57,6 +57,8 @@ export const Step3 = ({
 							width={20}
 							height={20} />
 						}
+						onEnter={() => (recoveryData?.new_password?.trim().length !== 0 && recoveryData?.repeatPassword?.trim().length !== 0 && recoveryData?.new_password?.trim() === recoveryData?.repeatPassword?.trim()) && handleNextStep()}
+
 					/>
 				</div>
 				{errorRecovery && <Label text={errorRecovery} />}

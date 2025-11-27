@@ -28,6 +28,7 @@ export const Step1 = ({
 					error={errorReg}
 					id={'mail'}
 					className={cls.authInput}
+					onEnter={() => (regData.email.includes('@') && regData.email.includes('.') && regData.email.length !== 0) && handleNextStep()}
 				/>
 				<Button
 					onClick={() => handleNextStep()}

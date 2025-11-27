@@ -34,6 +34,11 @@ export const Step2 = ({
 					label={errorRecovery ? errorRecovery : `Код для проверки отправлен на указанный почтовый ящик  (${recoveryData.email.slice(0, 4)}***${recoveryData.email.slice(-6, recoveryData.email.length)})`}
 					id={'mail'}
 					iconRight={<div className={cls.dublicateCode} onClick={handleGetDuplicateCode}>Дублировать код</div>}
+					onEnter={() => (recoveryData.code
+						? true
+						: recoveryData.code?.match(/\d/g)?.length
+							? recoveryData.code?.match(/\d/g)?.length < 5
+							: true) && handleNextStep()}
 
 				/>
 				<div className={cls.btns}>

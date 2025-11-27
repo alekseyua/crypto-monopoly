@@ -32,6 +32,7 @@ export const Step3 = ({
 					className={cls.authInput}
 					error={errorReg}
 					id={'mail'}
+					onEnter={() => regData?.username?.trim()?.length !== 0 && handleNextStep()}
 				/>
 				<Button
 					onClick={() => handleNextStep()}

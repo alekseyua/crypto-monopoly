@@ -79,6 +79,8 @@ export const Step4 = ({
 							height={20} /> 
 							// : null
 						}
+						onEnter={() => (regData?.password?.trim()?.length !== 0 && regData?.repeatPassword?.trim()?.length !== 0 && regData?.password?.trim() === regData?.repeatPassword?.trim()) && handleNextStep()}
+
 					/>
 				</div>
 				{errorReg && <Label text={errorReg} />}
