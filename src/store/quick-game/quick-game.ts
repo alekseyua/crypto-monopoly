@@ -243,7 +243,6 @@ export const quickGame = (store: StoreonStore) => {
   });
   store.on(CONNECT_WS_QG, async (storage: any, payload, { dispatch }) => {
     // if(!storage?.user?.id) return;
-    console.log({ storage })
     const URL = getUrlWebsocket(URL_QGS, payload);
     // ??????
     // if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
@@ -255,6 +254,8 @@ export const quickGame = (store: StoreonStore) => {
         (socket.get_games = new WebSocket(URL)),
         async (res: any) => {
           // debugger
+          const start = performance.now();
+
           if (!!storage?.user?.id) {
             profileID = storage?.user?.id;
           }
@@ -405,23 +406,24 @@ export const quickGame = (store: StoreonStore) => {
           //   payload?.redirectTo && payload.redirectTo(NAV_QG_SELECT_PAGE);
           // }
           // =============================================================
+          const duration = performance.now() - start;
+          console.log('%c--------------------------------------------','color: Purple')
+          console.log(`%cData Processing state: ${duration.toFixed(2)} ms`, 'color: red; font-weight:bold');
+          console.log('%c--------------------------------------------', 'color: Purple')
+
         }
       );
 
-    // if(!socket.get_games && socket.get_games?.readyState !== WebSocket.OPEN) {
-      console.log('===================================', { ssss: storage?.user?.id })
     if (!!!storage?.user?.id || storage?.user?.id === undefined) {
 
       dispatch(GET_USERS, {
         callback: (res: { data: { id: number } }) => {
-          console.log('%c response user data ' + res?.data.id, 'color: red')
           connectWS(res?.data?.id);
-
         },
       }); // данные пользователя в игре
       return;
     }
-    console.log('%cCONNECT counter ' + socket.get_games?.readyState, 'color: yellow');
+    // console.log('%cCONNECT counter ' + socket.get_games?.readyState, 'color: yellow');
     if(socket.get_games?.readyState !== WebSocket.OPEN){
       connectWS(storage?.user?.id);  
     } 

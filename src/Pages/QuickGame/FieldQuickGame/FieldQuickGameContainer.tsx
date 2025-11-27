@@ -443,7 +443,6 @@ const handleCardOnField = (card_id: number): void => {
 		const isActions: boolean = isKeyPresentInHash(data, "data_actions");
 		const isAuctions: boolean = isKeyPresentInHash(data, "auction_data");
 		const isChoose: boolean = isKeyPresentInHash(data, "choose_data");
-      console.log({ data, isChoose })
 
 		const listCards = quickGame.cards;
 		let cardId = data?.card_id;

@@ -1,7 +1,7 @@
 import { StoreonStore } from "storeon";
 import api from "../../api/api";
 import { v4 } from "uuid";
-import { _INIT } from "./auth";
+import { _INIT, SET_AUTH_TO_STORE } from "./auth";
 import { delay, removeLocaleStore, setLocaleStore, validateEmail } from "../../helpers/helper";
 import { setErrorTimming } from "../helperStore/helperStore";
 import { API_CONFIRM_EMAIL, API_DUPLICATE_CODE, API_GET_SECRET_QUETION } from "../../api/config";
@@ -10,6 +10,7 @@ import { IMessage, SET_MESSAGE } from "../message/message";
 import { NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
 import { GET_USERS, SET_USERS_NULL } from "../users/users";
 import { RESET_ACHIVMENT_PLAYER_QG, RESET_DATA_ACTION_CARD, RESET_EXCHANGE_DATA, RESET_LIST_CARDS_QG, RESET_QG, RET_DATA_PLAYER_QG, RET_LIST_QG } from "../quick-game/quick-game";
+import { IUser } from "../users/user";
 
 
 
@@ -162,10 +163,6 @@ export const registration = (store: StoreonStore) => {
     let urlRegStep = "";
     if (data?.key === "email") {
       urlRegStep = "/user/register/";
-      // delete save token for new registration
-    //   localStorage.removeItem("token");
-    //   localStorage.removeItem("refresh");
-      // добавляем в запрос реф код
       if (refCode) params = { ...params, referral_code: refCode };
     }
     if (data?.key === "code") urlRegStep = API_CONFIRM_EMAIL;
@@ -181,7 +178,10 @@ export const registration = (store: StoreonStore) => {
     if (res?.status === 400) {
       if (res?.data?.error?.length) {
         setErrorTimming(SET_ERROR_REG, res?.data?.error, dispatch, 2000);
-        const callback = async (res: any) =>{
+        const callback = async (res: {data: IUser}) =>{
+          if (res.data.state_registration === 4 || res.data.state_registration === 4){
+            dispatch(SET_AUTH_TO_STORE,{email: res.data.email})
+          }
             await delay(2000);
             switch (res?.data?.state_registration) {
                 case 0:                    
