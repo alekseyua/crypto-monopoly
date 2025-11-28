@@ -4,6 +4,7 @@ import { URL_FEED_QG, URL_QGS } from "../../api/config.js";
 import { StoreonStore } from "storeon";
 import {
   connectWebSocket,
+  delay,
   getUrlWebsocket,
   isKeyPresentInHash,
 } from "../../helpers/helper";
@@ -321,6 +322,7 @@ export const quickGame = (store: StoreonStore) => {
                 rd1: currentPlayer[0].dice_roll_1,
                 rd2: currentPlayer[0].dice_roll_2,
               });
+              await delay(3000);
             } else {
               dispatch(RESET_ROLL_DICE_QG);
             }

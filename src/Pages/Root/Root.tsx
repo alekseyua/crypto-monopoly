@@ -22,18 +22,24 @@ const Root = () => {
 	useEffect(() => {
 		// если user ещё не загружен — ничего не делаем
 		if (!user.id) return;
-
 		const token = getLocaleStore('token');
-		console.log('here')
-		if (token && (user.state_registration === 5 || user.state_registration === 4 || user.state_registration === 3)) {
-			navigate(NAV_QG_SELECT_PAGE);
-		} else if (!token && (user.state_registration === 5 || user.state_registration === 4 || user.state_registration === 3)) {
-			navigate(NAV_AUTH_PAGE);
-		} else {
-			navigate(NAV_REG_PAGE);
+		if (!token){
+			if ((user.state_registration === 5 || user.state_registration === 4 || user.state_registration === 3)) {
+			   navigate(NAV_AUTH_PAGE);
+			} else {
+			   navigate(NAV_REG_PAGE);
+		   }
 		}
 	}, [navigate, user]);
 
+
+	useEffect(()=>{
+		const token = getLocaleStore('token');
+		if (token ) {
+			console.log('redirect quick game')
+			navigate(NAV_QG_SELECT_PAGE);
+		}
+	},[dispatch]);
 
 	return (
 		<>

@@ -86,10 +86,10 @@ export const router = createBrowserRouter([
 			},
 		],
 	},
-	{
-		path: NAV_BALANCE,
-		element: <BalanceContainer />,
-	},
+	// {
+	// 	path: NAV_BALANCE,
+	// 	element: <BalanceContainer />,
+	// },
 	{
 		path: '/main-mode/auction',
 		element: <Auction />,

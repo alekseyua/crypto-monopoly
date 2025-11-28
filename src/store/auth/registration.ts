@@ -111,7 +111,6 @@ export const registration = (store: StoreonStore) => {
     GET_DUBLICATE_CODE_REG,
     async ({ regData }: any, data, { dispatch }: DuplicateCodeDispatch) => {
       const res = await api.post(API_DUPLICATE_CODE, regData);
-      // console.log({ res });
       if (res?.status === 400) {
         setErrorTimming(SET_ERROR_RECOVERY, res?.error, dispatch, 1500);
         return;
@@ -170,11 +169,8 @@ export const registration = (store: StoreonStore) => {
     if (data?.key === "password") urlRegStep = "/user/set-password/";
     if (data?.key === "secureQuestion")
       urlRegStep = "/user/set-secret-questions/";
-    // if (data?.key === "refFrend") urlRegStep = "????";
-
     params = { ...params, key: "" };
     const res = await api.post(urlRegStep, params);
-    console.log({res})
     if (res?.status === 400) {
       if (res?.data?.error?.length) {
         setErrorTimming(SET_ERROR_REG, res?.data?.error, dispatch, 2000);

@@ -23,15 +23,12 @@ export const users = (store: StoreonStore) => {
       const email: string | undefined =
         payload?.email ?? getLocaleStore("email");
       const res = await api.get(API_GET_USER, { email: email?.trim() });
-      console.log({res})
       // if (!deepEqual(res?.data, user)){
-      //   console.log('not equal')
         if (typeof callback === "function")
           callback(res as { data: { id: number } });
         if (res?.status === 200) {
           dispatch(SET_USERS, res.data);
         }
-
       // }
     });
 }

@@ -17,12 +17,13 @@ const FormChangePassword = ({
                 className={cls.formInputChangePassword}
                 iconRight={<Icon  src={IconEye}  onClick={handleShowPassword} />}
                 type={showPassword ? 'text' : 'password'}
-
+                p={15}
                 placeholder={'Введите старый пароль'}
             />
             <Button 
                 className={cls.btnChangePassword} 
                 onClick={()=>alert('how change password??????')}
+                p={15}
             >
                 Сменить пароль
             </Button>
