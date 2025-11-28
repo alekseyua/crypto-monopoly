@@ -163,7 +163,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
                   >
                     <Icon src={icons.hotelCard} width="25" height="12" />
                   </div>
-                ) : !!!owner?.houses ? (
+                ) : !!owner?.houses ? (
                   <div
                     className={
                       styles[`card-field__text-title--build-house-${direction}`]
