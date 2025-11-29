@@ -322,7 +322,6 @@ export const quickGame = (store: StoreonStore) => {
                 rd1: currentPlayer[0].dice_roll_1,
                 rd2: currentPlayer[0].dice_roll_2,
               });
-              await delay(3000);
             } else {
               dispatch(RESET_ROLL_DICE_QG);
             }
@@ -409,9 +408,9 @@ export const quickGame = (store: StoreonStore) => {
           // }
           // =============================================================
           const duration = performance.now() - start;
-          console.log('%c--------------------------------------------','color: Purple')
-          console.log(`%cData Processing state: ${duration.toFixed(2)} ms`, 'color: red; font-weight:bold');
-          console.log('%c--------------------------------------------', 'color: Purple')
+          // console.log('%c--------------------------------------------','color: Purple')
+          // console.log(`%cData Processing state: ${duration.toFixed(2)} ms`, 'color: red; font-weight:bold');
+          // console.log('%c--------------------------------------------', 'color: Purple')
 
         }
       );
@@ -437,6 +436,8 @@ export const quickGame = (store: StoreonStore) => {
 
   store.on(CREATE_NEW_QG, (_, payload, { dispatch }) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
+      console.log('%cCREATE_QUICK_GAME ', 'color: blue')
+      console.table(payload)
       socket.get_games.send(JSON.stringify(payload));
     }
   });
@@ -444,6 +445,12 @@ export const quickGame = (store: StoreonStore) => {
   store.on(SEND_ACTION_CARD_QG, (store: any, payload, { dispatch }) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       const game_id = store.quickGame.id;
+      console.log('%cSEND_ACTION_CARD_QG ', 'color: blue')
+      console.table( {
+        game_id,
+        ...payload,
+      })
+
       return socket.get_games.send(
         JSON.stringify({
           game_id,
@@ -455,6 +462,8 @@ export const quickGame = (store: StoreonStore) => {
   });
   store.on(MOVE_TO, (state: any, payload, { dispatch }) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
+      console.log('%cMOVE_TO ', 'color: blue')
+      console.table(payload)
       return socket.get_games.send(JSON.stringify(payload));
     }
     // return dispatch(CONNECT_WS_QG, { action: "get_games" });
@@ -462,6 +471,8 @@ export const quickGame = (store: StoreonStore) => {
 
   store.on(JOIN_QG, (state: any, payload, { dispatch }) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
+      console.log('%cJOIN_QG ', 'color: blue')
+      console.table(payload)
       return socket.get_games.send(JSON.stringify(payload));
     }
     // return dispatch(CONNECT_WS_QG, { action: "get_games" });
@@ -471,6 +482,12 @@ export const quickGame = (store: StoreonStore) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       const game_id = store.quickGame.id;
       setTimeout(() => {
+        console.log('%cGET_CARD_ACTION_QG from 1 sec ', 'color: blue')
+        console.table({
+          action: "get_card_action",
+          game_id,
+          ...payload,
+        })
         socket.get_games?.send(
           JSON.stringify({
             action: "get_card_action",

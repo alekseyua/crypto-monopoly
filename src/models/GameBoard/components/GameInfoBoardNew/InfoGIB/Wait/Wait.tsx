@@ -20,7 +20,6 @@ const Wait: React.FC<IProps> = ({
 }: IProps) => {
   const width = useWindowWidth();
       const isMobile = width < 992;
-      console.log('%cPLAYER current move ' + playerCurrentMove?.username, 'color: red')
   if (!playerCurrentMove?.username) return <Preloader />;
   
   return (

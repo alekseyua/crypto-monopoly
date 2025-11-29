@@ -43,13 +43,13 @@ const RollDiceContainer: React.FC<IProps> = ({
       const extraSpinsY = 360 * 3;
 
       if (cube1.current) {
-        cube1.current.style.transition = "transform 2s ease-in-out";
+        cube1.current.style.transition = "transform 1s ease-in-out";
         cube1.current.style.transform = `rotateX(${
           rotateX1 + extraSpinsX
         }deg) rotateY(${rotateY1 + extraSpinsY}deg)`;
       }
       if (cube2.current) {
-        cube2.current.style.transition = "transform 2s ease-in-out";
+        cube2.current.style.transition = "transform 1s ease-in-out";
         cube2.current.style.transform = `rotateX(${
           rotateX2 + extraSpinsX
         }deg) rotateY(${rotateY2 + extraSpinsY}deg)`;

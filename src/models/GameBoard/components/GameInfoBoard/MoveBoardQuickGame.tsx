@@ -9,7 +9,7 @@ import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfo
 import ContainerInfoTwoColumnGIB from '../GameInfoBoardNew/UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
 import styles from './styles/gib.module.scss';
 import React from 'react';
-import { IPlayer, IRoleDiceStore } from '../../../../store/quick-game/quick-game.d';
+import { IPlayer } from '../../../../store/quick-game/quick-game.d';
 import { useWindowWidth } from '../../../../hooks/useWindowWidth';
 
 interface IMoveBoardQGProps {
@@ -24,7 +24,6 @@ type EventsStore = null;
 
 type StateStore = {
   dataPlayerQG: IPlayer;
-  roleDiceStore :IRoleDiceStore;
 };
 
 
@@ -38,12 +37,10 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
     const width = useWindowWidth();
     const isMobile = width < 992;
 	  const [ isClick, setIsClick ] =  React.useState(false); 
-    const { dataPlayerQG, roleDiceStore } = useStoreon<StateStore, EventsStore>(
+    const { dataPlayerQG } = useStoreon<StateStore, EventsStore>(
       "dataPlayerQG",
-      "roleDiceStore"
     );
     
-    console.log({ roleDiceStore });
     const handleClickMove = () => {
       onMove({
         action,

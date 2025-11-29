@@ -255,7 +255,7 @@ const handleCardOnField = (card_id: number): void => {
   };
 
   const handleCardOnFieldAction = async (params: any): Promise<void> => {
-	console.log(params)
+	// console.log(params)
     if (params.action === "exchange") {
       if (params?.idOwnerCard && dataPlayerQG.id === params?.idOwnerCard) {
         setStateExchange((state) => ({
@@ -351,10 +351,10 @@ const handleCardOnField = (card_id: number): void => {
       if (keys.includes("get_house") || keys.includes("return_house")) {
         setIsChanceGetOrRemoveHouse(true);
       }
-      console.log(	
-        "%cKEY chance ===================== " + keys,
-        "color: hotpink"
-      );
+      // console.log(	
+      //   "%cKEY chance ===================== " + keys,
+      //   "color: hotpink"
+      // );
       const card = quickGame.cards.filter(
         (el: ICard | ISpecialCard) => el.id === dataPlayerQG.current_card
       )[0];
@@ -443,7 +443,7 @@ const handleCardOnField = (card_id: number): void => {
 		const isActions: boolean = isKeyPresentInHash(data, "data_actions");
 		const isAuctions: boolean = isKeyPresentInHash(data, "auction_data");
 		const isChoose: boolean = isKeyPresentInHash(data, "choose_data");
-
+// console.log({isActions}, data)
 		const listCards = quickGame.cards;
 		let cardId = data?.card_id;
 		if (isAuctions) cardId = data.auction_data.card_id;
@@ -540,10 +540,10 @@ const handleCardOnField = (card_id: number): void => {
 		// для обычных карт
 		// const listCard = ["card"];
 		const actions: CardDataDataActionsType = dataActions.actions;
-		console.log("----- список действий ----------");
-		console.log({ ...actions });
-		console.log({cardId});
-		console.log("--------------------------------");
+		// console.log("----- список действий ----------");
+		// console.log({ ...actions });
+		// console.log({cardId});
+		// console.log("--------------------------------");
 
 		if (
 			isKeyPresentInHash(actions, "buy") &&
@@ -621,7 +621,7 @@ const handleCardOnField = (card_id: number): void => {
 		);
 		}
 		let dataAction: keyPreview = getAction(dataPlayerQG, actionCardData);
-    console.log("%cKEY: " + dataAction.key, "color: green", quickGame.players);
+    console.log("%cKEY: " + dataAction.key, "color: green", dataPlayerQG);
 		const card = quickGame.cards.filter(
 		(el: ICard | ISpecialCard) => el.id === dataAction.cardId
 		)[0];
@@ -777,7 +777,7 @@ const handleCardOnField = (card_id: number): void => {
 			if (keys.includes("get_house") || keys.includes("return_house")) {
 				setIsChanceGetOrRemoveHouse(true);
 			}
-			console.log("%cKEY chance ===================== " + keys, "color: hotpink");
+			// console.log("%cKEY chance ===================== " + keys, "color: hotpink");
 			setActionCardView(
         <InfoChanceOrCommunity
           onMove={onMove}
