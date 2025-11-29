@@ -23,7 +23,7 @@ const Root = () => {
 		// если user ещё не загружен — ничего не делаем
 		const token = getLocaleStore('token');
 		if (!token){
-			if (!user.id) return;
+			// if (!user.id) return;
 			if ((user.state_registration === 5 || user.state_registration === 4 || user.state_registration === 3)) {
 			   navigate(NAV_AUTH_PAGE);
 			} else {
