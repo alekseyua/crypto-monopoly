@@ -81,7 +81,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
             transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
             transformOrigin: "center center",
             transition: dragging ? "none" : "transform 0.1s ease-out",
-            padding: '23px',
+            // padding: '23px',
           }}
         >
           <div ref={innerRef} className={cls["game-board"]}>

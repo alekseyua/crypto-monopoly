@@ -11,7 +11,7 @@ import {
   CLOSE_WSOCKET_FEED,
 } from "../../../store/quick-game/quick-game";
 import { GameInfoBoard } from "../../../models/GameBoard/components/GameInfoBoard/GameInfoBoard";
-import { MoveBoardQG } from "../../../models/GameBoard/components/GameInfoBoard/MoveBoardQuickGame";
+import { MoveBoardQG } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/BuyCard/MoveBoardQuickGame";
 import { BayOrAuction } from "../../../models/GameBoard/components/GameInfoBoardNew/BayOrAuction/BayOrAuction";
 import { useNavigate } from "react-router-dom";
 import {

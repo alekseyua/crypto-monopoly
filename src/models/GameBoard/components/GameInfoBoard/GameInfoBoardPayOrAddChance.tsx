@@ -1,7 +1,7 @@
 import { currency2White } from '../../../../assets';
 import { Button } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
-import styles from './styles/gib.module.scss';
+import styles from './styles/old-gib.module.scss';
 import React from 'react';
 import { InfoBoardLabel } from './UI/Label/info-board-label';
 import { getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../helpers/helper';
@@ -37,7 +37,7 @@ export const GameInfoBoardPayOrAddChance: React.FC<IBayOrAuctionProps> = ({
 	const [ isClick, setIsClick ] = React.useState<boolean>(false);
 	
 	return (
-		<div className={styles['gib__container']}>
+		<div className={styles['gib__container']} data-name='GameInfoBoardPayOrAddChance'>
 
 			<div className={styles['gib-bg']}>
 				{/* header */}

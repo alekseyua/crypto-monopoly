@@ -1,19 +1,19 @@
 @import '../../../styles/mixin.scss';
 
 .button {
-	// padding: 24px 20px;
-	// @include adaptiv-value(padding-top,24, 0, 1);
-	// @include adaptiv-value(padding-bottom,24, 0, 1);
-	// @include adaptiv-value(padding-left,20, 0, 1);
-	// @include adaptiv-value(padding-right,20, 0, 1);
 	z-index: 10;
 	width: 100%;
-	// font-size: 18px;
-	@include adaptiv-font(18,10);
-
-	font-weight: 500;
-	color: var(--text-color);
 	border-radius: 10px;
+	&>span {
+		font-weight: 500;
+		color: var(--text-color);
+		@include adaptiv-font(18,5);
+		text-wrap: nowrap;
+		display: block;
+		@media (max-width: 992px) {
+		@include adaptiv-font(18, 14);
+		}
+	}
 	//fill
 	&.fill {
 		padding: 0;

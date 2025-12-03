@@ -1,5 +1,5 @@
 import { Button, Offset } from '../../../../shared/UI';
-import styles from './styles/gib.module.scss';
+import styles from './styles/old-gib.module.scss';
 import React from 'react';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import Title from '../../../../shared/UI/Title/Title';
@@ -43,7 +43,7 @@ export const GameInfoBoardPayTaxOrAddCardChance: React.FC<IGameInfoBoardPayTaxOr
 	}
 
 	return (
-		<div className={styles['gib__container']}>
+		<div className={styles['gib__container']} data-name='GameInfoBoardPayTaxOrAddCardChance'>
 			<div className={styles['gib-bg']}>
 				{/* header */}
 				<div className={styles['gib__header']}>

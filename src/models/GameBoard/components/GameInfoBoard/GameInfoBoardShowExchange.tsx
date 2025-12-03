@@ -1,7 +1,7 @@
 import { icons } from '../../../../assets';
 import { Button, Input, Offset } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
-import styles from './styles/gib.module.scss';
+import styles from './styles/old-gib.module.scss';
 import React, { useEffect, useState } from 'react';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import { ICard, IExchangeData, IPlayer, ISpecialCard } from '../../../../store/quick-game/quick-game.d';
@@ -53,7 +53,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
   }, [exchageData.propertys_to, exchageData.price_to, cards]);
 
 	return (
-		<div className={styles['gib__container']}>
+		<div className={styles['gib__container']} data-name='GameInfoBoardShowExchange'>
 			<div className={styles['gib-bg-exchange']}>
 				{/* header */}
 				<div className={styles['gib__header-container']}>

@@ -125,7 +125,9 @@ export const Button: React.FC<IButton & PropsComponent> = ({
         {...props}
       >
         {iconLeft && iconLeft}
+        <span>
         {children}
+        </span>
         {iconRight && iconRight}
       </button>
     );

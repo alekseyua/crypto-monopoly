@@ -1,5 +1,7 @@
 
 import authImg from "./images/auth-main-img.png";
+import fieldCard from './images/field1-bg.png';
+
 import logo from './images/logo.svg';
 import currency2 from "./icons/currency-2-blue.svg";
 import currency2Black from "./icons/currency-2-black.svg";
@@ -109,6 +111,7 @@ export const icons = {
   capital,
   asset,
   userAvatar: avatar2,
+  fieldCard,
 };
 
 export {

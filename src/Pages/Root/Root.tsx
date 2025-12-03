@@ -27,8 +27,11 @@ const Root = () => {
 			if ((user.state_registration === 5 || user.state_registration === 4 || user.state_registration === 3)) {
 			   navigate(NAV_AUTH_PAGE);
 			} else {
-			   navigate(NAV_REG_PAGE);
+			   		navigate(NAV_REG_PAGE);
 		   }
+		}else{
+			if ((user.state_registration === 1 || user.state_registration === 2))
+				navigate(NAV_REG_PAGE);
 		}
 	}, [navigate, user]);
 

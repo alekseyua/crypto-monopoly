@@ -4,7 +4,7 @@ import Icon from '../../../../shared/UI/Icon/Icon';
 import Title from '../../../../shared/UI/Title/Title';
 import { IPlayer } from '../../../../store/quick-game/quick-game.d';
 import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer';
-import styles from './styles/gib.module.scss';
+import styles from './styles/old-gib.module.scss';
 import { InfoBoardLabel } from './UI/Label/info-board-label';
 
 interface IGameInfoBoardProps {
@@ -30,7 +30,7 @@ export const GameInfoBoard:React.FC<IGameInfoBoardProps> = ({
 		);
 	}
 	return (
-		<div className={styles['gib__container']}>
+		<div className={styles['gib__container']} data-name="GameInfoBoard">
 			{	wait 
 				? 	
 					<>

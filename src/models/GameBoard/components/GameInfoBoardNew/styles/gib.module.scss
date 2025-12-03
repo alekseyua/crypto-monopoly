@@ -1,7 +1,11 @@
 @import '../../../../../styles/mixin.scss';
 
 .gib {
+    //header
 
+    //body
+
+    //footer
     //gib__container
     &__container {
         display: flex;
@@ -22,19 +26,15 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            // justify-content: center;
             position: relative;
             overflow: auto;
-
             //gib__container-info-header
             &-header {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 width: 100%;
-            position: relative;
-                // padding: 0 20px;
-                // flex: 0 0  70px;
+                position: relative;
             }
 
             //gib__container-info-body
@@ -48,8 +48,8 @@
                 justify-content: flex-start;
                 width: 100%;
                 border-radius: 10px;
-        overflow: auto;
-            position: relative;
+                overflow: auto;
+                position: relative;
                 overflow-y: auto;
                 /* WebKit (Chrome, Safari) */
                     &::-webkit-scrollbar {

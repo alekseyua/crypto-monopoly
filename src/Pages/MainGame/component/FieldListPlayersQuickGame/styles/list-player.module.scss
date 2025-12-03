@@ -2,7 +2,7 @@
 
 .list-player {
 
-    // list-player__containerv
+    // list-player__container
     &__container {
         display: flex;
         flex-direction: column;
@@ -12,6 +12,7 @@
         padding: 30px;
         border-radius: 25px;
         grid-area: players;
+		// @include adaptiv-value(transform, scale(1), scale(0.8), 4);
         @media (max-width: 992px) {
             position: absolute;
             z-index: 9999;

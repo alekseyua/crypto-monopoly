@@ -3,7 +3,7 @@ import { Button, Offset } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import Title from '../../../../shared/UI/Title/Title';
 import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer';
-import styles from './styles/gib.module.scss';
+import styles from './styles/old-gib.module.scss';
 
 interface IInfoChanceQGProps {
 	onMove: (params: any) => void;
@@ -24,6 +24,7 @@ export const InfoChanceQG: React.FC<IInfoChanceQGProps> = ({
 }: IInfoChanceQGProps) => {
 	return (
 		<div className={styles['gib__container']}
+			data-name='InfoChanceQG'
 		style={{ background: '#E9ECFF' }}
 		>
 			{/* header */}

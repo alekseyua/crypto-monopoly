@@ -1,6 +1,4 @@
 import styles from './styles/card-on-filed.module.scss';
-
-import fieldBg from '../../assets/images/field1-bg.png';
 import { icons, LeftSoleIcon, RightSoleIcon } from '../../../../assets';
 import { motion } from 'framer-motion';
 import Icon from '../../../../shared/UI/Icon/Icon';
@@ -126,7 +124,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
               [styles[`card-field__image--${type}`]]: type,
             })}
             style={{
-              backgroundImage: `url(${image_card ?? fieldBg}) `, //center/cover no-repeat
+              backgroundImage: `url(${image_card ?? icons.fieldCard}) `, //center/cover no-repeat
             }}
           ></div>
           {/* body card */}
