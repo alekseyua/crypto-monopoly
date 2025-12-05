@@ -84,7 +84,7 @@ const Icon: React.FC<IIcon> = ({
     const finalHeight = calcSize(height);
 
     let customStyle: React.CSSProperties | Record<string, string | number>= {
-        transform: `rotate(${rotate}deg)`,
+        transform: rotate && `rotate(${rotate}deg)`,
         transition: "width .2s ease, height .2s ease, transform .2s ease",
         ['']: 0,
     };

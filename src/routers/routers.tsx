@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
 					{
 						path: '/authorization',
 						element: <Auth />,
-						children: [
+						children: [// outlet
 							{ 
 								path: NAV_REG_PAGE, 
 								element: <RegitUserContainer /> 
