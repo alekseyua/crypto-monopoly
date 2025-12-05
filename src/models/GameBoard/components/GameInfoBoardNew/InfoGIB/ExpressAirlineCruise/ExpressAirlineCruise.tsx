@@ -1,26 +1,26 @@
 import React from "react";
-import ContainerGIB from "../../UIContainerGIB/ContainerGIB";
-import ContainerInfoHeaderGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB";
+import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
+import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerInfoHeaderGIB";
 import { Button, Offset } from "../../../../../../shared/UI";
 import Title from "../../../../../../shared/UI/Title/Title";
-import ContainerTwoBtn from "../../ControllerGIB/ContainerTwoBtn";
+import ContainerTwoBtn from "../../components/UI/ControllerGIB/ContainerTwoBtn";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
 import { icons } from "../../../../../../assets";
 import AutoCounter from "../../../../../../Component/AutoCounter/AutoCounter";
-import ContainerInfoFooterGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB";
-import ContainerInfoBodyGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB";
-import ContainerInfoGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoGIB";
+import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
+import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
+import ContainerInfoGIB from "../../components/UI/ContainerGIB/ContainerInfoGIB";
 import {
   CardDataDataActionsType,
   ICard,
   ISpecialCard,
 } from "../../../../../../store/quick-game/quick-game.d";
-import ContainerInfoTwoColumnGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB";
-import InnerBtnContextSpaceBetween from "../../ControllerGIB/InnerBtnContextSpaceBetween";
+import ContainerInfoTwoColumnGIB from "../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB";
+import InnerBtnContextSpaceBetween from "../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween";
 import Text from "../../../../../../shared/UI/Text/Text";
 import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";
 import { temporaryDisableBtn } from "../../../../../../helpers/helper";
-import ContainerOneBtn from "../../ControllerGIB/ContainerOneBtn";
+import ContainerOneBtn from "../../components/UI/ControllerGIB/ContainerOneBtn";
 
 interface IExpressAirlineCruiseProps {
   card: ICard | ISpecialCard;
@@ -71,7 +71,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
   };
   console.log(card as ISpecialCard);
   return (
-    <ContainerGIB>
+    <ContainerGIB name="ExpressAirlineCruise">
       {/* -------header---------- */}
       <ContainerInfoHeaderGIB>
         <Offset mt={20} />

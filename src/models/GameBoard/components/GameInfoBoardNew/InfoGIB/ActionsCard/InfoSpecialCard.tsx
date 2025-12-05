@@ -1,9 +1,9 @@
 import React from "react";
-import ContainerGIB from "../../UIContainerGIB/ContainerGIB";
-import ContainerInfoHeaderGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB";
-import ContainerInfoBodyGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB";
-import ContainerInfoFooterGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB";
-import ContainerInfoGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoGIB";
+import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
+import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerInfoHeaderGIB";
+import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
+import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
+import ContainerInfoGIB from "../../components/UI/ContainerGIB/ContainerInfoGIB";
 import {
   IChooseDataActions,
   ISpecialCard,
@@ -11,10 +11,10 @@ import {
 import { Button, Offset } from "../../../../../../shared/UI";
 import Title from "../../../../../../shared/UI/Title/Title";
 import AutoCounter from "../../../../../../Component/AutoCounter/AutoCounter";
-import ContainerOneBtn from "../../ControllerGIB/ContainerOneBtn";
+import ContainerOneBtn from "../../components/UI/ControllerGIB/ContainerOneBtn";
 import { temporaryDisableBtn } from "../../../../../../helpers/helper";
-import ContainerInfoTwoColumnGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB";
-import InnerBtnContextSpaceBetween from "../../ControllerGIB/InnerBtnContextSpaceBetween";
+import ContainerInfoTwoColumnGIB from "../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB";
+import InnerBtnContextSpaceBetween from "../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween";
 import Text from "../../../../../../shared/UI/Text/Text";
 import { icons } from "../../../../../../assets";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
@@ -45,7 +45,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
 }: IProps) => {
   const [isClick, setIsClick] = React.useState<boolean>(false);
   return (
-    <ContainerGIB>
+    <ContainerGIB name="InfoSpecialCard" >
       <Offset mt={5} />
       <Button
         type="transparent"

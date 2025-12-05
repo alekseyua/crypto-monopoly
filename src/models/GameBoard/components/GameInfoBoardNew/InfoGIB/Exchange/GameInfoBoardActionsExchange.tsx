@@ -12,11 +12,11 @@ import Title from '../../../../../../shared/UI/Title/Title';
 import Line from '../../../../../../shared/UI/Line/Line';
 import CurrencyQG from '../../../../../../shared/UI/CurrencyQG/CurrencyQG';
 import CardPlayersPreview from '../../../../../../Component/Cards/CardPlayersPreview/CardPlayersPreview';
-import ContainerGIB from '../../UIContainerGIB/ContainerGIB';
-import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
-import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
-import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
-import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
+import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
+import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
+import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
+import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
+import ContainerInfoBodyGIB from '../../components/UI/ContainerGIB/ContainerInfoBodyGIB';
 import styles from './styles/exchange.module.scss';
 import { temporaryDisableBtn } from '../../../../../../helpers/helper';
 import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
@@ -119,7 +119,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
 		}
 	}
 	return (
-    <ContainerGIB style={{ background: "#E9ECFF" }}>
+    <ContainerGIB name="GameInfoBoardActionsExchange" style={{ background: "#E9ECFF" }}>
       {/* header */}
       <ContainerInfoHeaderGIB p={15}>
         <ButtonBack

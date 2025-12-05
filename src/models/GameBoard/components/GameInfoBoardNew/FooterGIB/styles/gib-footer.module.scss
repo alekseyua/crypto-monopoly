@@ -3,24 +3,40 @@
 .gib-footer{
     //gib-footer__container
     &__container{
-			display: grid;
-			grid-template-columns: 55% 40%;
+			// display: grid;
+			// grid-template-columns: 55% 40%;
+            // @include adaptiv-value(grid-template-columns, 55% 40%, 35% 55%, 4);
+            display: flex;
+            justify-content: space-between;
 			align-items: center;
-			gap: 5%;
+			// gap: 5%;
+            gap: 5px;
 			width: 100%;
 			border-radius: 10px;
-            padding: 10px;
+            @include adaptiv-value(padding, 10, 3, 2);
+            @media (max-width: 778px) {
+                @include adaptiv-value(padding, 10, 8, 2);
+            }
     }
     &__desc{
         //gib-footer__desc-container
         &-container{
             display: flex;
             gap: 15px;
+            z-index: 99;
+            @media (max-width: 1280px) {
+                flex-direction: column;
+                gap: 0;
+            }
+            @media (max-width: 778px) {
+                flex-direction: row;
+                gap: 15px;
+            }
 
         }
         //gib-footer__desc-item
         &-item{
-            @include adaptiv-font(14, 7);
+            @include adaptiv-font(14, 5);
             display: flex;
             text-wrap: nowrap;
             align-items: center;

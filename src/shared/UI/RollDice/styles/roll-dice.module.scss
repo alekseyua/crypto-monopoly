@@ -1,3 +1,5 @@
+@import '../../../../styles/mixin.scss';
+
 // === Переменные размера ===
 :root {
     --cube-size: 200px; // Размер куба
@@ -31,7 +33,7 @@
         flex-direction: row;
         // gap: 10px;
         position: relative;
-        
+        @include adaptiv-value(transform, scale(1), scale(.8),4);
     }
 }
 

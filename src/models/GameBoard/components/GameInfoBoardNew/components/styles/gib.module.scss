@@ -1,8 +1,24 @@
-@import '../../../../../styles/mixin.scss';
+@import '../../../../../../styles/mixin.scss';
 
 .gib {
     //header
-
+    &__header{
+        &-container{
+            //gib__header-container--timer
+            &--timer{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                @media (max-width: 1200px) {
+                    flex-direction: column;
+                }
+                @media (max-width: 778px) {
+                    flex-direction: row;
+                }
+            }
+            
+        }
+    }
     //body
 
     //footer
@@ -13,11 +29,21 @@
         align-items: center;
         width: 100%;
         height: 100%;
-        // z-index: 999;
-        padding: 4%;
         position: relative;
         z-index: 2;
-
+        @include adaptiv-value(padding,4,1,3);
+        //gib__container-roll-dice
+        &-roll-dice {
+            width: 100%;
+            @include adaptiv-value(height, '100%', '150%', 4);
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @media (max-width: 778px) {
+                height: 100%;
+            }
+        }
         //gib__container-info
         &-info {
             border-radius: 10px;
@@ -28,6 +54,29 @@
             align-items: center;
             position: relative;
             overflow: auto;
+            &::-webkit-scrollbar {
+                    width: 0px;
+                    opacity: 0;
+            }
+        
+            &::-webkit-scrollbar-thumb {
+                background-color: transparent;
+                transition: background-color 0.3s;
+            }
+        
+            &:hover::-webkit-scrollbar-thumb {
+                background-color: var(--bg-color-scroll);
+            }
+        
+            &::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+        
+            /* Firefox */
+            &* {
+                scrollbar-width: thin;
+                scrollbar-color: var(--bg-color-scroll) transparent;
+            }
             //gib__container-info-header
             &-header {
                 display: flex;
@@ -131,15 +180,5 @@
             }
         }
     }
-    //gib__title 
-    &__title {
-        font-family: Manrope;
-        font-weight: 400;
-        @include adaptiv-font(18, 10);
-        // margin-bottom: 20px;
-        line-height: 100%;
-        letter-spacing: 0%;
-        text-align: center;
-        vertical-align: middle;
-    }
+
 }

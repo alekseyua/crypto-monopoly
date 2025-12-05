@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from './button.module.scss';
 import React from 'react';
 import classNames from 'classnames';
+import { getPadding } from '../../../helpers/helper';
 
 interface buttonProps{
 	component?: 'button';
@@ -60,9 +61,10 @@ interface IButton {
   // component?: 'button' | 'link';
   iconRight?: React.ReactElement;
   gradientColors?: [string, string];
-  p?: number | string;
+  p?: number | string | (number | string)[];
   typeBtn?: "button" | "submit" | "reset" | undefined;
 }
+
 
 export const Button: React.FC<IButton & PropsComponent> = ({
 	to = '/',
@@ -85,13 +87,13 @@ export const Button: React.FC<IButton & PropsComponent> = ({
 	p,
 	...props
 }: IButton & PropsComponent) => {
-	let buttonStyle: Record<string, string> = {
+  let buttonStyle: React.CSSProperties | Record<string, string> = {
 		'--grad-color-1': gradientColors[0],
 		'--grad-color-2': gradientColors[1],
 		'--fill-color': fillColor,
 		'--text-color': textColor,
 	}
-	if(p) buttonStyle = {...buttonStyle, padding: `${p}px`};
+  if (p) buttonStyle = { ...buttonStyle, padding: getPadding(p) };
 	if(borderColor) buttonStyle = {...buttonStyle, border: `1px solid ${borderColor}`};
 	if (component === 'button') {
     const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {

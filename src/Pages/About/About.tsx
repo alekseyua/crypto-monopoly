@@ -15,8 +15,6 @@ const About:React.FC = () => {
       }}
     >
       <RollDiceContainer 
-        roleDice1={1}
-        roleDice2={2}
         onClick={()=>{}}
       />
     </div>

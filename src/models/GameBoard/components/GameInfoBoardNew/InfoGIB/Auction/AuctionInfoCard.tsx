@@ -3,16 +3,16 @@ import { Button, Offset } from '../../../../../../shared/UI';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
 import React from 'react';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
-import ContainerGIB from '../../UIContainerGIB/ContainerGIB';
-import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
-import ContainerTwoBtn from '../../ControllerGIB/ContainerTwoBtn';
-import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
+import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
+import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
+import ContainerTwoBtn from '../../components/UI/ControllerGIB/ContainerTwoBtn';
+import ContainerInfoBodyGIB from '../../components/UI/ContainerGIB/ContainerInfoBodyGIB';
 import Title from '../../../../../../shared/UI/Title/Title';
 import Text from '../../../../../../shared/UI/Text/Text';
-import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
-import InnerBtnContextSpaceBetween from '../../ControllerGIB/InnerBtnContextSpaceBetween';
+import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
+import InnerBtnContextSpaceBetween from '../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween';
 import { getPriceTaxesFromHouses } from '../../../../../../helpers/helper';
-import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
+import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
 import { ICardInfo } from '../../../../../../store/quick-game/quick-game.d';
 import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
 
@@ -32,7 +32,7 @@ export const AuctionInfoCard: React.FC<Iprops> = ({
 }: Iprops) => {
   const [amountHouses, setAmountHouses] = React.useState<number>(1);
   return (
-    <ContainerGIB
+    <ContainerGIB name="AuctionInfoCard"
       style={{
         background: "#FFEFD3",
       }}

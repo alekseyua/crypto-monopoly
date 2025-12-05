@@ -133,6 +133,45 @@ export const rgbToRgba = function (rgb: string, alpha: number) {
   return rgb.replace("rgb", "rgba").replace(")", `, ${alpha})`);
 }
 
+export function getPadding(
+  p: number | string | (number | string)[] | undefined,
+  baseWidth = 1440
+) {
+  if (p === undefined || p === null) return undefined;
+
+  const vw = typeof window !== "undefined" ? window.innerWidth : baseWidth;
+
+  // Адаптация под мобильные — но не жёсткий перескок
+  const effectiveBaseWidth = vw < 778 ? 378 : baseWidth;
+
+  const scale = vw / effectiveBaseWidth;
+
+  const toScaled = (value: number | string) => {
+    if (value === undefined || value === null) return "0px";
+
+    // число → масштабируем
+    if (typeof value === "number") return `${value * scale}px`;
+
+    // строка px → масштабируем
+    if (typeof value === "string" && value.endsWith("px")) {
+      const num = parseFloat(value);
+      return `${num * scale}px`;
+    }
+
+    // %, rem, em — оставляем без изменения
+    return value;
+  };
+
+  // Массив paddings [t, r, b, l]
+  if (Array.isArray(p)) {
+    return p.map(toScaled).join(" ");
+  }
+
+  return toScaled(p);
+}
+
+
+
 export function connectWebSocket(socket: WebSocket, callback: (res: any) => any, action: string = 'pending') {
   const url = new URL(socket.url);
   const name = url.searchParams.get('action');

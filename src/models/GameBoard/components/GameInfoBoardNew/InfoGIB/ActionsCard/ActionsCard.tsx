@@ -1,20 +1,20 @@
 import React from 'react'
-import ContainerGIB from '../../UIContainerGIB/ContainerGIB';
+import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
 import { Button, Offset } from '../../../../../../shared/UI';
 import Title from '../../../../../../shared/UI/Title/Title';
-import ContainerOneBtn from '../../ControllerGIB/ContainerOneBtn';
+import ContainerOneBtn from '../../components/UI/ControllerGIB/ContainerOneBtn';
 import Text from '../../../../../../shared/UI/Text/Text';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
-import ContainerInfoGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoGIB';
+import ContainerInfoGIB from '../../components/UI/ContainerGIB/ContainerInfoGIB';
 import { ICard, ICardCity, IChooseDataActions } from '../../../../../../store/quick-game/quick-game.d';
 import { temporaryDisableBtn } from '../../../../../../helpers/helper';
-import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
-import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
-import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
-import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
+import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
+import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
+import ContainerInfoBodyGIB from '../../components/UI/ContainerGIB/ContainerInfoBodyGIB';
+import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
 import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
 import ButtonBack from '../../../../../../shared/UI/Buttons/ButtonBack/ButtonBack';
-import InnerBtnContextSpaceBetween from '../../ControllerGIB/InnerBtnContextSpaceBetween';
+import InnerBtnContextSpaceBetween from '../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
 import { icons } from '../../../../../../assets';
 
@@ -46,7 +46,7 @@ const ActionsCard: React.FC<IProps> = ({
 }: IProps) => {
   const [isClick, setIsClick] = React.useState<boolean>(false);
   return (
-    <ContainerGIB>
+    <ContainerGIB name="ActionsCard">
       <Offset mt={5} />
       <Button
         type="transparent"

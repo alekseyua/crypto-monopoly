@@ -68,9 +68,10 @@ const GameInfoBoardFooter:React.FC<IProps> = ({
         <Button
           className={styles["gib-footer__btns-btn--position"]}
           type="fill"
-          p={10}
+          p={[10]}
           style={{
             backgroundColor: bgcBtn ? bgcBtn : "#D6DBF5",
+            justifyContent: 'flex-start',
           }}
           iconRight={<Icon src={icons.rightArrow} width="15px" height="10px" />}
           onClick={handleClickRate}

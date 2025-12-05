@@ -6,8 +6,6 @@ import { RESET_ROLL_DICE_QG } from "../../../store/quick-game/quick-game";
 import { useStoreon } from "storeon/react";
 
 interface IProps {
-  roleDice1: number;
-  roleDice2: number;
   onClick: () => void;
 }
 
@@ -58,6 +56,8 @@ const RollDiceContainer: React.FC<IProps> = ({
 
   // Запускаем анимацию через 3 секунды после загрузки
   useEffect(() => {
+
+    console.log(`%croleDiceStore = ${JSON.stringify(roleDiceStore)}`, 'color:red')
     if (roleDiceStore.rd1 === 0 || roleDiceStore.rd2 === 0) return;
       const timer = setTimeout(() => {
       }, 0);

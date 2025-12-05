@@ -19,8 +19,7 @@ const EventsHistoryListContainer: React.FC<IProps> = ({
 		quickGame: IDataQG;
 		feedNewsMessages: IMassagesFeed[];
 	} = useStoreon("quickGame", "feedNewsMessages");
-	const width = useWindowWidth();
-	const isMobile = width <= 992;
+	const {isMobile} = useWindowWidth();	
 	const [showFeetHistory, setShowFeetHistory] = useState<boolean>(isMobile);
 
 
@@ -46,7 +45,7 @@ const EventsHistoryListContainer: React.FC<IProps> = ({
 		}
 	}
 
-
+console.log({isMobile, showFeetHistory})
 	if (isMobile && showFeetHistory) {
 		return <Button
 			onClick={() => setShowFeetHistory(false)}

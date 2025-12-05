@@ -39,7 +39,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
     quickGame: IDataQG;
   } = useStoreon("quickGame");
   const [containerSize, setContainerSize] = useState({ w: 0, h: 0 });
-  const width = useWindowWidth();
+  const {isMobile, width} = useWindowWidth();
   const containerRef = useRef<HTMLDivElement>(null);
   const contentWidth = width;
   const contentHeight = 400;
@@ -62,7 +62,6 @@ export const GameBoard: React.FC<IGameBoard> = ({
   });
   if (!dataPlayerQG) return;
   const cards: (ICard | ISpecialCard)[] = quickGame.cards;
-  const isMobile = width < 992
   return (
     <>
       <div

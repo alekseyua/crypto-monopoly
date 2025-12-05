@@ -1,12 +1,12 @@
 import React from "react";
 import { Button, Offset } from "../../../../../../shared/UI";
 import Title from "../../../../../../shared/UI/Title/Title";
-import ContainerOneBtn from "../../ControllerGIB/ContainerOneBtn";
+import ContainerOneBtn from "../../components/UI/ControllerGIB/ContainerOneBtn";
 import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";
-import ContainerGIB from "../../UIContainerGIB/ContainerGIB";
-import ContainerInfoBodyGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB";
-import ContainerInfoFooterGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB";
-import ContainerInfoHeaderGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB";
+import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
+import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
+import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
+import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerInfoHeaderGIB";
 import { temporaryDisableBtn } from "../../../../../../helpers/helper";
 
 interface IProps {
@@ -21,7 +21,7 @@ export const ShowMassagePopup: React.FC<IProps> = ({
 }: IProps) => {
   const [isClick, setIsClick] = React.useState(false);
   return (
-    <ContainerGIB style={{ background: "#E9ECFF" }}>
+    <ContainerGIB name="ShowMassagePopup" style={{ background: "#E9ECFF" }}>
       <ContainerInfoHeaderGIB>
         <Offset mt={30} />
 

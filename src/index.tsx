@@ -8,7 +8,19 @@ import { StoreContext } from 'storeon/react'
 import { store } from './store/index'
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root') as HTMLElement, {
+  onUncaughtError: (error, errorInfo) => {
+    console.log({error})
+    console.log({errorInfo})
+
+    // ... log error report
+  },
+  onCaughtError: (error, errorInfo) => {
+    console.log({ error })
+    console.log({ errorInfo })
+    // ... log error report
+  }
+}
 );
 root.render(
   <StoreContext.Provider value={store}>

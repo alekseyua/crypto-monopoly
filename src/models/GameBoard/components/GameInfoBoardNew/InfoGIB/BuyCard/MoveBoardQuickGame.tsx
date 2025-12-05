@@ -5,13 +5,19 @@ import Icon from '../../../../../../shared/UI/Icon/Icon';
 import RollDiceContainer from '../../../../../../shared/UI/RollDice/RoleDiceContainer';
 import Title from '../../../../../../shared/UI/Title/Title';
 import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
-import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
-// import styles from '../../styles/gib.module.scss';
-import styles from '../../../GameInfoBoard/styles/old-gib.module.scss'
+import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
+import styles from '../../styles/gib.module.scss';
+// import styles from '../../../GameInfoBoard/styles/old-gib.module.scss'
 import React from 'react';
 import { useWindowWidth } from '../../../../../../hooks/useWindowWidth';
 import { IPlayer } from '../../../../../../store/quick-game/quick-game.d';
 import { Button, Offset } from '../../../../../../shared/UI';
+import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
+import ContainerHeaderTimerGIB from '../../components/UI/ContainerGIB/ContainerHeaderTimerGIB';
+import ContainerOneBtn from '../../components/UI/ControllerGIB/ContainerOneBtn';
+import ContainerInfoBodyGIB from '../../components/UI/ContainerGIB/ContainerInfoBodyGIB';
+import ContainerInfoGIB from '../../components/UI/ContainerGIB/ContainerInfoGIB';
+import ContainerRollGIB from '../../components/UI/ContainerGIB/ContainerRollGIB';
 
 interface IMoveBoardQGProps {
 	onMove: (params: any) => void;
@@ -23,11 +29,6 @@ interface IMoveBoardQGProps {
 
 type EventsStore = null;
 
-type StateStore = {
-  dataPlayerQG: IPlayer;
-};
-
-
 export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 	onMove,
 	action,
@@ -35,12 +36,8 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 	titleBtn = 'Походить',
 	timeEndMove,
 }: IMoveBoardQGProps) => {
-    const width = useWindowWidth();
-    const isMobile = width < 992;
+  const {isMobile} = useWindowWidth();
 	  const [ isClick, setIsClick ] =  React.useState(false); 
-    const { dataPlayerQG } = useStoreon<StateStore, EventsStore>(
-      "dataPlayerQG",
-    );
     
     const handleClickMove = () => {
       onMove({
@@ -50,70 +47,67 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
       setTimeout(()=>setIsClick(false),1000);
     }
 	return (
-    <div className={styles["gib__container"]} data-name='MoveBoardQG'>
+    <ContainerGIB name='MoveBoardQG'>
       {/* header */}
       {title ? (
         <>
           {!isMobile  && <Offset mt={30} />}
           {/* -container--timer */}
-          <div className={styles["gib__header-container--timer"]} style={{width: '100%'}}> 
+          <ContainerHeaderTimerGIB > 
             <Title className={styles["gib__title"]} title={title} />
-            (
-            <AutoCounter
-              disabled={false}
-              counter={timeEndMove}
-              callback={() => {}}
-            />{" "}
-            сек.)
-          </div>
+            <div>
+              (
+              <AutoCounter
+                disabled={false}
+                counter={timeEndMove}
+                callback={() => {}}
+                />{" "}
+              сек.)
+            </div>
+          </ContainerHeaderTimerGIB>
         </>
       ) : (
         !isMobile && <Offset mt={30} />
       )}
       {/* btn */}
-      <div className={styles["gib__btns-container--btn-one"]}>
+      <ContainerOneBtn>
+        <Offset mt={10} />
         <Button
+          p={[10,30]}
+          type="fill"
+          fillColor="#726CED"
           disabled={isClick}
           onClick={handleClickMove}
         >
           {titleBtn}
         </Button>
-      </div>
+      </ContainerOneBtn>
       <ContainerInfoTwoColumnGIB></ContainerInfoTwoColumnGIB>
 
       <Offset mt={10} />
       {/* body */}
-      <div
+      <ContainerInfoBodyGIB
         style={{ background: "#E9ECFF" }}
-        className={styles["gib__body-container"]}
+        // className={styles["gib__body-container"]}
       >
-        <div className={styles["gib__body-container-wrap--full"]}>
-          <Icon src={logo} width="100%" height="100%" />
-        </div>
+        <ContainerInfoGIB>
+          <Icon src={logo} width={[0, 200]} height={"100%"}/>
+        </ContainerInfoGIB>
         {action === "move" && (
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              position: "absolute",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <ContainerRollGIB>
             <RollDiceContainer
-              roleDice1={dataPlayerQG.dice_roll_1}
-              roleDice2={dataPlayerQG.dice_roll_2}
               onClick={handleClickMove}
             />
-          </div>
+          </ContainerRollGIB>
         )}
-      </div>
+      </ContainerInfoBodyGIB>
       <Offset mt={10} />
       {/* footer */}
-      <GameInfoBoardFooterContainer style={{ width: 'calc(100% - 30px)', margin: '0 15px'}}/>
+      <GameInfoBoardFooterContainer 
+      // style={{ width: 'calc(100% - 30px)', margin: '0 15px'}}
+      />
 
       <Offset mt={10} />
-    </div>
+    </ContainerGIB>
   );
 };

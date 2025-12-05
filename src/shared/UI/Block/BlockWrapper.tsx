@@ -8,8 +8,7 @@ interface IProps{
     isWithoutBottomIndent?: boolean;
 }
 const BlockWrapper: React.FC<IProps> = ({ children, style, isWithoutBottomIndent }) => {
-  const width = useWindowWidth();
-  const isMobile = width < 992;
+  const {isMobile} = useWindowWidth();
 
   return (
     <div

@@ -7,7 +7,7 @@ import { useZoomPan } from '../../hooks/useZoomPan';
 
 const DescriptionInterface: React.FC = () => {
     const [containerSize, setContainerSize] = useState({ w: 0, h: 0 });
-    const width = useWindowWidth();
+    const {width} = useWindowWidth();
     const containerRef = useRef<HTMLDivElement>(null);
     const contentWidth = width;
     const contentHeight = 400;

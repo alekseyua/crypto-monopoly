@@ -9,7 +9,8 @@
 		color: var(--text-color);
 		@include adaptiv-font(18,5);
 		text-wrap: nowrap;
-		display: block;
+		display: flex;
+		justify-content: center;
 		@media (max-width: 992px) {
 		@include adaptiv-font(18, 14);
 		}

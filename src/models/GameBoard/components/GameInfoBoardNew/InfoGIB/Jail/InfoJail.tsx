@@ -5,10 +5,10 @@ import Icon from "../../../../../../shared/UI/Icon/Icon";
 import Text from "../../../../../../shared/UI/Text/Text";
 import Title from "../../../../../../shared/UI/Title/Title";
 import { CardDataDataActionsJailType } from "../../../../../../store/quick-game/quick-game.d";
-import ContainerGIB from "../../UIContainerGIB/ContainerGIB";
-import ContainerInfoBodyGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB";
-import ContainerInfoHeaderGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB";
-import ContainerInfoTwoColumnGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB";
+import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
+import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
+import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerInfoHeaderGIB";
+import ContainerInfoTwoColumnGIB from "../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB";
 import { temporaryDisableBtn } from "../../../../../../helpers/helper";
 
 
@@ -70,7 +70,7 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
 	}
 
 	return (
-    <ContainerGIB>
+    <ContainerGIB name="InfoJail">
       <Icon src={icons.logo} width="100%" height="100%" backgroundFont />
       <ContainerInfoHeaderGIB>
         <Offset mt={30} />

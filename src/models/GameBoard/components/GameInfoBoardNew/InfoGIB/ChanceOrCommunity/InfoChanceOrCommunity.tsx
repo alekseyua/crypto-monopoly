@@ -4,13 +4,13 @@ import { Button, Offset } from "../../../../../../shared/UI";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
 import Title from "../../../../../../shared/UI/Title/Title";
 import { ICard } from "../../../../../../store/quick-game/quick-game.d";
-import ContainerOneBtn from "../../ControllerGIB/ContainerOneBtn";
-import ContainerTwoBtn from "../../ControllerGIB/ContainerTwoBtn";
+import ContainerOneBtn from "../../components/UI/ControllerGIB/ContainerOneBtn";
+import ContainerTwoBtn from "../../components/UI/ControllerGIB/ContainerTwoBtn";
 import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";
-import ContainerGIB from "../../UIContainerGIB/ContainerGIB";
-import ContainerInfoBodyGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB";
-import ContainerInfoFooterGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB";
-import ContainerInfoHeaderGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB";
+import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
+import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
+import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
+import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerInfoHeaderGIB";
 import { temporaryDisableBtn } from "../../../../../../helpers/helper";
 
 interface IInfoChanceOrCommunityProps {
@@ -56,7 +56,7 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
     return cards.find((c: ICard) => c.id === id);
   };
   return (
-    <ContainerGIB style={{ background: "#E9ECFF" }}>
+    <ContainerGIB name="InfoChanceOrCommunity" style={{ background: "#E9ECFF" }}>
       <Icon
         src={typeCard === "chance" ? icons.chance : icons.communityOpacity}
         width="100%"
@@ -81,10 +81,10 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
           </Button>
         </ContainerOneBtn>
       </ContainerInfoHeaderGIB>
-      <Offset mt={70} />
-      <ContainerInfoBodyGIB>
+      {/* <Offset mt={70} /> */}
+      <ContainerInfoBodyGIB center>
         <Title tag="h2" title={content} center />
-        <Offset mt={60} />
+        <Offset mt={30} />
         <ContainerTwoBtn
           style={{
             gridTemplateColumns: actions?.length === 2 ? "1fr 1fr" : "1fr",
@@ -121,7 +121,7 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
                     variant="fill"
                     fillColor={"#726CED"}
                     disabled={isClick || (isActionHouses && !cardIdWhereMoveTo)}
-                    p={20}
+                    p={15}
                     onClick={() => {
                       temporaryDisableBtn(2000, setIsClick);
                       let params: any = {

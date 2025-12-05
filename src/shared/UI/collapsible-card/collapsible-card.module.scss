@@ -134,8 +134,10 @@
 	//label--mobile
 	&--mobile{
 		display: flex;
+		flex-wrap: nowrap;
 		align-items: baseline;
 		gap: 5px;
+		@include adaptiv-font(20, 13);
 	}
 }
 .label.active {

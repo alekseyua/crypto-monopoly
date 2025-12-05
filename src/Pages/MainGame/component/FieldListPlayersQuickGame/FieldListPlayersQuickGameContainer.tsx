@@ -23,8 +23,7 @@ const FieldListPlayersQGContainer: React.FC<IFieldListPlayersQGProps> = ({
   listSelectUserPreview,
   handleClickUserPreview,
 }: IFieldListPlayersQGProps) => {
-  const width = useWindowWidth();
-  const isMobile = width <= 992;
+  const {isMobile} = useWindowWidth();
   const [showFeetHistory, setShowFeetHistory] = useState<boolean>(isMobile);
   const {showRate, dispatch} = useStoreon('showRate',);
   const [isOpenListPlayers, setIsOpenListPlayers ] = useState<boolean>(true);
@@ -71,7 +70,7 @@ const FieldListPlayersQGContainer: React.FC<IFieldListPlayersQGProps> = ({
         onClick={() => setShowFeetHistory(false)}
         fillColor='#726CED'
         type='filled'
-      p={12}
+        p={12}
         textColor='#fff'
       >Список игроков</Button>
   }

@@ -1,4 +1,5 @@
 import { ReactSVG } from 'react-svg';
+import React, { useEffect, useState } from 'react';
 import styles from './styles/icon.module.scss';
 
 interface IIcon {
@@ -10,55 +11,95 @@ interface IIcon {
     onClick?: () => void;
     mr?: number | string;
     ml?: number | string;
-    width?: string;
-    height?: string;
-    rotate?: number; // rotation angle in degrees
+    width?: string | number | [string | number, string | number];
+    height?: string | number | [string | number, string | number];
+    rotate?: number;
     display?: string;
-    props?: any;
     up?: number;
     down?: number;
-    // additional props for svg tag
+    props?: any;
+
+    // screen bounds (optional)
+    minW?: number;
+    maxW?: number;
 }
 
-const Icon:React.FC<IIcon> = ({
+const Icon: React.FC<IIcon> = ({
     src,
     style = {},
     className,
     addClass,
     onClick,
-    width='20px',
-    height='20px',
-    rotate = 0,
+
     mr,
     ml,
-    backgroundFont,
     display,
+    backgroundFont,
     up,
     down,
+    rotate = 0,
+
+    width = '20px',
+    height = '20px',
+
+    minW = 320,
+    maxW = 1920,
+
     ...props
-}: IIcon) => {
-    let customStyle: React.CSSProperties & Record<string, string | number> = {};
-    if(!!rotate){
-        customStyle = {
-            transform: `rotate(${rotate}deg)`,
+}) => {
+
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handler = () => setScreenWidth(window.innerWidth);
+        window.addEventListener("resize", handler);
+        return () => window.removeEventListener("resize", handler);
+    }, []);
+
+    const interpolate = (minVal: number, maxVal: number): number => {
+        const w = Math.min(Math.max(screenWidth, minW), maxW);
+        const progress = (w - minW) / (maxW - minW);
+        return minVal + (maxVal - minVal) * progress;
+    };
+
+    const toPx = (val: string | number): number => {
+        if (typeof val === "number") return val;
+        if (val.endsWith("px")) return parseFloat(val);
+        return parseFloat(val); // если "100%" просто число — не используем проценты
+    };
+
+    const calcSize = (val: any): string => {
+        if (Array.isArray(val)) {
+            const [minVal, maxVal] = val;
+            const minPx = toPx(minVal);
+            const maxPx = toPx(maxVal);
+            return interpolate(minPx, maxPx) + "px";
         }
-    }
-    if(mr){ customStyle = {...customStyle,marginRight:mr,};}
-    if(ml){ customStyle = {...customStyle,marginLeft:ml,}; }
-    if(display){ customStyle = {...customStyle,display:display,}; }
-    if(up) customStyle = {
-        ...customStyle,
-        "--bottom": `${up}px`
-    }
-   if(down) customStyle = {
-        ...customStyle,
-        "--top": `${down}px`
-    }
-    
+
+        if (typeof val === "number") return val + "px";
+        return val;
+    };
+
+    const finalWidth = calcSize(width);
+    const finalHeight = calcSize(height);
+
+    let customStyle: React.CSSProperties | Record<string, string | number>= {
+        transform: `rotate(${rotate}deg)`,
+        transition: "width .2s ease, height .2s ease, transform .2s ease",
+        ['']: 0,
+    };
+
+    if (mr) customStyle.marginRight = mr;
+    if (ml) customStyle.marginLeft = ml;
+    if (display) customStyle.display = display;
+
+    if (up) customStyle["--bottom"] = `${up}px`;
+    if (down) customStyle["--top"] = `${down}px`;
+
     return (
-        <span 
+        <span
             className={`${styles.wrapIcon} ${backgroundFont && styles.backgroundFont}`}
-            style={customStyle}    
+            style={customStyle}
         >
             <ReactSVG
                 src={src}
@@ -66,15 +107,13 @@ const Icon:React.FC<IIcon> = ({
                 wrapper="span"
                 className={className}
                 style={style}
-                beforeInjection={async(svg) => {
-                    svg.classList.add('svg-class-' + addClass)
-                    svg.setAttribute('style', `width: ${width}; height: ${height}`)
+                beforeInjection={(svg) => {
+                    svg.setAttribute("style", `width: ${finalWidth}; height: ${finalHeight}`);
                 }}
                 {...props}
             />
         </span>
-    )
-}
+    );
+};
 
-export default Icon
-
+export default Icon;

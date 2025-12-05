@@ -7,62 +7,64 @@ import { getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../../hel
 import Title from '../../../../../shared/UI/Title/Title';
 import { CardDataDataActionsType } from '../../../../../store/quick-game/quick-game.d';
 import GameInfoBoardFooterContainer from '../FooterGIB/GameInfoBoardFooterContainer';
-import ContainerGIB from '../UIContainerGIB/ContainerGIB';
-import ContainerInfoHeaderGIB from '../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
-import ContainerTwoBtn from '../ControllerGIB/ContainerTwoBtn';
-import ContainerInfoBodyGIB from '../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
-import ContainerInfoTwoColumnGIB from '../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
-import InnerBtnContextSpaceBetween from '../ControllerGIB/InnerBtnContextSpaceBetween';
+import ContainerGIB from '../components/UI/ContainerGIB/ContainerGIB';
+import ContainerInfoHeaderGIB from '../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
+import ContainerTwoBtn from '../components/UI/ControllerGIB/ContainerTwoBtn';
+import ContainerInfoBodyGIB from '../components/UI/ContainerGIB/ContainerInfoBodyGIB';
+import ContainerInfoTwoColumnGIB from '../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
+import InnerBtnContextSpaceBetween from '../components/UI/ControllerGIB/InnerBtnContextSpaceBetween';
 import Text from '../../../../../shared/UI/Text/Text';
-import ContainerInfoGIB from '../UIContainerGIB/InfoGIB/ContainerInfoGIB';
+import ContainerInfoGIB from '../components/UI/ContainerGIB/ContainerInfoGIB';
+import { useWindowWidth } from '../../../../../hooks/useWindowWidth';
 
 interface IBayOrAuctionProps {
-	labelColors?: string[];
-	labelTextColors?: string[];
-	actions: CardDataDataActionsType;
-	card_cost?: number;
-	game_id: number;
-	card_id: number;
-	timeEndMove: number;
-	dataCard: any //IDataContainer;
-	handleCard?: ({ game_id, card_id, action }: { action: string, game_id: number, card_id: number }) => void;
+  labelColors?: string[];
+  labelTextColors?: string[];
+  actions: CardDataDataActionsType;
+  card_cost?: number;
+  game_id: number;
+  card_id: number;
+  timeEndMove: number;
+  dataCard: any //IDataContainer;
+  handleCard?: ({ game_id, card_id, action }: { action: string, game_id: number, card_id: number }) => void;
 }
 
 export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
-	labelColors = ['transparent', '#65B99E'],
-	labelTextColors = ['#000000', '#ffffff'],
-	card_cost,
-	game_id,
-	card_id,
-	dataCard,
-	handleCard,
-	actions,
-	timeEndMove
+  labelColors = ['transparent', '#65B99E'],
+  labelTextColors = ['#000000', '#ffffff'],
+  card_cost,
+  game_id,
+  card_id,
+  dataCard,
+  handleCard,
+  actions,
+  timeEndMove
 }: IBayOrAuctionProps) => {
-	const [amountHouses, setAmountHouses] = React.useState<number>(1);
-	const [isActionCard, setIsActionCard] = React.useState<boolean>(false);
-	const [ isClick, setIsClick ] = React.useState<boolean>(false);
+  const [amountHouses, setAmountHouses] = React.useState<number>(1);
+  const [isActionCard, setIsActionCard] = React.useState<boolean>(false);
+  const [isClick, setIsClick] = React.useState<boolean>(false);
+  const { isMobile } = useWindowWidth();
 
-	const handleBuyCard = function () {
-		temporaryDisableBtn(2000, setIsClick);
-		handleCard && handleCard({
-			action: 'buy',
-			game_id,
-			card_id,
-		})
-	}
-	const handleAuction = function () {
-		setIsActionCard(true);
-		temporaryDisableBtn(2000, setIsClick);
-		!isActionCard && handleCard && handleCard({
-			action: 'start_auction',
-			game_id,
-			card_id,
-		});
-	}
+  const handleBuyCard = function () {
+    temporaryDisableBtn(2000, setIsClick);
+    handleCard && handleCard({
+      action: 'buy',
+      game_id,
+      card_id,
+    })
+  }
+  const handleAuction = function () {
+    setIsActionCard(true);
+    temporaryDisableBtn(2000, setIsClick);
+    !isActionCard && handleCard && handleCard({
+      action: 'start_auction',
+      game_id,
+      card_id,
+    });
+  }
 
-	return (
-    <ContainerGIB style={{ background: "#ffffffff" }}>
+  return (
+    <ContainerGIB name="BayOrAuction" style={{ background: "#ffffffff" }}>
       {/* header */}
       <ContainerInfoHeaderGIB>
         <Offset mt={10} />
@@ -97,7 +99,7 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
             }
           </Button>
         </ContainerTwoBtn>
-        <Offset mt={10} />
+        {!isMobile && <Offset mt={10} />}
       </ContainerInfoHeaderGIB>
       <Offset mt={10} />
       {/* body */}
@@ -122,7 +124,7 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
           <Button
             fillColor={labelColors[1]}
             variant="filled"
-            // center
+          // center
           >
             <Text
               style={{ color: labelTextColors[1] }}
@@ -241,7 +243,7 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
                           fillColor="rgba(239, 238, 255, 1)"
                           style={{ width: "22px", marginLeft: "10px" }}
                           onClick={() => setAmountHouses(amountHouses + 1)}
-                          // className={styles['gib__btn-action-house']}
+                        // className={styles['gib__btn-action-house']}
                         >
                           +
                         </Button>
@@ -252,7 +254,7 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
                           type="fill-round"
                           fillColor="rgba(239, 238, 255, 1)"
                           style={{ width: "22px", marginLeft: "10px" }}
-                          // className={styles['gib__btn-action-house']}
+                        // className={styles['gib__btn-action-house']}
                         >
                           +
                         </Button>

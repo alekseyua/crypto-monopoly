@@ -1,8 +1,8 @@
 import React from 'react';
-import ContainerGIB from '../../UIContainerGIB/ContainerGIB';
-import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
-import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
-import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
+import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
+import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
+import ContainerInfoBodyGIB from '../../components/UI/ContainerGIB/ContainerInfoBodyGIB';
+import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
 import { IPlayer } from '../../../../../../store/quick-game/quick-game.d';
 import { Offset } from '../../../../../../shared/UI';
 import Title from '../../../../../../shared/UI/Title/Title';
@@ -18,12 +18,11 @@ interface IProps {
 const Wait: React.FC<IProps> = ({
   playerCurrentMove,
 }: IProps) => {
-  const width = useWindowWidth();
-      const isMobile = width < 992;
+  const {isMobile} = useWindowWidth();
   if (!playerCurrentMove?.username) return <Preloader />;
   
   return (
-    <ContainerGIB>
+    <ContainerGIB name="Wait">
       <Icon
         src={icons.logo}
         width='100%'

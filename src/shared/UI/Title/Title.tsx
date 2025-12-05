@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/title.module.scss';
 
 interface IProps {
   title?: string;
@@ -32,7 +33,7 @@ const Title: React.FC<IProps> = ({
     case 'h1':
       return (
         <h1
-          data-testid="title"
+          data-title="title"
           className={className}
           style={style}
           onClick={onClick}
@@ -44,7 +45,7 @@ const Title: React.FC<IProps> = ({
     case 'h2':
       return (
         <h2
-          data-testid="title"
+          data-title="title"
           className={className}
           style={style}
           onClick={onClick}
@@ -56,7 +57,7 @@ const Title: React.FC<IProps> = ({
     case 'h3':
       return (
         <h3
-          data-testid="title"
+          data-title="title"
           className={className}
           style={style}
           onClick={onClick}
@@ -68,7 +69,7 @@ const Title: React.FC<IProps> = ({
     case 'h4':
       return (
         <h4
-          data-testid="title"
+          data-title="title"
           className={className}
           style={style}
           onClick={onClick}
@@ -80,7 +81,7 @@ const Title: React.FC<IProps> = ({
     case 'h5':
       return (
         <h5
-          data-testid="title"
+          data-title="title"
           className={className}
           style={style}
           onClick={onClick}
@@ -92,7 +93,7 @@ const Title: React.FC<IProps> = ({
     case 'h6':
       return (
         <h6
-          data-testid="title"
+          data-title="title"
           className={className}
           style={style}
           onClick={onClick}
@@ -105,7 +106,7 @@ const Title: React.FC<IProps> = ({
 
       return (
         <h2
-          data-testid="title"
+          data-title="title"
           className={className}
           style={style}
           onClick={onClick}

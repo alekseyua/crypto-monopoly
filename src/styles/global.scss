@@ -98,15 +98,20 @@ a {
 h1{
     font-weight: 700;
     @include adaptiv-font(36,20);
-    line-height: 49px;
+    // line-height: 49px;
+    @include adaptiv-value(line-height, 49, 20, 2);
     color: #1E1E1E;
 }
 
 h2{
     font-weight: 700;
-    @include adaptiv-font(24,14);
-    line-height: 33px;
+    @include adaptiv-font(24,10);
+    // line-height: 33px;
+    @include adaptiv-value(line-height, 33, 10,2);
     color: #1E1E1E;
+    @media (max-width: 778px) {
+    @include adaptiv-font(24, 20);        
+    }
 }
 
 .tool-tip__balance {

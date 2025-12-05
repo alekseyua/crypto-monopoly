@@ -1,8 +1,8 @@
 import React from 'react';
-import ContainerGIB from '../../UIContainerGIB/ContainerGIB';
-import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
-import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
-import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
+import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
+import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
+import ContainerInfoBodyGIB from '../../components/UI/ContainerGIB/ContainerInfoBodyGIB';
+import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
 import { Offset } from '../../../../../../shared/UI';
 import Title from '../../../../../../shared/UI/Title/Title';
 import { icons } from '../../../../../../assets';
@@ -13,7 +13,7 @@ interface IProps {
 
 const Empty: React.FC<IProps> = () => {
   return (
-    <ContainerGIB>
+    <ContainerGIB name="Empty">
       <Icon
         src={icons.logo}
         width='100%'

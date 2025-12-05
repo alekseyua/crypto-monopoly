@@ -6,10 +6,10 @@ import Icon from "../../../../../../shared/UI/Icon/Icon";
 import Title from "../../../../../../shared/UI/Title/Title";
 // import styles from "./styles/gib.module.scss";
 import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";
-import ContainerInfoHeaderGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB";
-import ContainerGIB from "../../UIContainerGIB/ContainerGIB";
-import ContainerInfoBodyGIB from "../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB";
-import ContainerOneBtn from "../../ControllerGIB/ContainerOneBtn";
+import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerInfoHeaderGIB";
+import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
+import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
+import ContainerOneBtn from "../../components/UI/ControllerGIB/ContainerOneBtn";
 
 interface IGameInfoBoardMoveToProps {
   moveTo?: any;
@@ -23,7 +23,7 @@ export const MoveTo: React.FC<IGameInfoBoardMoveToProps> = ({
 }: IGameInfoBoardMoveToProps) => {
   const [isClick, setIsClick] = React.useState(false);
   return (
-    <ContainerGIB>
+    <ContainerGIB name="MoveTo">
       <Icon src={icons.logo} width="100%" height="100%" backgroundFont />
 
       {/* header */}

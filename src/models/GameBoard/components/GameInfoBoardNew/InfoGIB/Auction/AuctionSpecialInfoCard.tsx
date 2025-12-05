@@ -3,16 +3,16 @@ import { Button, Offset } from '../../../../../../shared/UI';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
 import React from 'react';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
-import ContainerGIB from '../../UIContainerGIB/ContainerGIB';
-import ContainerInfoHeaderGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoHeaderGIB';
-import ContainerInfoBodyGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoBodyGIB';
+import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
+import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
+import ContainerInfoBodyGIB from '../../components/UI/ContainerGIB/ContainerInfoBodyGIB';
 import Title from '../../../../../../shared/UI/Title/Title';
 import Text from '../../../../../../shared/UI/Text/Text';
-import ContainerInfoTwoColumnGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoTwoColumnGIB';
-import InnerBtnContextSpaceBetween from '../../ControllerGIB/InnerBtnContextSpaceBetween';
-import ContainerInfoFooterGIB from '../../UIContainerGIB/InfoGIB/ContainerInfoFooterGIB';
+import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
+import InnerBtnContextSpaceBetween from '../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween';
+import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
 import { ISpecialCardInfo } from '../../../../../../store/quick-game/quick-game.d';
-import ContainerOneBtn from '../../ControllerGIB/ContainerOneBtn';
+import ContainerOneBtn from '../../components/UI/ControllerGIB/ContainerOneBtn';
 import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
 
 interface IProps {
@@ -28,7 +28,7 @@ export const AuctionSpecialInfoCard: React.FC<IProps> = ({
 	handleChangeScreen,
 }: IProps) => {
 	return (
-    <ContainerGIB
+    <ContainerGIB name="AuctionSpecialInfoCard"
       style={{
         background: "#FFEFD3",
       }}

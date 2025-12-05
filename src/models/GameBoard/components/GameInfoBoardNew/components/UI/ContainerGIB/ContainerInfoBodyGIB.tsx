@@ -5,15 +5,18 @@ interface IProps {
     children?: React.ReactNode;
     p?: number | string;
     style?: React.CSSProperties;
-}
+    center?: boolean;
+}   
 
 const ContainerInfoBodyGIB:React.FC<IProps> = ({
     p,
-    children,
     style,
+    center,
+    children,
 }: IProps) => {
-    const customStyle: CSSProperties= {};
+    let customStyle: CSSProperties= {};
     if(p) {customStyle.padding = p}
+    if(center){customStyle = {...customStyle, justifyContent:'center', alignItems: 'center'}}
     return (
         <div 
             className={styles['gib__container-info-body']}

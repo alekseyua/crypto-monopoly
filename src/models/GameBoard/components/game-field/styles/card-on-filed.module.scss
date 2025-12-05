@@ -353,10 +353,10 @@
         overflow: hidden;
 
         &--right {
-
             // card-field__image--community
             &.card-field__image--community,
-            &.card-field__image--super_tax {
+            &.card-field__image--super_tax,
+            &.card-field__image--income_tax {
                 background-size: 30px 30px;
                 &::after {
                     content: '';
@@ -396,11 +396,10 @@
         }
 
         &--bottom {
-
             // position: absolute;
             // card-field__image--community
             &.card-field__image--community,
-            &.card-field__image--incoming_tax {
+            &.card-field__image--income_tax {
                 background-size: 30px 30px;
                 &::after {
                     content: '';
@@ -616,9 +615,12 @@
             }
             //card-field__text-title--right
             &--right{
-                // left: -15px;
                 position: relative;
                 padding-left: 5px;
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
             }
             //card-field__text-title--top
             &--top{
