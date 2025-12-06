@@ -68,6 +68,7 @@ const RollDiceContainer: React.FC<IProps> = ({
       clearTimeout(timer);
       dispatch(RESET_ROLL_DICE_QG);
     };
+    // eslint-disable-next-line
   }, [roleDiceStore.rd1, roleDiceStore.rd2, dispatch]);
 
   return (

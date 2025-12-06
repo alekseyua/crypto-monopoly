@@ -31,7 +31,7 @@ const RegitUserContainer: React.FC<IProps> = ({ navigate }) => {
 		} else if (user.state_registration === 2) {
 			dispatch(SET_REG_STEP, 4)
 		}
-	}, [user]);
+	}, [user, dispatch]);
 
 	useEffect(() => {
 		// localhost:3000/authorization/register?referal_code=nCulctaV

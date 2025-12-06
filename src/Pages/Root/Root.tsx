@@ -42,7 +42,7 @@ const Root = () => {
 			console.log('redirect quick game')
 			navigate(NAV_QG_SELECT_PAGE);
 		}
-	},[dispatch]);
+	}, [navigate, dispatch]);
 
 	return (
 		<>

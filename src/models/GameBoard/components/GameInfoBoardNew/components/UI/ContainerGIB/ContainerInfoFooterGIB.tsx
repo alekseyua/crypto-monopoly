@@ -1,11 +1,12 @@
 
 import React, { CSSProperties } from 'react'
 import styles from '../../styles/gib.module.scss';
+import { getPadding } from '../../../../../../../helpers/helper';
 
 interface IProps {
   children?: React.ReactNode;
   style?: React.CSSProperties; // Optional, for custom styles
-  p?: number | string;
+  p?: number | string | string[] | number[];
 }
 
 const ContainerInfoFooterGIB: React.FC<IProps> = ({
@@ -14,7 +15,7 @@ const ContainerInfoFooterGIB: React.FC<IProps> = ({
   children,
 }: IProps) => {
      const customStyle: CSSProperties= {};
-        if(p) {customStyle.padding = p}
+        if(p) {customStyle.padding = getPadding(p)}
   return (
     <div
       className={styles["gib__container-info-footer"]}

@@ -3,8 +3,8 @@ import { API_GET_USER } from "../../api/config.js";
 import { StoreonStore } from "storeon";
 import { v4 } from "uuid";
 import { _INIT } from "../auth/auth";
-import { deepEqual, getLocaleStore } from "../../helpers/helper";
-import { IUser, IUserPayload } from "./user.d";
+import { getLocaleStore } from "../../helpers/helper";
+import { IUserPayload } from "./user.d";
 
 export const SET_USERS: string = v4();
 export const GET_USERS = 'profile/GET_USERS' as const;
@@ -18,7 +18,6 @@ export const users = (store: StoreonStore) => {
     store.on(SET_USERS_NULL, () => ({ user: initUser }));
     
   store.on(GET_USERS, async (state, payload: IUserPayload, { dispatch }) => {
-      const { user }:any= state;
       const callback = payload?.callback;
       const email: string | undefined =
         payload?.email ?? getLocaleStore("email");

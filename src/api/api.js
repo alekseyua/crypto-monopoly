@@ -92,12 +92,7 @@ class ApiService {
         }else if( error.response.status === 400){
           return error.response
         } else if (error.status === 404) {
-          const err = new Error(error.response.data.error);
           return Promise.reject(error); 
-          throw {
-            status: 404,
-            error: err,
-          };
         }
 
       })

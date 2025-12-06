@@ -4,7 +4,6 @@ import { URL_FEED_QG, URL_QGS } from "../../api/config.js";
 import { StoreonStore } from "storeon";
 import {
   connectWebSocket,
-  delay,
   getUrlWebsocket,
   isKeyPresentInHash,
 } from "../../helpers/helper";
@@ -255,7 +254,7 @@ export const quickGame = (store: StoreonStore) => {
         (socket.get_games = new WebSocket(URL)),
         async (res: any) => {
           // debugger
-          const start = performance.now();
+          // const start = performance.now();
 
           if (!!storage?.user?.id) {
             profileID = storage?.user?.id;
@@ -332,12 +331,12 @@ export const quickGame = (store: StoreonStore) => {
               dispatch(SET_INFO_MESSAGE_POPUP, currentPlayer[0].popup_data);
             }
             // =========================================================
-            type PRIORITIES = {
-              CHOOSE_DATA: 0,
-              AUCTION_DATA: 1,
-              CARD_DATA: 2,
-              EXCHANGE_DATA: 3
-            }
+            // type PRIORITIES = {
+            //   CHOOSE_DATA: 0,
+            //   AUCTION_DATA: 1,
+            //   CARD_DATA: 2,
+            //   EXCHANGE_DATA: 3
+            // }
             let choose_data: IChooseData | undefined = undefined;
             if (isKeyPresentInHash(currentPlayer[0]?.choose_data, "actions")) {
               choose_data = {...currentPlayer[0]?.choose_data as IChooseData};
@@ -407,7 +406,7 @@ export const quickGame = (store: StoreonStore) => {
           //   payload?.redirectTo && payload.redirectTo(NAV_QG_SELECT_PAGE);
           // }
           // =============================================================
-          const duration = performance.now() - start;
+          // const duration = performance.now() - start;
           // console.log('%c--------------------------------------------','color: Purple')
           // console.log(`%cData Processing state: ${duration.toFixed(2)} ms`, 'color: red; font-weight:bold');
           // console.log('%c--------------------------------------------', 'color: Purple')

@@ -1,6 +1,4 @@
-import { icons } from '../../../../assets';
 import { Button, Input, Label, WrapperCard } from '../../../../shared/UI';
-import Icon from '../../../../shared/UI/Icon/Icon';
 import cls from './step1.module.scss';
 import { useStoreon } from 'storeon/react';
 

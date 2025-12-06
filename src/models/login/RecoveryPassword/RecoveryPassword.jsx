@@ -37,7 +37,7 @@ const RecoveryPassword = ({
         />;
         default: return <></>
     }
-  }, [handleGetDuplicateCode, recoveryStep, showPassword, showPasswordConfirm, handleNextStep, handlePrevStep, handleSetRecData, handleShowPassword,handleShowPasswordConfirm]);
+  }, [handleGetDuplicateCode, recoveryStep, showPassword, handleStepBack, showPasswordConfirm, handleNextStep, handlePrevStep, handleSetRecData, handleShowPassword,handleShowPasswordConfirm]);
 
   return <div>
     {changeSteps()}

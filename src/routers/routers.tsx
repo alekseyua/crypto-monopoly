@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { NAV_ABOUT, NAV_ALL_ACHIEVEMENTS, NAV_AUTH_PAGE, NAV_BALANCE, NAV_DESC_INTERFACE, NAV_GAME_RULES, NAV_MAIN_PAGE, NAV_PROFILE, NAV_QG_FIELD_PAGE, NAV_QG_SELECT_PAGE, NAV_REG_PAGE, NAV_RULES_PAGE } from "./config-nav";
+import { NAV_ABOUT, NAV_ALL_ACHIEVEMENTS, NAV_AUTH_PAGE, NAV_DESC_INTERFACE, NAV_GAME_RULES, NAV_MAIN_PAGE, NAV_PROFILE, NAV_QG_FIELD_PAGE, NAV_QG_SELECT_PAGE, NAV_REG_PAGE, NAV_RULES_PAGE } from "./config-nav";
 import SelectQGContainer from "../Pages/QuickGame/SelectQuickGame/SelectQuickGameContainer";
 import { MobileMainGame } from "../Pages/mobile-main-game/mobile-main-game";
 import { Auction } from "../Pages/auction/auction";
@@ -13,7 +13,6 @@ import RegitUserContainer from "../models/register/RegitUserContainer";
 import LoginUserContainer from "../models/login/LoginUserContainer";
 import MainGame from "../Pages/MainGame/MainGame";
 import { Rules } from "../models/Rules/Rules";
-import BalanceContainer from "../Pages/Balance/BalanceContainer";
 import WrapRootHeader from "../Pages/Root/WrapRootHeader";
 import AboutContainer from "../Pages/About/AboutContainer";
 import AllGameRulesContainer from "../Pages/AllGameRules/AllGameRulesContainer";

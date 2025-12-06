@@ -1,4 +1,3 @@
-import { useStoreon } from 'storeon/react';
 import { logo } from '../../../../../../assets';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
@@ -7,10 +6,8 @@ import Title from '../../../../../../shared/UI/Title/Title';
 import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
 import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
 import styles from '../../styles/gib.module.scss';
-// import styles from '../../../GameInfoBoard/styles/old-gib.module.scss'
 import React from 'react';
 import { useWindowWidth } from '../../../../../../hooks/useWindowWidth';
-import { IPlayer } from '../../../../../../store/quick-game/quick-game.d';
 import { Button, Offset } from '../../../../../../shared/UI';
 import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
 import ContainerHeaderTimerGIB from '../../components/UI/ContainerGIB/ContainerHeaderTimerGIB';
@@ -26,8 +23,6 @@ interface IMoveBoardQGProps {
 	action: string;
 	timeEndMove: number;
 }
-
-type EventsStore = null;
 
 export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 	onMove,

@@ -8,8 +8,7 @@ import { StoreonStore } from "storeon";
 import { delay, getLocaleStore, removeLocaleStore } from "../../helpers/helper";
 import { SET_DATA_PROFILE } from "../profile/profile";
 import { GET_USERS } from "../users/users";
-import { GET_DUBLICATE_CODE_RECOVERY, SET_ERROR_RECOVERY, SET_RECOVERY_STEP, SET_RECOVERY_TO_STORE } from "./recovery";
-import { register } from "module";
+import { GET_DUBLICATE_CODE_RECOVERY, SET_ERROR_RECOVERY, SET_RECOVERY_TO_STORE } from "./recovery";
 import { SET_REG_STEP, SET_REG_TO_STORE } from "./registration";
 
 export const _INIT = '@init';
