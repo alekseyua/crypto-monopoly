@@ -4,10 +4,18 @@ import { useStoreon } from 'storeon/react';
 import { SET_MODAL } from '../../store/modal/modal';
 import { CREATE_NEW_QG } from '../../store/quick-game/quick-game';
 
+export interface ICreateGameData {
+  name: string;
+  bet_amount: number;
+  turn_time: number;
+  start_money: number;
+  max_players: number;
+  action: 'create_game';
+}
 const FormInputCreateQGContainer:React.FC = () => {
 
   const { dispatch } = useStoreon();
-  const [params, setParams] = React.useState({
+  const [params, setParams] = React.useState<ICreateGameData>({
     name: '',
     bet_amount: 0,
     turn_time: 0,
@@ -35,7 +43,7 @@ const FormInputCreateQGContainer:React.FC = () => {
       e.preventDefault();
       if ((e as React.KeyboardEvent<HTMLButtonElement>).keyCode !== 32 && (e as React.KeyboardEvent<HTMLButtonElement>).keyCode !== 13) return
     }
-    dispatch(CREATE_NEW_QG, params)
+    dispatch(CREATE_NEW_QG, {...params})
     dispatch(SET_MODAL, { isOpen: false });
   }
 
@@ -51,9 +59,10 @@ const FormInputCreateQGContainer:React.FC = () => {
   
   return (
     <FormInputCreateQG 
-    handleChangeInput={handleChangeInput}
-    handleSubmit={handleSubmit}
-    paramsError={paramsError}
+      handleChangeInput={handleChangeInput}
+      handleSubmit={handleSubmit}
+      paramsError={paramsError}
+      values={params}
     />
   )
 }

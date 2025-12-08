@@ -6,7 +6,7 @@ import ContainerOneBtn from '../../components/UI/ControllerGIB/ContainerOneBtn';
 import Text from '../../../../../../shared/UI/Text/Text';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import ContainerInfoGIB from '../../components/UI/ContainerGIB/ContainerInfoGIB';
-import { ICard, ICardCity, IChooseDataActions } from '../../../../../../store/quick-game/quick-game.d';
+import { ICard, ICardCity, ICardInfoCards, IChooseDataActions } from '../../../../../../store/quick-game/quick-game.d';
 import { temporaryDisableBtn } from '../../../../../../helpers/helper';
 import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
 import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
@@ -45,9 +45,11 @@ const ActionsCard: React.FC<IProps> = ({
   handleChangeScreen,
 }: IProps) => {
   const [isClick, setIsClick] = React.useState<boolean>(false);
+  console.table((card.card_info as ICardInfoCards).sell_price)
   return (
     <ContainerGIB name="ActionsCard">
-      <Offset mt={5} />
+      {/* <Offset mt={5} /> */}
+      {/* крестик на закрытие */}
       <Button
         type="transparent"
         borderColor='transparent'
@@ -63,19 +65,13 @@ const ActionsCard: React.FC<IProps> = ({
         <Icon src={icons.crossBlack} width={'20'} height='20' style={{position: 'absolute', right:20 }}/>
       </Button>
       <Title title={"Действия с картой"} tag="h3" fontWeight={500} />
-      <Offset mt={15} />
+      <Offset mt={5} />
+
       <ContainerOneBtn>
         <Button
           type="empty"
           borderColor="#E4E4E4"
-          p={11}
-          disabled={isClick}
-          onClick={() => {
-            temporaryDisableBtn(2000, setIsClick);
-            handleBack({
-              action: "clean_chose_actions",
-            });
-          }}
+          p={[7,11]}
         >
           <Text fontWeight={300} fontSize={14} center>
             <>
@@ -87,7 +83,7 @@ const ActionsCard: React.FC<IProps> = ({
         </Button>
       </ContainerOneBtn>
 
-      <Offset mt={15} />
+      <Offset mt={10} />
 
       <ContainerInfoGIB
         style={{
@@ -100,7 +96,7 @@ const ActionsCard: React.FC<IProps> = ({
             backgroundColor: "rgb(226 230 255)",
           }}
         >
-          <Offset mt={20} />
+          {/* <Offset mt={20} /> */}
           {showInfoCard === "action-special-card" ? (
             <ContainerOneBtn>
               <Button
@@ -118,7 +114,7 @@ const ActionsCard: React.FC<IProps> = ({
                 type="fill"
                 fillColor={card?.owner?.player?.color || "#cbc5c5ff"}
                 textColor="#FFFFFF"
-                p={12}
+                p={5}
               >
                 {name || "?"}
               </Button>
@@ -126,17 +122,17 @@ const ActionsCard: React.FC<IProps> = ({
                 type="fill"
                 fillColor={card?.bgc_header || "#F5F5F5"}
                 textColor="#FFFFFF"
-                p={12}
+                p={5}
               >
                 {(card?.city as ICardCity)?.country || "?"}
               </Button>
             </ContainerInfoTwoColumnGIB>
           )}
-          <Offset mt={20} />
+          {/* <Offset mt={20} /> */}
         </ContainerInfoHeaderGIB>
 
-        <ContainerInfoBodyGIB p={15}>
-          <Offset mt={20} />
+        <ContainerInfoBodyGIB p={[5,15]}>
+          {/* <Offset mt={20} /> */}
           <ContainerOneBtn>
             <ButtonBack
               onClick={() => handleChangeScreen(showInfoCard)}
@@ -159,7 +155,7 @@ const ActionsCard: React.FC<IProps> = ({
               }}
             >
               <InnerBtnContextSpaceBetween>
-                <Text text={"Продать в банк"} />
+                <Text text={"Продать в банк за " + (card.card_info as ICardInfoCards).sell_price} iconRight={<Icon src={icons.qgCurrencySvg} width={10} height={10}/>} />
                 <Text fontWeight={900} text={""} />
               </InnerBtnContextSpaceBetween>
             </Button>

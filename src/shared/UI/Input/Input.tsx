@@ -68,36 +68,41 @@ export const Input = forwardRef<HTMLInputElement, IInput>(function Input(
     }
   }, [inputValue, isSpanWidth, ref]);
 
- const handlerChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-   const { value } = e.target;
+  const handlerChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value;
 
-   if (value === "") {
-     setInputValue("");
-     props.onValueChange?.("");
-     props.onChange?.(e); // 👈 вызываем нативный onChange
-     return;
-   }
+    if (raw === "") {
+      setInputValue("");
+      props.onValueChange?.("");
+      props.onChange?.(e);
+      return;
+    }
 
-   if (type === "number") {
-     const numberValue = +value;
-     if (min !== undefined && numberValue < +min) {
-       handleErrorInput("Минимальное значение: " + min);
-       return;
-     }
-     if (max !== undefined && numberValue > +max) {
-       handleErrorInput("Максимальное значение: " + max);
-       return;
-     }
-   }
+    if (type === "number") {
+      const isValidNumberString = /^-?\d*\.?\d*$/.test(raw);
 
-   
-   setInputValue(value);
-   props.onValueChange?.(value);
-   props.onChange?.(e); // 👈 важно
+      if (!isValidNumberString) return;
+
+      const parsed = Number(raw);
+
+      if (!isNaN(parsed)) {
+        if (min !== undefined && parsed < Number(min)) {
+          handleErrorInput("Минимальное значение: " + min);
+        }
+
+        if (max !== undefined && parsed > Number(max)) {
+          handleErrorInput("Максимальное значение: " + max);
+        }
+      }
+    }
+
+    setInputValue(raw);
+    props.onValueChange?.(raw);
+    props.onChange?.(e);
   };
-  
+
   useEffect(() => {
-   !!errorText && handleErrorInput(errorText);
+    !!errorText && handleErrorInput(errorText);
   }, [errorText]);
 
   return (
@@ -110,20 +115,20 @@ export const Input = forwardRef<HTMLInputElement, IInput>(function Input(
           {label}
         </label>
       )}
-      <div className={`${errorText || !!error?.length ? styles.error : ""} ${styles.inputWrap}`} style={styleWrap}>
+      <div
+        className={`${errorText || !!error?.length ? styles.error : ""} ${styles.inputWrap
+          }`}
+        style={styleWrap}
+      >
         {iconLeft}
         {leftText}
         <input
-            // ${errorText || !!error?.length ? styles.error : ""} 
-          className={`
-          ${
-            className || ""
-          }`}
+          className={`${className || ""}`}
           ref={ref}
           type={type}
           id={id}
           placeholder={placeholder}
-          value={value}
+          value={inputValue}
           style={{
             paddingRight: iconRight ? 35 : 25,
             ...style,
@@ -134,7 +139,6 @@ export const Input = forwardRef<HTMLInputElement, IInput>(function Input(
           onChange={handlerChangeInput}
           onKeyDown={handleKeyDown}
         />
-        {/* Призрачный span для измерения ширины текста */}
         <span
           ref={spanRef}
           style={{

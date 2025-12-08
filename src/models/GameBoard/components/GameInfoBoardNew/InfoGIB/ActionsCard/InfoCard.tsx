@@ -41,7 +41,9 @@ const InfoCard: React.FC<IProps> = ({
   const [isClick, setIsClick] = React.useState<boolean>(false);
   return (
     <ContainerGIB name="InfoCard">
-      <Offset mt={5} />
+      {/* <Offset mt={5} /> */}
+      {/* крестик на закрытие */}
+
       <Button
         type="transparent"
         borderColor='transparent'
@@ -56,19 +58,12 @@ const InfoCard: React.FC<IProps> = ({
         <Icon src={icons.crossBlack} width={'20'} height='20' style={{ position: 'absolute', right: 20 }} />
       </Button>
       <Title title={"Действия с картой"} tag="h3" fontWeight={500} />
-      <Offset mt={15} />
+      <Offset mt={5} />
       <ContainerOneBtn>
         <Button
           type="empty"
           borderColor="#E4E4E4"
-          disabled={isClick}
-          p={11}
-          onClick={() => {
-            temporaryDisableBtn(2000, setIsClick);
-            handleBack({
-              action: "clean_chose_actions",
-            });
-          }}
+          p={[5,11]}
         >
           <Text fontWeight={300} fontSize={14} center>
             <>
@@ -80,20 +75,20 @@ const InfoCard: React.FC<IProps> = ({
         </Button>
       </ContainerOneBtn>
 
-      <Offset mt={15} />
+      <Offset mt={10} />
       <ContainerInfoGIB
         style={{
           backgroundColor: "rgba(233, 236, 255, 1)",
         }}
       >
         <ContainerInfoHeaderGIB p={15}>
-          <Offset mt={20} />
+          {/* <Offset mt={20} /> */}
           <ContainerInfoTwoColumnGIB>
             <Button
               type="fill"
               fillColor={card?.owner?.player?.color || "#e2dcdcff"}
               textColor="#FFFFFF"
-              p={12}
+              p={5}
             >
               {(card?.city as ICardCity)?.name || "Город не выбран"}
             </Button>
@@ -101,15 +96,15 @@ const InfoCard: React.FC<IProps> = ({
               type="fill"
               fillColor={card?.bgc_header || "#F5F5F5"}
               textColor="#FFFFFF"
-              p={12}
+              p={5}
             >
               {(card?.city as ICardCity)?.country || "Страна не выбран"}
             </Button>
           </ContainerInfoTwoColumnGIB>
         </ContainerInfoHeaderGIB>
 
-        <ContainerInfoBodyGIB p={15}>
-          <Offset mt={20} />
+        <ContainerInfoBodyGIB p={[5, 15]}>
+          {/* <Offset mt={20} /> */}
 
           <ContainerInfoTwoColumnGIB>
             <Title
@@ -125,7 +120,7 @@ const InfoCard: React.FC<IProps> = ({
               center
             />
           </ContainerInfoTwoColumnGIB>
-          <Offset mt={10} />
+          <Offset mt={5} />
 
           <ContainerInfoTwoColumnGIB>
             <Button type="transparent" p={10}>
@@ -154,7 +149,7 @@ const InfoCard: React.FC<IProps> = ({
             </Button>
           </ContainerInfoTwoColumnGIB>
 
-          <Offset mt={10} />
+          <Offset mt={5} />
 
           <ContainerInfoTwoColumnGIB>
             <Button type="transparent" p={10}>
@@ -191,7 +186,7 @@ const InfoCard: React.FC<IProps> = ({
               </InnerBtnContextSpaceBetween>
             </Button>
           </ContainerInfoTwoColumnGIB>
-          <Offset mt={10} />
+          <Offset mt={5} />
 
           <ContainerInfoTwoColumnGIB>
             <Button type="transparent" p={10}>
@@ -297,7 +292,7 @@ const InfoCard: React.FC<IProps> = ({
               </InnerBtnContextSpaceBetween>
             </Button>
           </ContainerInfoTwoColumnGIB>
-          <Offset mt={10} />
+          <Offset mt={5 } />
 
           <ContainerInfoTwoColumnGIB>
             <Button

@@ -46,7 +46,8 @@ const InfoSpecialCard: React.FC<IProps> = ({
   const [isClick, setIsClick] = React.useState<boolean>(false);
   return (
     <ContainerGIB name="InfoSpecialCard" >
-      <Offset mt={5} />
+      {/* <Offset mt={5} /> */}
+      {/* крестик на закрытие */}
       <Button
         type="transparent"
         borderColor='transparent'
@@ -61,12 +62,12 @@ const InfoSpecialCard: React.FC<IProps> = ({
         <Icon src={icons.crossBlack} width={'20'} height='20' style={{ position: 'absolute', right: 20 }} />
       </Button>
       <Title title={"Действия с картой"} tag="h3" fontWeight={500} />
-      <Offset mt={15} />
+      {/* <Offset mt={15} /> */}
       <ContainerOneBtn>
         <Button
           type="empty"
           borderColor="#E4E4E4"
-          p={11}
+          p={[7, 11]}
           disabled={isClick}
           onClick={() => {
             temporaryDisableBtn(2000, setIsClick);
@@ -85,14 +86,14 @@ const InfoSpecialCard: React.FC<IProps> = ({
         </Button>
       </ContainerOneBtn>
 
-      <Offset mt={15} />
+      <Offset mt={10} />
       <ContainerInfoGIB
         style={{
           backgroundColor: "rgba(233, 236, 255, 1)",
         }}
       >
         <ContainerInfoHeaderGIB p={"0 15px"}>
-          <Offset mt={20} />
+          {/* <Offset mt={20} /> */}
           <ContainerOneBtn>
             <Button
               type="fill"
@@ -105,8 +106,8 @@ const InfoSpecialCard: React.FC<IProps> = ({
           </ContainerOneBtn>
         </ContainerInfoHeaderGIB>
 
-        <ContainerInfoBodyGIB p={"0 15px"}>
-          <Offset mt={20} />
+        <ContainerInfoBodyGIB p={[5, 15]}>
+          {/* <Offset mt={20} /> */}
 
           <ContainerInfoTwoColumnGIB>
             <Title
@@ -122,7 +123,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
               center
             />
           </ContainerInfoTwoColumnGIB>
-          <Offset mt={10} />
+          <Offset mt={5} />
 
           <ContainerInfoTwoColumnGIB>
             <Button type="transparent" p={10}>
@@ -161,7 +162,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
             </Button>
           </ContainerInfoTwoColumnGIB>
 
-          <Offset mt={10} />
+          <Offset mt={5} />
 
           <ContainerInfoTwoColumnGIB>
             <div></div>

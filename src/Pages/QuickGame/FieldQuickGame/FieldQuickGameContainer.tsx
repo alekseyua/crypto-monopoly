@@ -443,7 +443,6 @@ const handleCardOnField = (card_id: number): void => {
 		const isActions: boolean = isKeyPresentInHash(data, "data_actions");
 		const isAuctions: boolean = isKeyPresentInHash(data, "auction_data");
 		const isChoose: boolean = isKeyPresentInHash(data, "choose_data");
-// console.log({isActions}, data)
 		const listCards = quickGame.cards;
 		let cardId = data?.card_id;
 		if (isAuctions) cardId = data.auction_data.card_id;
@@ -657,7 +656,7 @@ const handleCardOnField = (card_id: number): void => {
 			break;
 		case "pay_or_add_chance":
 			setActionCardView(
-        <GameInfoBoardPayOrAddChance
+        <GameInfoBoardPayOrAddChance // ??????????????????????????
           actions={
             actionCardData?.data_actions?.actions as CardDataDataActionsType
           }

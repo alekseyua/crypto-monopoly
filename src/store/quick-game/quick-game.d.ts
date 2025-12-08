@@ -157,6 +157,7 @@ export interface ICardInfoCards{
   prices: ICardPriceData;
   features: ICardFeaturesData;
   card_type: string;
+  sell_price: number;
 }
 
 export interface ICardInfo {
@@ -164,6 +165,7 @@ export interface ICardInfo {
   prices: ICardPriceData;
   features: ICardFeaturesData;
   card_type: string;
+  sell_price: number;
 
   start_price?: number; // ???
   highest_bid?: number; // ???

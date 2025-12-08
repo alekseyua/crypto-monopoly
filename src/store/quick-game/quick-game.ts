@@ -168,6 +168,7 @@ export const quickGame = (store: StoreonStore) => {
             monopoly_tax: 0,
             one_card_tax: 0,
           },
+          sell_price: 0,
           card_type: "",
           start_price: 0,
           highest_bid: 0,
@@ -260,13 +261,15 @@ export const quickGame = (store: StoreonStore) => {
             profileID = storage?.user?.id;
           }
           // =================== messages временно ============================
-
-          if (res?.message) {
-            dispatch(SET_MESSAGE_QUICK_GAME, {
-              title: `User from id = ${profileID}`,
-              desc: res.message,
-            });
+          if (isKeyPresentInHash(res, 'message_popup')){
+            console.table(res.message_popup)
           }
+          // if (res?.message) {
+          //   dispatch(SET_MESSAGE_QUICK_GAME, {
+          //     title: `User from id = ${profileID}`,
+          //     desc: res.message,
+          //   });
+          // }
           if (res?.message === "No game with this id") {
             dispatch(RESET_QG);
             dispatch(SET_MESSAGE, [
