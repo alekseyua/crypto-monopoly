@@ -64,7 +64,8 @@
 	display: grid;
 	place-content: center;
 	padding: 0;
-	flex: 0 0 40px
+	flex: 0 0 40px;
+	
 	
 }
 
@@ -96,6 +97,16 @@
 	align-items: center;
 	width: 100%;
 	position: relative;
+	@include adaptiv-font(20,10);
+	@media (max-width: 1364px) {
+		@include adaptiv-font(18, 9);
+		}
+	@media (max-width: 1264px) {
+		@include adaptiv-font(17, 8);
+		}
+	@media (max-width: 1130px) {
+		@include adaptiv-font(16, 7);
+		}
 	&--mobile{
 		flex-direction: row;
 		gap: 10px;
@@ -118,6 +129,7 @@
 	flex: 1 1;
 	justify-content: flex-end;
 	margin-left: 10px;
+	
 }
 
 .label {
@@ -131,6 +143,15 @@
 	display: flex;
 	gap: 10px;
 	@include adaptiv-font(20,10);
+	@media (max-width: 1364px) {
+		@include adaptiv-font(18, 9);
+		}
+	@media (max-width: 1264px) {
+		@include adaptiv-font(17, 8);
+		}
+	@media (max-width: 1130px) {
+		@include adaptiv-font(16, 7);
+		}
 	//label--mobile
 	&--mobile{
 		display: flex;
