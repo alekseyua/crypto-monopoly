@@ -48,7 +48,7 @@ export const FieldQG: React.FC<IQG> = ({
             handleClickUserPreview={handleClickUserPreview}
             isChangeCard={isChangeCard}
           />
-          <div style={{ gridArea: 'main'}}>
+          <div style={{ gridArea: 'main', padding: '0 15px'}}>
             <GameBoard
               innerRef={innerRef}
               ActionCard={ActionCard}

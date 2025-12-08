@@ -27,7 +27,7 @@ export const EventsHistoryList: React.FC<IEventHistoryList> = ({
     <div
       className={isMobile? cls['side--mobile'] : cls.side}
       style={{
-        height: !isOpen ? 200 : heightGameBoard,
+        height: !isOpen ? 160 : heightGameBoard,
         gridArea: 'history',
       }}
     >

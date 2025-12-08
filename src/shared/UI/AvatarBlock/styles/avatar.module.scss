@@ -10,20 +10,20 @@
         overflow: hidden;
         position: absolute;
         z-index: 2;
-        @include adaptiv-value(width,15, 0, 1);
-		@include adaptiv-value(height,15, 0, 1);
-        @media (max-width:1280px) {
-            @include adaptiv-value(width,12, 0, 1);
-			@include adaptiv-value(height,12, 0, 1);
-		}
-        @media (max-width:1160px) {
-            @include adaptiv-value(width,10, 0, 1);
-            @include adaptiv-value(height,10, 0, 1);
-        }
-        @media (max-width:992px) {
-			@include adaptiv-value(width,15, 15, 1);
-		    @include adaptiv-value(height,15, 15, 1);
-		}
+        // @include adaptiv-value(width,15, 0, 1);
+		// @include adaptiv-value(height,15, 0, 1);
+        // @media (max-width:1280px) {
+        //     @include adaptiv-value(width,12, 0, 1);
+		// 	@include adaptiv-value(height,12, 0, 1);
+		// }
+        // @media (max-width:1160px) {
+        //     @include adaptiv-value(width,10, 0, 1);
+        //     @include adaptiv-value(height,10, 0, 1);
+        // }
+        // @media (max-width:992px) {
+		// 	@include adaptiv-value(width,15, 15, 1);
+		//     @include adaptiv-value(height,15, 15, 1);
+		// }
         //avatar__container--image
         &--image {
             width: 80%;

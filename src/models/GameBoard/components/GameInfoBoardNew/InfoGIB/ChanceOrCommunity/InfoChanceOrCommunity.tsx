@@ -129,7 +129,11 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
                         card_id: cardIdWhereMoveTo,
                       };
                       if (a === "add_card") {
-                        params = { card_id: cardIdWhereMoveTo };
+                        params = {
+                          action: a,
+                          card_id: cardIdWhereMoveTo,
+                          chance: true,
+                        };
                       }
                       onMove(params);
                     }}

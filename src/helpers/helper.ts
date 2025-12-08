@@ -222,3 +222,30 @@ export const temporaryDisableBtn = function (time: number, f: Function) {
     f(false);
   }, time);
 };
+
+// JS-аналог SCSS адаптива
+  export  const adaptivValue = (
+    vw: number,
+    minValue: number,
+    maxValue: number,
+    maxWidthContainer: number
+  ) => {
+    const addSize = maxValue - minValue;
+    return minValue + addSize * ((vw - 320) / (maxWidthContainer - 320));
+  };
+
+// адаптировать от исходных размеров
+export const getAdaptiveFromBase = (vw: number, base: number) => {
+  if (vw > 1280) return adaptivValue(vw, 0, base, 1920);
+  if (vw > 1160) return adaptivValue(vw, 0, base * 0.8, 1280);
+  if (vw > 992) return adaptivValue(vw, 0, base * 0.6, 1160);
+  return adaptivValue(vw, base, base, 992);
+};
+
+// если width/height не переданы — старые SCSS значения
+export const getDefaultAvatarSize = (vw: number) => {
+  if (vw > 1280) return adaptivValue(vw, 0, 15, 1920);
+  if (vw > 1160) return adaptivValue(vw, 0, 12, 1280);
+  if (vw > 992) return adaptivValue(vw, 0, 10, 1160);
+  return adaptivValue(vw, 15, 15, 992);
+};

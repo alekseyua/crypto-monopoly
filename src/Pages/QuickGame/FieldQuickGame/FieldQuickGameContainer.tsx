@@ -552,14 +552,14 @@ const handleCardOnField = (card_id: number): void => {
 			key: "buy_or_auction_card",
 			cardId,
 			};
-		if (
-			isKeyPresentInHash(actions, "pay") &&
-			isKeyPresentInHash(actions, "add_chance")
-		)
-			return {
-			key: "pay_or_add_chance",
-			cardId,
-			};
+		// if (
+		// 	isKeyPresentInHash(actions, "pay") &&
+    //   isKeyPresentInHash(actions, "add_card")
+		// )
+		// 	return {
+		// 	key: "pay_or_add_chance",
+		// 	cardId,
+		// 	};
 		if (
 			isKeyPresentInHash(actions, "pay_for_freedom") &&
 			isKeyPresentInHash(actions, "roll_the_dice") &&
@@ -654,24 +654,25 @@ const handleCardOnField = (card_id: number): void => {
         />
       );
 			break;
-		case "pay_or_add_chance":
-			setActionCardView(
-        <GameInfoBoardPayOrAddChance // ??????????????????????????
-          actions={
-            actionCardData?.data_actions?.actions as CardDataDataActionsType
-          }
-          card_cost={
-            actionCardData?.data_actions?.card_info?.features?.base_cost
-          }
-          handleCard={handleCard}
-          game_id={quickGame.id}
-          card_id={dataAction.cardId}
-          dataCard={actionCardData?.data_actions?.card_info}
-          timeEndMove={dataPlayerQG.move_end_time_sec}
-        />
-      );
-			break;
+		// case "pay_or_add_chance":
+		// 	setActionCardView(
+    //     <GameInfoBoardPayOrAddChance // ??????????????????????????
+    //       actions={
+    //         actionCardData?.data_actions?.actions as CardDataDataActionsType
+    //       }
+    //       card_cost={
+    //         actionCardData?.data_actions?.card_info?.features?.base_cost
+    //       }
+    //       handleCard={handleCard}
+    //       game_id={quickGame.id}
+    //       card_id={dataAction.cardId}
+    //       dataCard={actionCardData?.data_actions?.card_info}
+    //       timeEndMove={dataPlayerQG.move_end_time_sec}
+    //     />
+    //   );
+		// 	break;
 		case "pay_tax_or_add_card_chance":
+      console.log('%НЕ ПОНЯТНО НУЖНО ЛИ если появится сообщение значит есть экшен', 'color: red')
 			setActionCardView(
         <GameInfoBoardPayTaxOrAddCardChance
           actions={

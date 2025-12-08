@@ -38,9 +38,9 @@ const FieldListPlayersQG: React.FC<IFieldListPlayersQGProps> = ({
   setShowFeetHistory,
 }: IFieldListPlayersQGProps) => {
   return (
-    <div className={styles['list-player__container']}
+    <div className={isMobile ? styles['list-player__container--mobile'] : styles['list-player__container']}
       style={{
-        height: !isOpenListPlayers ? 200 : heightGameBoard,
+        height: !isOpenListPlayers ? 160 : heightGameBoard,
       }}
     >
       <div className={styles[isMobile ? 'list-player__btns-container--btn-two--mobile' : 'list-player__btns-container--btn-two']}
@@ -106,9 +106,9 @@ const FieldListPlayersQG: React.FC<IFieldListPlayersQGProps> = ({
         <Button
           type='filled'
           fillColor='#fff'
-          borderColor={'#898989'}
+          borderColor={'#d6dbf5'}
           textColor='#000000'
-          p={7}
+          p={10}
           onClick={() => handleClickOpen()}
 
         >

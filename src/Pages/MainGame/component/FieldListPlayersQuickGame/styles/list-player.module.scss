@@ -8,11 +8,21 @@
         flex-direction: column;
         position: relative;
         background-color: #F6F8FF;
-        background: linear-gradient(to bottom, #F6F8FF 0%, #E9ECFF 100%);
-        padding: 30px;
         border-radius: 25px;
         grid-area: players;
-		// @include adaptiv-value(transform, scale(1), scale(0.8), 4);
+		@include adaptiv-value(padding, 30, 0, 1);
+        //list-player__container--mobile
+        &--mobile{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: #F6F8FF;
+            background: linear-gradient(to bottom, #F6F8FF 0%, #E9ECFF 100%);
+            padding: 30px;
+            border-radius: 25px;
+            grid-area: players;
+		    @include adaptiv-value(padding, 30, 0, 1);
+        }
         @media (max-width: 992px) {
             position: absolute;
             z-index: 9999;

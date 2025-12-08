@@ -45,7 +45,6 @@ const EventsHistoryListContainer: React.FC<IProps> = ({
 		}
 	}
 
-console.log({isMobile, showFeetHistory})
 	if (isMobile && showFeetHistory) {
 		return <Button
 			onClick={() => setShowFeetHistory(false)}

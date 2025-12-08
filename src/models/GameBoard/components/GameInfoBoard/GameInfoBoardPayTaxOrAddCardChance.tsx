@@ -36,7 +36,7 @@ export const GameInfoBoardPayTaxOrAddCardChance: React.FC<IGameInfoBoardPayTaxOr
 	const handleGetChance = function () {
 		temporaryDisableBtn(2000, setIsClick);
 		handleCard && handleCard({
-			action: 'get_card_action',
+			action: 'add_card',
 			game_id,
 			chance: true,
 		})
