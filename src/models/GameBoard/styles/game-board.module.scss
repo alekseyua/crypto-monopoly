@@ -303,15 +303,27 @@
 		}
 		//players__container--bottom
 		&--bottom{
-			transform: rotate(180deg);
+			// transform: rotate(180deg);
 			grid-auto-flow: row;
 			grid-template-columns: repeat(3, 1fr);
+			@media (max-width: 975px) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			@media (max-width: 668px) {
+				grid-template-columns: repeat(1, 1fr);
+			}
 			bottom: 3px;
 		}
 		//players__container--top
 		&--top{
 			grid-auto-flow: row;
 			grid-template-columns: repeat(3, 1fr);
+			@media (max-width: 975px) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			@media (max-width: 668px) {
+				grid-template-columns: repeat(1, 1fr);
+			}
 			top: 3px;
 		}
 		&--reverse {
@@ -321,15 +333,25 @@
 
 	//players__sticker
 	&__sticker{
-		// @include adaptiv-value(width,19, 0, 1);
-		// @include adaptiv-value(height,19, 0, 1);
-		width: 15px;
-		height: 15px;
+		@include adaptiv-value(width,15, 0, 1);
+		@include adaptiv-value(height,15, 0, 1);
 		border-radius: 50%;
 		position: relative;
 		z-index: 10;
 		margin: 1px;
+		@media (max-width:1280px) {
+			@include adaptiv-value(width,12, 0, 1);
+			@include adaptiv-value(height,12, 0, 1);
+		}
+		@media (max-width:1160px) {
+            @include adaptiv-value(width,10, 0, 1);
+            @include adaptiv-value(height,10, 0, 1);
+        }
 		// border: 2px solid #FAFBFF;
+		@media (max-width:992px) {
+			@include adaptiv-value(width,15, 15, 1);
+		    @include adaptiv-value(height,15, 15, 1);
+		}
     }
 }
 
