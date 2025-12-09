@@ -30,7 +30,6 @@ export const GameInfoBoardPayTaxOrAddCardChance: React.FC<IGameInfoBoardPayTaxOr
 			action: 'pay',
 			game_id,
 			card_id,
-			pay: true,
 		});
 		setIsActionCard(true);
 	}

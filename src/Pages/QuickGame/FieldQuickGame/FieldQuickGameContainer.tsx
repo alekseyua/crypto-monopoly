@@ -620,7 +620,7 @@ const handleCardOnField = (card_id: number): void => {
 		);
 		}
 		let dataAction: keyPreview = getAction(dataPlayerQG, actionCardData);
-    console.log("%cKEY: " + dataAction.key, "color: green", dataPlayerQG);
+    console.log("%cKEY: " + dataAction.key, "color: green");
 		const card = quickGame.cards.filter(
 		(el: ICard | ISpecialCard) => el.id === dataAction.cardId
 		)[0];
