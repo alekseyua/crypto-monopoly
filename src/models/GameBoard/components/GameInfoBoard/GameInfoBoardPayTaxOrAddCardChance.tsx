@@ -11,7 +11,7 @@ interface IGameInfoBoardPayTaxOrAddCardChanceProps {
 	game_id: number;
 	card_id: number;
 	actions: CardDataDataActionsType;
-	handleCard?: ({ game_id, card_id, action }: { action: string, game_id: number, card_id?: number, chance?: boolean }) => void;
+	handleCard?: ({ game_id, card_id, action }: { action: string, game_id: number, card_id?: number, chance?: boolean, pay?: boolean }) => void;
 	timeEndMove: number;
 }
 
@@ -30,13 +30,14 @@ export const GameInfoBoardPayTaxOrAddCardChance: React.FC<IGameInfoBoardPayTaxOr
 			action: 'pay',
 			game_id,
 			card_id,
+			pay: true,
 		});
 		setIsActionCard(true);
 	}
 	const handleGetChance = function () {
 		temporaryDisableBtn(2000, setIsClick);
 		handleCard && handleCard({
-			action: 'add_card',
+			action: 'get_card_action',
 			game_id,
 			chance: true,
 		})

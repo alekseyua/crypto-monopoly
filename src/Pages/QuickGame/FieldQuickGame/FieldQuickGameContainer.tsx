@@ -153,13 +153,13 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
         // "return_house", "get_house"
       ];
       if (listException.includes(params.action)) {
-        return setTimeout(() => dispatch(RESET_ROLL_DICE_QG), 5000)
+        return setTimeout(() => dispatch(RESET_ROLL_DICE_QG), 3000)
       }; // что бы полностью обнулить данные
       if (params.action === "add_card") {
         return dispatch(GET_CARD_ACTION_QG, { chance: true });
       }
       if (params.action === "get_house") return;
-      dispatch(GET_CARD_ACTION_QG);
+      // dispatch(GET_CARD_ACTION_QG);
     },
     [dispatch]
   );
@@ -173,7 +173,7 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 
   const handleMoveTo = (params: any): void => {
     dispatch(MOVE_TO, params);
-    dispatch(GET_CARD_ACTION_QG);
+    // dispatch(GET_CARD_ACTION_QG);
 };
 
 const handleCardOnField = (card_id: number): void => {

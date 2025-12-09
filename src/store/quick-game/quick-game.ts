@@ -484,7 +484,7 @@ export const quickGame = (store: StoreonStore) => {
     if (socket.get_games && socket.get_games?.readyState === WebSocket.OPEN) {
       const game_id = store.quickGame.id;
       setTimeout(() => {
-        console.log('%cGET_CARD_ACTION_QG from 1 sec ', 'color: blue')
+        console.log('%cGET_CARD_ACTION_QG from 0 sec ', 'color: blue')
         console.table({
           action: "get_card_action",
           game_id,
@@ -497,7 +497,7 @@ export const quickGame = (store: StoreonStore) => {
             ...payload,
           })
         );
-      }, 1000);
+      }, 0);
     }
   });
 
