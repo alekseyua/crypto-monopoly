@@ -23,11 +23,11 @@ export const ShowMassagePopup: React.FC<IProps> = ({
   return (
     <ContainerGIB name="ShowMassagePopup" style={{ background: "#E9ECFF" }}>
       <ContainerInfoHeaderGIB>
-        <Offset mt={30} />
+        <Offset mt={20} />
 
         <Title title={title} tag="h1" center />
       </ContainerInfoHeaderGIB>
-      <Offset mt={50} />
+      <Offset mt={30} />
       <ContainerInfoBodyGIB>
         <ContainerOneBtn>
           <Button

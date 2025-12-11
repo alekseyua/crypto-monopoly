@@ -131,7 +131,7 @@ export const AuctionExpressAirlineCruise: React.FC<IAuctionExpressAirlineCruiseP
             </Button>
             <Button type="transparent" p={10}>
               <InnerBtnContextSpaceBetween>
-                <Text text={"Карты из коллекции"} />
+                <Text text={"Карты из коллекции"} style={{ marginRight: 2 }} />
                 <Text
                   fontWeight={900}
                   text={

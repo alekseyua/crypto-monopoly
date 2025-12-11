@@ -142,6 +142,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
               <InnerBtnContextSpaceBetween>
                 <Text
                   text={'Карты из коллекции'}
+                  style={{ marginRight: 2 }}
                 />
                 <Text
                   fontWeight={900}
