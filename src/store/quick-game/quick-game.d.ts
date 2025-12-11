@@ -73,6 +73,8 @@ interface IDataCardFeatures {
     house_taxes: IHouseTaxes[];
     monopoly_tax: number;
     one_card_tax: number;
+    sell_price: number;
+
 }
 
 interface IDataCardPrice {
@@ -96,12 +98,6 @@ interface IDataActions {
   card?: IDataActionsCard;
   card_type: string
   card_info?: ICardInfo;
-
-  // info: ICardInfoData;
-  // prices: IDataCardPrice;
-  // features: IDataCardFeatures;
-  // card_id: number;
-  // move_end_time_sec: number;
 }
 
 interface IDataActionsCard {
@@ -150,6 +146,7 @@ export interface ICardFeaturesData {
   house_taxes: IHouseTaxes[];
   monopoly_tax: number;
   one_card_tax: number;
+  sell_price: number;
 }
 
 export interface ICardInfoCards{
@@ -157,7 +154,6 @@ export interface ICardInfoCards{
   prices: ICardPriceData;
   features: ICardFeaturesData;
   card_type: string;
-  sell_price: number;
 }
 
 export interface ICardInfo {
@@ -165,7 +161,6 @@ export interface ICardInfo {
   prices: ICardPriceData;
   features: ICardFeaturesData;
   card_type: string;
-  sell_price: number;
 
   start_price?: number; // ???
   highest_bid?: number; // ???

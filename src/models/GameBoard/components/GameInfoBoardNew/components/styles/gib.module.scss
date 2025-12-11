@@ -156,10 +156,13 @@
             //gib__container-info-two-column
             &-two-column {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(156px, 1fr));
                 gap: 10px;
                 width: 100%;
                 // overflow: hidden
+                @media (max-width: 1420px) {
+                grid-template-columns: repeat(auto-fit, minmax(126px, 1fr));
+                }
             }
         }
     }

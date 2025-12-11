@@ -39,7 +39,9 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
     if (name === undefined) return "";
     switch (name) {
       case "move_to":
-        return "Перейти";
+        return "Перейти"; 
+      case "move":
+        return "Походить";
       case "pay":
         return "Оплатить";
       case "return_house":
@@ -131,7 +133,7 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
                       if (a === "add_card") {
                         params = {
                           action: 'get_card_action',
-                          card_id: cardIdWhereMoveTo,
+                          // card_id: cardIdWhereMoveTo,
                           chance: true,
                         };
                       }

@@ -45,7 +45,7 @@ export const EventsHistoryList: React.FC<IEventHistoryList> = ({
         <div className={cls.allEvents} id={"container-list-history"}>
           {!!messages?.length &&
             messages
-              .sort((a, b) => b.id - a.id)
+              // .sort((a, b) => b.id - a.id)
               .map((m: IMassagesFeed, index: number) => (
                 <Event
                   key={index}

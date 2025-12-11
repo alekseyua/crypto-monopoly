@@ -6,7 +6,7 @@ import ContainerOneBtn from '../../components/UI/ControllerGIB/ContainerOneBtn';
 import Text from '../../../../../../shared/UI/Text/Text';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import ContainerInfoGIB from '../../components/UI/ContainerGIB/ContainerInfoGIB';
-import { ICard, ICardCity, ICardInfoCards, IChooseDataActions } from '../../../../../../store/quick-game/quick-game.d';
+import { ICard, ICardCity, ICardFeaturesData, ICardInfoCards, IChooseDataActions } from '../../../../../../store/quick-game/quick-game.d';
 import { temporaryDisableBtn } from '../../../../../../helpers/helper';
 import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
 import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
@@ -45,7 +45,7 @@ const ActionsCard: React.FC<IProps> = ({
   handleChangeScreen,
 }: IProps) => {
   const [isClick, setIsClick] = React.useState<boolean>(false);
-  console.table((card.card_info as ICardInfoCards).sell_price)
+  // console.table((card.card_info as ICardInfoCards).features.sell_price)
   return (
     <ContainerGIB name="ActionsCard">
       {/* <Offset mt={5} /> */}
@@ -155,7 +155,7 @@ const ActionsCard: React.FC<IProps> = ({
               }}
             >
               <InnerBtnContextSpaceBetween>
-                <Text text={"Продать в банк за " + (card.card_info as ICardInfoCards).sell_price} iconRight={<Icon src={icons.qgCurrencySvg} width={10} height={10}/>} />
+                <Text text={"Продать в банк за " + ((card.card_info as ICardInfoCards).features as ICardFeaturesData).sell_price} iconRight={<Icon src={icons.qgCurrencySvg} width={10} height={10}/>} />
                 <Text fontWeight={900} text={""} />
               </InnerBtnContextSpaceBetween>
             </Button>
