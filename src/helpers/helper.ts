@@ -172,7 +172,7 @@ export function getPadding(
 
 
 
-export function connectWebSocket(socket: WebSocket, callback: (res: any) => any, action: string = 'pending') {
+export function connectWebSocket(socket: WebSocket, callerror: (res: any) => any, callback: (res: any) => any, action: string = 'pending') {
   const url = new URL(socket.url);
   const name = url.searchParams.get('action');
   if (socket === undefined) return
@@ -181,6 +181,7 @@ export function connectWebSocket(socket: WebSocket, callback: (res: any) => any,
   }
   socket.onerror = (error: any) => {
     console.error("ReadyState = ", error?.target?.readyState, "WebSocket ", name, " error: ", error);
+    callerror(error);
     if (error?.target?.readyState === WebSocket.CLOSED) return;
     socket.close(); // Закрываем соединение при ошибке
   }

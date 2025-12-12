@@ -44,7 +44,7 @@ const FormInputCreateQGContainer:React.FC = () => {
       if ((e as React.KeyboardEvent<HTMLButtonElement>).keyCode !== 32 && (e as React.KeyboardEvent<HTMLButtonElement>).keyCode !== 13) return
     }
     dispatch(CREATE_NEW_QG, {...params})
-    dispatch(SET_MODAL, { isOpen: false });
+    // dispatch(SET_MODAL, { isOpen: false });
   }
 
   useEffect(()=>{

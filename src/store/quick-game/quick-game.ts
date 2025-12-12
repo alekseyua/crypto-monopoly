@@ -24,7 +24,7 @@ import {
   SET_MESSAGE_QUICK_GAME,
 } from "../message/message";
 import { GET_USERS } from "../users/users";
-import { NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
+import { NAV_QG_FIELD_PAGE, NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
 
 // list cards for the game
 export const RESET_LIST_CARDS_QG = v4();
@@ -253,6 +253,9 @@ export const quickGame = (store: StoreonStore) => {
     const connectWS = (profileID?: number) =>
       connectWebSocket(
         (socket.get_games = new WebSocket(URL)),
+        (err:any) => {
+          console.error('WebSocket error:', err);
+        },
         async (res: any) => {
           // debugger
           // const start = performance.now();
@@ -293,14 +296,22 @@ export const quickGame = (store: StoreonStore) => {
           // =============================================================
           // ===================== list games quick ======================
           if (isKeyPresentInHash(res, "games_data")) {
+            console.log('%cSET_LIST_QG from WS', 'color: green');
             // список игр
             dispatch(SET_LIST_QG, res.games_data);
           }
           // =============================================================
           // ===================== current game quick ====================
           if (isKeyPresentInHash(res, "game_data")) {
+            console.log('%cSET_game_data from WS', 'color: green');
+            console.table({isActive: res.game_data.is_active});
             if(!res.game_data.is_active) {
               return payload.redirectTo(NAV_QG_SELECT_PAGE);
+            }else{
+              if (payload?.location && payload.location.pathname !== NAV_QG_FIELD_PAGE) {
+                console.log('%cGame is active redirect to field', 'color: yellow');
+                payload.redirectTo(NAV_QG_FIELD_PAGE);
+              }
             }
             // открываем ws для фида новостей игры
             dispatch(OPEN_WS_FEED_NEWS_QG, { game_id: res.game_data.id }); 
@@ -526,7 +537,11 @@ export const quickGame = (store: StoreonStore) => {
       return;
     }
     const connectFeedWS = () =>
-      connectWebSocket((socket.feed = new WebSocket(URL)), async (res: any) => {
+      connectWebSocket((socket.feed = new WebSocket(URL)), 
+    (err: any) => {
+      console.error('WebSocket feed error:', err);
+    },
+    async (res: any) => {
         if (isKeyPresentInHash(res, "send_data")) {
           if (isKeyPresentInHash(res.send_data, "achievements")) {
             dispatch(SET_ACHIVMENT_PLAYER_QG, res.send_data.achievements);
