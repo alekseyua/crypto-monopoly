@@ -4,7 +4,7 @@ import Icon from '../../../../shared/UI/Icon/Icon';
 import { IListQGs } from '../../../../store/quick-game/quick-game.d';
 import { IUser } from '../../../../store/users/user';
 import { GameRoom } from './components';
-import cls from './quick-games.module.css';
+import cls from './quick-games.module.scss';
 
 interface IProps {
 	user: IUser;

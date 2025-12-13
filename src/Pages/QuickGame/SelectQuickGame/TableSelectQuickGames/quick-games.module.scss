@@ -37,12 +37,11 @@
     gap: 15px;
 }
 
-.filtersMenu:hover{
-	cursor: pointer;
-}
 .filtersMenu{
 	display: flex;
     gap: 10px;
 	padding: 12px 14px;
 	border-radius: 9px;
+	position: relative;
+	cursor: pointer;
 }
