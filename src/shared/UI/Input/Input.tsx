@@ -48,6 +48,10 @@ export const Input = forwardRef<HTMLInputElement, IInput>(function Input(
   const [inputValue, setInputValue] = useState(value || "");
   const [errorInput, setErrorInput] = useState<string>("");
 
+  useEffect(() => {
+    setInputValue(value || "");
+  }, [value]);
+  
   const handleErrorInput = (error = "") => {
     setErrorInput(error);
     setTimeout(() => setErrorInput(""), 1600);

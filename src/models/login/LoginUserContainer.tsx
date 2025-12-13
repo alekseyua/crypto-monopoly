@@ -44,7 +44,9 @@ const LoginUserContainer: React.FC<IProps> = ({ navigate }) => {
 	return (
 		<LoginUser
 			error={error}
-			authData={authData}
+			// authData={authData}
+			email = {authData?.email || ''}
+			password = {authData?.password || ''}
 			authStep={authStep}
 			handleLogin={handleLogin}
 			showPassword={showPassword}

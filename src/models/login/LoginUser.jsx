@@ -10,7 +10,9 @@ import ContainerAuthForm from "../../shared/UI/Auth/ContainerAuthForm";
 export const LoginUser = ({
 	error,
 	authStep,
-	authData,
+	// authData,
+	email,
+	password,
 	handleLogin,
 	showPassword,
 	handleStepBack,
@@ -20,7 +22,7 @@ export const LoginUser = ({
 	handlerRedirectRegit,
 	handleRecoveryPassword,
 }) => {
-
+	console.log('LoginUser render ', { email }, { password }, ' ---- ', authStep === 2 ? password : email);
 	return (
 		<ContainerAuthForm>
 
@@ -38,7 +40,7 @@ export const LoginUser = ({
 						<div className={cls.cardBody}>
 							<Input
 								className={cls.authInput}
-								value={authStep === 2 ? authData.password : authData.email}
+								value={authStep === 2 ? password : email}
 								onChange={(e) => handleSetAuthData(authStep === 2 ? { password: e.target.value } : { email: e.target.value })}
 								label={error ? error : authStep === 2 ? 'Введите пароль' : 'Почта'}
 								type={authStep === 2 ? showPassword ? 'text' : 'password' : 'text'}
@@ -54,10 +56,10 @@ export const LoginUser = ({
 									/>
 									: null}
 								onEnter={() => (authStep === 1 ? (
-									(authData.email.length > 0)
+									(email.length > 0)
 									|| (error)
 								)
-									: (authData.password.length > 0)) && handleLogin()}
+									: (password.length > 0)) && handleLogin()}
 
 							/>
 							<div className={cls.authController}>
@@ -81,10 +83,10 @@ export const LoginUser = ({
 									error={error}
 									disabled={
 										authStep === 1 ? !(
-											(authData.email.length > 0)
+											(email.length > 0)
 											|| (error)
 										)
-											: !(authData.password.length > 0)
+											: !(password.length > 0)
 									}
 								>
 									{'Войти'}
