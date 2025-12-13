@@ -308,7 +308,7 @@ export const quickGame = (store: StoreonStore) => {
             if(!res.game_data.is_active) {
               return payload.redirectTo(NAV_QG_SELECT_PAGE);
             }else{
-              if (payload?.location && payload.location.pathname !== NAV_QG_FIELD_PAGE) {
+              if (payload?.location && payload.location.pathname !== NAV_QG_FIELD_PAGE && res.game_data.is_start) {
                 console.log('%cGame is active redirect to field', 'color: yellow');
                 payload.redirectTo(NAV_QG_FIELD_PAGE);
               }
