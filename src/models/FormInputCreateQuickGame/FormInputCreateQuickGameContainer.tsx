@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { use, useEffect } from 'react'
 import FormInputCreateQG from './FormInputCreateQuickGame'
 import { useStoreon } from 'storeon/react';
 import { SET_MODAL } from '../../store/modal/modal';
-import { CREATE_NEW_QG } from '../../store/quick-game/quick-game';
+import { CREATE_NEW_QG, EStoreQG } from '../../store/quick-game/quick-game';
+import { errorCreateGame, errorGameState } from '../../store/quick-game/error-game';
 
 export interface ICreateGameData {
   name: string;
@@ -12,9 +13,18 @@ export interface ICreateGameData {
   max_players: number;
   action: 'create_game';
 }
+
+interface State {
+  [EStoreQG.MESSAGE_ERROR_CREATE_GAME]: errorGameState;
+}
+
+interface Event {
+  [CREATE_NEW_QG]: ICreateGameData;
+  // [SET_MODAL]: { isOpen: boolean };
+}
 const FormInputCreateQGContainer:React.FC = () => {
 
-  const { dispatch } = useStoreon();
+  const { [EStoreQG.MESSAGE_ERROR_CREATE_GAME]: errorMessage, dispatch } = useStoreon<State, Event>(EStoreQG.MESSAGE_ERROR_CREATE_GAME);
   const [params, setParams] = React.useState<ICreateGameData>({
     name: '',
     bet_amount: 0,
@@ -57,8 +67,22 @@ const FormInputCreateQGContainer:React.FC = () => {
     })
   },[params])
   
+  // useEffect(()=>{
+  //   if (errorMessage.length > 0) {
+  //     errorMessage.forEach((err: errorCreateGame) => {
+  //       const {field, error} = err;
+  //       setParamsError( state =>({
+  //         ...state,
+  //         [field]: false
+  //       }));
+  //       console.log(`%cОшибка при создании игры: ${err}`, 'color:red');
+  //     })
+  //   }
+  // },[errorMessage]);
+
   return (
-    <FormInputCreateQG 
+    <FormInputCreateQG
+      errorMessage={errorMessage}
       handleChangeInput={handleChangeInput}
       handleSubmit={handleSubmit}
       paramsError={paramsError}

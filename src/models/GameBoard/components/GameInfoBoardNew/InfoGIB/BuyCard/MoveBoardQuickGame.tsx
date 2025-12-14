@@ -33,12 +33,16 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 }: IMoveBoardQGProps) => {
   const {isMobile} = useWindowWidth();
 	  const [ isClick, setIsClick ] =  React.useState(false); 
+    const [ hideBtn, setHideBtn ] = React.useState(false);
     
     const handleClickMove = () => {
       onMove({
         action,
       });
       setIsClick(true);
+      if(action === 'move'){
+        setHideBtn(true)
+      }
       setTimeout(()=>setIsClick(false),1000);
     }
 	return (
@@ -62,10 +66,14 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
           </ContainerHeaderTimerGIB>
         </>
       ) : (
-        !isMobile && <Offset mt={30} />
+        !isMobile && 
+        <>
+            {!hideBtn &&
+        <Offset mt={30} />}
+        </>
       )}
       {/* btn */}
-      <ContainerOneBtn>
+      {!hideBtn &&  <ContainerOneBtn>
         <Offset mt={10} />
         <Button
           p={[10,30]}
@@ -76,10 +84,10 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
         >
           {titleBtn}
         </Button>
-      </ContainerOneBtn>
+      </ContainerOneBtn>}
       <ContainerInfoTwoColumnGIB></ContainerInfoTwoColumnGIB>
 
-      <Offset mt={10} />
+      {!hideBtn && <Offset mt={10} />}
       {/* body */}
       <ContainerInfoBodyGIB
         style={{ background: "#E9ECFF" }}

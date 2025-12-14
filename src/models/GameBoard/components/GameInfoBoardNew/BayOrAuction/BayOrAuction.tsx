@@ -94,7 +94,7 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
               <AutoCounter
                 disabled={isActionCard}
                 counter={timeEndMove}
-                callback={handleAuction}
+                // callback={handleAuction}
               />
             }
           </Button>

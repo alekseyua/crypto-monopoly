@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './styles/form-input-create-quick-game.module.scss';
 import { Button, Input } from '../../shared/UI';
 import { ICreateGameData } from './FormInputCreateQuickGameContainer';
+import { errorCreateGame, errorGameState } from '../../store/quick-game/error-game';
 
 // name: 'test-create-v2',
 // bet_amount: 51,
@@ -12,14 +13,17 @@ interface IFormInputCreateQG{
   handleChangeInput: (e: string | number, key: string)=> void;
   handleSubmit: (e: React.MouseEvent<HTMLButtonElement>)=> void;
   paramsError: any;
-  values: ICreateGameData
+  values: ICreateGameData;
+  errorMessage?: errorGameState;
 }
 const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
   handleSubmit,
   handleChangeInput,
   paramsError,
+  errorMessage,
   values,
 }: IFormInputCreateQG) => {
+  console.log('paramsError', errorMessage );
   return (
     <div className={styles["form-input-create-quick-game__container"]}>
       <div className={styles["form-input-create-quick-game__container-wrap"]}>
@@ -29,6 +33,7 @@ const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
           onChange={(e) => handleChangeInput(e.target.value, "name")}
           type="text"
           id="name"
+          errorText={errorMessage?.name && errorMessage?.name}
           value={values.name}
           placeholder="Введите название игры например Империя"
           style={{
@@ -41,6 +46,7 @@ const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
           onChange={(e) => handleChangeInput(e.target.value, "max_players")}
           type="number"
           id="max_players"
+          errorText={errorMessage?.max_players && errorMessage?.max_players}
           value={values.max_players}
           min={2}
           max={10}
@@ -55,6 +61,7 @@ const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
           onChange={(e) => handleChangeInput(e.target.value, "bet_amount")}
           type="number"
           value={values.bet_amount}
+          errorText={errorMessage?.bet_amount && errorMessage?.bet_amount}
           id="bet_amount"
           placeholder="Введите сумму для входа в игру от 1$ до 1000$"
           min={1}
@@ -70,6 +77,7 @@ const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
             handleChangeInput(e.target.value, "start_money")
           }
           value={values.start_money}
+          errorText={errorMessage?.start_money && errorMessage?.start_money}
           type="number"
           id="start_money"
           placeholder="Укажите баланс игры от 100 до 10000 моно"
@@ -85,6 +93,7 @@ const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
             handleChangeInput(e.target.value, "turn_time")
           }
           value={values.turn_time}
+          errorText={errorMessage?.turn_time && errorMessage?.turn_time}
           type="number"
           id="turn_time"
           placeholder="Введите время на ход в секундах"

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./styles/roll-dice.module.scss";
 import RollDice from "./RollDice";
 import { IRoleDiceStore } from "../../../store/quick-game/quick-game.d";
-import { RESET_ROLL_DICE_QG } from "../../../store/quick-game/quick-game";
+import { EStoreQG, RESET_ROLL_DICE_QG } from "../../../store/quick-game/quick-game";
 import { useStoreon } from "storeon/react";
 
 interface IProps {
@@ -10,7 +10,7 @@ interface IProps {
 }
 
 type StateStore = {
-  roleDiceStore: IRoleDiceStore;
+  [EStoreQG.ROLE_DICE_STORE]: IRoleDiceStore;
 };
 type EventStore = {
   [RESET_ROLL_DICE_QG]: void;
@@ -19,7 +19,8 @@ type EventStore = {
 const RollDiceContainer: React.FC<IProps> = ({
   onClick,
 }) => {
-  const { roleDiceStore, dispatch } = useStoreon<StateStore, EventStore>("roleDiceStore");
+  const { [EStoreQG.ROLE_DICE_STORE]: roleDiceStore, dispatch } =
+    useStoreon<StateStore, EventStore>(EStoreQG.ROLE_DICE_STORE);
   const [ isClick, setIsClick ] = useState<boolean>(false);
   const cube1 = useRef<HTMLDivElement>(null);
   const cube2 = useRef<HTMLDivElement>(null);
@@ -56,16 +57,10 @@ const RollDiceContainer: React.FC<IProps> = ({
 
   // Запускаем анимацию через 3 секунды после загрузки
   useEffect(() => {
-
-    console.log(`%croleDiceStore = ${JSON.stringify(roleDiceStore)}`, 'color:red')
     if (roleDiceStore.rd1 === 0 || roleDiceStore.rd2 === 0) return;
-      const timer = setTimeout(() => {
-      }, 0);
       setIsClick(true);
       rotateDice(roleDiceStore.rd1, roleDiceStore.rd2);
-
     return () => {
-      clearTimeout(timer);
       dispatch(RESET_ROLL_DICE_QG);
     };
     // eslint-disable-next-line
