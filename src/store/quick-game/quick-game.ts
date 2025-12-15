@@ -25,7 +25,7 @@ import {
 } from "../message/message";
 import { GET_USERS } from "../users/users";
 import { NAV_QG_FIELD_PAGE, NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
-import {errorCreateGame, errorGameState} from "./error-game.d";
+import {payloadErrorCreateGame, errorGameState} from "./error-game.d";
 import { SET_MODAL } from "../modal/modal";
 
 // list cards for the game
@@ -209,9 +209,9 @@ export const quickGame = (store: StoreonStore) => {
   }));
 
   // --------------- Message create game -----------------
-  store.on(SET_MESSAGE_ERROR_CREATE_GAME, (_, payload: errorCreateGame[]) => {
+  store.on(SET_MESSAGE_ERROR_CREATE_GAME, (_, payload: payloadErrorCreateGame[]) => {
     let error: errorGameState = {};
-    payload.forEach((err: errorCreateGame) => {
+    payload.forEach((err: payloadErrorCreateGame) => {
       error = { ...error, [err.field]: err.error };
     });
     return {[EStoreQG.MESSAGE_ERROR_CREATE_GAME]: error};

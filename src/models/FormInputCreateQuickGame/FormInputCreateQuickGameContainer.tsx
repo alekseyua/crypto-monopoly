@@ -2,8 +2,9 @@ import React, { use, useEffect } from 'react'
 import FormInputCreateQG from './FormInputCreateQuickGame'
 import { useStoreon } from 'storeon/react';
 import { SET_MODAL } from '../../store/modal/modal';
-import { CREATE_NEW_QG, EStoreQG } from '../../store/quick-game/quick-game';
+import { CREATE_NEW_QG } from '../../store/quick-game/quick-game';
 import { errorGameState } from '../../store/quick-game/error-game';
+import { EQuickGameStore } from '../../store/quick-game/quick-game.d';
 
 export interface ICreateGameData {
   name: string;
@@ -15,7 +16,7 @@ export interface ICreateGameData {
 }
 
 interface State {
-  [EStoreQG.MESSAGE_ERROR_CREATE_GAME]: errorGameState;
+  [EQuickGameStore.MESSAGE_ERROR_CREATE_GAME]: errorGameState;
 }
 
 interface Event {
@@ -24,7 +25,7 @@ interface Event {
 }
 const FormInputCreateQGContainer:React.FC = () => {
 
-  const { [EStoreQG.MESSAGE_ERROR_CREATE_GAME]: errorMessage, dispatch } = useStoreon<State, Event>(EStoreQG.MESSAGE_ERROR_CREATE_GAME);
+  const { [EQuickGameStore.MESSAGE_ERROR_CREATE_GAME]: errorMessage, dispatch } = useStoreon<State, Event>(EQuickGameStore.MESSAGE_ERROR_CREATE_GAME);
   const [params, setParams] = React.useState<ICreateGameData>({
     name: '',
     bet_amount: 0,
@@ -75,7 +76,7 @@ const FormInputCreateQGContainer:React.FC = () => {
   
   // useEffect(()=>{
   //   if (errorMessage.length > 0) {
-  //     errorMessage.forEach((err: errorCreateGame) => {
+  //     errorMessage.forEach((err: payloadErrorCreateGame) => {
   //       const {field, error} = err;
   //       setParamsError( state =>({
   //         ...state,

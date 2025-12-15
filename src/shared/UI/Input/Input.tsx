@@ -127,14 +127,13 @@ export const Input = forwardRef<HTMLInputElement, IInput>(function Input(
         {iconLeft}
         {leftText}
         <input
-          className={`${className || ""}`}
+          className={`${className || ""} ${iconRight ? styles.inputIcons : styles.input}`}
           ref={ref}
           type={type}
           id={id}
           placeholder={placeholder}
           value={inputValue}
           style={{
-            paddingRight: iconRight ? 35 : 25,
             ...style,
           }}
           min={min}

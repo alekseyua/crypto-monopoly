@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./styles/roll-dice.module.scss";
 import RollDice from "./RollDice";
-import { IRoleDiceStore } from "../../../store/quick-game/quick-game.d";
-import { EStoreQG, RESET_ROLL_DICE_QG } from "../../../store/quick-game/quick-game";
+import { EQuickGameStore, IRoleDiceStore } from "../../../store/quick-game/quick-game.d";
+import { RESET_ROLL_DICE_QG } from "../../../store/quick-game/quick-game";
 import { useStoreon } from "storeon/react";
 
 interface IProps {
@@ -10,7 +10,7 @@ interface IProps {
 }
 
 type StateStore = {
-  [EStoreQG.ROLE_DICE_STORE]: IRoleDiceStore;
+  [EQuickGameStore.ROLE_DICE_STORE]: IRoleDiceStore;
 };
 type EventStore = {
   [RESET_ROLL_DICE_QG]: void;
@@ -19,8 +19,8 @@ type EventStore = {
 const RollDiceContainer: React.FC<IProps> = ({
   onClick,
 }) => {
-  const { [EStoreQG.ROLE_DICE_STORE]: roleDiceStore, dispatch } =
-    useStoreon<StateStore, EventStore>(EStoreQG.ROLE_DICE_STORE);
+  const { [EQuickGameStore.ROLE_DICE_STORE]: roleDiceStore, dispatch } =
+    useStoreon<StateStore, EventStore>(EQuickGameStore.ROLE_DICE_STORE);
   const [ isClick, setIsClick ] = useState<boolean>(false);
   const cube1 = useRef<HTMLDivElement>(null);
   const cube2 = useRef<HTMLDivElement>(null);

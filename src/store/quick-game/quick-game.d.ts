@@ -387,6 +387,21 @@ interface IRoleDiceStore {
     rd2: number;
 }
 
+/* ===================== ENUM ===================== */
+export const enum EQuickGameStore {
+  ROLE_DICE_STORE = 'roleDiceStore',
+  MESSAGE_ERROR_CREATE_GAME = 'messageErrorCreateGame',
+  POPUP_MESSAGE = 'infoMassagePopup',
+  LIST_ACHIVMENT_PLAYER = 'listAchivmentPlayer',
+  LIST_CARD_QG = 'listCardQG',
+  DATA_ACTION_CARD_QG = 'dataActionCardQG',
+  DATA_PLAYER_QG = 'dataPlayerQG',
+  QUICK_GAME = 'quickGame',
+  LIST_QGS = 'listQGs',
+  EXCHANGE_DATA = 'exchangeData',
+  SHOW_RATE = 'showRate',
+}
+
 export type {
   ICard,
   ISocket,

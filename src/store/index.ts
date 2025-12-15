@@ -14,12 +14,27 @@ import { error } from './error/error';
 import { rule } from './rules/rule';
 
 import { IRule } from './rules/rule.type';
+import { IUser } from './users/user';
+import { EQuickGameStore, IAchivmentPlayer, ICard, IDataQG, IInfoMassagePopup, IListQGs, IPlayer, IRoleDiceStore } from './quick-game/quick-game.d';
+import { errorGameState } from './quick-game/error-game.d';
 
 // Initial state, reducers and business logic are packed in independent modules
 
 export interface IState {
+  user: IUser;
+  [EQuickGameStore.ROLE_DICE_STORE]: IRoleDiceStore;
+  [EQuickGameStore.MESSAGE_ERROR_CREATE_GAME]: errorGameState;
+  [EQuickGameStore.POPUP_MESSAGE]: IInfoMassagePopup;
+  [EQuickGameStore.LIST_ACHIVMENT_PLAYER]: IAchivmentPlayer[];
+  [EQuickGameStore.LIST_CARD_QG]: ICard[];
+  [EQuickGameStore.DATA_ACTION_CARD_QG]: {};
+  [EQuickGameStore.DATA_PLAYER_QG]: IPlayer;
+  [EQuickGameStore.QUICK_GAME]: IDataQG;
+  [EQuickGameStore.LIST_QGS]: IListQGs[];
+  [EQuickGameStore.EXCHANGE_DATA]: {};
+  [EQuickGameStore.SHOW_RATE]: boolean;
+
   authStore: any;
-  quickGame: any;
   users: any;
   profile: any;
   message: any;

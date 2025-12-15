@@ -1,4 +1,4 @@
-interface errorCreateGame {
+interface payloadErrorCreateGame {
     field: string;
     error: string;
 }
@@ -7,6 +7,6 @@ interface errorGameState {
 [key: string]: string;
 }
 export type {
-    errorCreateGame,
+    payloadErrorCreateGame,
     errorGameState,
 }

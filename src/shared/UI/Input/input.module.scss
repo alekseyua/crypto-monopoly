@@ -7,7 +7,6 @@
 }
 
 .inputCont > div > input {
-	padding: 3px;
 	border-radius: 10px;
 	border: 1px solid #d6dbf5;
 	font-size: 18px;
@@ -31,6 +30,7 @@
 }
 
 .input{
+	padding: 3px;
 	&__error{
 		//input__error-container
 		&-container{
@@ -41,6 +41,10 @@
 			left: 5%;
 		}
 	}
+}
+//inputIcons
+.inputIcons{
+	padding-right: 35px;
 }
 .inputWrap{
 	position: relative;
