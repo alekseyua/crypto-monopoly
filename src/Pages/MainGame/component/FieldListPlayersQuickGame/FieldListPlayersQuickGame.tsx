@@ -53,7 +53,7 @@ const FieldListPlayersQG: React.FC<IFieldListPlayersQGProps> = ({
           className={styles['list-player__btn']}
         // onClick={handleBuyCard}
         >
-          {isMobile && <Icon src={icons.rightArrow} width={'12'} height={'12'} className={styles['list-player__btns-icon']} onClick={() => setShowFeetHistory(true)}/>}
+          {isMobile && <Icon src={icons.rightArrow} width={12} height={12} className={styles['list-player__btns-icon']} onClick={() => setShowFeetHistory(true)}/>}
           Список игроков
         </Button>
         <Button

@@ -88,8 +88,8 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
             Купить за {(card as ISpecialCard)?.card_info?.base_cost}
             <Icon
               src={icons.qgCurrencySvgWhite}
-              width="20"
-              height="16"
+              width={20}
+              height={16}
               ml={5}
             />
           </Button>
@@ -154,7 +154,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
                 <Text text={"1 карта"} />
                 <Text
                   text={(card as ISpecialCard)?.card_info?.one_card_tax + ""}
-                  iconRight={<Icon src={icons.qgCurrencySvg} height={"13px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} height={13} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
@@ -186,7 +186,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
                           (card as ISpecialCard)?.card_info?.two_card_tax + ""
                         }
                         iconRight={
-                          <Icon src={icons.qgCurrencySvg} height={"13px"} />
+                          <Icon src={icons.qgCurrencySvg} height={13} />
                         }
                       />
                     </InnerBtnContextSpaceBetween>
@@ -201,7 +201,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
                           (card as ISpecialCard)?.card_info?.three_card_tax + ""
                         }
                         iconRight={
-                          <Icon src={icons.qgCurrencySvg} height={"13px"} />
+                          <Icon src={icons.qgCurrencySvg} height={13} />
                         }
                       />
                     </InnerBtnContextSpaceBetween>
@@ -223,7 +223,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
                         (card as ISpecialCard)?.card_info?.four_card_tax + ""
                       }
                       iconRight={
-                        <Icon src={icons.qgCurrencySvg} height={"13px"} />
+                        <Icon src={icons.qgCurrencySvg} height={13} />
                       }
                     />
                   </InnerBtnContextSpaceBetween>

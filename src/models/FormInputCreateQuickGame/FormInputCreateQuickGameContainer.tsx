@@ -3,7 +3,7 @@ import FormInputCreateQG from './FormInputCreateQuickGame'
 import { useStoreon } from 'storeon/react';
 import { SET_MODAL } from '../../store/modal/modal';
 import { CREATE_NEW_QG, EStoreQG } from '../../store/quick-game/quick-game';
-import { errorCreateGame, errorGameState } from '../../store/quick-game/error-game';
+import { errorGameState } from '../../store/quick-game/error-game';
 
 export interface ICreateGameData {
   name: string;
@@ -20,7 +20,7 @@ interface State {
 
 interface Event {
   [CREATE_NEW_QG]: ICreateGameData;
-  // [SET_MODAL]: { isOpen: boolean };
+  [SET_MODAL]: { isOpen: boolean };
 }
 const FormInputCreateQGContainer:React.FC = () => {
 
@@ -53,7 +53,13 @@ const FormInputCreateQGContainer:React.FC = () => {
       e.preventDefault();
       if ((e as React.KeyboardEvent<HTMLButtonElement>).keyCode !== 32 && (e as React.KeyboardEvent<HTMLButtonElement>).keyCode !== 13) return
     }
-    dispatch(CREATE_NEW_QG, {...params})
+    dispatch(CREATE_NEW_QG, {...params});
+    // setTimeout(()=>{
+    //   console.log('errorMessage', errorMessage);
+    //   if(Object.values(errorMessage).length === 0){
+    //     dispatch(SET_MODAL, { isOpen: false });
+    //   };
+    // },2000);
     // dispatch(SET_MODAL, { isOpen: false });
   }
 

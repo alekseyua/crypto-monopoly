@@ -46,10 +46,10 @@ const UserPanelLKMobile:React.FC<IProps> = ({ handleOpenLKMenu, handleLogout, us
             </div>
       </div>
       <div className={cls['header-menu-lk-btn__theme']} onClick={() => navigate(NAV_PROFILE)}>
-        <Icon src={icons.moon} width={'10px'} height={'10px'} />
+        <Icon src={icons.moon} width={10} height={10} />
       </div>
       <div className={cls['header-menu-lk-btn__setting']} onClick={() => navigate(NAV_PROFILE)}>
-        <Icon src={icons.setting} width={'10px'} height={'10px'} />
+        <Icon src={icons.setting} width={10} height={10} />
       </div>
     </div>
   )

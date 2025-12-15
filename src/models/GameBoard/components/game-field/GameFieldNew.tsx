@@ -134,6 +134,43 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
               [styles[`card-field__text-container--${direction}`]]: !!direction,
             })}
           >
+            {!!owner?.hotels ? (
+              <div
+                className={
+                  styles[`card-field__text-title--build-hotel-${direction}`]
+                }
+              >
+                <Icon src={icons.hotelCard} width={25} height={12} />
+              </div>
+            ) : !!owner?.houses ? (
+              <div
+                className={
+                  styles[`card-field__text-title--build-house-${direction}`]
+                }
+              >
+                {
+                  new Array(owner?.houses)
+                    // new Array(4)
+                    .fill("")
+                    .map((h: any, i: number) => {
+                      return (
+                        <Icon
+                          key={i}
+                          src={icons.home}
+                          width={12}
+                          height={12}
+                        // rotate={
+                        //   direction === "left"
+                        //     ? 270
+                        //     : direction === "right"
+                        //     ? 270
+                        //     : 0
+                        // }
+                        />
+                      );
+                    })}
+              </div>
+            ) : null}
             <div
               style={{ ...initStyleColor, ...styleBayCard }}
               className={classNames({
@@ -153,43 +190,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
               >
                 {/* add income_tax and super_tax */}
                 {!(type === "chance" || type === "community") && name} 
-                {!!owner?.hotels ? (
-                  <div
-                    className={
-                      styles[`card-field__text-title--build-hotel-${direction}`]
-                    }
-                  >
-                    <Icon src={icons.hotelCard} width="25" height="12" />
-                  </div>
-                ) : !!owner?.houses ? (
-                  <div
-                    className={
-                      styles[`card-field__text-title--build-house-${direction}`]
-                    }
-                  >
-                    {
-                    new Array(owner?.houses)
-                        // new Array(4)
-                      .fill("")
-                      .map((h: any, i: number) => {
-                        return (
-                          <Icon
-                            key={i}
-                            src={icons.home}
-                            width="12px"
-                            height="12px"
-                            // rotate={
-                            //   direction === "left"
-                            //     ? 270
-                            //     : direction === "right"
-                            //     ? 270
-                            //     : 0
-                            // }
-                          />
-                        );
-                      })}
-                  </div>
-                ) : null}
+                
               </div>
               {players && players?.length > 0 && (
                 <PlayerSticker
@@ -229,8 +230,8 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
               {cardCost}{" "}
               <Icon
                 className={styles["card-field__qg-currency"]}
-                width="10px"
-                height="10px"
+                width={10}
+                height={10}
                 src={icons.qgCurrencySvgWhite}
               />
             </div>
@@ -273,7 +274,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
                 duration: 1,
               }}
             >
-              <Icon src={LeftSoleIcon} width={"7px"} height={"17px"} />
+              <Icon src={LeftSoleIcon} width={7} height={17} />
             </motion.div>
             <motion.div
               style={{ display: "inline" }}
@@ -286,7 +287,7 @@ export const GameFieldNew: React.FC<IGameFieldNew> = React.memo(({
                 delay: 1,
               }}
             >
-              <Icon src={RightSoleIcon} width={"7px"} height={"17px"} />
+              <Icon src={RightSoleIcon} width={7} height={17} />
             </motion.div>
           </div>
         </div>

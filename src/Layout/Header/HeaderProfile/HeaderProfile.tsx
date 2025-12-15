@@ -21,7 +21,7 @@ const HeaderProfile:React.FC<IProps> = ({ dashboardProfile, handleNavigateTo, us
           type="rounded"
           onClick={() => handleNavigateTo(-1)}
           className={styles.iconBack}
-          iconRight={<Icon src={BackArrow} width="20px" height="20px" />}
+          iconRight={<Icon src={BackArrow} width={20} height={20} />}
           p={10}
           borderColor={"var(--border-color)"}
           fillColor="#E9ECFF"
@@ -67,7 +67,7 @@ const HeaderProfile:React.FC<IProps> = ({ dashboardProfile, handleNavigateTo, us
                     className={styles.containerButton}
                     type={el.status === "active" ? "gradient-invert" : "fill"}
                     iconLeft={
-                      <Icon src={IconChat} width={"20px"} height={"20px"} />
+                      <Icon src={IconChat} width={20} height={20} />
                     }
                     p={10}
                   >

@@ -39,17 +39,17 @@ const CollapsibleCard:React.FC<ICollapsibleCard> = ({
 			<div className={isMobile? cls['cardHeader--mobile'] : cls.cardHeader}>
 				<div className={isMobile? cls['label--mobile'] : cls.label}>
 					{isMobile && 
-					<Icon src={icons.rightArrow} width={'12'} height={'12'} className={cls['feeds__btns-icon-back']} onClick={() => setShowFeetHistory(true)} />}
+					<Icon src={icons.rightArrow} width={12} height={12} className={cls['feeds__btns-icon-back']} onClick={() => setShowFeetHistory(true)} />}
 
 					{title}
 				</div>
 				
 				<div className={cls.btns}>
 					<Button disabled={!isOpen} p={12} className={`${cls.btn} ${btnClassname}`} type='outline' onClick={()=>handleClick('down')}>
-						{Icon1 && <Icon src={Icon1} width={icon1Size[0]+''} height={icon1Size[1]+''} />}
+						{Icon1 && <Icon src={Icon1} width={icon1Size[0]} height={icon1Size[1]} />}
 					</Button>
 					<Button disabled={!isOpen} p={12} className={`${cls.btn} ${btnClassname}`} type='outline' onClick={()=>handleClick('up')}>
-						{Icon2 && <Icon src={Icon2} width={icon2Size[0]+''} height={icon2Size[1]+''} />}
+						{Icon2 && <Icon src={Icon2} width={icon2Size[0]} height={icon2Size[1]} />}
 					</Button>
 				</div>
 			</div>

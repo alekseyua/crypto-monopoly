@@ -76,7 +76,7 @@ export const AuctionExpressAirlineCruise: React.FC<IAuctionExpressAirlineCruiseP
             onClick={handleBuyCard}
           >
             Купить за {card?.card_info?.start_price}
-            <Icon src={icons.qgCurrencySvgWhite} width="10" height="10" />
+            <Icon src={icons.qgCurrencySvgWhite} width={10} height={10} />
           </Button>
           <Button
             type="outline"
@@ -125,7 +125,7 @@ export const AuctionExpressAirlineCruise: React.FC<IAuctionExpressAirlineCruiseP
                 <Text text={"Налог"} />
                 <Text
                   text={card?.card_info?.one_card_tax + ""}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>

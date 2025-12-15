@@ -178,8 +178,8 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 											leftText={exchageData.price_from? '+ ' : undefined}
 											iconLeft={exchageData.price_from? <Icon
 												className={styles['gib__user-exchange--input-currency']}
-												width='15px'
-												height='15px'
+												width={15}
+												height={15}
 												src={icons.qgCurrencySvg}
 											/> : undefined}
 											
@@ -200,8 +200,8 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 													leftText={exchageData.price_to ? '+ ' : undefined}
 													iconLeft={exchageData.price_to ? <Icon
 														className={styles['gib__user-exchange--input-currency']}
-														width='15px'
-														height='15px'
+														width={15}
+														height={15}
 														src={icons.qgCurrencySvg}
 													/> : undefined}
 													

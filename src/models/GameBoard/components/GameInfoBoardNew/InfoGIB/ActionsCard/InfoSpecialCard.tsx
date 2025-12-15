@@ -59,7 +59,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
           });
         }}
       >
-        <Icon src={icons.crossBlack} width={'20'} height='20' style={{ position: 'absolute', right: 20 }} />
+        <Icon src={icons.crossBlack} width={20} height={20} style={{ position: 'absolute', right: 20 }} />
       </Button>
       <Title title={"Действия с картой"} tag="h3" fontWeight={500} />
       {/* <Offset mt={15} /> */}
@@ -131,7 +131,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
                 <Text text={"Налог"} />
                 <Text
                   text={card?.card_info?.one_card_tax + ""}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
@@ -157,7 +157,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
                 <Text text={"С коллекцией"} />
                 <Text
                   text={card?.card_info?.monopoly_tax + ""}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>

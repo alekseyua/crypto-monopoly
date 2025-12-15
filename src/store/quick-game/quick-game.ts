@@ -26,6 +26,7 @@ import {
 import { GET_USERS } from "../users/users";
 import { NAV_QG_FIELD_PAGE, NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
 import {errorCreateGame, errorGameState} from "./error-game.d";
+import { SET_MODAL } from "../modal/modal";
 
 // list cards for the game
 export const RESET_LIST_CARDS_QG = v4();
@@ -96,9 +97,9 @@ export const quickGame = (store: StoreonStore) => {
 
     // Info message popup
     infoMassagePopup: {
-      show: true,
-      message: "You are get a chance card Move to Tokyo",
-      type_card: "chance",
+      show: false,
+      message: "",
+      type_card: "",
     } as IInfoMassagePopup,
 
     // Achivment player
@@ -277,6 +278,8 @@ export const quickGame = (store: StoreonStore) => {
               dispatch(SET_MESSAGE_ERROR_CREATE_GAME, []);
             },3000);
             return;
+          }else{
+              dispatch(SET_MODAL, { isOpen: false });
           }
 
           // ===== List games quick =====

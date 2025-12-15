@@ -18,7 +18,7 @@ const ButtonOpenMenu:React.FC<IProps> = ({
   }
   return (
     <div className={styles["button__open-menu"]} onClick={handleOpenMenuCustom}>
-      <Icon src={icons.arrowDown} width="15px" height="15px" style={{
+      <Icon src={icons.arrowDown} width={15} height={15} style={{
         transform: isDropDownMenuOpen ? 'rotate(180deg)' : 'rotate(0deg)',
         transition: 'transform 0.3s ease'
       }}/>

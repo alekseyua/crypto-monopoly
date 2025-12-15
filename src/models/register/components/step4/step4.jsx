@@ -30,7 +30,6 @@ export const Step4 = ({
 	return (
 		<WrapperCard>
 			<div className={cls.labels}>
-				{/* <Icon src={icons.rightArrow} rotate={180} onClick={handlePrevStep} /> */}
 				<div></div>
 				<div className={cls.contLabel}>
 					<Label p={11} text={'Придумайте пароль'} type={'gradient'} />

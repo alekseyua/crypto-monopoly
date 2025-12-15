@@ -50,7 +50,7 @@ export const GameRoom:React.FC<IProps> = ({
 								Баланс игрока: ${gameBalance} 
 							</p>`
 						}
-						iconRight={<Icon src={MIcon} width={'18px'} height={'18px'} />}
+						iconRight={<Icon src={MIcon} width={18} height={18} />}
 					/>
 				</div>
 			</div>

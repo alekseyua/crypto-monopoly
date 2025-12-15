@@ -19,7 +19,7 @@ const ButtonBack: React.FC<IProps> = ({
       type='empty'
       onClick={onClick}
     >
-      <Icon width={'10px'} height={'10px'} rotate={180} src={RightArrowIcon} />
+      <Icon width={10} height={10} rotate={180} src={RightArrowIcon} />
       {title}
     </Button>
   )

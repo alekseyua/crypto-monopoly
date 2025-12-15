@@ -39,11 +39,11 @@ const GameInfoBoardFooter:React.FC<IProps> = ({
       >
         <div className={styles["gib-footer__desc-item"]}>
           Б: {balance}
-          <Icon src={icons.qgCurrencySvg} width="12px" height="12px" />
+          <Icon src={icons.qgCurrencySvg} width={12} height={12} />
         </div>
         <div className={styles["gib-footer__desc-item"]}>
           К: {capital}
-          <Icon src={icons.qgCurrencySvg} width="12px" height="12px" />
+          <Icon src={icons.qgCurrencySvg} width={12} height={12} />
         </div>
         <Tooltip
           id="footer-balance-capital"
@@ -56,11 +56,11 @@ const GameInfoBoardFooter:React.FC<IProps> = ({
         >
           <div className={"tool-tip__balance"}>
             Баланс: {balance}
-            <Icon src={icons.qgCurrencySvg} width="12px" height="12px" />
+            <Icon src={icons.qgCurrencySvg} width={12} height={12} />
           </div>
           <div className={"tool-tip__balance"}>
             Капитал: {capital}
-            <Icon src={icons.qgCurrencySvg} width="12px" height="12px" />
+            <Icon src={icons.qgCurrencySvg} width={12} height={12} />
           </div>
         </Tooltip>
       </div>
@@ -73,7 +73,7 @@ const GameInfoBoardFooter:React.FC<IProps> = ({
             backgroundColor: bgcBtn ? bgcBtn : "#D6DBF5",
             justifyContent: 'flex-start',
           }}
-          iconRight={<Icon src={icons.rightArrow} width="15px" height="10px" />}
+          iconRight={<Icon src={icons.rightArrow} width={15} height={10} />}
           onClick={handleClickRate}
         >
           Ваше место в игре: {currentPosition}

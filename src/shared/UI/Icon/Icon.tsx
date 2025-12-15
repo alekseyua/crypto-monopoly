@@ -1,6 +1,7 @@
 import { ReactSVG } from 'react-svg';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './styles/icon.module.scss';
+import { useWindowWidth } from '../../../hooks/useWindowWidth';
 
 interface IIcon {
     src: string;
@@ -39,8 +40,8 @@ const Icon: React.FC<IIcon> = ({
     down,
     rotate = 0,
 
-    width = '20px',
-    height = '20px',
+    width = 20,
+    height = 20,
 
     minW = 320,
     maxW = 1920,
@@ -48,14 +49,8 @@ const Icon: React.FC<IIcon> = ({
     ...props
 }) => {
 
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handler = () => setScreenWidth(window.innerWidth);
-        window.addEventListener("resize", handler);
-        return () => window.removeEventListener("resize", handler);
-    }, []);
-
+    // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const screenWidth = useWindowWidth().width;
     const interpolate = (minVal: number, maxVal: number): number => {
         const w = Math.min(Math.max(screenWidth, minW), maxW);
         const progress = (w - minW) / (maxW - minW);

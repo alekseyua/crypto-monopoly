@@ -11,6 +11,7 @@ interface IProps {
   width?: number;
   height?: number;
   left?: string | number;
+  resize?: boolean;
 }
 
 const AvatarBlock: React.FC<IProps> = ({
@@ -19,19 +20,24 @@ const AvatarBlock: React.FC<IProps> = ({
   isGrayBlur = false,
   width,
   height,
+  resize,
   left = 0,
 }: IProps) => {
   const vw = useWindowWidth().width;
 
   // width
-  const finalWidth = width
+  const finalWidth = resize 
+  ?(width
     ? getAdaptiveFromBase(vw, width)
-    : getDefaultAvatarSize(vw);
+    : getDefaultAvatarSize(vw))
+    : width;
 
   // height
-  const finalHeight = height
-    ? getAdaptiveFromBase(vw, height)
-    : getDefaultAvatarSize(vw);
+  const finalHeight = resize ?
+    (height
+      ? getAdaptiveFromBase(vw, height)
+      : getDefaultAvatarSize(vw))
+      : height;
 
   return (
     <div

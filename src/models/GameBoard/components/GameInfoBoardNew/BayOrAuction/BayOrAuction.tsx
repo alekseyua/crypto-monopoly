@@ -81,7 +81,7 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
             disabled={isClick || !actions?.buy}
           >
             Купить за {card_cost}
-            <Icon width="15px" height="15px" ml={3} src={icons.qgCurrencySvg} />
+            <Icon width={15} height={15} ml={3} src={icons.qgCurrencySvg} />
           </Button>
           <Button
             p={10}
@@ -162,7 +162,7 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
                 <Text
                   fontWeight={900}
                   text={dataCard?.features?.one_card_tax + ""}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
@@ -185,7 +185,7 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
                 <Text
                   fontWeight={900}
                   text={dataCard?.features?.monopoly_tax + ""}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
@@ -195,7 +195,7 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
                 <Text
                   fontWeight={900}
                   text={dataCard?.prices?.house + ""}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
@@ -271,7 +271,7 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
                     )?.price + ""
                   }
                   fontWeight={900}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
@@ -281,7 +281,7 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
                 <Text
                   fontWeight={900}
                   text={dataCard?.prices?.hotel + ""}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>

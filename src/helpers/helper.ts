@@ -237,7 +237,8 @@ export const temporaryDisableBtn = function (time: number, f: Function) {
 
 // адаптировать от исходных размеров
 export const getAdaptiveFromBase = (vw: number, base: number) => {
-  if (vw > 1280) return adaptivValue(vw, 0, base, 1920);
+  if (vw > 1400) return adaptivValue(vw, base, base, 1920); 
+  if (vw > 1280) return adaptivValue(vw, base/2, base, 1400);
   if (vw > 1160) return adaptivValue(vw, 0, base * 0.8, 1280);
   if (vw > 992) return adaptivValue(vw, 0, base * 0.6, 1160);
   return adaptivValue(vw, base, base, 992);

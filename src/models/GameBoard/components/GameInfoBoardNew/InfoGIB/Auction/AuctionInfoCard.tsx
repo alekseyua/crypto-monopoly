@@ -88,7 +88,7 @@ export const AuctionInfoCard: React.FC<Iprops> = ({
               <Text text={"Налог"} />
               <Text
                 text={cardInfo?.features?.one_card_tax + ""}
-                iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
               />
             </InnerBtnContextSpaceBetween>
           </Button>
@@ -115,7 +115,7 @@ export const AuctionInfoCard: React.FC<Iprops> = ({
               </Button>
               <Text
                 text={cardInfo?.start_price + ""}
-                iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
               />
             </InnerBtnContextSpaceBetween>
           </Button>
@@ -128,7 +128,7 @@ export const AuctionInfoCard: React.FC<Iprops> = ({
               <Text text={"С коллекцией"} />
               <Text
                 text={cardInfo?.features?.monopoly_tax + ""}
-                iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
               />
             </InnerBtnContextSpaceBetween>
           </Button>
@@ -203,7 +203,7 @@ export const AuctionInfoCard: React.FC<Iprops> = ({
                     cardInfo?.features?.house_taxes
                   )?.price + ""
                 }
-                iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
               />
             </InnerBtnContextSpaceBetween>
           </Button>
@@ -220,7 +220,7 @@ export const AuctionInfoCard: React.FC<Iprops> = ({
               <Text>Сделать ставку</Text>
               <Text
                 text={"> 0"}
-                iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
               />
             </InnerBtnContextSpaceBetween>
           </Button>

@@ -78,8 +78,8 @@ const CardPlayersPreview: React.FC<IPropsCardPlayersPreview> = ({
             />
             <Icon
               src={!isSelected ? icons.documentBlue : icons.documentBlack}
-              width="15px"
-              height="15px"
+              width={15}
+              height={15}
             />
           </div>
           <div
@@ -101,8 +101,8 @@ const CardPlayersPreview: React.FC<IPropsCardPlayersPreview> = ({
             />
             <Icon
               src={isSelected ? icons.eyeRed : icons.eyeBlack}
-              width="15px"
-              height="15px"
+              width={15}
+              height={15}
             />
           </div>
         </div>
@@ -176,8 +176,8 @@ const CardPlayersPreview: React.FC<IPropsCardPlayersPreview> = ({
                 <span>{balance} </span>
               </div>
               <Icon
-                width="12px"
-                height="12px"
+                width={12}
+                height={12}
                 down={1}
                 src={icons.qgCurrencySvg}
               />
@@ -188,8 +188,8 @@ const CardPlayersPreview: React.FC<IPropsCardPlayersPreview> = ({
                 <span>{property} </span>
               </div>
               <Icon
-                width="12px"
-                height="12px"
+                width={12}
+                height={12}
                 down={1}
                 src={icons.qgCurrencySvg}
               />
@@ -200,8 +200,8 @@ const CardPlayersPreview: React.FC<IPropsCardPlayersPreview> = ({
                 <span>{capital} </span>
               </div>
               <Icon
-                width="12px"
-                height="12px"
+                width={12}
+                height={12}
                 down={1}
                 src={icons.qgCurrencySvg}
               />
@@ -220,15 +220,15 @@ const CardPlayersPreview: React.FC<IPropsCardPlayersPreview> = ({
             >
               <div className={"tool-tip__balance"}>
                 Баланс: {balance}
-                <Icon src={icons.qgCurrencySvg} width="12px" height="12px" />
+                <Icon src={icons.qgCurrencySvg} width={12} height={12} />
               </div>
               <div className={"tool-tip__balance"}>
                 Имущество: {property}
-                <Icon src={icons.qgCurrencySvg} width="12px" height="12px" />
+                <Icon src={icons.qgCurrencySvg} width={12} height={12} />
               </div>
               <div className={"tool-tip__balance"}>
                 Капитал: {capital}
-                <Icon src={icons.qgCurrencySvg} width="12px" height="12px" />
+                <Icon src={icons.qgCurrencySvg} width={12} height={12} />
               </div>
             </Tooltip>
           </div>
@@ -250,7 +250,7 @@ const CardPlayersPreview: React.FC<IPropsCardPlayersPreview> = ({
                   ? icons.crossBlack
                   : icons.actions
               }
-              width={"40px"}
+              width={40}
             />
           </div>
         )}

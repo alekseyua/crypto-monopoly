@@ -41,7 +41,7 @@ const HeaderRulesDetail = () => {
 						className={cls.backBtn}
 						type='filled'
 						variant='rounded'>
-						<Icon src={BackArrow} width={'16'} height={'16'} />
+						<Icon src={BackArrow} width={16} height={16} />
 					</Button>
 					<h2>Основной режим</h2>
 				</div>
@@ -50,7 +50,7 @@ const HeaderRulesDetail = () => {
 						<input type='text' value={inpuText} style={{ paddingRight: 25 }} placeholder='Как часто можно ходить...' onChange={onSearchChange} />
 						<button>
 							{/* <SearchIcon width={14} height={14} /> */}
-							<Icon src={SearchIcon} width={'14'} height={'14'} style={{ marginRight: 10, top: 5 }} />
+							<Icon src={SearchIcon} width={14} height={14} style={{ marginRight: 10, top: 5 }} />
 						</button>
 					</div>}
 					<div className={cls.contButtons} >

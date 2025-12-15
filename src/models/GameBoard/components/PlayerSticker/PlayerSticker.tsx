@@ -43,7 +43,7 @@ const PlayerSticker: React.FC<IPlayerStickerProps> = ({
               height: getAdaptiveFromBase(vw, 15),
             }}
           >
-            <AvatarBlock avatar={player.avatar} color={player.color} width={15} height={15}/>
+            <AvatarBlock avatar={player.avatar} color={player.color} width={15} height={15} resize/>
           </div>
         ))}
       </div>

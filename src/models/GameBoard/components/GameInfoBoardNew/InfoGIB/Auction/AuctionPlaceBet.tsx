@@ -117,8 +117,8 @@ export const AuctionPlaceBet: React.FC<IProps> = ({
             {startPrice}
             <Icon
               src={icons.qgCurrencySvgWhite}
-              width="14"
-              height="14"
+              width={14}
+              height={14}
               ml={4}
               display="inline-block"
             />
@@ -131,7 +131,7 @@ export const AuctionPlaceBet: React.FC<IProps> = ({
           <Button
             fillColor="#FFE4B5"
             p={10}
-            disabled={isClick || !currentBet || currentBet < startPrice}
+            disabled={isClick || !currentBet || currentBet <= startPrice}
             className={styles["gib__btn-action-place-bet-auction"]}
             onClick={() => {
               temporaryDisableBtn(2000, setIsClick);
@@ -148,7 +148,7 @@ export const AuctionPlaceBet: React.FC<IProps> = ({
               <Text text={"Сделать ставку"} />
               <Text
                 text={currentBet + ""}
-                iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
               />
             </InnerBtnContextSpaceBetween>
           </Button>

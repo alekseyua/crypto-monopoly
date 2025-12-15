@@ -331,8 +331,8 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
                           className={
                             styles["gib__user-exchange--input-currency"]
                           }
-                          width="15px"
-                          height="15px"
+                          width={15}
+                          height={15}
                           src={icons.qgCurrencySvg}
                         />
                       ) : undefined
@@ -344,16 +344,16 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
                             styles["gib__user-exchange--input-success"]
                           }
                           src={icons.checkMarkerWhite}
-                          width="12px"
-                          height="12px"
+                          width={12}
+                          height={12}
                           onClick={() => handleApplyInput("price_from")}
                         />
                       ) : isSetInputPriceFrom ? (
                         <Icon
                           className={styles["gib__user-exchange--input-reset"]}
                           src={Cross}
-                          width="17px"
-                          height="17px"
+                          width={17}
+                          height={17}
                           onClick={() => handleApplyInput("price_from_reset")}
                         />
                       ) : undefined
@@ -397,8 +397,8 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
                               className={
                                 styles["gib__user-exchange--input-currency"]
                               }
-                              width="15px"
-                              height="15px"
+                              width={15}
+                              height={15}
                               src={icons.qgCurrencySvg}
                             />
                           ) : null
@@ -410,8 +410,8 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
                                 styles["gib__user-exchange--input-success"]
                               }
                               src={icons.checkMarkerWhite}
-                              width="12px"
-                              height="12px"
+                              width={12}
+                              height={12}
                               onClick={() => handleApplyInput("price_to")}
                             />
                           ) : isSetInputPriceTo ? (
@@ -420,8 +420,8 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
                                 styles["gib__user-exchange--input-reset"]
                               }
                               src={Cross}
-                              width="17px"
-                              height="17px"
+                              width={17}
+                              height={17}
                               onClick={() => handleApplyInput("price_to_reset")}
                             />
                             ) : null

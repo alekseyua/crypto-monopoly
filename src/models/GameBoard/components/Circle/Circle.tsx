@@ -60,8 +60,8 @@ const Circle: React.FC<ICircleProps> = ({
             + {cardCost}{" "}
             <Icon
               src={icons.qgCurrencySvg}
-              width="14"
-              height="14"
+              width={14}
+              height={14}
               ml={2}
               down={2}
               display="inline-block"

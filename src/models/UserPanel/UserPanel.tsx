@@ -48,8 +48,8 @@ const UserPanel:React.FC<IProps> = ({
                     src={icons[id as keyof typeof icons]}
                     className={styles["header-menu-btn__icon--left"]}
                     // zIndex={10}
-                    width={"20"}
-                    height={"20"}
+                    width={20}
+                    height={20}
                   />
                   <Label
                     type={"transparent"}
@@ -61,8 +61,8 @@ const UserPanel:React.FC<IProps> = ({
                     <Icon
                       className={styles["header-menu-btn__price-icon"]}
                       src={DropdownArrow}
-                      width={"12"}
-                      height={"12"}
+                      width={12}
+                      height={12}
                     />
                   )}
                 </div>

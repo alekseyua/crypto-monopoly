@@ -62,7 +62,7 @@ const ActionsCard: React.FC<IProps> = ({
           });
         }}
       >
-        <Icon src={icons.crossBlack} width={'20'} height='20' style={{position: 'absolute', right:20 }}/>
+        <Icon src={icons.crossBlack} width={20} height={20} style={{position: 'absolute', right:20 }}/>
       </Button>
       <Title title={"Действия с картой"} tag="h3" fontWeight={500} />
       <Offset mt={5} />

@@ -44,8 +44,8 @@ const AllAchievements: React.FC<IProps> = ({
 						<Block>
 							<Icon src={AchivmentExcursionIcon}
 								className={cls.achivmentIcon}
-								width={'40px'}
-								height={'40px'}
+								width={40}
+								height={40}
 							/>
 							<p className={cls.blockText}>Уровень 1</p>
 						</Block>
@@ -62,8 +62,8 @@ const AllAchievements: React.FC<IProps> = ({
 							dropShadow='#EFAC4F40'>
 							<Icon src={AchivmentPrisonIcon}
 								className={cls.achivmentIcon}
-								width={'56px'}
-								height={'38px'}
+								width={56}
+								height={38}
 							/>
 							<p className={cls.blockText}>Уровень 1</p>
 						</Block>
@@ -90,8 +90,8 @@ const AllAchievements: React.FC<IProps> = ({
 						<Block>
 							<Icon src={AchivmentExcursionIcon}
 								className={cls.achivmentIcon}
-								width={'40px'}
-								height={'40px'}
+								width={40}
+								height={40}
 							/>
 							<p className={cls.blockText}>Уровень 1</p>
 						</Block>
@@ -108,8 +108,8 @@ const AllAchievements: React.FC<IProps> = ({
 							dropShadow='#EFAC4F40'>
 							<Icon src={AchivmentPrisonIcon}
 								className={cls.achivmentIcon}
-								width={'56px'}
-								height={'38px'}
+								width={56}
+								height={38}
 							/>
 							<p className={cls.blockText}>Уровень 1</p>
 						</Block>
@@ -136,8 +136,8 @@ const AllAchievements: React.FC<IProps> = ({
 						<Block>
 							<Icon src={AchivmentExcursionIcon}
 								className={cls.achivmentIcon}
-								width={'40px'}
-								height={'40px'}
+								width={40}
+								height={40}
 							/>
 							<p className={cls.blockText}>Уровень 1</p>
 						</Block>
@@ -154,8 +154,8 @@ const AllAchievements: React.FC<IProps> = ({
 							dropShadow='#EFAC4F40'>
 							<Icon src={AchivmentPrisonIcon}
 								className={cls.achivmentIcon}
-								width={'56px'}
-								height={'38px'}
+								width={56}
+								height={38}
 							/>
 							<p className={cls.blockText}>Уровень 1</p>
 						</Block>
@@ -182,8 +182,8 @@ const AllAchievements: React.FC<IProps> = ({
 						<Block>
 							<Icon src={AchivmentExcursionIcon}
 								className={cls.achivmentIcon}
-								width={'40px'}
-								height={'40px'}
+								width={40}
+								height={40}
 							/>
 							<p className={cls.blockText}>Уровень 1</p>
 						</Block>
@@ -200,8 +200,8 @@ const AllAchievements: React.FC<IProps> = ({
 							dropShadow='#EFAC4F40'>
 							<Icon src={AchivmentPrisonIcon}
 								className={cls.achivmentIcon}
-								width={'56px'}
-								height={'38px'}
+								width={56}
+								height={38}
 							/>
 							<p className={cls.blockText}>Уровень 1</p>
 						</Block>
@@ -228,8 +228,8 @@ const AllAchievements: React.FC<IProps> = ({
 						<Block>
 							<Icon src={AchivmentExcursionIcon}
 								className={cls.achivmentIcon}
-								width={'40px'}
-								height={'40px'}
+								width={40}
+								height={40}
 							/>
 							<p className={cls.blockText}>Уровень 1</p>
 						</Block>
@@ -246,8 +246,8 @@ const AllAchievements: React.FC<IProps> = ({
 							dropShadow='#EFAC4F40'>
 							<Icon src={AchivmentPrisonIcon}
 								className={cls.achivmentIcon}
-								width={'56px'}
-								height={'38px'}
+								width={56}
+								height={38}
 							/>
 							<p className={cls.blockText}>Уровень 1</p>
 						</Block>

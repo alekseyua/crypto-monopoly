@@ -29,7 +29,7 @@ export const UserInGameRoom: React.FC<IProps> = ({
         {player?.id ? (
           <img src={player?.avatar ? player?.avatar : userImg} alt="avatar" />
         ) : (
-          <Icon src={EnterIcon} width={"26px"} height={"26px"} />
+          <Icon src={EnterIcon} width={26} height={26} />
         )}
       </div>
       <p>{player?.username ? player.username : isJoinGame ? "" : <b>Войти</b>}</p>

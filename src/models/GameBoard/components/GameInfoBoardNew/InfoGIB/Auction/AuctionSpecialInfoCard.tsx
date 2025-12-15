@@ -80,7 +80,7 @@ export const AuctionSpecialInfoCard: React.FC<IProps> = ({
               <Text text={"Налог"} />
               <Text
                 text={cardInfo?.one_card_tax + ""}
-                iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
               />
             </InnerBtnContextSpaceBetween>
           </Button>
@@ -107,7 +107,7 @@ export const AuctionSpecialInfoCard: React.FC<IProps> = ({
               </Button>
               <Text
                 text={cardInfo?.start_price + ""}
-                iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
               />
             </InnerBtnContextSpaceBetween>
           </Button>
@@ -120,7 +120,7 @@ export const AuctionSpecialInfoCard: React.FC<IProps> = ({
               <Text text={"С коллекцией"} />
               <Text
                 text={cardInfo?.monopoly_tax + ""}
-                iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
               />
             </InnerBtnContextSpaceBetween>
           </Button>
@@ -137,7 +137,7 @@ export const AuctionSpecialInfoCard: React.FC<IProps> = ({
               <Text>Сделать ставку</Text>
               <Text
                 text={"> 0"}
-                iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
               />
             </InnerBtnContextSpaceBetween>
           </Button>

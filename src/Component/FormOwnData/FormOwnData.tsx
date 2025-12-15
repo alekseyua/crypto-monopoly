@@ -73,8 +73,8 @@ const FormOwnData: React.FC<FormOwnDataProps> = ({
                 iconRight={
                   <Icon
                     src={icons.success}
-                    width="35"
-                    height="35"
+                    width={35}
+                    height={35}
                     style={{
                       position: "absolute",
                       right: 5,

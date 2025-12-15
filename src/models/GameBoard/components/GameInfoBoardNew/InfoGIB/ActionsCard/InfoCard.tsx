@@ -55,7 +55,7 @@ const InfoCard: React.FC<IProps> = ({
           });
         }}
       >
-        <Icon src={icons.crossBlack} width={'20'} height='20' style={{ position: 'absolute', right: 20 }} />
+        <Icon src={icons.crossBlack} width={20} height={20} style={{ position: 'absolute', right: 20 }} />
       </Button>
       <Title title={"Действия с картой"} tag="h3" fontWeight={500} />
       <Offset mt={5} />
@@ -131,7 +131,7 @@ const InfoCard: React.FC<IProps> = ({
                     (card?.card_info as ICardInfoCards)?.features
                       ?.one_card_tax + ""
                   }
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
@@ -160,7 +160,7 @@ const InfoCard: React.FC<IProps> = ({
                     (card?.card_info as ICardInfoCards)?.features
                       ?.monopoly_tax + ""
                   }
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
@@ -181,7 +181,7 @@ const InfoCard: React.FC<IProps> = ({
                 <Text text={"Купить дом"} />
                 <Text
                   text={(card?.card_info as ICardInfoCards)?.prices?.house + ""}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
@@ -260,7 +260,7 @@ const InfoCard: React.FC<IProps> = ({
                       (card?.card_info as ICardInfoCards)?.features?.house_taxes
                     )?.price + ""
                   }
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
@@ -287,7 +287,7 @@ const InfoCard: React.FC<IProps> = ({
                 <Text text={"Купить отель"} />
                 <Text
                   text={(card?.card_info as ICardInfoCards)?.prices?.hotel + ""}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
@@ -317,7 +317,7 @@ const InfoCard: React.FC<IProps> = ({
                 </Text>
                 <Text
                   text={"0"}
-                  iconRight={<Icon src={icons.qgCurrencySvg} width={"15px"} />}
+                  iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
