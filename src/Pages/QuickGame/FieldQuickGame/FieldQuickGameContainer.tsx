@@ -125,13 +125,6 @@ const [idCardForChanceGetOrRemoveHouse, setIdCardForChanceGetOrRemoveHouse] = us
 
   const actionCardData =
     dataActionCardQG[(user.id + "") as keyof IUserActions];
-    
-    // useEffect(() => {
-    //   console.log('%cISACTIVE ===================== ' + quickGame.is_active, 'color: lightblue');
-    //   if (!quickGame.is_active) {
-    //     navigate(NAV_QG_SELECT_PAGE)
-    //   }
-    // }, [quickGame]);
 
   useEffect(() => {
     dispatch(SET_HEADER_NAME_IS_SHOW, HeaderNameEnum.QUICK_GAME);
@@ -255,7 +248,6 @@ const handleCardOnField = (card_id: number): void => {
   };
 
   const handleCardOnFieldAction = async (params: any): Promise<void> => {
-	// console.log(params)
     if (params.action === "exchange") {
       if (params?.idOwnerCard && dataPlayerQG.id === params?.idOwnerCard) {
         setStateExchange((state) => ({
@@ -351,10 +343,6 @@ const handleCardOnField = (card_id: number): void => {
       if (keys.includes("get_house") || keys.includes("return_house")) {
         setIsChanceGetOrRemoveHouse(true);
       }
-      // console.log(	
-      //   "%cKEY chance ===================== " + keys,
-      //   "color: hotpink"
-      // );
       const card = quickGame.cards.filter(
         (el: ICard | ISpecialCard) => el.id === dataPlayerQG.current_card
       )[0];
@@ -537,12 +525,7 @@ const handleCardOnField = (card_id: number): void => {
 		// const listChanceOrCommunityCard = ["chance", "community"];
 
 		// для обычных карт
-		// const listCard = ["card"];
 		const actions: CardDataDataActionsType = dataActions.actions;
-		// console.log("----- список действий ----------");
-		// console.log({ ...actions });
-		// console.log({cardId});
-		// console.log("--------------------------------");
 
 		if (
 			isKeyPresentInHash(actions, "buy") &&
@@ -777,7 +760,6 @@ const handleCardOnField = (card_id: number): void => {
 			if (keys.includes("get_house") || keys.includes("return_house")) {
 				setIsChanceGetOrRemoveHouse(true);
 			}
-			// console.log("%cKEY chance ===================== " + keys, "color: hotpink");
 			setActionCardView(
         <InfoChanceOrCommunity
           onMove={onMove}

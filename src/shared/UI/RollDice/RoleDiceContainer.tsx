@@ -24,7 +24,7 @@ const RollDiceContainer: React.FC<IProps> = ({
   const [ isClick, setIsClick ] = useState<boolean>(false);
   const cube1 = useRef<HTMLDivElement>(null);
   const cube2 = useRef<HTMLDivElement>(null);
-
+  console.log({ roleDiceStore })
   const rotateDice = 
     (r1: number, r2: number) => {
       const faceRotationMap: Record<number, [number, number]> = {

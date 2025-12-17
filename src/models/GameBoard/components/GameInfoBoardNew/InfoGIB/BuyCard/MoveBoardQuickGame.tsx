@@ -6,7 +6,7 @@ import Title from '../../../../../../shared/UI/Title/Title';
 import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
 import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
 import styles from '../../styles/gib.module.scss';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useWindowWidth } from '../../../../../../hooks/useWindowWidth';
 import { Button, Offset } from '../../../../../../shared/UI';
 import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
@@ -15,6 +15,9 @@ import ContainerOneBtn from '../../components/UI/ControllerGIB/ContainerOneBtn';
 import ContainerInfoBodyGIB from '../../components/UI/ContainerGIB/ContainerInfoBodyGIB';
 import ContainerInfoGIB from '../../components/UI/ContainerGIB/ContainerInfoGIB';
 import ContainerRollGIB from '../../components/UI/ContainerGIB/ContainerRollGIB';
+import { temporaryDisableBtn } from '../../../../../../helpers/helper';
+import { useStoreon } from 'storeon/react';
+import { EQuickGameStore, IRoleDiceStore } from '../../../../../../store/quick-game/quick-game.d';
 
 interface IMoveBoardQGProps {
 	onMove: (params: any) => void;
@@ -23,6 +26,11 @@ interface IMoveBoardQGProps {
 	action: string;
 	timeEndMove: number;
 }
+type StateStore = {
+  [EQuickGameStore.ROLE_DICE_STORE]: IRoleDiceStore;
+};
+type EventStore = {
+};
 
 export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 	onMove,
@@ -32,18 +40,26 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
 	timeEndMove,
 }: IMoveBoardQGProps) => {
   const {isMobile} = useWindowWidth();
-	  const [ isClick, setIsClick ] =  React.useState(false); 
+  const { [EQuickGameStore.ROLE_DICE_STORE]: roleDiceStore, dispatch } =
+      useStoreon<StateStore, EventStore>(EQuickGameStore.ROLE_DICE_STORE);
+	  const [ isClickBtn, setIsClickBtn ] =  React.useState(false); 
     const [ hideBtn, setHideBtn ] = React.useState(false);
     
+  // useEffect(() => {
+  //   if(roleDiceStore.rd1 !==0 && roleDiceStore.rd2 !== 0){
+  //     setIsClickBtn(false);
+  //     setHideBtn(false);
+  //   }
+  //  }, [roleDiceStore.rd1, roleDiceStore.rd2])
+  
     const handleClickMove = () => {
       onMove({
         action,
       });
-      setIsClick(true);
-      if(action === 'move'){
-        setHideBtn(true)
+      if(action === 'move' || action === 'end_move'){
+        temporaryDisableBtn(15000, setHideBtn);
       }
-      setTimeout(()=>setIsClick(false),1000);
+      temporaryDisableBtn(15000, setIsClickBtn);
     }
 	return (
     <ContainerGIB name='MoveBoardQG'>
@@ -67,34 +83,50 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
         </>
       ) : (
         !isMobile && 
-        <>
-            {!hideBtn &&
-        <Offset mt={30} />}
-        </>
+          <Offset mt={30} />
       )}
       {/* btn */}
-      {!hideBtn &&  <ContainerOneBtn>
+      <ContainerOneBtn
+        // style={{
+        //   width: '95%',
+        //   position: 'absolute',
+        //   top: 75,
+        // }}
+      >
         <Offset mt={10} />
-        <Button
+        {!hideBtn ?  <Button
           p={[10,30]}
           type="fill"
           fillColor="#726CED"
-          disabled={isClick}
+          disabled={isClickBtn}
           onClick={handleClickMove}
         >
           {titleBtn}
         </Button>
-      </ContainerOneBtn>}
+          : <Button
+            p={[10, 30]}
+            type="fill"
+            fillColor="transparent"
+            borderColor='transparent'
+          >
+            {'loading ...'}
+          </Button>
+      }
+      </ContainerOneBtn>
       <ContainerInfoTwoColumnGIB></ContainerInfoTwoColumnGIB>
 
-      {!hideBtn && <Offset mt={10} />}
+      <Offset mt={10} />
       {/* body */}
       <ContainerInfoBodyGIB
         style={{ background: "#E9ECFF" }}
         // className={styles["gib__body-container"]}
       >
-        <ContainerInfoGIB>
-          <Icon src={logo} width={[0, 200]} height={"100%"}/>
+        <ContainerInfoGIB 
+        // style={{position: 'absolute'}}
+        style={{padding: 20}}
+        >
+          <Icon src={logo} width={[0, 200]} height={"90%"} 
+          style={{position: 'relative'}}/>
         </ContainerInfoGIB>
         {action === "move" && (
           <ContainerRollGIB>

@@ -53,7 +53,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
         borderColor='transparent'
         disabled={isClick}
         onClick={() => {
-          temporaryDisableBtn(2000, setIsClick);
+          temporaryDisableBtn(5000, setIsClick);
           handleBack({
             action: "clean_chose_actions",
           });
@@ -70,7 +70,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
           p={[7, 11]}
           disabled={isClick}
           onClick={() => {
-            temporaryDisableBtn(2000, setIsClick);
+            temporaryDisableBtn(5000, setIsClick);
             handleBack({
               action: "clean_chose_actions",
             });

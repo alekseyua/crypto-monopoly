@@ -11,6 +11,13 @@
 	text-align: left;
 }
 
+.socialLinkButtonShot {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
 .socialLinksShot{
 	display: grid;
 	gap: 10px;

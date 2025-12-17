@@ -22,7 +22,6 @@ const FormOwnData: React.FC<FormOwnDataProps> = ({
   handleChangeAvatar,
   handleAddPhoneOwnInfo,
 }) => {
-  console.log({ infoUser });
   return (
     <div className={cls.containerOwnCard}>
       {infoUser && Object.keys(infoUser).length ? (

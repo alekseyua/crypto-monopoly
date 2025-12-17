@@ -43,7 +43,6 @@ export const AuctionExpressAirlineCruise: React.FC<IAuctionExpressAirlineCruiseP
 	card,
 }: IAuctionExpressAirlineCruiseProps) => {
 		const [ isActionCard, setIsActionCard ] = React.useState<boolean>(false);
-	console.log({card})
 	const handleBuyCard = function() {
 		handleCard && handleCard({
 			action: 'buy',
@@ -54,7 +53,6 @@ export const AuctionExpressAirlineCruise: React.FC<IAuctionExpressAirlineCruiseP
 
 	const handleAuction = function() {
 		setIsActionCard(true);
-		console.log('handleAuction 2');
 		handleCard && handleCard({
 			action: 'start_auction',
 			game_id,

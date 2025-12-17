@@ -183,12 +183,10 @@
              font-weight: 300;
              font-style: Light;
              font-size: 10.63px;
-             @includes adaptiv-font(10.63, 5);
+             @include adaptiv-font(10.63, 5);
              line-height: 100%;
              letter-spacing: 0%;
              vertical-align: middle;
-
-             &>div {}
          }
 
      }
@@ -210,6 +208,30 @@
          position: relative;
          overflow-x: hidden;
          overflow-y: auto;
+        /* WebKit (Chrome, Safari) */
+            &::-webkit-scrollbar {
+                width: 0px;
+                opacity: 0;
+            }
+        
+            &::-webkit-scrollbar-thumb {
+                background-color: transparent;
+                transition: background-color 0.3s;
+            }
+        
+            &:hover::-webkit-scrollbar-thumb {
+                background-color: var(--bg-color-scroll);
+            }
+        
+            &::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+        
+            /* Firefox */
+            &* {
+                scrollbar-width: thin;
+                scrollbar-color: var(--bg-color-scroll) transparent;
+            }
      }
 
      //list-player__item

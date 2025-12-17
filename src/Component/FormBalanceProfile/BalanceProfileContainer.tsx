@@ -7,7 +7,6 @@ import { StoreonDispatch } from "storeon";
 import { SET_MODAL } from "../../store/modal/modal";
 import FormTopUpWalletContainer from "../../models/FormTopUpWallet/FormTopUpWalletContainer";
 
-
 const BalanceProfileContainer = () => {
     const {
       user,
@@ -33,10 +32,7 @@ const BalanceProfileContainer = () => {
         }else if(action === 'withdraw') {
             // dispatch(WITHDRAW_WALLET, value)
         }
-        console.log("value in BalanceProfileContainer", action);
     };
-
-    console.log('user in BalanceProfileContainer', user)
   return (
     <BalanceProfile
       balance={user?.balance || 0}

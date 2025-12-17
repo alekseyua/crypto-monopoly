@@ -65,8 +65,6 @@ const ProfileContainer = () => {
   
   const handleAddPhoneOwnInfo = (value: string) => {
     // Implement add phone logic here
-    console.log("%cphoneNumber = " + value, "color: red");
-
     if (value === "input_phone"){
       setIsInputNumber(true);
     }else if (value === "set_phone") {

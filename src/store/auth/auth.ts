@@ -92,15 +92,10 @@ export const authStore = (store: StoreonStore) => {
         switch (res?.data?.state_registration) {
           case 0: {
             const email = res.data?.email ?? '';
-            console.log({res})
             dispatch(GET_DUBLICATE_CODE_RECOVERY, { email, redirect });
-            // dispatch(SET_RECOVERY_TO_STORE, { email });
             dispatch(SET_REG_TO_STORE, { email });
             await delay(300);
             dispatch(SET_REG_STEP, 2);
-
-            // dispatch(SET_AUTH_STEP, 3);
-            // dispatch(SET_RECOVERY_STEP, 2);
             setErrorTimming(
               SET_ERROR_RECOVERY,
               res?.data?.state_registration_text,
@@ -130,7 +125,6 @@ export const authStore = (store: StoreonStore) => {
           email: authData.email
         });
       });
-      console.log({authData})
       if (authData?.email && !authData.password.length) {
         return dispatch(INC_AUTH_STEP);
       }

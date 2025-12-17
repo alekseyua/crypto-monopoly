@@ -174,38 +174,38 @@ export const registration = (store: StoreonStore) => {
     if (res?.status === 400) {
       if (res?.data?.error?.length) {
         setErrorTimming(SET_ERROR_REG, res?.data?.error, dispatch, 2000);
-        const callback = async (res: {data: IUser}) =>{
-          if (res.data.state_registration === 5 || res.data.state_registration === 4 || res.data.state_registration === 3){
-            dispatch(SET_AUTH_TO_STORE,{email: res.data.email})
-          }
-            await delay(2000);
-            switch (res?.data?.state_registration) {
-                case 0:                    
-                    dispatch(SET_REG_STEP, 2);
-                    dispatch(GET_DUBLICATE_CODE_RECOVERY, { email: params.email });
-                    break;
-                case 1:                    
-                    dispatch(SET_REG_STEP, 3);                    
-                    break;
-                case 2:                    
-                    dispatch(SET_REG_STEP, 4);
-                    break;
-                case 3:                    
-                    dispatch(SET_REG_STEP, 5);                    
-                    break;            
-                default:
-                    break;
-            }
-
-            setErrorTimming(
-              SET_ERROR_REG,
-              res?.data?.state_registration_text,
-              dispatch,
-              3500
-            );
-        }
-        if(data?.key === "email") dispatch(GET_USERS, {callback, email: params.email})
       }
+    const callback = async (res: {data: IUser}) =>{
+      if (res.data.state_registration === 5 || res.data.state_registration === 4 || res.data.state_registration === 3){
+        dispatch(SET_AUTH_TO_STORE,{email: res.data.email})
+      }
+        await delay(2000);
+        switch (res?.data?.state_registration) {
+            case 0:                    
+                dispatch(SET_REG_STEP, 2);
+                dispatch(GET_DUBLICATE_CODE_RECOVERY, { email: params.email });
+                break;
+            case 1:                    
+                dispatch(SET_REG_STEP, 3);                    
+                break;
+            case 2:                    
+                dispatch(SET_REG_STEP, 4);
+                break;
+            case 3:                    
+                dispatch(SET_REG_STEP, 5);                    
+                break;            
+            default:
+                break;
+        }
+
+        setErrorTimming(
+          SET_ERROR_REG,
+          res?.data?.state_registration_text,
+          dispatch,
+          3500
+        );
+    }
+    if(data?.key === "email") dispatch(GET_USERS, {callback, email: params.email})
     } else if(res?.status === 200){
       if (data?.key === "code") {
         setLocaleStore("token", res?.data?.access_token);

@@ -22,7 +22,6 @@ export const LoginUser = ({
 	handlerRedirectRegit,
 	handleRecoveryPassword,
 }) => {
-	console.log('LoginUser render ', { email }, { password }, ' ---- ', authStep === 2 ? password : email);
 	return (
 		<ContainerAuthForm>
 
@@ -76,7 +75,7 @@ export const LoginUser = ({
 								}
 								<Button
 									onClick={handleLogin}
-									p={authStep === 2 ? 12 : 23}
+									p={authStep === 2 ? 22 : 23}
 									type='fill'
 									fillColor={error && authStep === 2 ? 'var(--bg-color-error)' : '#726CED'}
 									textColor='#fff'

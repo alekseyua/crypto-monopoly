@@ -147,7 +147,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
           disabled={!(isClick || (!!totalTo || !!totalFrom))}
 
           onClick={() =>{
-            temporaryDisableBtn(2000, setIsClick);
+            temporaryDisableBtn(5000, setIsClick);
             handleCard({
               action: "exchange",
               ...stateExchange,
@@ -164,9 +164,10 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
           style={{ borderRadius: 25 }}
           disabled={isClick}
           onClick={() =>{
-            temporaryDisableBtn(2000, setIsClick);
+            temporaryDisableBtn(5000, setIsClick);
             handleCard({
-              action: "exchange",
+              action: "exchange", 
+              ...stateExchange,
             })
           }}
         >
@@ -183,7 +184,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
           background: "#D6DBF5",
           borderTopLeftRadius: 25,
           borderTopRightRadius: 25,
-          paddingTop: 15,
+          padding: 15,
         }}
       >
         {!!!listUserExchange.length && (
@@ -243,7 +244,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
           {!!listUserExchange.length && (
             <>
               {/* player */}
-              <ContainerInfoTwoColumnGIB style={{ gap: 35 }}>
+              <ContainerInfoTwoColumnGIB style={{ gap: 35 }} full>
                 {currentUser && (
                   <div className={styles["gib__user-exchange"]}>
                     <div
@@ -295,7 +296,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
               <Offset mb={10} />
 
               {/* form input */}
-              <ContainerInfoTwoColumnGIB style={{ gap: 35 }}>
+              <ContainerInfoTwoColumnGIB style={{ gap: 35 }} full>
                 <div className={styles["gib__user-exchange--input-container"]}>
                   {!isSetInputPriceFrom && (
                     <>
@@ -435,7 +436,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
               <Offset mb={10} />
 
               {/* cards */}
-              <ContainerInfoTwoColumnGIB style={{ gap: 35 }}>
+              <ContainerInfoTwoColumnGIB style={{ gap: 35 }} full>
                 <div className={styles["gib__info-card-exchange-container"]}>
                   {!!stateExchange.propertys_from.length &&
                     stateExchange.propertys_from.map(
@@ -516,7 +517,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
               <div
                 className={styles["gib__user-exchange-container--total-price"]}
               >
-                <ContainerInfoTwoColumnGIB style={{ gap: 35 }}>
+                <ContainerInfoTwoColumnGIB style={{ gap: 35 }} full>
                   <div className={styles["gib__info-card-exchange-container"]}>
                     <Line direction="horizontal" />
                     <div className={styles["gib__user-exchange--total-price"]}>

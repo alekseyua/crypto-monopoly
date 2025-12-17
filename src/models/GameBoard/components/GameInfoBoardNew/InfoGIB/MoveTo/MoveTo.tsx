@@ -35,7 +35,7 @@ export const MoveTo: React.FC<IGameInfoBoardMoveToProps> = ({
             disabled={isClick}
             p={10}
             onClick={() => {
-              temporaryDisableBtn(2000, setIsClick);
+              temporaryDisableBtn(5000, setIsClick);
               handleMoveTo({
                 card_id: moveTo.id,
                 action: "move_to",

@@ -29,7 +29,6 @@ export const profile = (store: StoreonStore) => {
       try {
         const formData = new FormData();
         if (payload.photo instanceof File) {
-          console.log(payload);
           formData.append("photo", payload.photo); // или formData.append('image', payload.file, payload.file.name);
         } else {
           console.warn("Файл отсутствует или имеет неверный тип");
@@ -275,7 +274,6 @@ export const profile = (store: StoreonStore) => {
   store.on( CONFIRM_PAYMENT,
     async (store: any, payload: PaymentConfirm, { dispatch }) => {
       const res = await api.get(API_CONFIRM_PAYMENT, payload);
-      console.log("res confirm payment = ", res);
       if (res?.status === 200) {
         dispatch(SET_PAYMENT_DATA, initPayment);
         dispatch(SET_MODAL, { isOpen: false });
@@ -294,13 +292,11 @@ export const profile = (store: StoreonStore) => {
     const url = API_CHANGE_PHONE_NUMBER;
     try {
       const res = await api.post(url, payload);
-      console.log(res)
       if(res.status === 400){
         if(typeof payload.callback === 'function'){
           payload.callback(res.data)
         }
       }
-      console.log({ res }, "color: blue");
     } catch (error) {
       if (error instanceof Error) {
         const err = new Error(

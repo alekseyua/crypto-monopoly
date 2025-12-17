@@ -53,7 +53,6 @@ const UserPanelMainModeNotification = () => {
 
   useEffect(() => {
     if (messages !== null && messages !== undefined && messages.length) {
-      console.log({ messages });
       setNotice((state) => [
         ...[
           {

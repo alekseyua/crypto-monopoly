@@ -25,7 +25,7 @@ export const GameInfoBoardPayTaxOrAddCardChance: React.FC<IGameInfoBoardPayTaxOr
 	const [isClick, setIsClick] = React.useState<boolean>(false);
 	const [isActionCard, setIsActionCard] = React.useState<boolean>(false);
 	const handlePayTax = function () {
-		temporaryDisableBtn(2000, setIsClick);
+		temporaryDisableBtn(5000, setIsClick);
 		!isActionCard && handleCard && handleCard({
 			action: 'pay',
 			game_id,
@@ -34,7 +34,7 @@ export const GameInfoBoardPayTaxOrAddCardChance: React.FC<IGameInfoBoardPayTaxOr
 		setIsActionCard(true);
 	}
 	const handleGetChance = function () {
-		temporaryDisableBtn(2000, setIsClick);
+		temporaryDisableBtn(5000, setIsClick);
 		handleCard && handleCard({
 			action: 'get_card_action',
 			game_id,

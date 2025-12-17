@@ -63,6 +63,7 @@ interface IButton {
   gradientColors?: [string, string];
   p?: number | string | (number | string)[];
   typeBtn?: "button" | "submit" | "reset" | undefined;
+  resizeable?: boolean;
 }
 
 
@@ -84,6 +85,7 @@ export const Button: React.FC<IButton & PropsComponent> = ({
 	disabled,
   typeBtn="button",
 	borderColor,
+  resizeable,
 	p,
 	...props
 }: IButton & PropsComponent) => {
@@ -93,7 +95,7 @@ export const Button: React.FC<IButton & PropsComponent> = ({
 		'--fill-color': fillColor,
 		'--text-color': textColor,
 	}
-  if (p) buttonStyle = { ...buttonStyle, padding: getPadding(p) };
+  if (p) buttonStyle = { ...buttonStyle, padding: getPadding(p, resizeable)};
 	if(borderColor) buttonStyle = {...buttonStyle, border: `1px solid ${borderColor}`};
 	if (component === 'button') {
     const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {

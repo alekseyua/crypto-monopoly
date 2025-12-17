@@ -39,7 +39,6 @@ const Root = () => {
 	useEffect(()=>{
 		const token = getLocaleStore('token');
 		if (token ) {
-			console.log('redirect quick game')
 			navigate(NAV_QG_SELECT_PAGE);
 		}
 	}, [navigate, dispatch]);

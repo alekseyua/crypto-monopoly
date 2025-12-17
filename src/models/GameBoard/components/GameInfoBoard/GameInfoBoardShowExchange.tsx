@@ -82,7 +82,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 								disabled={isClick}
 								className={styles['gib__btns--btn-action']}
 								onClick={() =>{
-									temporaryDisableBtn(2000, setIsClick);
+									temporaryDisableBtn(5000, setIsClick);
 									handleCard({
 									action: 'accept_exchange',
 									...exchageData
@@ -95,7 +95,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 								className={styles['gib__btns--btn-action']}
 								disabled={isClick}
 								onClick={() => {
-									temporaryDisableBtn(2000, setIsClick);
+									temporaryDisableBtn(5000, setIsClick);
 									handleCard({
 									action: 'deny_exchange',
 								})}}>

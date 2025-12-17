@@ -125,7 +125,7 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
                     disabled={isClick || (isActionHouses && !cardIdWhereMoveTo)}
                     p={15}
                     onClick={() => {
-                      temporaryDisableBtn(2000, setIsClick);
+                      temporaryDisableBtn(5000, setIsClick);
                       let params: any = {
                         action: a,
                         card_id: cardIdWhereMoveTo,

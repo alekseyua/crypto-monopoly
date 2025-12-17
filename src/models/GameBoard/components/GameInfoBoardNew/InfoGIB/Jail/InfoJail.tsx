@@ -44,7 +44,7 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
 	const [ isClickBtn, setIsClickBtn ] =  React.useState(false);
 
 	const handlePayFreedom = function () {
-		temporaryDisableBtn(2000, setIsClickBtn);
+		temporaryDisableBtn(5000, setIsClickBtn);
 		handleCard && handleCard({
 			action: 'pay_for_freedom',
 			game_id,
@@ -53,7 +53,7 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
 	}
 
 	const handleThrowDice = function () {
-		temporaryDisableBtn(2000, setIsClickBtn);
+		temporaryDisableBtn(5000, setIsClickBtn);
 		handleCard && handleCard({
 			action: 'roll_the_dice',
 			game_id,
@@ -61,7 +61,7 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
 		});
 	}
 	const handleUseFreedomCard = function () {
-		temporaryDisableBtn(2000, setIsClickBtn);
+		temporaryDisableBtn(5000, setIsClickBtn);
 		handleCard && handleCard({
 			action: 'freedom_card',
 			game_id,
@@ -86,6 +86,9 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
             p={10}
             disabled={isClickBtn || !actions.pay_for_freedom}
             onClick={handlePayFreedom}
+            style={{
+              height: 50
+            }}
           >
             <Text text={"Заплатить за освобождение"} />
           </Button>
@@ -105,6 +108,9 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
             p={10}
             disabled={isClickBtn || !actions.roll_the_dice}
             onClick={handleThrowDice}
+            style={{
+              height: 50
+            }}
           >
             <Text text={"Кинуть кубики"} />
           </Button>
@@ -124,6 +130,9 @@ export const InfoJail: React.FC<IInfoJailProps> = ({
             p={10}
             disabled={isClickBtn || !actions.freedom_card}
             onClick={handleUseFreedomCard}
+            style={{
+              height: 50
+            }}
           >
             <Text text={'Использовать "Карта свободы"'} />
           </Button>

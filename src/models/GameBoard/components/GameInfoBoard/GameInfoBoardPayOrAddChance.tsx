@@ -52,7 +52,7 @@ export const GameInfoBoardPayOrAddChance: React.FC<IBayOrAuctionProps> = ({
 						<Button
 							disabled={isClick || !actions.pay}
 							onClick={() => {
-								temporaryDisableBtn(2000, setIsClick);
+								temporaryDisableBtn(5000, setIsClick);
 								handleCard && handleCard({
 								action: 'pay',
 								game_id,

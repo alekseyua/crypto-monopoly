@@ -46,7 +46,7 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
   const { isMobile } = useWindowWidth();
 
   const handleBuyCard = function () {
-    temporaryDisableBtn(2000, setIsClick);
+    temporaryDisableBtn(5000, setIsClick);
     handleCard && handleCard({
       action: 'buy',
       game_id,
@@ -55,7 +55,7 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
   }
   const handleAuction = function () {
     setIsActionCard(true);
-    temporaryDisableBtn(2000, setIsClick);
+    temporaryDisableBtn(5000, setIsClick);
     !isActionCard && handleCard && handleCard({
       action: 'start_auction',
       game_id,

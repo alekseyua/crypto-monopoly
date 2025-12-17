@@ -36,7 +36,7 @@ export const ShowMassagePopup: React.FC<IProps> = ({
             gradientColors={["#726CED", "#70DCF1"]}
             disabled={isClick}
             onClick={() =>{
-              temporaryDisableBtn(2000, setIsClick);
+              temporaryDisableBtn(5000, setIsClick);
               handleClick({
                 action: "clean_popup_data",
               })

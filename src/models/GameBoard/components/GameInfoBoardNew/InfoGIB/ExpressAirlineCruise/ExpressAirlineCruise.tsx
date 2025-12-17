@@ -50,7 +50,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
   const [isActionCard, setIsActionCard] = React.useState<boolean>(false);
   const [isClick, setIsClick] = React.useState<boolean>(false);
   const handleBuyCard = function () {
-    temporaryDisableBtn(2000, setIsClick);
+    temporaryDisableBtn(5000, setIsClick);
     handleCard &&
       handleCard({
         action: "buy",
@@ -60,7 +60,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
   };
 
   const handleAuction = function () {
-    temporaryDisableBtn(2000, setIsClick);
+    temporaryDisableBtn(5000, setIsClick);
     setIsActionCard(true);
     handleCard &&
       handleCard({
@@ -69,7 +69,6 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
         card_id,
       });
   };
-  console.log(card as ISpecialCard);
   return (
     <ContainerGIB name="ExpressAirlineCruise">
       {/* -------header---------- */}

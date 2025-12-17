@@ -47,7 +47,6 @@ const FormTopUpWalletContainer: React.FC = () => {
   } = useForm<ConfirmPaymentFormData>();
 
   useEffect(() => {
-    // console.log("register", user);
     reset({
       user: user.id,
       address: ' ',
@@ -55,7 +54,6 @@ const FormTopUpWalletContainer: React.FC = () => {
   }, [reset, user]);
 
   const onSubmit: SubmitHandler<Payment> = (params) => {
-    console.log("params", params);
     dispatch(TOP_UP_WALLET, params);
   };
 
@@ -65,7 +63,6 @@ const FormTopUpWalletContainer: React.FC = () => {
       payment_id: paymentStore.id + "",
     });
   };
-console.log("paymentStore = ", paymentStore);
 if(paymentStore && paymentStore.id) {
     return (
       <ConfirmPaymentForm

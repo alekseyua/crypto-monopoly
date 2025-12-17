@@ -49,7 +49,7 @@ const InfoCard: React.FC<IProps> = ({
         borderColor='transparent'
         disabled={isClick}
         onClick={() => {
-          temporaryDisableBtn(2000, setIsClick);
+          temporaryDisableBtn(5000, setIsClick);
           handleBack({
             action: "clean_chose_actions",
           });
@@ -170,7 +170,7 @@ const InfoCard: React.FC<IProps> = ({
               disabled={isClick || !(card?.owner?.can_build && actions?.build)} // Assuming this button is disabled
               // disabled={true}
               onClick={() => {
-                temporaryDisableBtn(2000, setIsClick);
+                temporaryDisableBtn(5000, setIsClick);
                 handleAction({
                   action: "build",
                   card_id: card?.id,
@@ -276,7 +276,7 @@ const InfoCard: React.FC<IProps> = ({
                 )
               } // Assuming this button is disabled
               onClick={() => {
-                temporaryDisableBtn(2000, setIsClick);
+                temporaryDisableBtn(5000, setIsClick);
                 handleAction({
                   action: "build",
                   card_id: card.id,

@@ -888,12 +888,10 @@
 			font-weight: 300;
 			font-style: Light;
 			font-size: 10.63px;
-			@includes adaptiv-font(10.63, 5);
+			@include adaptiv-font(10.63, 5);
 			line-height: 100%;
 			letter-spacing: 0%;
 			vertical-align: middle;
-			& > div {
-			}
 		}
 
 	}

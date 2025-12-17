@@ -20,7 +20,6 @@ const HeaderRulesDetail = () => {
 	const { dispatch } = useStoreon<SState, SEvent>();
 	const [inpuText, setInputText] = React.useState('');
 	const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		console.log(e.target.value);
 		dispatch(HANDLER_SEARCH_CHANGE, e.target.value);
 		setInputText(e.target.value);
 

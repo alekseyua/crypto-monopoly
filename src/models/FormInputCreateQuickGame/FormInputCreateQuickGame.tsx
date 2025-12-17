@@ -23,7 +23,6 @@ const FormInputCreateQG:React.FC<IFormInputCreateQG> = ({
   errorMessage,
   values,
 }: IFormInputCreateQG) => {
-  console.log('paramsError', errorMessage );
   return (
     <div className={styles["form-input-create-quick-game__container"]}>
       <div className={styles["form-input-create-quick-game__container-wrap"]}>

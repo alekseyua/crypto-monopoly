@@ -18,7 +18,6 @@ const HeaderProfileContainer: React.FC<IProps> = ({ navigate, hash }) => {
 
     const handleNavigateTo = (type: string | number) => {
       if (typeof type === "number") return navigate(type);
-      console.log("type", type);
       dispatch(SWITCH_DASHBOARD_PROFILE, type);
     };
 

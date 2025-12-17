@@ -82,7 +82,6 @@
 
         async function handlClickCode (e){
              try {
-                console.log({code: +code.textContent})
               await navigator.clipboard.writeText(+code.textContent);
               alert(`Код скопирован в буфер обмена! ${code.textContent}`)
             } catch (error) {

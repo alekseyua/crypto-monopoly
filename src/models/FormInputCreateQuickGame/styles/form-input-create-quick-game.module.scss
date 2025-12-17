@@ -10,6 +10,9 @@
             padding: 20px;
             background-color: #E9ECFF;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
         //form-input-create-quick-game__container-wrap-submit
         &-wrap-submit{

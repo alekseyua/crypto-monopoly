@@ -135,10 +135,20 @@ export const rgbToRgba = function (rgb: string, alpha: number) {
 
 export function getPadding(
   p: number | string | (number | string)[] | undefined,
+  resizeable: boolean = false,
   baseWidth = 1440
 ) {
   if (p === undefined || p === null) return undefined;
-
+  if (!resizeable) {
+    if (Array.isArray(p)) {
+      return p.map(value => {
+        if (typeof value === "number") return `${value}px`;
+        return value;
+      }).join(" ");
+    }
+    if (typeof p === "number") return `${p}px`;
+    return p;
+  }
   const vw = typeof window !== "undefined" ? window.innerWidth : baseWidth;
 
   // Адаптация под мобильные — но не жёсткий перескок

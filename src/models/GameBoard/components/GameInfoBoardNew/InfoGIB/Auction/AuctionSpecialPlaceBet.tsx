@@ -125,7 +125,7 @@ export const AuctionSpecialPlaceBet: React.FC<IProps> = ({
             disabled={isClick || !currentBet || currentBet <= startPrice}
             className={styles["gib__btn-action-place-bet-auction"]}
             onClick={() => {
-              temporaryDisableBtn(2000, setIsClick);
+              temporaryDisableBtn(5000, setIsClick);
               handleCard &&
                 handleCard({
                   action: "bid_auction",
@@ -156,7 +156,7 @@ export const AuctionSpecialPlaceBet: React.FC<IProps> = ({
             disabled={isClick || !currentBet || currentBet < startPrice}
             className={styles["gib__btn-action-place-bet-auction"]}
             onClick={() => {
-              temporaryDisableBtn(2000, setIsClick);
+              temporaryDisableBtn(5000, setIsClick);
               handleCard &&
                 handleCard({
                   action: "bid_auction",

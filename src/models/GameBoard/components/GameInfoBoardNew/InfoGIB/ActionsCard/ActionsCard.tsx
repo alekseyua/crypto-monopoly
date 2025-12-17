@@ -55,7 +55,7 @@ const ActionsCard: React.FC<IProps> = ({
         borderColor='transparent'
         disabled={isClick}
         onClick={() => {
-          temporaryDisableBtn(2000, setIsClick);
+          temporaryDisableBtn(5000, setIsClick);
           handleAction({
             action: "clean_chose_actions",
             card_id,
@@ -147,7 +147,7 @@ const ActionsCard: React.FC<IProps> = ({
               p={10}
               disabled={isClick || !actions.sell}
               onClick={() => {
-                temporaryDisableBtn(2000, setIsClick);
+                temporaryDisableBtn(5000, setIsClick);
                 handleAction({
                   action: "sell",
                   card_id,
@@ -174,7 +174,7 @@ const ActionsCard: React.FC<IProps> = ({
               p={10}
               disabled={isClick || !actions.can_sell_property}
               onClick={() => {
-                temporaryDisableBtn(2000, setIsClick);
+                temporaryDisableBtn(5000, setIsClick);
                 handleAction({
                   action: "sell_property",
                   card_id,
@@ -210,7 +210,7 @@ const ActionsCard: React.FC<IProps> = ({
               p={10}
               disabled={isClick || !actions.pawn}
               onClick={() => {
-                temporaryDisableBtn(2000, setIsClick);
+                temporaryDisableBtn(5000, setIsClick);
                 handleAction({
                   action: "pawn",
                   card_id,
@@ -246,7 +246,7 @@ const ActionsCard: React.FC<IProps> = ({
               p={10}
               disabled={isClick || !actions.auction}
               onClick={() => {
-                temporaryDisableBtn(2000, setIsClick);
+                temporaryDisableBtn(5000, setIsClick);
                 handleAction({
                   action: "start_auction",
                   card_id,
@@ -283,7 +283,7 @@ const ActionsCard: React.FC<IProps> = ({
               p={10}
               disabled={isClick || !actions.redeem}
               onClick={() => {
-                temporaryDisableBtn(2000, setIsClick);
+                temporaryDisableBtn(5000, setIsClick);
                 handleAction({
                   action: "redeem",
                   card_id,
@@ -320,7 +320,7 @@ const ActionsCard: React.FC<IProps> = ({
               p={10}
               disabled={isClick || !actions.exchange}
               onClick={() => {
-                temporaryDisableBtn(2000, setIsClick);
+                temporaryDisableBtn(5000, setIsClick);
                 handleAction({
                   action: "exchange",
                   card_id,
@@ -357,7 +357,7 @@ const ActionsCard: React.FC<IProps> = ({
               p={10}
               disabled={isClick}
               onClick={() => {
-                temporaryDisableBtn(2000, setIsClick);
+                temporaryDisableBtn(5000, setIsClick);
                 handleAction({
                   action: "clean_chose_actions",
                   card_id,
