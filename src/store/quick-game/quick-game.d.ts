@@ -86,7 +86,7 @@ interface IDataActionsStore {
   actions: CardDataDataActionsType | CardDataDataActionsJailType;
   card: IDataActionsCard;
   card_type: string
-  card_info: ICardInfo;
+  card_info: ICardInfo | ISpecialCardInfo;
   info: ICardInfoData;
   prices: IDataCardPrice;
   features: IDataCardFeatures;

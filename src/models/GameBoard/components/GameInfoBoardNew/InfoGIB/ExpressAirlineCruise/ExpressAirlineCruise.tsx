@@ -14,6 +14,7 @@ import {
   CardDataDataActionsType,
   ICard,
   ISpecialCard,
+  ISpecialCardInfo,
 } from "../../../../../../store/quick-game/quick-game.d";
 import ContainerInfoTwoColumnGIB from "../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB";
 import InnerBtnContextSpaceBetween from "../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween";
@@ -23,7 +24,7 @@ import { temporaryDisableBtn } from "../../../../../../helpers/helper";
 import ContainerOneBtn from "../../components/UI/ControllerGIB/ContainerOneBtn";
 
 interface IExpressAirlineCruiseProps {
-  card: ICard | ISpecialCard;
+  cardInfo: ISpecialCardInfo;
   game_id: number;
   card_id: number;
   actions: CardDataDataActionsType;
@@ -45,7 +46,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
   handleCard,
   actions,
   timeEndMove,
-  card,
+  cardInfo,
 }: IExpressAirlineCruiseProps) => {
   const [isActionCard, setIsActionCard] = React.useState<boolean>(false);
   const [isClick, setIsClick] = React.useState<boolean>(false);
@@ -84,7 +85,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
             disabled={isClick || !actions.buy}
             onClick={handleBuyCard}
           >
-            Купить за {(card as ISpecialCard)?.card_info?.base_cost}
+            Купить за {cardInfo?.base_cost}
             <Icon
               src={icons.qgCurrencySvgWhite}
               width={20}
@@ -120,7 +121,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
             fillColor="linear-gradient(to right, #E4863F 0%, #E4863F 70%, #FAD660 100%)"
             p={10}
           >
-            {(card as ISpecialCard)?.card_info?.name}
+            {cardInfo?.name}
           </Button>
         </ContainerOneBtn>
         <Offset mt={20} />
@@ -152,7 +153,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
               <InnerBtnContextSpaceBetween>
                 <Text text={"1 карта"} />
                 <Text
-                  text={(card as ISpecialCard)?.card_info?.one_card_tax + ""}
+                  text={cardInfo?.one_card_tax + ""}
                   iconRight={<Icon src={icons.qgCurrencySvg} height={13} />}
                 />
               </InnerBtnContextSpaceBetween>
@@ -163,26 +164,26 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
                 <Text
                   fontWeight={900}
                   text={
-                    (card as ISpecialCard)?.card_info?.info?.collection_amount +
+                    cardInfo?.info?.collection_amount +
                     ""
                   }
                 />
               </InnerBtnContextSpaceBetween>
             </Button>
           </ContainerInfoTwoColumnGIB>
-          {(!!(card as ISpecialCard)?.card_info?.two_card_tax ||
-            !!(card as ISpecialCard)?.card_info?.two_card_tax) && (
+          {(!!cardInfo?.two_card_tax ||
+            !!cardInfo?.two_card_tax) && (
             <>
               <Offset mt={10} />
 
               <ContainerInfoTwoColumnGIB>
-                {!!(card as ISpecialCard)?.card_info?.two_card_tax && (
+                {!!cardInfo?.two_card_tax && (
                   <Button type="transparent" p={10}>
                     <InnerBtnContextSpaceBetween>
                       <Text text={"2 карты"} />
                       <Text
                         text={
-                          (card as ISpecialCard)?.card_info?.two_card_tax + ""
+                          cardInfo?.two_card_tax + ""
                         }
                         iconRight={
                           <Icon src={icons.qgCurrencySvg} height={13} />
@@ -191,13 +192,13 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
                     </InnerBtnContextSpaceBetween>
                   </Button>
                 )}
-                {!!(card as ISpecialCard)?.card_info?.three_card_tax && (
+                {!!cardInfo?.three_card_tax && (
                   <Button type="transparent" p={10}>
                     <InnerBtnContextSpaceBetween>
                       <Text text={"3 карты"} />
                       <Text
                         text={
-                          (card as ISpecialCard)?.card_info?.three_card_tax + ""
+                          cardInfo?.three_card_tax + ""
                         }
                         iconRight={
                           <Icon src={icons.qgCurrencySvg} height={13} />
@@ -210,7 +211,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
             </>
           )}
 
-          {!!(card as ISpecialCard)?.card_info?.four_card_tax && (
+          {!!cardInfo?.four_card_tax && (
             <>
               <Offset mt={10} />
               <ContainerInfoTwoColumnGIB>
@@ -219,7 +220,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
                     <Text text={"2 карты"} />
                     <Text
                       text={
-                        (card as ISpecialCard)?.card_info?.four_card_tax + ""
+                        cardInfo?.four_card_tax + ""
                       }
                       iconRight={
                         <Icon src={icons.qgCurrencySvg} height={13} />

@@ -18,6 +18,7 @@ import ContainerRollGIB from '../../components/UI/ContainerGIB/ContainerRollGIB'
 import { temporaryDisableBtn } from '../../../../../../helpers/helper';
 import { useStoreon } from 'storeon/react';
 import { EQuickGameStore, IRoleDiceStore } from '../../../../../../store/quick-game/quick-game.d';
+import { SET_ROLL_DICE_QG } from '../../../../../../store/quick-game/quick-game';
 
 interface IMoveBoardQGProps {
 	onMove: (params: any) => void;
@@ -30,6 +31,10 @@ type StateStore = {
   [EQuickGameStore.ROLE_DICE_STORE]: IRoleDiceStore;
 };
 type EventStore = {
+  [SET_ROLL_DICE_QG]: {
+    rd1: number;
+    rd2: number;
+  };
 };
 
 export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
@@ -44,7 +49,10 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
       useStoreon<StateStore, EventStore>(EQuickGameStore.ROLE_DICE_STORE);
 	  const [ isClickBtn, setIsClickBtn ] =  React.useState(false); 
     const [ hideBtn, setHideBtn ] = React.useState(false);
-    
+  const getRandomNumber = () => {
+    const num = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
+    return num;
+  }
   // useEffect(() => {
   //   if(roleDiceStore.rd1 !==0 && roleDiceStore.rd2 !== 0){
   //     setIsClickBtn(false);
@@ -53,6 +61,10 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
   //  }, [roleDiceStore.rd1, roleDiceStore.rd2])
   
     const handleClickMove = () => {
+      dispatch(SET_ROLL_DICE_QG, {
+        rd1: getRandomNumber(),
+        rd2: getRandomNumber(),
+      });
       onMove({
         action,
       });

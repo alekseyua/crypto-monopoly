@@ -23,6 +23,7 @@ const AvatarBlock: React.FC<IProps> = ({
   resize,
   left = 0,
 }: IProps) => {
+
   const vw = useWindowWidth().width;
 
   // width
@@ -57,7 +58,7 @@ const AvatarBlock: React.FC<IProps> = ({
       ></span>
 
       <img
-        src={avatar ?? icons.userAvatar}
+        src={!!avatar? avatar : icons.userAvatar}
         alt="avatar"
         className={styles['avatar__container--image']}
         style={{

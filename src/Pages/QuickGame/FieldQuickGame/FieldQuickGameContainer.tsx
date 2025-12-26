@@ -18,12 +18,14 @@ import {
   CardDataDataActionsJailType,
   CardDataDataActionsType,
   ICard,
+  ICardInfo,
   IChooseDataActions,
   IDataContainer,
   IDataQG,
   IInfoMassagePopup,
   IPlayer,
   ISpecialCard,
+  ISpecialCardInfo,
   IUserActions,
 } from "../../../store/quick-game/quick-game.d";
 import { ExpressAirlineCruise } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ExpressAirlineCruise/ExpressAirlineCruise";
@@ -627,7 +629,7 @@ const handleCardOnField = (card_id: number): void => {
             actionCardData?.data_actions.actions as CardDataDataActionsType
           }
           card_cost={
-            actionCardData?.data_actions?.card_info?.features?.base_cost
+            (actionCardData?.data_actions?.card_info as ICardInfo)?.features?.base_cost
           }
           handleCard={handleCard}
           game_id={quickGame.id}
@@ -678,7 +680,7 @@ const handleCardOnField = (card_id: number): void => {
           game_id={quickGame.id}
           card_id={dataAction.cardId}
           timeEndMove={dataPlayerQG.move_end_time_sec}
-          card={card}
+          cardInfo={actionCardData?.data_actions?.card_info as ISpecialCardInfo}
         />
       );
 			break;

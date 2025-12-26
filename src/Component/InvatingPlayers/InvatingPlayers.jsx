@@ -14,6 +14,7 @@ const InvatingPlayers = ({
     controllerShowFilterInvitePlayers,
     handleOpenFilterShowInvitePlayers,
 }) => {
+
     return (
         <div
             className={cls.containerInvitedPlayers}
@@ -56,7 +57,8 @@ const InvatingPlayers = ({
                                     : cls.innerContainerMinListInvitingPlayers
                                 }`}>
                                 {
-                                    invitedPlayers.players?.map((player, index) => (
+                                    invitedPlayers.players?.map((player, index) => {
+                                        return (
                                         <div
                                             key={index} 
                                             className={openSubInvitePlayers && !!player?.sub_invite_players?.length && cls.containerPlayerCard}
@@ -110,7 +112,7 @@ const InvatingPlayers = ({
                                                 </>
                                             }
                                         </div>
-                                    ))
+                                    )})
                                 }
                             </div>
                         </div>

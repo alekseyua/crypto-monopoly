@@ -33,7 +33,8 @@ const PlayerSticker: React.FC<IPlayerStickerProps> = ({
           [`${className}`]: !!className,
         })}
       >
-        {players?.map((player: IPlayer, index: number) => (
+        {players?.map((player: IPlayer, index: number) =>{
+          return (
           <div
             key={index}
             className={cls["players__sticker"]}
@@ -45,7 +46,7 @@ const PlayerSticker: React.FC<IPlayerStickerProps> = ({
           >
             <AvatarBlock avatar={player.avatar} color={player.color} width={15} height={15} resize/>
           </div>
-        ))}
+        )})}
       </div>
     );
 }

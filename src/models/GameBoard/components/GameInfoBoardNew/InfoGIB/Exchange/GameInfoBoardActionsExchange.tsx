@@ -118,6 +118,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
 			return 
 		}
 	}
+  console.log(isClick, ' ?? ', !!totalTo, ' || ', !!totalFrom)
 	return (
     <ContainerGIB name="GameInfoBoardActionsExchange" style={{ background: "#E9ECFF" }}>
       {/* header */}
@@ -144,7 +145,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
           fillColor={"#726CED"}
           p={15}
           style={{ borderRadius: 25 }}
-          disabled={!(isClick || (!!totalTo || !!totalFrom))}
+          disabled={ isClick || !(!!totalTo && !!totalFrom)}
 
           onClick={() =>{
             temporaryDisableBtn(5000, setIsClick);
@@ -166,8 +167,9 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
           onClick={() =>{
             temporaryDisableBtn(5000, setIsClick);
             handleCard({
-              action: "exchange", 
-              ...stateExchange,
+              action: "deny_exchange",
+              player_from_id: currentPlayerId,
+              // ...stateExchange,
             })
           }}
         >

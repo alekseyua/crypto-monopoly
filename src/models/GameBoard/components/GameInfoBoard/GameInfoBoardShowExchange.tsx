@@ -98,6 +98,8 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 									temporaryDisableBtn(5000, setIsClick);
 									handleCard({
 									action: 'deny_exchange',
+									...exchageData
+
 								})}}>
 								Отказ ({<AutoCounter disabled={false} counter={timeEndMove} callback={() => { }} />} сек.)
 							</Button>
