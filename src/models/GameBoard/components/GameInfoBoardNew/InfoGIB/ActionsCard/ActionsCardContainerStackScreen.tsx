@@ -47,7 +47,7 @@ const ActionsCardContainerStackScreen:React.FC<IProps> = ({
             amountHouses={amountHouses} // If you need to access amountHouses in InfoCard
             handleAction={handleAction}
             actions={actions}
-            cardInfo={cardInfo}
+            cardInfo={cardInfo as ICardInfoChooseData}
         />
     }
     if(screen === 'action-special-card'){
@@ -60,6 +60,8 @@ const ActionsCardContainerStackScreen:React.FC<IProps> = ({
             amountHouses={amountHouses} // If you need to access amountHouses in InfoCard
             handleAction={handleAction}
             actions={actions}
+            cardInfo={cardInfo}
+
         />
     }
     return (

@@ -4,7 +4,7 @@ import cls from '../../styles/game-board.module.scss';
 import { IPlayer } from '../../../../store/quick-game/quick-game.type';
 import AvatarBlock from '../../../../shared/UI/AvatarBlock/AvatarBlock';
 import { useWindowWidth } from '../../../../hooks/useWindowWidth';
-import { getAdaptiveFromBase, getDefaultAvatarSize } from '../../../../helpers/helper';
+import { getAdaptiveFromBase } from '../../../../helpers/helper';
 
 interface IPlayerStickerProps {
     direction: string;

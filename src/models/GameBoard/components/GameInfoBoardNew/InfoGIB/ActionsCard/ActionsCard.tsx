@@ -17,7 +17,7 @@ import InnerBtnContextSpaceBetween from '../../components/UI/ControllerGIB/Inner
 import Icon from '../../../../../../shared/UI/Icon/Icon';
 import { icons } from '../../../../../../assets';
 import { IActionsChooseData, ICardInfoChooseData } from '../../../../../../store/quick-game/chooseData.type';
-import { ICard, ICardCity, ICardInfoCards, IFeatures } from '../../../../../../store/quick-game/quick-game.type';
+import { ICard } from '../../../../../../store/quick-game/quick-game.type';
 
 interface IProps {
   handleChangeScreen: (newScreen: 'action-card' | 'action-special-card' | 'actions') => void;

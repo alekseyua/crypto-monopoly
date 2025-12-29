@@ -12,7 +12,7 @@ import {
 } from "../../../store/quick-game/quick-game";
 import { GameInfoBoard } from "../../../models/GameBoard/components/GameInfoBoard/GameInfoBoard";
 import { MoveBoardQG } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/BuyCard/MoveBoardQuickGame";
-import { BayOrAuction } from "../../../models/GameBoard/components/GameInfoBoardNew/BayOrAuction/BayOrAuction";
+import { BayOrAuction } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/BayOrAuction/BayOrAuction";
 import { useNavigate } from "react-router-dom";
 import {
   CardDataDataActionsJailType,
@@ -30,7 +30,6 @@ import {
 import { ExpressAirlineCruise } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ExpressAirlineCruise/ExpressAirlineCruise";
 import { MoveTo } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/MoveTo/MoveTo";
 import { isKeyPresentInHash } from "../../../helpers/helper";
-import { GameInfoBoardPayOrAddChance } from "../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardPayOrAddChance";
 import { GameInfoBoardPayTaxOrAddCardChance } from "../../../models/GameBoard/components/GameInfoBoard/GameInfoBoardPayTaxOrAddCardChance";
 import AuctionContainer from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/Auction/AuctionContainer";
 import { GameInfoBoardActionsExchange } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/Exchange/GameInfoBoardActionsExchange";
@@ -717,7 +716,7 @@ const handleCardOnField = (card_id: number): void => {
           handleAction={handleCardOnFieldAction}
           showInfoCard={"action-special-card"}
           actions={actionCardData?.choose_data?.actions as IActionsChooseData}
-          cardInfo={actionCardData?.choose_data.card_info as ICardInfoChooseData}
+          cardInfo={actionCardData?.choose_data.card_info}
         />
       );
 			break;

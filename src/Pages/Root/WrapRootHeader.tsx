@@ -27,7 +27,7 @@ const WrapRootHeader = () => {
       ) : headerName === HeaderNameEnum.QUICK_GAME ? (
         <HeaderQuickGame isMobile={isMobile} />
       ) : headerName === HeaderNameEnum.AUTH ? (
-        <HeaderAuth />
+        <HeaderAuth isMobile={isMobile} />
       ) : headerName === HeaderNameEnum.RULES ? (
         Object.keys(user).length ? <HeaderQuickGame isMobile={isMobile} /> : <HeaderRules />
       ) : headerName === HeaderNameEnum.PROFILE ? (

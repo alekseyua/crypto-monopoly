@@ -1,21 +1,21 @@
-import { icons } from '../../../../../assets';
-import { Button, Offset } from '../../../../../shared/UI';
-import Icon from '../../../../../shared/UI/Icon/Icon';
+import { icons } from '../../../../../../assets';
+import { Button, Offset } from '../../../../../../shared/UI';
+import Icon from '../../../../../../shared/UI/Icon/Icon';
 import React from 'react';
-import AutoCounter from '../../../../../Component/AutoCounter/AutoCounter';
-import { getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../../helpers/helper';
-import Title from '../../../../../shared/UI/Title/Title';
-import { CardDataDataActionsType } from '../../../../../store/quick-game/quick-game.type';
-import GameInfoBoardFooterContainer from '../FooterGIB/GameInfoBoardFooterContainer';
-import ContainerGIB from '../components/UI/ContainerGIB/ContainerGIB';
-import ContainerInfoHeaderGIB from '../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
-import ContainerTwoBtn from '../components/UI/ControllerGIB/ContainerTwoBtn';
-import ContainerInfoBodyGIB from '../components/UI/ContainerGIB/ContainerInfoBodyGIB';
-import ContainerInfoTwoColumnGIB from '../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
-import InnerBtnContextSpaceBetween from '../components/UI/ControllerGIB/InnerBtnContextSpaceBetween';
-import Text from '../../../../../shared/UI/Text/Text';
-import ContainerInfoGIB from '../components/UI/ContainerGIB/ContainerInfoGIB';
-import { useWindowWidth } from '../../../../../hooks/useWindowWidth';
+import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
+import { getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../../../helpers/helper';
+import Title from '../../../../../../shared/UI/Title/Title';
+import { CardDataDataActionsType } from '../../../../../../store/quick-game/quick-game.type';
+import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
+import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
+import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
+import ContainerTwoBtn from '../../components/UI/ControllerGIB/ContainerTwoBtn';
+import ContainerInfoBodyGIB from '../../components/UI/ContainerGIB/ContainerInfoBodyGIB';
+import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
+import InnerBtnContextSpaceBetween from '../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween';
+import Text from '../../../../../../shared/UI/Text/Text';
+import ContainerInfoGIB from '../../components/UI/ContainerGIB/ContainerInfoGIB';
+import { useWindowWidth } from '../../../../../../hooks/useWindowWidth';
 
 interface IBayOrAuctionProps {
   labelColors?: string[];

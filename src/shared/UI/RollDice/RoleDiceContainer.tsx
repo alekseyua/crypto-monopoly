@@ -69,7 +69,7 @@ const RollDiceContainer: React.FC<IProps> = ({
   // Запускаем анимацию через 2 секунды после загрузки
   useEffect(() => {
     if (roleDiceStore.rd1 === 0 || roleDiceStore.rd2 === 0) return;
-      // setIsClick(true);
+      setIsClick(true);
       rotateDice(roleDiceStore.rd1, roleDiceStore.rd2);
     return () => {
       dispatch(RESET_ROLL_DICE_QG);
@@ -86,7 +86,7 @@ const RollDiceContainer: React.FC<IProps> = ({
         pointerEvents: isClick ? "none" : "all",
       }}
       onClick={() => {
-        // setIsClick(true);
+        setIsClick(true);
         onClick();
       }}
     >

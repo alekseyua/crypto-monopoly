@@ -1,4 +1,4 @@
-import React, { use, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import FormInputCreateQG from './FormInputCreateQuickGame'
 import { useStoreon } from 'storeon/react';
 import { SET_MODAL } from '../../store/modal/modal';

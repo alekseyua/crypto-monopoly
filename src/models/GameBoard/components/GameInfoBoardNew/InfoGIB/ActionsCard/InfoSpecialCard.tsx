@@ -4,7 +4,7 @@ import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerIn
 import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
 import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
 import ContainerInfoGIB from "../../components/UI/ContainerGIB/ContainerInfoGIB";
-import { ISpecialCard } from "../../../../../../store/quick-game/quick-game.type";
+import { IFeaturesSpecial, ISpecialCard } from "../../../../../../store/quick-game/quick-game.type";
 import { Button, Offset } from "../../../../../../shared/UI";
 import Title from "../../../../../../shared/UI/Title/Title";
 import AutoCounter from "../../../../../../Component/AutoCounter/AutoCounter";
@@ -16,7 +16,7 @@ import Text from "../../../../../../shared/UI/Text/Text";
 import { icons } from "../../../../../../assets";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
 import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";
-import { IActionsChooseData } from "../../../../../../store/quick-game/chooseData.type";
+import { IActionsChooseData, ICardInfoChooseData } from "../../../../../../store/quick-game/chooseData.type";
 
 interface IProps {
   handleChangeScreen: (
@@ -29,16 +29,15 @@ interface IProps {
   amountHouses: number; // Current amount of houses
   handleAction: (p: any) => void;
   actions: IActionsChooseData; //{ [key: string]: boolean }
+  cardInfo: ICardInfoChooseData;
+
 }
 
 const InfoSpecialCard: React.FC<IProps> = ({
   card,
-  actions,
+  cardInfo,
   timeEndMove,
   handleBack,
-  amountHouses,
-  handleAction,
-  setAmountHouses,
   handleChangeScreen,
 }: IProps) => {
   const [isClick, setIsClick] = React.useState<boolean>(false);
@@ -99,7 +98,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
               textColor="#FFFFFF"
               p={12}
             >
-              {card?.card_info.name || "Страна не выбран"}
+              {cardInfo.info.name || "Страна не выбран"}
             </Button>
           </ContainerOneBtn>
         </ContainerInfoHeaderGIB>
@@ -128,7 +127,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
               <InnerBtnContextSpaceBetween>
                 <Text text={"Налог"} />
                 <Text
-                  text={card?.card_info?.one_card_tax + ""}
+                  text={(cardInfo.features as IFeaturesSpecial).one_card_tax + ""}
                   iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
@@ -145,7 +144,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
                 <Text
                   fontWeight={900}
                   text={
-                                        (card as ISpecialCard)?.card_info?.info?.collection_amount + ""
+                                        cardInfo.info.collection_amount + ""
                   }
                 />
               </InnerBtnContextSpaceBetween>
@@ -154,7 +153,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
               <InnerBtnContextSpaceBetween>
                 <Text text={"С коллекцией"} />
                 <Text
-                  text={card?.card_info?.monopoly_tax + ""}
+                  text={(cardInfo.features as IFeaturesSpecial).monopoly_tax + ""}
                   iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>

@@ -21,7 +21,6 @@ import type {
 import {
   SET_FEED_NEWS_MESSAGE_QG,
   SET_MESSAGE,
-  SET_MESSAGE_QUICK_GAME,
 } from "../message/message";
 import { GET_USERS } from "../users/users";
 import { NAV_QG_FIELD_PAGE, NAV_QG_SELECT_PAGE } from "../../routers/config-nav";

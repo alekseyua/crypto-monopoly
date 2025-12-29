@@ -1,8 +1,8 @@
-import { IFeatures, IInfo, IPriceBuilding } from "./quick-game.type";
+import { IFeatures, IFeaturesSpecial, IInfo, IPriceBuilding } from "./quick-game.type";
 
 interface ICardInfoChooseData {
     info: IInfo;
-    features: IFeatures;
+    features: IFeatures | IFeaturesSpecial;
     prices: IPriceBuilding;
     card_type: string;
 }

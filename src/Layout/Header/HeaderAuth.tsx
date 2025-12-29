@@ -3,10 +3,14 @@ import logo from "../../assets/images/logo.png";
 import { Button } from "../../shared/UI";
 import BlockWrapper from "../../shared/UI/Block/BlockWrapper";
 
-const HeaderAuth: React.FC = () => {
+interface IProps {
+  isMobile?: boolean;
+}
+
+const HeaderAuth: React.FC<IProps> = ({isMobile}) => {
   return (
     <header className={styles["header__container"]}>
-      <BlockWrapper style={{ padding: '0 40px' }}>
+      <BlockWrapper style={{ padding: isMobile? '0' : '0 40px' }}>
 
         <div className={styles.headerCont}>
           <div className={styles.navHeader}>

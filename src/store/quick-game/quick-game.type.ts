@@ -12,6 +12,12 @@ export interface IFeatures {
   one_card_tax: number;
   sell_price: number;
 }
+export interface IFeaturesSpecial {
+  base_cost: number;
+  monopoly_tax: number;
+  one_card_tax: number;
+  sell_price: number;
+}
 interface IHouseTaxes {
   [key: string]: number;
 }
@@ -34,6 +40,7 @@ interface IOwnerCard {
 
 interface ICard {
   id: number;
+  bgc_header: string;
   name: string;
   card_number: number;
   type_card: string;
@@ -42,9 +49,8 @@ interface ICard {
   // board: null; // ?????????/
   city: ICardCity | CardCitySpecialCard;
   image: string;
-  bgc_header: string;
   players: IPlayer[];
-  card_info: ICardInfoCards | ISpecialCardInfoChanceCommunity; // <==================== ??????????????
+  // card_info: ICardInfoCards | ISpecialCardInfoChanceCommunity; // <==================== ??????????????
 }
 
 interface ISpecialCard {
@@ -60,14 +66,6 @@ interface ISpecialCard {
   bgc_header: string;
   players: IPlayer[];
   card_info: ISpecialCardInfo;
-}
-
-interface ISpecialCardInfoChanceCommunity {
-  base_cost: number;
-  card_type: string;
-  monopoly_tax: number;
-  name: string;
-  one_card_tax: number;
 }
 
 interface ISpecialCardInfo {

@@ -12,8 +12,6 @@ import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfo
 import ContainerInfoGIB from "../../components/UI/ContainerGIB/ContainerInfoGIB";
 import {
   CardDataDataActionsType,
-  ICard,
-  ISpecialCard,
   ISpecialCardInfo,
 } from "../../../../../../store/quick-game/quick-game.type";
 import ContainerInfoTwoColumnGIB from "../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB";
@@ -104,7 +102,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
               <AutoCounter
                 counter={timeEndMove}
                 disabled={isActionCard}
-                callback={() => {}}
+                callback={() => { }}
               />
             }
           </Button>
@@ -160,7 +158,7 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
             </Button>
             <Button type="transparent" p={10}>
               <InnerBtnContextSpaceBetween>
-                <Text text={"Карты из коллекции"} style={{marginRight: 2}} />
+                <Text text={"Карты из коллекции"} style={{ marginRight: 2 }} />
                 <Text
                   fontWeight={900}
                   text={
@@ -173,43 +171,43 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
           </ContainerInfoTwoColumnGIB>
           {(!!cardInfo?.two_card_tax ||
             !!cardInfo?.two_card_tax) && (
-            <>
-              <Offset mt={10} />
+              <>
+                <Offset mt={10} />
 
-              <ContainerInfoTwoColumnGIB>
-                {!!cardInfo?.two_card_tax && (
-                  <Button type="transparent" p={10}>
-                    <InnerBtnContextSpaceBetween>
-                      <Text text={"2 карты"} />
-                      <Text
-                        text={
-                          cardInfo?.two_card_tax + ""
-                        }
-                        iconRight={
-                          <Icon src={icons.qgCurrencySvg} height={13} />
-                        }
-                      />
-                    </InnerBtnContextSpaceBetween>
-                  </Button>
-                )}
-                {!!cardInfo?.three_card_tax && (
-                  <Button type="transparent" p={10}>
-                    <InnerBtnContextSpaceBetween>
-                      <Text text={"3 карты"} />
-                      <Text
-                        text={
-                          cardInfo?.three_card_tax + ""
-                        }
-                        iconRight={
-                          <Icon src={icons.qgCurrencySvg} height={13} />
-                        }
-                      />
-                    </InnerBtnContextSpaceBetween>
-                  </Button>
-                )}
-              </ContainerInfoTwoColumnGIB>
-            </>
-          )}
+                <ContainerInfoTwoColumnGIB>
+                  {!!cardInfo?.two_card_tax && (
+                    <Button type="transparent" p={10}>
+                      <InnerBtnContextSpaceBetween>
+                        <Text text={"2 карты"} />
+                        <Text
+                          text={
+                            cardInfo?.two_card_tax + ""
+                          }
+                          iconRight={
+                            <Icon src={icons.qgCurrencySvg} height={13} />
+                          }
+                        />
+                      </InnerBtnContextSpaceBetween>
+                    </Button>
+                  )}
+                  {!!cardInfo?.three_card_tax && (
+                    <Button type="transparent" p={10}>
+                      <InnerBtnContextSpaceBetween>
+                        <Text text={"3 карты"} />
+                        <Text
+                          text={
+                            cardInfo?.three_card_tax + ""
+                          }
+                          iconRight={
+                            <Icon src={icons.qgCurrencySvg} height={13} />
+                          }
+                        />
+                      </InnerBtnContextSpaceBetween>
+                    </Button>
+                  )}
+                </ContainerInfoTwoColumnGIB>
+              </>
+            )}
 
           {!!cardInfo?.four_card_tax && (
             <>

@@ -16,7 +16,7 @@ import { icons } from '../../../../../../assets';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
 import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
 import { IActionsChooseData, ICardInfoChooseData } from '../../../../../../store/quick-game/chooseData.type';
-import { ICard } from '../../../../../../store/quick-game/quick-game.type';
+import { ICard, IFeatures } from '../../../../../../store/quick-game/quick-game.type';
 
 interface IProps {
   handleChangeScreen: (newScreen: 'action-card' | 'action-special-card' | 'actions') => void;
@@ -131,7 +131,7 @@ const InfoCard: React.FC<IProps> = ({
                 <Text text={"Налог"} />
                 <Text
                   text={
-                    cardInfo.features.one_card_tax + ""
+                    (cardInfo.features as IFeatures).one_card_tax + ""
                   }
                   iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
@@ -158,7 +158,7 @@ const InfoCard: React.FC<IProps> = ({
                 <Text text={"С коллекцией"} />
                 <Text
                   text={
-                    cardInfo.features.monopoly_tax + ""
+                    (cardInfo.features as IFeatures).monopoly_tax + ""
                   }
                   iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
@@ -215,17 +215,16 @@ const InfoCard: React.FC<IProps> = ({
                       </Button>
                     )}
                     С{" "}
-                    {cardInfo.features
+                    {(cardInfo.features as IFeatures)
                       ?.house_taxes &&
                       getPriceTaxesFromHouses(
                         amountHouses,
-                        cardInfo.features
+                        (cardInfo.features as IFeatures)
                           ?.house_taxes
                       )?.name}
                     {
-                      // dataCard.features?.house_taxes &&
                       amountHouses <
-                      cardInfo.features?.house_taxes
+                        (cardInfo.features as IFeatures)?.house_taxes
                         ?.length ? (
                         <Button
                           component={"div"}
@@ -254,10 +253,10 @@ const InfoCard: React.FC<IProps> = ({
                 </Text>
                 <Text
                   text={
-                    cardInfo.features?.house_taxes &&
+                    (cardInfo.features as IFeatures)?.house_taxes &&
                     getPriceTaxesFromHouses(
                       amountHouses,
-                      cardInfo.features?.house_taxes
+                      (cardInfo.features as IFeatures)?.house_taxes
                     )?.price + ""
                   }
                   iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
