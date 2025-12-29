@@ -3,7 +3,7 @@ import withRouter from '../../HOC/withRouter'
 import UserPanel from './UserPanel'
 import { useEffect, useState } from 'react';
 import { GET_USERS } from '../../store/users/users';
-import { IDataQG, IPlayer } from '../../store/quick-game/quick-game.d';
+import { IDataQG, IPlayer } from '../../store/quick-game/quick-game.type';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { IUser } from '../../store/users/user.d';
 import UserPanelMobile from './UserPanelMobile';

@@ -4,7 +4,7 @@ import Icon from '../../../../shared/UI/Icon/Icon';
 import styles from './styles/old-gib.module.scss';
 import React, { useEffect, useState } from 'react';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
-import { ICard, IExchangeData, IPlayer, ISpecialCard } from '../../../../store/quick-game/quick-game.d';
+import { ICard, IExchangeData, IPlayer, ISpecialCard } from '../../../../store/quick-game/quick-game.type';
 import AvatarBlock from '../../../../shared/UI/AvatarBlock/AvatarBlock';
 import Title from '../../../../shared/UI/Title/Title';
 import Line from '../../../../shared/UI/Line/Line';

@@ -1,6 +1,6 @@
 import { EnterIcon, userImg } from "../../../../../../assets";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
-import { IPlayer } from "../../../../../../store/quick-game/quick-game.d";
+import { IPlayer } from "../../../../../../store/quick-game/quick-game.type";
 import { IUser } from "../../../../../../store/users/user.d";
 import cls from "./styles/user-in-gameroom.module.css";
 

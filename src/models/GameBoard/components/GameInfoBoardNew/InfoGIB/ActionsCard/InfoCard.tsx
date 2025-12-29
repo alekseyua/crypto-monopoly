@@ -4,7 +4,6 @@ import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerIn
 import ContainerInfoBodyGIB from '../../components/UI/ContainerGIB/ContainerInfoBodyGIB';
 import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
 import ContainerInfoGIB from '../../components/UI/ContainerGIB/ContainerInfoGIB';
-import { ICard, ICardCity, ICardInfoCards, IChooseDataActions } from '../../../../../../store/quick-game/quick-game.d';
 import { Button, Offset } from '../../../../../../shared/UI';
 import Title from '../../../../../../shared/UI/Title/Title';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
@@ -16,21 +15,25 @@ import Text from '../../../../../../shared/UI/Text/Text';
 import { icons } from '../../../../../../assets';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
 import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
+import { IActionsChooseData, ICardInfoChooseData } from '../../../../../../store/quick-game/chooseData.type';
+import { ICard } from '../../../../../../store/quick-game/quick-game.type';
 
 interface IProps {
   handleChangeScreen: (newScreen: 'action-card' | 'action-special-card' | 'actions') => void;
   handleBack: (p: any) => void; // Optional, assuming you might want to go back
-  card: ICard;
-  timeEndMove: number;
   setAmountHouses: (amount: number) => void; // Function to set amount of houses
-  amountHouses: number; // Current amount of houses
   handleAction: (p: any)=>void;
-	actions: IChooseDataActions;
+  card: ICard;
+  actions: IActionsChooseData;
+  cardInfo: ICardInfoChooseData;
+  timeEndMove: number;
+  amountHouses: number; // Current amount of houses
 }
 
 const InfoCard: React.FC<IProps> = ({
   card,
   actions,
+  cardInfo,
   timeEndMove,
   handleBack,
   amountHouses,
@@ -90,7 +93,7 @@ const InfoCard: React.FC<IProps> = ({
               textColor="#FFFFFF"
               p={5}
             >
-              {(card?.city as ICardCity)?.name || "Город не выбран"}
+              {cardInfo.info.name || "Город не выбран"}
             </Button>
             <Button
               type="fill"
@@ -98,7 +101,7 @@ const InfoCard: React.FC<IProps> = ({
               textColor="#FFFFFF"
               p={5}
             >
-              {(card?.city as ICardCity)?.country || "Страна не выбран"}
+              {cardInfo.info.country_name || "Страна не выбран"}
             </Button>
           </ContainerInfoTwoColumnGIB>
         </ContainerInfoHeaderGIB>
@@ -128,8 +131,7 @@ const InfoCard: React.FC<IProps> = ({
                 <Text text={"Налог"} />
                 <Text
                   text={
-                    (card?.card_info as ICardInfoCards)?.features
-                      ?.one_card_tax + ""
+                    cardInfo.features.one_card_tax + ""
                   }
                   iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
@@ -141,8 +143,7 @@ const InfoCard: React.FC<IProps> = ({
                 <Text
                   fontWeight={900}
                   text={
-                    (card?.card_info as ICardInfoCards)?.info
-                      ?.collection_amount + ""
+                    cardInfo.info.collection_amount + ""
                   }
                 />
               </InnerBtnContextSpaceBetween>
@@ -157,8 +158,7 @@ const InfoCard: React.FC<IProps> = ({
                 <Text text={"С коллекцией"} />
                 <Text
                   text={
-                    (card?.card_info as ICardInfoCards)?.features
-                      ?.monopoly_tax + ""
+                    cardInfo.features.monopoly_tax + ""
                   }
                   iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
@@ -180,7 +180,7 @@ const InfoCard: React.FC<IProps> = ({
               <InnerBtnContextSpaceBetween>
                 <Text text={"Купить дом"} />
                 <Text
-                  text={(card?.card_info as ICardInfoCards)?.prices?.house + ""}
+                  text={cardInfo.prices?.house + ""}
                   iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>
@@ -215,17 +215,17 @@ const InfoCard: React.FC<IProps> = ({
                       </Button>
                     )}
                     С{" "}
-                    {(card?.card_info as ICardInfoCards)?.features
+                    {cardInfo.features
                       ?.house_taxes &&
                       getPriceTaxesFromHouses(
                         amountHouses,
-                        (card?.card_info as ICardInfoCards)?.features
+                        cardInfo.features
                           ?.house_taxes
                       )?.name}
                     {
                       // dataCard.features?.house_taxes &&
                       amountHouses <
-                      (card?.card_info as ICardInfoCards)?.features?.house_taxes
+                      cardInfo.features?.house_taxes
                         ?.length ? (
                         <Button
                           component={"div"}
@@ -254,10 +254,10 @@ const InfoCard: React.FC<IProps> = ({
                 </Text>
                 <Text
                   text={
-                    (card?.card_info as ICardInfoCards)?.features?.house_taxes &&
+                    cardInfo.features?.house_taxes &&
                     getPriceTaxesFromHouses(
                       amountHouses,
-                      (card?.card_info as ICardInfoCards)?.features?.house_taxes
+                      cardInfo.features?.house_taxes
                     )?.price + ""
                   }
                   iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
@@ -286,7 +286,7 @@ const InfoCard: React.FC<IProps> = ({
               <InnerBtnContextSpaceBetween>
                 <Text text={"Купить отель"} />
                 <Text
-                  text={(card?.card_info as ICardInfoCards)?.prices?.hotel + ""}
+                  text={cardInfo.prices?.hotel + ""}
                   iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
                 />
               </InnerBtnContextSpaceBetween>

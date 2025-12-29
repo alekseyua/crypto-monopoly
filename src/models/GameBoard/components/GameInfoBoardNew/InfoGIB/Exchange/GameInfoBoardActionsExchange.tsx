@@ -4,7 +4,7 @@ import Icon from '../../../../../../shared/UI/Icon/Icon';
 import React, { useEffect, useState } from 'react';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import { IStateExchange } from '../../../../../../Pages/QuickGame/FieldQuickGame/FieldQuickGameContainer';
-import { ICard, IPlayer, ISpecialCard } from '../../../../../../store/quick-game/quick-game.d';
+import { ICard, IPlayer, ISpecialCard } from '../../../../../../store/quick-game/quick-game.type';
 import InfoBlock from '../../../../../../shared/UI/InfoBlock/InfoBlock';
 import AvatarBlock from '../../../../../../shared/UI/AvatarBlock/AvatarBlock';
 import ButtonBack from '../../../../../../shared/UI/Buttons/ButtonBack/ButtonBack';

@@ -1,7 +1,7 @@
 import { MIcon } from '../../../../../../assets';
 import { Label, WrapperCard } from '../../../../../../shared/UI';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
-import { IPlayer } from '../../../../../../store/quick-game/quick-game.d';
+import { IPlayer } from '../../../../../../store/quick-game/quick-game.type';
 import { IUser } from '../../../../../../store/users/user.d';
 import { UserInGameRoom } from '../../UI';
 import cls from './game-room.module.css';

@@ -17,7 +17,7 @@ import type {
   IListQGs,
   IChooseData,
   IRoleDiceStore,
-} from "./quick-game.d";
+} from "./quick-game.type";
 import {
   SET_FEED_NEWS_MESSAGE_QG,
   SET_MESSAGE,

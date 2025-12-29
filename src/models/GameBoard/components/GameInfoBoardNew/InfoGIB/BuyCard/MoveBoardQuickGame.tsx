@@ -17,7 +17,7 @@ import ContainerInfoGIB from '../../components/UI/ContainerGIB/ContainerInfoGIB'
 import ContainerRollGIB from '../../components/UI/ContainerGIB/ContainerRollGIB';
 import { temporaryDisableBtn } from '../../../../../../helpers/helper';
 import { useStoreon } from 'storeon/react';
-import { EQuickGameStore, IRoleDiceStore } from '../../../../../../store/quick-game/quick-game.d';
+import { EQuickGameStore, IRoleDiceStore } from '../../../../../../store/quick-game/quick-game.type';
 import { SET_ROLL_DICE_QG } from '../../../../../../store/quick-game/quick-game';
 
 interface IMoveBoardQGProps {

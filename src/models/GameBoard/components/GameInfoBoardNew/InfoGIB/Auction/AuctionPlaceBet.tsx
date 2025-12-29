@@ -8,7 +8,7 @@ import AutoCounter from "../../../../../../Component/AutoCounter/AutoCounter";
 import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
 import ContainerTwoBtn from "../../components/UI/ControllerGIB/ContainerTwoBtn";
 import ContainerOneBtn from "../../components/UI/ControllerGIB/ContainerOneBtn";
-import { ICardInfo } from "../../../../../../store/quick-game/quick-game.d";
+import { ICardInfo } from "../../../../../../store/quick-game/quick-game.type";
 import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerInfoHeaderGIB";
 import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
 import Text from "../../../../../../shared/UI/Text/Text";

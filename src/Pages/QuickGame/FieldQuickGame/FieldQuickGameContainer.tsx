@@ -19,7 +19,6 @@ import {
   CardDataDataActionsType,
   ICard,
   ICardInfo,
-  IChooseDataActions,
   IDataContainer,
   IDataQG,
   IInfoMassagePopup,
@@ -27,7 +26,7 @@ import {
   ISpecialCard,
   ISpecialCardInfo,
   IUserActions,
-} from "../../../store/quick-game/quick-game.d";
+} from "../../../store/quick-game/quick-game.type";
 import { ExpressAirlineCruise } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ExpressAirlineCruise/ExpressAirlineCruise";
 import { MoveTo } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/MoveTo/MoveTo";
 import { isKeyPresentInHash } from "../../../helpers/helper";
@@ -45,6 +44,7 @@ import { SET_HEADER_NAME_IS_SHOW } from "../../../store/header/header";
 import { HeaderNameEnum } from "../../../store/header/header.d";
 import { IUser } from "../../../store/users/user.d";
 import { InfoChanceOrCommunity } from "../../../models/GameBoard/components/GameInfoBoardNew/InfoGIB/ChanceOrCommunity/InfoChanceOrCommunity";
+import { IActionsChooseData, ICardInfoChooseData } from "../../../store/quick-game/chooseData.type";
 
 type keyPreview = {
   key:
@@ -180,7 +180,7 @@ const handleCardOnField = (card_id: number): void => {
         (el: ICard | ISpecialCard) => el.id === card_id
       )[0];
       // проверяе собственник карты
-      if (card.owner.player.id !== dataPlayerQG.id) {
+      if (!!Object.keys(card.owner).length && card.owner.player.id !== dataPlayerQG.id) {
         if (stateExchange.propertys_to.includes(card.id + "")) {
           // удаляем карту из списка
           setStateExchange((state) => ({
@@ -685,6 +685,7 @@ const handleCardOnField = (card_id: number): void => {
       );
 			break;
 		case "info_board_actions":
+      // need card_info -> choose_data
 			setActionCardView(
         <ActionsCardContainerStackScreen
           card={
@@ -695,9 +696,10 @@ const handleCardOnField = (card_id: number): void => {
           }
           timeEndMove={dataPlayerQG.move_end_time_sec}
           handleBack={handleCard}
-          actions={actionCardData?.choose_data?.actions as IChooseDataActions}
           handleAction={handleCardOnFieldAction}
           showInfoCard={"action-card"}
+          actions={actionCardData?.choose_data?.actions as IActionsChooseData}
+          cardInfo={actionCardData?.choose_data.card_info as ICardInfoChooseData }
         />
       );
 			break;
@@ -712,9 +714,10 @@ const handleCardOnField = (card_id: number): void => {
           }
           timeEndMove={dataPlayerQG.move_end_time_sec}
           handleBack={handleCard}
-          actions={actionCardData?.choose_data?.actions as IChooseDataActions}
           handleAction={handleCardOnFieldAction}
           showInfoCard={"action-special-card"}
+          actions={actionCardData?.choose_data?.actions as IActionsChooseData}
+          cardInfo={actionCardData?.choose_data.card_info as ICardInfoChooseData}
         />
       );
 			break;

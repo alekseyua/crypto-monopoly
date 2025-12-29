@@ -3,7 +3,7 @@ import { icons } from "../../../../../../assets";
 import { Button, Offset } from "../../../../../../shared/UI";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
 import Title from "../../../../../../shared/UI/Title/Title";
-import { ICard } from "../../../../../../store/quick-game/quick-game.d";
+import { ICard } from "../../../../../../store/quick-game/quick-game.type";
 import ContainerOneBtn from "../../components/UI/ControllerGIB/ContainerOneBtn";
 import ContainerTwoBtn from "../../components/UI/ControllerGIB/ContainerTwoBtn";
 import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";

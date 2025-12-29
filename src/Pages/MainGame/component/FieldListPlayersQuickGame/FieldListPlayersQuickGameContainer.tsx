@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { IPlayer } from '../../../../store/quick-game/quick-game.d';
+import { IPlayer } from '../../../../store/quick-game/quick-game.type';
 import FieldListPlayersQG from './FieldListPlayersQuickGame'
 import { useStoreon } from 'storeon/react';
 import { SEND_ACTION_CARD_QG } from '../../../../store/quick-game/quick-game';

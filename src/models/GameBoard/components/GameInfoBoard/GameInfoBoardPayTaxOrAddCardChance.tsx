@@ -3,7 +3,7 @@ import styles from './styles/old-gib.module.scss';
 import React from 'react';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import Title from '../../../../shared/UI/Title/Title';
-import { CardDataDataActionsType } from '../../../../store/quick-game/quick-game.d';
+import { CardDataDataActionsType } from '../../../../store/quick-game/quick-game.type';
 import { temporaryDisableBtn } from '../../../../helpers/helper';
 import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer';
 

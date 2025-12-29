@@ -15,7 +15,7 @@ import { rule } from './rules/rule';
 
 import { IRule } from './rules/rule.type';
 import { IUser } from './users/user';
-import { EQuickGameStore, IAchivmentPlayer, ICard, IDataQG, IInfoMassagePopup, IListQGs, IPlayer, IRoleDiceStore } from './quick-game/quick-game.d';
+import { EQuickGameStore, IAchivmentPlayer, ICard, IDataQG, IInfoMassagePopup, IListQGs, IPlayer, IRoleDiceStore } from './quick-game/quick-game.type';
 import { errorGameState } from './quick-game/error-game.d';
 
 // Initial state, reducers and business logic are packed in independent modules

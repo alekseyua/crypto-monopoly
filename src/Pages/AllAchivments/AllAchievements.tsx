@@ -2,7 +2,7 @@ import { AchivmentExcursionIcon, AchivmentPrisonIcon } from '../../assets';
 import { AchivmentCard } from '../../models/achivments/UI';
 import { Block, Offset } from '../../shared/UI';
 import Icon from '../../shared/UI/Icon/Icon';
-import { IAchivmentPlayer } from '../../store/quick-game/quick-game.d';
+import { IAchivmentPlayer } from '../../store/quick-game/quick-game.type';
 import cls from './styles/achivments-module.module.css';
 
 interface IProps {

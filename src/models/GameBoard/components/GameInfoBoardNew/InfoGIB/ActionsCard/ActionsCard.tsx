@@ -6,7 +6,6 @@ import ContainerOneBtn from '../../components/UI/ControllerGIB/ContainerOneBtn';
 import Text from '../../../../../../shared/UI/Text/Text';
 import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import ContainerInfoGIB from '../../components/UI/ContainerGIB/ContainerInfoGIB';
-import { ICard, ICardCity, ICardFeaturesData, ICardInfoCards, IChooseDataActions } from '../../../../../../store/quick-game/quick-game.d';
 import { temporaryDisableBtn } from '../../../../../../helpers/helper';
 import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
 import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
@@ -17,31 +16,33 @@ import ButtonBack from '../../../../../../shared/UI/Buttons/ButtonBack/ButtonBac
 import InnerBtnContextSpaceBetween from '../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
 import { icons } from '../../../../../../assets';
+import { IActionsChooseData, ICardInfoChooseData } from '../../../../../../store/quick-game/chooseData.type';
+import { ICard, ICardCity, ICardInfoCards, IFeatures } from '../../../../../../store/quick-game/quick-game.type';
 
 interface IProps {
   handleChangeScreen: (newScreen: 'action-card' | 'action-special-card' | 'actions') => void;
-  timeEndMove: number; // Optional, assuming it might be used in the future
   handleBack: (p: any) => void; // Assuming this is needed for navigation
-  card: ICard; // Assuming card is an object with properties like owner, city, etc.
-  actions: IChooseDataActions // { [key: string]: boolean }
   handleAction: (params: any) => void; // Function to handle actions like sell
+  card: ICard; // Assuming card is an object with properties like owner, city, etc.
+  actions: IActionsChooseData // { [key: string]: boolean }
   card_id: number; // Assuming this is the ID of the card being acted upon
+  timeEndMove: number; // Optional, assuming it might be used in the future
   showInfoCard: 'action-card' | 'action-special-card' | 'actions';
 
-  name: string;
   colorName: string;
+  cardInfo: ICardInfoChooseData;
 }
 
 const ActionsCard: React.FC<IProps> = ({
   card,
-  name,
   card_id,
   actions,
+  cardInfo,
   colorName,
-  handleBack,
   timeEndMove,
-  handleAction,
   showInfoCard,
+  handleBack,
+  handleAction,
   handleChangeScreen,
 }: IProps) => {
   const [isClick, setIsClick] = React.useState<boolean>(false);
@@ -105,7 +106,7 @@ const ActionsCard: React.FC<IProps> = ({
                 textColor="#FFFFFF"
                 p={12}
               >
-                {name || "Город не выбран"}
+                {cardInfo.info.name || "Город не выбран"}
               </Button>
             </ContainerOneBtn>
           ) : (
@@ -116,7 +117,7 @@ const ActionsCard: React.FC<IProps> = ({
                 textColor="#FFFFFF"
                 p={5}
               >
-                {name || "?"}
+                  {cardInfo.info.name || "?"}
               </Button>
               <Button
                 type="fill"
@@ -124,7 +125,7 @@ const ActionsCard: React.FC<IProps> = ({
                 textColor="#FFFFFF"
                 p={5}
               >
-                {(card?.city as ICardCity)?.country || "?"}
+                {cardInfo.info.country_name || "?"}
               </Button>
             </ContainerInfoTwoColumnGIB>
           )}
@@ -155,7 +156,7 @@ const ActionsCard: React.FC<IProps> = ({
               }}
             >
               <InnerBtnContextSpaceBetween>
-                <Text text={"Продать в банк за " + ((card.card_info as ICardInfoCards).features as ICardFeaturesData).sell_price} iconRight={<Icon src={icons.qgCurrencySvg} width={10} height={10}/>} />
+                <Text text={"Продать в банк за " + cardInfo.features.sell_price} iconRight={<Icon src={icons.qgCurrencySvg} width={10} height={10}/>} />
                 <Text fontWeight={900} text={""} />
               </InnerBtnContextSpaceBetween>
             </Button>

@@ -3,7 +3,7 @@ import { TableSelectQuickGames } from './TableSelectQuickGames';
 import { SET_MODAL } from '../../../../store/modal/modal';
 import FormInputCreateQGContainer from '../../../../models/FormInputCreateQuickGame/FormInputCreateQuickGameContainer';
 import { JOIN_QG } from '../../../../store/quick-game/quick-game';
-import { IListQGs } from '../../../../store/quick-game/quick-game.d';
+import { IListQGs } from '../../../../store/quick-game/quick-game.type';
 import { StoreonDispatch } from 'storeon';
 import { IUser } from '../../../../store/users/user.d';
 

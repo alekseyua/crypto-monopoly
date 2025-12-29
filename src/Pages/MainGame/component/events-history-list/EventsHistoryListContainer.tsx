@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { EventsHistoryList } from './events-history-list';
-import { IDataQG, IMassagesFeed } from '../../../../store/quick-game/quick-game.d';
+import { IDataQG, IMassagesFeed } from '../../../../store/quick-game/quick-game.type';
 import { useStoreon } from 'storeon/react';
 import { useWindowWidth } from '../../../../hooks/useWindowWidth';
 import { Button } from '../../../../shared/UI';

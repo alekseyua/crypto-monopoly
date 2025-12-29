@@ -11,7 +11,7 @@ import Text from '../../../../../../shared/UI/Text/Text';
 import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
 import InnerBtnContextSpaceBetween from '../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween';
 import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
-import { ISpecialCardInfo } from '../../../../../../store/quick-game/quick-game.d';
+import { ISpecialCardInfo } from '../../../../../../store/quick-game/quick-game.type';
 import ContainerOneBtn from '../../components/UI/ControllerGIB/ContainerOneBtn';
 import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
 

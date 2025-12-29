@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import cls from './achivments-card.module.css';
 import { Block, Label, WrapperCard } from '../../shared/UI';
 import { useNavigate } from 'react-router-dom';
-import { IAchivmentPlayer } from '../../store/quick-game/quick-game.d';
+import { IAchivmentPlayer } from '../../store/quick-game/quick-game.type';
 import { AchivmentCard } from './UI';
 
 interface IProps {

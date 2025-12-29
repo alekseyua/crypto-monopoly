@@ -1,22 +1,25 @@
 import React, { useEffect } from 'react'
 import ActionsCard from './ActionsCard'
 import InfoCard from './InfoCard'
-import { ICard, IChooseDataActions, ISpecialCard } from '../../../../../../store/quick-game/quick-game.d'
 import InfoSpecialCard from './InfoSpecialCard';
+import { IActionsChooseData, ICardInfoChooseData } from '../../../../../../store/quick-game/chooseData.type';
+import { ICard, ISpecialCard } from '../../../../../../store/quick-game/quick-game.type';
 
 type AnyCard = ICard | ISpecialCard;
 
 interface IProps {
     card: AnyCard;
-	actions: IChooseDataActions//{ [key: string]: boolean }
+    actions: IActionsChooseData//{ [key: string]: boolean }
     handleBack: (p:any) => void; // Assuming this is needed for navigation
     timeEndMove: number; // Optional, assuming it might be used in the future
     handleAction: (params: any) => void; // Function to handle actions like sell
     showInfoCard: 'action-card' | 'action-special-card' | 'actions';
+    cardInfo: ICardInfoChooseData;
 }
 
 const ActionsCardContainerStackScreen:React.FC<IProps> = ({
     card,
+    cardInfo,
     actions,
     handleBack,
     timeEndMove,
@@ -44,6 +47,7 @@ const ActionsCardContainerStackScreen:React.FC<IProps> = ({
             amountHouses={amountHouses} // If you need to access amountHouses in InfoCard
             handleAction={handleAction}
             actions={actions}
+            cardInfo={cardInfo}
         />
     }
     if(screen === 'action-special-card'){
@@ -62,9 +66,10 @@ const ActionsCardContainerStackScreen:React.FC<IProps> = ({
         <ActionsCard
             handleAction={handleAction}
             showInfoCard={showInfoCard}
+            cardInfo={cardInfo}
+
             card_id={card.id}
             card={card as ICard}
-            name={showInfoCard === 'action-special-card'? card.name : card.name}
             colorName={showInfoCard === 'action-special-card'? card.bgc_header : card?.owner?.player?.color}
             actions={actions}
             handleChangeScreen={handleChangeScreen}

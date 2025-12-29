@@ -3,7 +3,7 @@ import React from 'react'
 import { park } from '../../../../assets'
 import cls from '../../styles/game-board.module.scss';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';
-import { IPlayer } from '../../../../store/quick-game/quick-game.d';
+import { IPlayer } from '../../../../store/quick-game/quick-game.type';
 
 
 interface IParkingProps {

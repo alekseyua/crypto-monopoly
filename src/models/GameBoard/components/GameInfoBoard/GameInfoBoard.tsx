@@ -2,7 +2,7 @@ import { logo } from '../../../../assets';
 import { Button, Offset } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import Title from '../../../../shared/UI/Title/Title';
-import { IPlayer } from '../../../../store/quick-game/quick-game.d';
+import { IPlayer } from '../../../../store/quick-game/quick-game.type';
 import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer';
 import styles from './styles/old-gib.module.scss';
 import { InfoBoardLabel } from './UI/Label/info-board-label';

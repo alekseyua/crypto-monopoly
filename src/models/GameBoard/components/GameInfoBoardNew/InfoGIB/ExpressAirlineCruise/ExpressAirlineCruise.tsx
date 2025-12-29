@@ -15,7 +15,7 @@ import {
   ICard,
   ISpecialCard,
   ISpecialCardInfo,
-} from "../../../../../../store/quick-game/quick-game.d";
+} from "../../../../../../store/quick-game/quick-game.type";
 import ContainerInfoTwoColumnGIB from "../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB";
 import InnerBtnContextSpaceBetween from "../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween";
 import Text from "../../../../../../shared/UI/Text/Text";

@@ -3,7 +3,7 @@ import React from 'react'
 import cls from '../../styles/game-board.module.scss';
 import { Button } from '../../../../shared/UI';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';
-import { IPlayer } from '../../../../store/quick-game/quick-game.d';
+import { IPlayer } from '../../../../store/quick-game/quick-game.type';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import { icons } from '../../../../assets';
 

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import { CSSProperties, useEffect } from 'react';
 import classNames from 'classnames';
-import { IPlayer, IOwnerCard } from '../../../../store/quick-game/quick-game.d';
+import { IPlayer, IOwnerCard } from '../../../../store/quick-game/quick-game.type';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';
 import React from 'react';
 

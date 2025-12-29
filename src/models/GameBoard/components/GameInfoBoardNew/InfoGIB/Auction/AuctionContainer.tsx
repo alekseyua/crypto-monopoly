@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { AuctionInfoCard } from './AuctionInfoCard'
 import { AuctionPlaceBet } from './AuctionPlaceBet'
-import { ICardInfo, ISpecialCardInfo } from '../../../../../../store/quick-game/quick-game.d';
+import { ICardInfo, ISpecialCardInfo } from '../../../../../../store/quick-game/quick-game.type';
 import { AuctionSpecialInfoCard } from './AuctionSpecialInfoCard';
 import { AuctionSpecialPlaceBet } from './AuctionSpecialPlaceBet';
 

@@ -13,7 +13,7 @@ import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/Containe
 import InnerBtnContextSpaceBetween from '../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween';
 import { getPriceTaxesFromHouses } from '../../../../../../helpers/helper';
 import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
-import { ICardInfo } from '../../../../../../store/quick-game/quick-game.d';
+import { ICardInfo } from '../../../../../../store/quick-game/quick-game.type';
 import GameInfoBoardFooterContainer from '../../FooterGIB/GameInfoBoardFooterContainer';
 
 interface Iprops {

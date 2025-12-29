@@ -1,6 +1,6 @@
 import { RightArrowIcon } from '../../../../assets';
 import CollapsibleCard from '../../../../shared/UI/collapsible-card/collapsible-card';
-import { IMassagesFeed, IPlayer } from '../../../../store/quick-game/quick-game.d';
+import { IMassagesFeed, IPlayer } from '../../../../store/quick-game/quick-game.type';
 import { Event } from '../../UI/event/event';
 import cls from './events-history-list.module.scss';
 interface IEventHistoryList {

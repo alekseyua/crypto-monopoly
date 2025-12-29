@@ -1,3 +1,28 @@
+
+// -------- common card info data -------------------------------
+export interface IInfo {
+  name: string;
+  country_name: string;
+  collection_amount: string;
+}
+export interface IFeatures {
+  base_cost: number;
+  house_taxes: IHouseTaxes[];
+  monopoly_tax: number;
+  one_card_tax: number;
+  sell_price: number;
+}
+interface IHouseTaxes {
+  [key: string]: number;
+}
+export interface IPriceBuilding {
+  hotel: number;
+  house: number;
+}
+// --------------------------------------------------------------
+
+
+// =====================================================================================================================
 interface IOwnerCard {
   player: IPlayer;
   can_build: boolean;
@@ -55,13 +80,9 @@ interface ISpecialCardInfo {
   monopoly_tax: number;
   card_type: string;
   start_price: number;
-  info: ICardInfoData;
+  info: IInfo;
 }
 
-
-interface IHouseTaxes {
-    [key: string]: number;
-}
 interface ICardCity {
     name: string;
     country: string;
@@ -87,7 +108,7 @@ interface IDataActionsStore {
   card: IDataActionsCard;
   card_type: string
   card_info: ICardInfo | ISpecialCardInfo;
-  info: ICardInfoData;
+  info: IInfo;
   prices: IDataCardPrice;
   features: IDataCardFeatures;
   card_id: number;
@@ -105,8 +126,8 @@ interface IDataActionsCard {
   name: string;
 }
 
-export interface IDataContainer {
-  [key]: {} | number;
+interface IDataContainer {
+  [key: string]: {} | number;
   data_actions: IDataActionsStore;
   auction_data: IAuctionData;
   choose_data: IChooseData;
@@ -130,41 +151,25 @@ export interface ICardAuctionData {
     "collection": string
 }
 
-export interface ICardInfoData {
-  name: string;
-  country_name: string;
-  collection_amount: string;
-}
 
-export interface ICardPriceData {
-  hotel: number;
-  house: number;
-}
-
-export interface ICardFeaturesData {
-  base_cost: number;
-  house_taxes: IHouseTaxes[];
-  monopoly_tax: number;
-  one_card_tax: number;
-  sell_price: number;
-}
 
 export interface ICardInfoCards{
-  info: ICardInfoData;
-  prices: ICardPriceData;
-  features: ICardFeaturesData;
+  info: IInfo;
+  prices: IPriceBuilding;
+  features: IFeatures;
   card_type: string;
 }
 
 export interface ICardInfo {
-  info: ICardInfoData;
-  prices: ICardPriceData;
-  features: ICardFeaturesData;
+  info: IInfo;
+  prices: IPriceBuilding;
+  features: IFeatures;
   card_type: string;
 
   start_price?: number; // ???
   highest_bid?: number; // ???
-  base_cost?: number; // ???
+  base_cost?: number; // ???card_info
+
 }
 
 export interface ICardAuctionDataPrices {
@@ -200,23 +205,9 @@ export interface IAuctionData {
 
 interface IUserActions {
     "0":IDataContainer;
-    [key as string]: IDataContainer;
+    [key: string]: IDataContainer;
 
 }
-
-// interface ICardData {
-//     "status": "success" | string,
-//     "card_id": number,
-//     "message": string,
-//     "data_actions": {
-//         "actions": CardDataDataActionsType;
-//         "card_info": ICardInfo,
-//         "card_id": number,
-//         card: {}
-//     }
-// }
-
-type ActionTypes = "buy" | "auction";
 
 type CardDataDataActionsJailType = {
   pay_for_freedom: boolean;
@@ -273,30 +264,15 @@ interface BillData {
     rank: number;
 }
 
-interface ChooseActions {
-    pawn: boolean;
-    sell: boolean;
-    build: boolean;
-    redeem: boolean;
-    auction: boolean;
-    exchange: boolean;
-}
-
-interface ChooseData {
-    actions: ChooseActions;
-    card_type: string;
-    card_id: number;
-}
-
 interface IExchangeData {
     player_from_id: number;
     player_to_id: number;
     price_from: number;
     price_to: number;
     propertys_to: number[]
-    propertys_from: nember[]
+    propertys_from: number[]
 }
-
+type statusPlayer = 'end_move' | 'waiting';
 interface IPlayer {
   id: number;
   user: string;
@@ -352,8 +328,6 @@ interface IAchivmentPlayer {
   }
 
 type StatusPlayer = 'waiting' | 'move' | 'buy_or_auction' | 'end_move';
-type Players = IPlayer[];
-
 
 interface IMassagesFeed {
   id: number;
@@ -363,8 +337,9 @@ interface IMassagesFeed {
   player_color: string;
   message: string;
   date_create: string;
-}
+} 
 
+// delete
 interface IChooseDataActions {
   auction: boolean;
   pawn: boolean;
@@ -424,7 +399,6 @@ export type {
   ISpecialCardInfo,
   IInfoMassagePopup,
   IDataActionsStore,
-  IChooseDataActions,
   IHighestBidderData,
   CardDataDataActionsType,
   CardDataDataActionsJailType,

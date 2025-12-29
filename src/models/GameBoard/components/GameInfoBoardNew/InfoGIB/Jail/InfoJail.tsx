@@ -4,7 +4,7 @@ import { Button, Offset } from "../../../../../../shared/UI";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
 import Text from "../../../../../../shared/UI/Text/Text";
 import Title from "../../../../../../shared/UI/Title/Title";
-import { CardDataDataActionsJailType } from "../../../../../../store/quick-game/quick-game.d";
+import { CardDataDataActionsJailType } from "../../../../../../store/quick-game/quick-game.type";
 import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
 import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
 import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerInfoHeaderGIB";

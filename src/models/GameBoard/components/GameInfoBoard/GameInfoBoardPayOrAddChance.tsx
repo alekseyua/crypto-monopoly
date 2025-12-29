@@ -7,7 +7,7 @@ import { InfoBoardLabel } from './UI/Label/info-board-label';
 import { getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../helpers/helper';
 import AutoCounter from '../../../../Component/AutoCounter/AutoCounter';
 import Title from '../../../../shared/UI/Title/Title';
-import { CardDataDataActionsType } from '../../../../store/quick-game/quick-game.d';
+import { CardDataDataActionsType } from '../../../../store/quick-game/quick-game.type';
 import GameInfoBoardFooterContainer from '../GameInfoBoardNew/FooterGIB/GameInfoBoardFooterContainer';
 
 interface IBayOrAuctionProps {

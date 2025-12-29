@@ -4,7 +4,7 @@ import { useStoreon } from 'storeon/react';
 import { SET_MODAL } from '../../store/modal/modal';
 import { CREATE_NEW_QG } from '../../store/quick-game/quick-game';
 import { errorGameState } from '../../store/quick-game/error-game';
-import { EQuickGameStore } from '../../store/quick-game/quick-game.d';
+import { EQuickGameStore } from '../../store/quick-game/quick-game.type';
 
 export interface ICreateGameData {
   name: string;

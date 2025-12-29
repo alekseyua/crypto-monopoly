@@ -1,7 +1,7 @@
 import { plus, StonksIcon, ThreeDots } from '../../../../assets';
 import { Label, WrapperCard } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
-import { IListQGs } from '../../../../store/quick-game/quick-game.d';
+import { IListQGs } from '../../../../store/quick-game/quick-game.type';
 import { IUser } from '../../../../store/users/user';
 import { GameRoom } from './components';
 import cls from './quick-games.module.scss';

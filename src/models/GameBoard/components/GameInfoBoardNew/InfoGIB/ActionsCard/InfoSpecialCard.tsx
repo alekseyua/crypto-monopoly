@@ -4,10 +4,7 @@ import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerIn
 import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
 import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
 import ContainerInfoGIB from "../../components/UI/ContainerGIB/ContainerInfoGIB";
-import {
-  IChooseDataActions,
-  ISpecialCard,
-} from "../../../../../../store/quick-game/quick-game.d";
+import { ISpecialCard } from "../../../../../../store/quick-game/quick-game.type";
 import { Button, Offset } from "../../../../../../shared/UI";
 import Title from "../../../../../../shared/UI/Title/Title";
 import AutoCounter from "../../../../../../Component/AutoCounter/AutoCounter";
@@ -19,6 +16,7 @@ import Text from "../../../../../../shared/UI/Text/Text";
 import { icons } from "../../../../../../assets";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
 import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";
+import { IActionsChooseData } from "../../../../../../store/quick-game/chooseData.type";
 
 interface IProps {
   handleChangeScreen: (
@@ -30,7 +28,7 @@ interface IProps {
   setAmountHouses: (amount: number) => void; // Function to set amount of houses
   amountHouses: number; // Current amount of houses
   handleAction: (p: any) => void;
-  actions: IChooseDataActions; //{ [key: string]: boolean }
+  actions: IActionsChooseData; //{ [key: string]: boolean }
 }
 
 const InfoSpecialCard: React.FC<IProps> = ({

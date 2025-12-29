@@ -5,7 +5,7 @@ import React from 'react';
 import AutoCounter from '../../../../../Component/AutoCounter/AutoCounter';
 import { getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../../helpers/helper';
 import Title from '../../../../../shared/UI/Title/Title';
-import { CardDataDataActionsType } from '../../../../../store/quick-game/quick-game.d';
+import { CardDataDataActionsType } from '../../../../../store/quick-game/quick-game.type';
 import GameInfoBoardFooterContainer from '../FooterGIB/GameInfoBoardFooterContainer';
 import ContainerGIB from '../components/UI/ContainerGIB/ContainerGIB';
 import ContainerInfoHeaderGIB from '../components/UI/ContainerGIB/ContainerInfoHeaderGIB';

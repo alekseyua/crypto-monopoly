@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./styles/roll-dice.module.scss";
 import RollDice from "./RollDice";
-import { EQuickGameStore, IRoleDiceStore } from "../../../store/quick-game/quick-game.d";
+import { EQuickGameStore, IRoleDiceStore } from "../../../store/quick-game/quick-game.type";
 import { RESET_ROLL_DICE_QG } from "../../../store/quick-game/quick-game";
 import { useStoreon } from "storeon/react";
 

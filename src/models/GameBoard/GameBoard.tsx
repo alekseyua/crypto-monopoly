@@ -1,4 +1,4 @@
-import type { ICard, IDataQG, IPlayer, ISpecialCard } from '../../store/quick-game/quick-game.d';
+import type { ICard, IDataQG, IPlayer, ISpecialCard } from '../../store/quick-game/quick-game.type';
 import cls from './styles/game-board.module.scss';
 import Parking from './components/Parking/Parking';
 import Police from './components/Police/Police';
@@ -99,6 +99,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
             {cards?.map((card: ICard | ISpecialCard, index: number) => {
               const playerCurrentMoveOnField: IPlayer = card.players.filter((p: IPlayer) => p.current_move)[0];
               if (!card) return (<h1>Failed to receive data card</h1>);
+              console.log({card})
               if (card.card_number === 21) {
                 // {/* **************** Parcking **************** */ }
                 return (
@@ -185,15 +186,15 @@ export const GameBoard: React.FC<IGameBoard> = ({
                     card.players.map((p: IPlayer) => p.current_move)[0]
                   }
                   isGrayBlur={
-                    (isChanceGetOrRemoveHouse &&
+                    (isChanceGetOrRemoveHouse && !!Object.keys(card.owner).length &&
                       card.owner.player.id !== dataPlayerQG.id) ||
-                    (!!listSelectUserPreview.length &&
+                    (!!listSelectUserPreview.length && !!Object.keys(card.owner).length &&
                       !listSelectUserPreview.includes(card.owner.player.id))
                   }
                   activeCardForSelect={
-                    (isChanceGetOrRemoveHouse &&
+                    (isChanceGetOrRemoveHouse && !!Object.keys(card.owner).length &&
                       card.owner.player.id !== dataPlayerQG.id) ||
-                    (!!listSelectUserPreview.length &&
+                    (!!listSelectUserPreview.length && !!Object.keys(card.owner).length &&
                       listSelectUserPreview.includes(card.owner.player.id))
                   }
                 // isPawn={card.owner.player.id }

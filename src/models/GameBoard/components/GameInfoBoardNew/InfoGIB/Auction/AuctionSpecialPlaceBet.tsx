@@ -10,7 +10,7 @@ import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfo
 import Text from "../../../../../../shared/UI/Text/Text";
 import ButtonBack from "../../../../../../shared/UI/Buttons/ButtonBack/ButtonBack";
 import ContainerInfoTwoColumnGIB from "../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB";
-import { ISpecialCardInfo } from "../../../../../../store/quick-game/quick-game.d";
+import { ISpecialCardInfo } from "../../../../../../store/quick-game/quick-game.type";
 import InnerBtnContextSpaceBetween from "../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween";
 import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
 import GameInfoBoardFooterContainer from "../../FooterGIB/GameInfoBoardFooterContainer";

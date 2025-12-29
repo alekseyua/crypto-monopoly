@@ -1,6 +1,6 @@
 import { StoreonStore } from "storeon";
 import { v4 } from "uuid";
-import { IMassagesFeed } from "../quick-game/quick-game.d";
+import { IMassagesFeed } from "../quick-game/quick-game.type";
 
 export const SET_MESSAGE = 'message/set_new message' as const;
 export const SET_MESSAGE_QUICK_GAME = v4();

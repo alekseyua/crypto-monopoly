@@ -2,7 +2,7 @@ import { icons } from '../../../../assets';
 import CardPlayersPreview from '../../../../Component/Cards/CardPlayersPreview/CardPlayersPreview';
 import { Button, Offset } from '../../../../shared/UI';
 import Icon from '../../../../shared/UI/Icon/Icon';
-import { IPlayer } from '../../../../store/quick-game/quick-game.d';
+import { IPlayer } from '../../../../store/quick-game/quick-game.type';
 import styles from './styles/list-player.module.scss';
 
 interface IFieldListPlayersQGProps {
