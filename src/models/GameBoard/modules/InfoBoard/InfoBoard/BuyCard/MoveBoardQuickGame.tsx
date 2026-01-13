@@ -17,7 +17,7 @@ import ContainerInfoGIB from '../../components/UI/ContainerGIB/ContainerInfoGIB'
 import ContainerRollGIB from '../../components/UI/ContainerGIB/ContainerRollGIB';
 import { temporaryDisableBtn } from '../../../../../../helpers/helper';
 import { useStoreon } from 'storeon/react';
-import { SET_ROLL_DICE_QG } from '../../../../../../store/quick-game/quick-game';
+import { SET_ROLL_DICE_QG } from '../../../../../../store/const';
 
 interface IMoveBoardQGProps {
   onMove: (params: any) => void;
@@ -49,23 +49,27 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
     useStoreon<StateStore, EventStore>(); 
   const [isClickBtn, setIsClickBtn] = React.useState(false);
   const [hideBtn, setHideBtn] = React.useState(false);
+  const [isShake, setIsShake] = React.useState(false);
   const getRandomNumber = () => {
     const num = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
     return num;
   }
 
   const handleClickMove = useCallback(() => {
-    dispatch(SET_ROLL_DICE_QG, {
-      rd1: getRandomNumber(),
-      rd2: getRandomNumber(),
-    });
+    // dispatch(SET_ROLL_DICE_QG, {
+    //   rd1: getRandomNumber(),
+    //   rd2: getRandomNumber(),
+    // });
+    if (action === 'move') setIsShake(true);
     onMove({
       action,
     });
     if (action === 'move' || action === 'end_move') {
-      temporaryDisableBtn(15000, setHideBtn);
+      // temporaryDisableBtn(15000, setHideBtn);
+      setHideBtn(true);
     }
     temporaryDisableBtn(15000, setIsClickBtn);
+    setIsClickBtn(true);
   },[action, onMove, dispatch]);
 
   useEffect(() => {
@@ -140,6 +144,7 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
           <ContainerRollGIB>
             <RollDiceContainer
               onClick={handleClickMove}
+              isShake={isShake}
             />
           </ContainerRollGIB>
         )}

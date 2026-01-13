@@ -72,7 +72,7 @@ export const CLOSE_WSOCKET = v4();
 export const OPEN_WS_FEED_NEWS_QG = v4();
 export const CLOSE_WSOCKET_FEED = 'close/ws_feed_qg' as const;
 export const SET_ROLL_DICE_QG = "set/role_dice" as const;
-export const RESET_ROLL_DICE_QG = "reset/role_dice" as const;
+export const RESET_ROLL_DICE = "reset/role_dice" as const;
 export const SET_MESSAGE_ERROR_CREATE_GAME = 'set/message_create_game' as const;
 
 /* ===================== MODULE ===================== */
@@ -95,7 +95,7 @@ export const quickGame: StoreonModule<IState> = (store) => {
   }));
 
   /* ===================== ROLE DICE ===================== */
-  store.on(RESET_ROLL_DICE_QG, () => ({
+  store.on(RESET_ROLL_DICE, () => ({
     [EQuickGameStore.ROLE_DICE_STORE]: { rd1: 0, rd2: 0 },
   }));
   store.on(SET_ROLL_DICE_QG, (_, payload: IRoleDiceStore) => ({

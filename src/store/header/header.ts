@@ -2,11 +2,12 @@ import { StoreonStore } from "storeon";
 import { _INIT } from "../auth/auth";
 import { HeaderName, HeaderNameEnum } from "./header.d";
 import { IState } from "..";
-import { OPEN_WS_FEED_NEWS_QG, RESET_QG, RESET_ROLL_DICE_QG, SET_DATA_ACTION_CARD, SET_DATA_PLAYER_QG, SET_EXCHANGE_DATA, SET_INFO_MESSAGE_POPUP, SET_LIST_CARDS_QG, SET_LIST_QG, SET_MESSAGE_ERROR_CREATE_GAME, SET_QG, SET_ROLL_DICE_QG } from "../quick-game/quick-game";
+import { OPEN_WS_FEED_NEWS_QG, RESET_QG, SET_DATA_ACTION_CARD, SET_DATA_PLAYER_QG, SET_EXCHANGE_DATA, SET_INFO_MESSAGE_POPUP, SET_LIST_CARDS_QG, SET_LIST_QG, SET_MESSAGE_ERROR_CREATE_GAME, SET_QG } from "../quick-game/quick-game";
 import { SET_MESSAGE } from "../message/message";
 import { NAV_QG_FIELD_PAGE, NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
 import { SET_MODAL } from "../modal/modal";
 import { isKeyPresentInHash } from "../../helpers/helper";
+import { RESET_ROLL_DICE, SET_ROLL_DICE_QG } from "../const";
 
 export const SET_HEADER_NAME_IS_SHOW = 'header/set_name' as const;
 
@@ -76,7 +77,7 @@ const handleDice = (player: any, dispatch: any) => {
       rd2: player.dice_roll_2,
     });
   } else {
-    dispatch(RESET_ROLL_DICE_QG);
+    dispatch(RESET_ROLL_DICE);
   }
 };
 // Попапы игрока

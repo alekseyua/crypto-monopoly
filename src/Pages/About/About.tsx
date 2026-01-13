@@ -1,8 +1,8 @@
 import React from 'react'
 import RollDiceContainer from '../../shared/UI/RollDice/RoleDiceContainer';
 import BlockWrapper from '../../shared/UI/Block/BlockWrapper';
-import { SET_ROLL_DICE_QG } from '../../store/quick-game/quick-game';
 import { useStoreon } from 'storeon/react';
+import { SET_ROLL_DICE_QG } from '../../store/const';
 
 const About:React.FC = () => {
   const {dispatch } = useStoreon();

@@ -7,7 +7,6 @@ import {
   GET_CARD_ACTION_QG,
   CONNECT_WS_QG,
   MOVE_TO,
-  RESET_ROLL_DICE_QG,
   CLOSE_WSOCKET_FEED,
 } from "../../../store/quick-game/quick-game";
 import { MoveBoardQG } from "../../../models/GameBoard/modules/InfoBoard/InfoBoard/BuyCard/MoveBoardQuickGame";
@@ -43,6 +42,7 @@ import ActionsCardContainerStackScreen from "../../../models/GameBoard/modules/I
 import { ShowMassagePopup } from "../../../models/GameBoard/modules/InfoBoard/InfoBoard/ShowMassagePopup/ShowMassagePopup";
 import { InfoChanceOrCommunity } from "../../../models/GameBoard/modules/InfoBoard/InfoBoard/ChanceOrCommunity/InfoChanceOrCommunity";
 import Empty from "../../../models/GameBoard/modules/InfoBoard/InfoBoard/Empty/Empty";
+import { RESET_ROLL_DICE } from "../../../store/const";
 
 type keyPreview = {
   key:
@@ -146,7 +146,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
         // "return_house", "get_house"
       ];
       if (listException.includes(params.action)) {
-        return setTimeout(() => dispatch(RESET_ROLL_DICE_QG), 3000)
+        return setTimeout(() => dispatch(RESET_ROLL_DICE), 3000)
       }; // что бы полностью обнулить данные
       if (params.action === "add_card") {
         return dispatch(GET_CARD_ACTION_QG, { chance: true });

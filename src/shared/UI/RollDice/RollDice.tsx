@@ -4,11 +4,12 @@ import styles from './styles/roll-dice.module.scss';
 
 const RollDice = forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement > & { left: number }
+  React.HTMLAttributes<HTMLDivElement > & { left: number, className?: string }
+
 >(({ ...props }, ref) => {
   return (
     <section
-      className={styles["container"]}
+      className={`${styles["container"]} ${props.className}`}
       style={
         {
           "--cube-size": "50px",

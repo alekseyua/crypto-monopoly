@@ -8,6 +8,7 @@ import { SET_HEADER_NAME_IS_SHOW } from '../../../store/header/header';
 import { HeaderNameEnum } from '../../../store/header/header.d';
 import { CONNECT_WS_QG, DISCONNECT_LIST_QG } from '../../../store/quick-game/quick-game';
 import { SET_MODAL } from '../../../store/modal/modal';
+import { SET_LOCATION } from '../../../store/const';
 
 
 
@@ -28,9 +29,10 @@ const SelectQGContainer = () => {
   );
 
   useEffect(() => {
-    dispatch(CONNECT_WS_QG, { action: "get_games", redirectTo, location });
+    dispatch(SET_LOCATION, location);
+    dispatch(CONNECT_WS_QG, { action: "get_games", redirectTo });
     return () => {
-      dispatch(DISCONNECT_LIST_QG, { action: "get_games", redirectTo, location });
+      dispatch(DISCONNECT_LIST_QG, { action: "get_games", redirectTo });
       dispatch(SET_MODAL, { isOpen: false });
     }
   }, [dispatch, redirectTo]);

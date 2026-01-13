@@ -17,6 +17,9 @@ import { IRule } from './rules/rule.type';
 import { IUser } from './users/user';
 import { EQuickGameStore, IAchivmentPlayer, ICard, IDataQG, IInfoMassagePopup, IListQGs, IPlayer, IRoleDiceStore } from './quick-game/quick-game.type';
 import { errorGameState } from './quick-game/error-game.d';
+import { diceRoll } from './roll-dice/roll-dice';
+import { IDashboardProfile, IFilterItem, IProfile, Payment } from './profile/profile.d';
+import { Location } from 'react-router-dom';
 
 // Initial state, reducers and business logic are packed in independent modules
 
@@ -33,19 +36,32 @@ export interface IState {
   [EQuickGameStore.LIST_QGS]: IListQGs[];
   [EQuickGameStore.EXCHANGE_DATA]: {};
   [EQuickGameStore.SHOW_RATE]: boolean;
-
+  SET_QUEUE_MESSAGES_WS: any[];
+  
   authStore: any;
+  isAnimationRollDice: boolean;
   users: any;
-  profile: any;
   message: any;
   registration: any;
   recovery: any;
   referal: any;
-  websocket: any;
   modal: any;
   headerStore: any;
   error: any;
   rules: IRule[];
+  // -----------------
+  websocket: any;
+  queueMessagesFeeds: any[];
+  queueMessagesWs: any[] 
+  // -----------------
+  profile: IProfile;
+  paymentStore: Payment;
+  dashboardProfile: IDashboardProfile;
+  controllerFilterInvitePlayers: IFilterItem[];
+  controllerShowFilterInvitePlayers: IFilterItem[];
+  openSubInvitePlayers: boolean;
+  redirectTo: any,
+  location: Partial<Location> 
 }
 
 export const store = createStoreon < IState >([
@@ -54,12 +70,13 @@ export const store = createStoreon < IState >([
   error,
   modal,
   referal,
-  headerStore,
   message,
   profile,
+  diceRoll,
   recovery,
   authStore,
   quickGame,
   websocket,
+  headerStore,
   registration,
 ]);

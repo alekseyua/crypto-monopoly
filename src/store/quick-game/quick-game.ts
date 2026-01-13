@@ -16,16 +16,15 @@ import type {
   IAchivmentPlayer,
   IListQGs,
   IChooseData,
-  IRoleDiceStore,
 } from "./quick-game.type";
 import {
   SET_FEED_NEWS_MESSAGE_QG,
   SET_MESSAGE,
 } from "../message/message";
 import { GET_USERS } from "../users/users";
-import { NAV_QG_FIELD_PAGE, NAV_QG_SELECT_PAGE } from "../../routers/config-nav";
 import {payloadErrorCreateGame, errorGameState} from "./error-game.d";
 import { SET_MODAL } from "../modal/modal";
+import { EStoreQG, HANDLE_WEBSOCKET_MESSAGE, HANDLE_WEBSOCKET_MESSAGE_FEED, RESET_ROLL_DICE, SET_QUEUE_MESSAGES_WS, SET_REDIRECT_TO, SET_ROLL_DICE_QG } from "../const";
 
 // list cards for the game
 export const RESET_LIST_CARDS_QG = v4();
@@ -66,17 +65,11 @@ export const CLOSE_WSOCKET = v4();
 export const OPEN_WS_FEED_NEWS_QG = v4();
 export const CLOSE_WSOCKET_FEED = 'close/ws_feed_qg' as const;
 
-//set dice roll quick game
-export const SET_ROLL_DICE_QG = "set/role_dice" as const;
-export const RESET_ROLL_DICE_QG = "reset/role_dice" as const;
+
 
 // massage create game
 export const SET_MESSAGE_ERROR_CREATE_GAME = 'set/message_create_game' as const;
 
-export const enum EStoreQG {
-  ROLE_DICE_STORE = 'roleDiceStore',
-  MESSAGE_ERROR_CREATE_GAME = 'messageErrorCreateGame',
-}
 export const quickGame = (store: StoreonStore) => {
   const socket: ISocket = {
     get_games: null,
@@ -85,12 +78,6 @@ export const quickGame = (store: StoreonStore) => {
 
   // --------------- INIT -----------------
   store.on(_INIT, () => ({
-    // Role Dice Store
-    roleDiceStore: {
-      rd1: 0,
-      rd2: 0,
-    } as IRoleDiceStore,
-
     // Message create game
     [EStoreQG.MESSAGE_ERROR_CREATE_GAME]: {} as errorGameState,
 
@@ -201,11 +188,7 @@ export const quickGame = (store: StoreonStore) => {
     showRate: false,
   }));
 
-  // --------------- Role Dice -----------------
-  store.on(RESET_ROLL_DICE_QG, () => ({ [EStoreQG.ROLE_DICE_STORE]: { rd1: 0, rd2: 0 } }));
-  store.on(SET_ROLL_DICE_QG, (_, payload: IRoleDiceStore) => ({
-    [EStoreQG.ROLE_DICE_STORE]: payload,
-  }));
+
 
   // --------------- Message create game -----------------
   store.on(SET_MESSAGE_ERROR_CREATE_GAME, (_, payload: payloadErrorCreateGame[]) => {
@@ -262,107 +245,10 @@ export const quickGame = (store: StoreonStore) => {
         (socket.get_games = new WebSocket(URL)),
         (err: any) => console.error('WebSocket error:', err),
         async (res: any) => {
-          if (!!storage?.user?.id) profileID = storage?.user?.id;
-
-          // ===== Messages handling =====
-          if (isKeyPresentInHash(res, 'message_popup')) console.table(res.message_popup);
-          if (res?.message === "No game with this id") {
-            dispatch(RESET_QG);
-            dispatch(SET_MESSAGE, [{ title: "Error", desc: res.message }]);
-            return payload.redirectTo(NAV_QG_SELECT_PAGE);
-          }else if(res.type === "game" && res?.message && res?.message === ""){
-            dispatch(SET_MESSAGE, [{ title: "Temp message mony", desc: res.message }]);
-          }
-          if (res?.error && isKeyPresentInHash(res, 'game_data_creating')) {
-            dispatch(SET_MESSAGE_ERROR_CREATE_GAME, res.game_data_creating);
-            setTimeout(()=>{
-              dispatch(SET_MESSAGE_ERROR_CREATE_GAME, []);
-            },3000);
-            return;
-          }else{
-              dispatch(SET_MODAL, { isOpen: false });
-          }
-
-          // ===== List games quick =====
-          if (isKeyPresentInHash(res, "games_data")) dispatch(SET_LIST_QG, res.games_data);
-
-          // ===== Current game quick =====
-          if (isKeyPresentInHash(res, "game_data")) {
-            const currentPlayer: IPlayer[] =
-              res.game_data?.players.filter((p: any) => +p.user === profileID);
-            if (!currentPlayer || !currentPlayer[0]) console.error('Failed to retrieve current player data');
-
-            dispatch(SET_DATA_PLAYER_QG, currentPlayer[0]);
-            if (!res.game_data.is_active || !currentPlayer.length) {
-              return payload.redirectTo(NAV_QG_SELECT_PAGE);
-            } else if (payload?.location?.pathname !== NAV_QG_FIELD_PAGE && res.game_data.is_start) {
-              payload.redirectTo(NAV_QG_FIELD_PAGE);
-            }
-
-            dispatch(OPEN_WS_FEED_NEWS_QG, { game_id: res.game_data.id });
-            dispatch(SET_QG, res.game_data);
-            if (res.game_data?.cards?.length) dispatch(SET_LIST_CARDS_QG, res.game_data.cards);
-
-            if (currentPlayer[0].show_dice_roll) {
-              dispatch(SET_ROLL_DICE_QG, {
-                rd1: currentPlayer[0].dice_roll_1,
-                rd2: currentPlayer[0].dice_roll_2,
-              });
-               
-            } else {
-              dispatch(RESET_ROLL_DICE_QG);
-            }
-
-            if (isKeyPresentInHash(currentPlayer[0]?.popup_data, "show")) {
-              dispatch(SET_INFO_MESSAGE_POPUP, currentPlayer[0].popup_data);
-            }
-
-            let choose_data: IChooseData | undefined = undefined;
-            if (isKeyPresentInHash(currentPlayer[0]?.choose_data, "actions")) {
-              choose_data = { ...currentPlayer[0]?.choose_data };
-            }
-
-            if (isKeyPresentInHash(currentPlayer[0]?.card_data, "data_actions")) {
-              dispatch(SET_DATA_ACTION_CARD, {
-                [`${profileID}`]: {
-                  auction_data: undefined,
-                  data_actions: {
-                    actions: currentPlayer[0]?.card_data.data_actions?.actions,
-                    card_info: currentPlayer[0]?.card_data.data_actions?.card_info,
-                    card: currentPlayer[0]?.card_data.data_actions?.card,
-                    card_id: currentPlayer[0]?.card_data.card_id,
-                  },
-                  choose_data: choose_data,
-                  card_id: currentPlayer[0]?.current_card,
-                },
-              });
-            } else if (isKeyPresentInHash(currentPlayer[0]?.auction_data, "id")) {
-              dispatch(SET_DATA_ACTION_CARD, {
-                [`${profileID}`]: {
-                  data_actions: undefined,
-                  auction_data: currentPlayer[0]?.auction_data,
-                  choose_data: choose_data,
-                  card_id: currentPlayer[0]?.current_card,
-                },
-              });
-            } else {
-              dispatch(SET_DATA_ACTION_CARD, {
-                [`${profileID}`]: {
-                  data_actions: undefined,
-                  auction_data: undefined,
-                  choose_data: choose_data,
-                  card_id: currentPlayer[0]?.current_card,
-                },
-              });
-            }
-
-            if (isKeyPresentInHash(currentPlayer[0]?.exchange_data, "price_to")) {
-              dispatch(SET_EXCHANGE_DATA, currentPlayer[0]?.exchange_data);
-            } else {
-              dispatch(SET_EXCHANGE_DATA, {});
-            }
-          }
+          dispatch(HANDLE_WEBSOCKET_MESSAGE, res);
+         
         }
+        // ended WebSocket onmessage
       );
 
     if (!storage?.user?.id) {
@@ -418,11 +304,8 @@ export const quickGame = (store: StoreonStore) => {
     const connectFeedWS = () =>
       connectWebSocket(socket.feed = new WebSocket(URL),
         (err: any) => console.error('WebSocket feed error:', err),
-        async (res: any) => {
-          if (isKeyPresentInHash(res, "send_data")) {
-            dispatch(SET_ACHIVMENT_PLAYER_QG, res.send_data.achievements ?? []);
-            dispatch(SET_FEED_NEWS_MESSAGE_QG, res.send_data.messages ?? []);
-          }
+        (res: any) => {
+          dispatch(HANDLE_WEBSOCKET_MESSAGE_FEED, res);          
         });
     connectFeedWS();
   });

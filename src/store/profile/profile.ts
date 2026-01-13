@@ -5,6 +5,8 @@ import api from "../../api/api";
 import { API_CHANGE_PHONE_NUMBER, API_CHANGE_PHOTO_AVATAR, API_CONFIRM_PAYMENT, API_TOP_UP_WALLET } from "../../api/config";
 import { SET_MODAL } from "../modal/modal";
 import { GET_USERS } from "../users/users";
+import { SET_LOCATION, SET_REDIRECT_TO } from "../const";
+import { Location } from "react-router-dom";
 
 // export const GET_DATA_PROFILE = 'profile/update_data' as const;
 export const UPDATE_PHOTO_AVATAR_PROFILE = 'profile/update_photo_avatar' as const;
@@ -24,6 +26,106 @@ export const SET_PAYMENT_DATA = 'profile/set_payment_data' as const;
 export const profile = (store: StoreonStore) => {
   // profile logic
   //...
+  const initOpenSubInvitePlayers: boolean = false;
+  const initControllerShowFilterInvitePlayers: IFilterItem[] = [
+    {
+      title: "Все приглашенные",
+      status: true,
+    },
+    {
+      title: "Закрыть фильтры",
+      status: false,
+    },
+  ];
+  const initControllerFilterInvitePlayers: IFilterItem[] = [
+    {
+      title: "Дата приглашения",
+      status: true,
+    },
+    {
+      title: "Выплаты",
+      status: false,
+    },
+  ];
+  const initProfile: IProfile = {
+    id: 0,
+    state_registration: 0,
+    state_registration_text: "",
+    email: "",
+    username: "",
+    phone_number: null,
+    is_confirmed: false,
+    referred_by: null,
+    referral_code: "",
+    balance: 0,
+  };
+  const initPayment: Payment = {
+    id: null,
+    amount: "",
+    currency: "USDT-TRC20",
+    status: "zeroed",
+    tx_hash: null,
+    created_at: "",
+    address: "",
+    user: 0,
+  };
+  const initDashboardProfile: IDashboardProfile = {
+    name: "Sam Venchester",
+    button: [
+      {
+        name: "Общая информация", // Кнопка для перехода в раздел с общей информацией аккаунта (активная кнопка)
+        type: "common",
+        status: "active",
+      },
+      {
+        name: "Безопасность", // Кнопка для перехода в раздел безопасности аккаунта
+        type: "security",
+        status: "inactive", // Кнопка-слайдер для перехода между двумя вкладками страницы
+      },
+      {
+        name: "Чат поддержки", // Кнопка для перехода в чат с поддержкой, здесь же отображается счетчик новых сообщений от поддержки (дублируется в уведомления на сайте)
+        amount_messages: 0,
+        type: "chat",
+        status: "inactive", // Кнопка-слайдер для перехода между двумя вкладками страницы
+      },
+      {
+        name: "Аккаунт", // Кнопка-слайдер для перехода между двумя вкладками страницы
+        type: "account",
+        status: "active",
+      },
+      {
+        name: "Баланс",
+        type: "balance",
+        status: "inactive", // Кнопка-слайдер для перехода между двумя вкладками страницы
+      },
+    ],
+  };
+  const redirectTo: any = undefined;
+  const InitLocation: Partial<Location>  = {
+    pathname: '',
+    search: '',
+    hash: '',
+  };
+
+  store.on(_INIT, () => ({
+    profile: initProfile,
+    paymentStore: initPayment,
+    dashboardProfile: initDashboardProfile,
+    controllerFilterInvitePlayers: initControllerFilterInvitePlayers,
+    controllerShowFilterInvitePlayers: initControllerShowFilterInvitePlayers,
+    openSubInvitePlayers: initOpenSubInvitePlayers,
+    redirectTo,
+    location: InitLocation,
+  }));
+
+  store.on(SET_LOCATION, (data: any, payload: string) => ({
+    location: payload,
+  }));
+
+  store.on(SET_REDIRECT_TO, (data: any, payload) => ({
+    redirectTo: payload,
+  }));
+
   store.on( UPDATE_PHOTO_AVATAR_PROFILE,
     async (store: any, payload: IPayloadUpdatePhotoAvatar, { dispatch }) => {
       try {
@@ -56,29 +158,11 @@ export const profile = (store: StoreonStore) => {
     }
   );
 
-  const initOpenSubInvitePlayers: boolean = false;
-
-  store.on(_INIT, () => ({
-    openSubInvitePlayers: initOpenSubInvitePlayers,
-  }));
   store.on(OPEN_SUB_INVITE_PLAYERS, (store: any) => ({
     openSubInvitePlayers: !store.openSubInvitePlayers,
   }));
 
-  const initControllerShowFilterInvitePlayers: IFilterItem[] = [
-    {
-      title: "Все приглашенные",
-      status: true,
-    },
-    {
-      title: "Закрыть фильтры",
-      status: false,
-    },
-  ];
-
-  store.on(_INIT, () => ({
-    controllerShowFilterInvitePlayers: initControllerShowFilterInvitePlayers,
-  }));
+ 
   store.on(
     SWITCH_BTN_FILTER_INVITE_PLAYERS,
     ({ controllerShowFilterInvitePlayers }: any) => ({
@@ -87,20 +171,7 @@ export const profile = (store: StoreonStore) => {
       ),
     })
   );
-  const initControllerFilterInvitePlayers: IFilterItem[] = [
-    {
-      title: "Дата приглашения",
-      status: true,
-    },
-    {
-      title: "Выплаты",
-      status: false,
-    },
-  ];
 
-  store.on(_INIT, () => ({
-    controllerFilterInvitePlayers: initControllerFilterInvitePlayers,
-  }));
   store.on( CHANGE_FILTER_INVITE_PLAYERS,
     ({ controllerFilterInvitePlayers }: any) => ({
       controllerFilterInvitePlayers: controllerFilterInvitePlayers?.map(
@@ -109,51 +180,6 @@ export const profile = (store: StoreonStore) => {
     })
   );
 
-  const initProfile: IProfile = {
-    id: 0,
-    state_registration: 0,
-    state_registration_text: "",
-    email: "",
-    username: "",
-    phone_number: null,
-    is_confirmed: false,
-    referred_by: null,
-    referral_code: "",
-    balance: 0,
-  };
-  store.on(_INIT, () => ({ profile: initProfile }));
-  const initDashboardProfile: IDashboardProfile = {
-    name: "Sam Venchester",
-    button: [
-      {
-        name: "Общая информация", // Кнопка для перехода в раздел с общей информацией аккаунта (активная кнопка)
-        type: "common",
-        status: "active",
-      },
-      {
-        name: "Безопасность", // Кнопка для перехода в раздел безопасности аккаунта
-        type: "security",
-        status: "inactive", // Кнопка-слайдер для перехода между двумя вкладками страницы
-      },
-      {
-        name: "Чат поддержки", // Кнопка для перехода в чат с поддержкой, здесь же отображается счетчик новых сообщений от поддержки (дублируется в уведомления на сайте)
-        amount_messages: 0,
-        type: "chat",
-        status: "inactive", // Кнопка-слайдер для перехода между двумя вкладками страницы
-      },
-      {
-        name: "Аккаунт", // Кнопка-слайдер для перехода между двумя вкладками страницы
-        type: "account",
-        status: "active",
-      },
-      {
-        name: "Баланс",
-        type: "balance",
-        status: "inactive", // Кнопка-слайдер для перехода между двумя вкладками страницы
-      },
-    ],
-  };
-  store.on(_INIT, () => ({ dashboardProfile: initDashboardProfile }));
 
   store.on(SET_DATA_PROFILE, (data: any, payload) => ({
     profile: {
@@ -242,17 +268,6 @@ export const profile = (store: StoreonStore) => {
   });
 
   //  TOP_UP_WALLET
-  const initPayment: Payment = {
-    id: null,
-    amount: "",
-    currency: "USDT-TRC20",
-    status: "zeroed",
-    tx_hash: null,
-    created_at: "",
-    address: "",
-    user: 0,
-  };
-  store.on(_INIT, () => ({ paymentStore: initPayment }));
   store.on(SET_PAYMENT_DATA, (store: any, payload: Payment) => ({
     paymentStore: payload,
   }));
@@ -285,7 +300,6 @@ export const profile = (store: StoreonStore) => {
       }
     }
   );
-
   //
   store.on(UPDATE_PHONE_NUMBER_PROFILE, async (_, payload: IUpdatePhoneNumber) => {
     //post

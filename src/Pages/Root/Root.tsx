@@ -1,16 +1,22 @@
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { use, useEffect } from 'react';
 import withRouter from '../../HOC/withRouter';
 import { NAV_ALL_ACHIEVEMENTS, NAV_AUTH_PAGE, NAV_QG_SELECT_PAGE, NAV_REG_PAGE } from '../../routers/config-nav';
 import { getLocaleStore } from '../../helpers/helper';
 import ModalContainer from '../../models/Modal/ModalContainer';
 import { useStoreon } from 'storeon/react';
 import { GET_USERS } from '../../store/users/users';
+import { SET_REDIRECT_TO } from '../../store/const';
 
 const Root = () => {
 	const navigate = useNavigate();
 	const {dispatch, user } = useStoreon('user');
-		
+	const redirectTo: Function = (path: string) => {
+		navigate(path);
+	}
+	useEffect(() => {
+		dispatch(SET_REDIRECT_TO, redirectTo);
+	}, [dispatch]);
 	// Загружаем пользователя
 	useEffect(() => {
 		if (!user.id) {
