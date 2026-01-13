@@ -1,0 +1,255 @@
+@import '../../../../../../styles/mixin.scss';
+
+.gib {
+    //header
+    &__header{
+        &-container{
+            //gib__header-container--timer
+            &--timer{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                @media (max-width: 1200px) {
+                    flex-direction: column;
+                }
+                @media (max-width: 778px) {
+                    flex-direction: row;
+                }
+            }
+            
+        }
+    }
+    //body
+
+    //footer
+    //gib__container
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 2;
+        @include adaptiv-value(padding,3,1,3);
+        //gib__container-roll-dice
+        &-roll-dice {
+            width: 100%;
+            @include adaptiv-value(height, '100%', '150%', 4);
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* WebKit (Chrome, Safari) */
+                &::-webkit-scrollbar {
+                    width: 0px;
+                    opacity: 0;
+                }
+            
+                &::-webkit-scrollbar-thumb {
+                    background-color: transparent;
+                    transition: background-color 0.3s;
+                }
+            
+                &:hover::-webkit-scrollbar-thumb {
+                    background-color: var(--bg-color-scroll);
+                }
+            
+                &::-webkit-scrollbar-track {
+                    background-color: transparent;
+                }
+            
+                /* Firefox */
+                &* {
+                    scrollbar-width: thin;
+                    scrollbar-color: var(--bg-color-scroll) transparent;
+                }
+            @media (max-width: 778px) {
+                height: 100%;
+                /* WebKit (Chrome, Safari) */
+                    &::-webkit-scrollbar {
+                        width: 0px;
+                        opacity: 0;
+                    }
+                
+                    &::-webkit-scrollbar-thumb {
+                        background-color: transparent;
+                        transition: background-color 0.3s;
+                    }
+                
+                    &:hover::-webkit-scrollbar-thumb {
+                        background-color: var(--bg-color-scroll);
+                    }
+                
+                    &::-webkit-scrollbar-track {
+                        background-color: transparent;
+                    }
+                
+                    /* Firefox */
+                    &* {
+                        scrollbar-width: thin;
+                        scrollbar-color: var(--bg-color-scroll) transparent;
+                    }
+            }
+        }
+        //gib__container-info
+        &-info {
+            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: auto;
+            gap: 5px; // ???????
+            /* WebKit (Chrome, Safari) */
+            &::-webkit-scrollbar {
+                width: 0px;
+                opacity: 0;
+            }
+        
+            &::-webkit-scrollbar-thumb {
+                background-color: transparent;
+                transition: background-color 0.3s;
+            }
+        
+            &:hover::-webkit-scrollbar-thumb {
+                background-color: var(--bg-color-scroll);
+            }
+        
+            &::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+        
+            /* Firefox */
+            &* {
+                scrollbar-width: thin;
+                scrollbar-color: var(--bg-color-scroll) transparent;
+            }
+            //gib__container-info-header
+            &-header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                position: relative;
+            }
+
+            //gib__container-info-body
+            &-body {
+                flex: 1 1;
+                // flex-basis: 10%;
+                // @include adaptiv-value(flex-basis, 236, 0, 1);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+                border-radius: 10px;
+                overflow: auto;
+                position: relative;
+                overflow-y: auto;
+                /* WebKit (Chrome, Safari) */
+                &::-webkit-scrollbar {
+                    width: 0px;
+                    opacity: 0;
+                }
+            
+                &::-webkit-scrollbar-thumb {
+                    background-color: transparent;
+                    transition: background-color 0.3s;
+                }
+            
+                &:hover::-webkit-scrollbar-thumb {
+                    background-color: var(--bg-color-scroll);
+                }
+            
+                &::-webkit-scrollbar-track {
+                    background-color: transparent;
+                }
+            
+                /* Firefox */
+                &* {
+                    scrollbar-width: thin;
+                    scrollbar-color: var(--bg-color-scroll) transparent;
+                }
+            
+            }
+
+            //gib__container-info-footer
+            &-footer {
+                // flex: 0 0  50px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            position: relative;
+                // padding: 0 20px;
+
+            }
+
+            //gib__container-info-two-column
+            &-two-column {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(156px, 1fr));
+                gap: 10px;
+                width: 100%;
+                // overflow: hidden
+                @media (max-width: 1420px) {
+                grid-template-columns: repeat(auto-fit, minmax(126px, 1fr));
+                }
+                //gib__container-info-two-column--full
+                &--full{
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 10px;
+                    width: 100%;
+                }
+            }
+        }
+        //gib__container-exchange
+        &-exchange {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            border-radius: 10px;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    &__controller {
+        &-container {
+
+            // gib__controller-container--one-btn
+            &--one-btn {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            //gib__controller-container--two-btn
+            &--two-btn {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                width: 100%;
+            }
+        }
+
+        &-btn {
+            &-context {
+
+                //gib__controller-btn-context--space-between
+                &--space-between {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+}

@@ -14,8 +14,10 @@ export interface IFeatures {
 }
 export interface IFeaturesSpecial {
   base_cost: number;
-  monopoly_tax: number;
   one_card_tax: number;
+  two_card_tax?: number;
+  three_card_tax?: number;
+  monopoly_tax: number;
   sell_price: number;
 }
 interface IHouseTaxes {
@@ -69,16 +71,20 @@ interface ISpecialCard {
 }
 
 interface ISpecialCardInfo {
-  base_cost: number;
-  name: string;
-  one_card_tax: number;
-  two_card_tax: number;
-  three_card_tax: number;
-  four_card_tax: number;
-  monopoly_tax: number;
-  card_type: string;
-  start_price: number;
+  
+  features: {
+    base_cost: number;
+    name: string;
+    one_card_tax: number;
+    two_card_tax: number;
+    three_card_tax: number;
+    four_card_tax: number;
+    monopoly_tax: number;
+    card_type: string;
+    start_price: number;
+  }
   info: IInfo;
+
 }
 
 interface ICardCity {

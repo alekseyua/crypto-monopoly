@@ -1,17 +1,17 @@
 import type { ICard, IDataQG, IPlayer, ISpecialCard } from '../../store/quick-game/quick-game.type';
 import cls from './styles/game-board.module.scss';
-import Parking from './components/Parking/Parking';
-import Police from './components/Police/Police';
-import Jail from './components/Jail/Jail';
+import Parking from './modules/Parking/Parking';
+import Police from './modules/Police/Police';
+import Jail from './modules/Jail/Jail';
 import { GameInfoBoardCorners } from './UI/GameInfoBoardCorners/GameInfoBoardCorners';
-import Circle from './components/Circle/Circle';
-import { GameFieldNew } from './components/game-field/GameFieldNew';
+import Circle from './modules/Circle/Circle';
+import { GameField } from './modules/GameField/GameField';
 import { useStoreon } from 'storeon/react';
 import { useWindowWidth } from '../../hooks/useWindowWidth';
 import BlockSheet from '../../shared/UI/Block/BlockSheet';
 import { useZoomPan } from '../../hooks/useZoomPan';
 import { useEffect, useRef, useState } from 'react';
-import Empty from './components/GameInfoBoardNew/InfoGIB/Empty/Empty';
+import Empty from './modules/InfoBoard/InfoBoard/Empty/Empty';
 import Title from '../../shared/UI/Title/Title';
 
 interface IGameBoard {
@@ -99,7 +99,6 @@ export const GameBoard: React.FC<IGameBoard> = ({
             {cards?.map((card: ICard | ISpecialCard, index: number) => {
               const playerCurrentMoveOnField: IPlayer = card.players.filter((p: IPlayer) => p.current_move)[0];
               if (!card) return (<h1>Failed to receive data card</h1>);
-              console.log({card})
               if (card.card_number === 21) {
                 // {/* **************** Parcking **************** */ }
                 return (
@@ -153,7 +152,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
               }
 
               return (
-                <GameFieldNew
+                <GameField
                   key={card.card_number}
                   id={card.id}
                   players={card.players}

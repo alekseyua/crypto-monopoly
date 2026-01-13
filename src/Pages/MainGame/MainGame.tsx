@@ -9,14 +9,6 @@ import cls from './main-game.module.css';
 			<div className='wrapper'>
 				<div className={cls.mainGameCont}>
 					<FieldsListContainer />
-					{/* <GameBoard 
-						innerRef={innerRef}
-						ActionCard={null}
-						listSelectUserPreview={[]}
-						dataPlayerQG={dataPlayerQG}
-						cards={[]}
-						handleCard={handleCard}
-					/> */}
 					<div>
 						development continues
 					</div>

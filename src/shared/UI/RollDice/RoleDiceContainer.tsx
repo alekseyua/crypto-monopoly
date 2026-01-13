@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./styles/roll-dice.module.scss";
 import RollDice from "./RollDice";
@@ -27,44 +28,75 @@ const RollDiceContainer: React.FC<IProps> = ({
   const rotation1 = useRef({ x: 0, y: 0 });
   const rotation2 = useRef({ x: 0, y: 0 });
 
-  console.log({ roleDiceStore })
-  const rotateDice = (r1: number, r2: number) => {
-    const faceRotationMap: Record<number, [number, number]> = {
-      1: [0, 0],
-      2: [0, 180],
-      3: [0, -90],
-      4: [0, 90],
-      5: [-90, 0],
-      6: [90, 0],
+  // console.log({ roleDiceStore })
+  // const rotateDice = (r1: number, r2: number) => {
+  //   const faceRotationMap: Record<number, [number, number]> = {
+  //     1: [0, 0],
+  //     2: [0, 180],
+  //     3: [0, -90],
+  //     4: [0, 90],
+  //     5: [-90, 0],
+  //     6: [90, 0],
+  //   };
+
+  //   const spins = 360 * 4;
+
+  //   const [x1, y1] = faceRotationMap[r1];
+  //   const [x2, y2] = faceRotationMap[r2];
+
+  //   rotation1.current.x += spins + x1;
+  //   rotation1.current.y += spins + y1;
+
+  //   rotation2.current.x += spins + x2;
+  //   rotation2.current.y += spins + y2;
+
+  //   if (cube1.current) {
+  //     cube1.current.style.transition = "transform 2.5s ";
+  //     cube1.current.style.transform = `
+  //     rotateX(${rotation1.current.x}deg)
+  //     rotateY(${rotation1.current.y}deg)
+  //   `;
+  //   }
+
+  //   if (cube2.current) {
+  //     cube2.current.style.transition = "transform 2.5s ";
+  //     cube2.current.style.transform = `
+  //     rotateX(${rotation2.current.x}deg)
+  //     rotateY(${rotation2.current.y}deg)
+  //   `;
+  //   }
+  // };
+
+    console.log({ roleDiceStore })
+  const rotateDice = 
+    (r1: number, r2: number) => {
+      const faceRotationMap: Record<number, [number, number]> = {
+        1: [0, 0],
+        2: [0, 180],
+        3: [0, -90],
+        4: [0, 90],
+        5: [-90, 0],
+        6: [90, 0],
+      };
+      const [rotateX1, rotateY1] = faceRotationMap[r1];
+      const [rotateX2, rotateY2] = faceRotationMap[r2];
+
+      const extraSpinsX = 360 * 3;
+      const extraSpinsY = 360 * 3;
+
+      if (cube1.current) {
+        cube1.current.style.transition = "transform 3s ease-in-out";
+        cube1.current.style.transform = `rotateX(${
+          rotateX1 + extraSpinsX
+        }deg) rotateY(${rotateY1 + extraSpinsY}deg)`;
+      }
+      if (cube2.current) {
+        cube2.current.style.transition = "transform 3s ease-in-out";
+        cube2.current.style.transform = `rotateX(${
+          rotateX2 + extraSpinsX
+        }deg) rotateY(${rotateY2 + extraSpinsY}deg)`;
+      }
     };
-
-    const spins = 360 * 4;
-
-    const [x1, y1] = faceRotationMap[r1];
-    const [x2, y2] = faceRotationMap[r2];
-
-    rotation1.current.x += spins + x1;
-    rotation1.current.y += spins + y1;
-
-    rotation2.current.x += spins + x2;
-    rotation2.current.y += spins + y2;
-
-    if (cube1.current) {
-      cube1.current.style.transition = "transform 2.5s ";
-      cube1.current.style.transform = `
-      rotateX(${rotation1.current.x}deg)
-      rotateY(${rotation1.current.y}deg)
-    `;
-    }
-
-    if (cube2.current) {
-      cube2.current.style.transition = "transform 2.5s ";
-      cube2.current.style.transform = `
-      rotateX(${rotation2.current.x}deg)
-      rotateY(${rotation2.current.y}deg)
-    `;
-    }
-  };
 
   // Запускаем анимацию через 2 секунды после загрузки
   useEffect(() => {

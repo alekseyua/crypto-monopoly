@@ -93,8 +93,8 @@ export const recovery = (store: StoreonStore) => {
                   );
                   return;
                 }
-              }
-              if(recoveryStep === 3) {
+            }
+            if(recoveryStep === 3) {
                 const res = await api.post(API_CHANGE_CURRENT_PASSWORD, recoveryData);
                 if (res?.status === 400) {
                   setErrorTimming(

@@ -17,6 +17,7 @@ interface IProps {
   iconRight?: React.ReactNode; // Optional, if you want to add an icon on the right
   noWrap?: boolean; // Optional, if you want to prevent text wrapping
   color?: string; // Optional, if you want to set text color
+  disabled?: boolean; // Optional, if you want to set disabled style
 }
 
 const Text: React.FC<IProps> = ({
@@ -34,6 +35,7 @@ const Text: React.FC<IProps> = ({
   fontSize, // Optional, if you want to set font size
   iconRight = null, // Default to null if no icon is provided
   noWrap = false, // Default to false if noWrap is not specified
+  disabled,
 }: IProps) => {
   if (color) {
     style.color = color;
@@ -54,6 +56,11 @@ const Text: React.FC<IProps> = ({
   }
   if (fontWeight) {
     style.fontWeight = fontWeight;
+  }
+
+  if (disabled) {
+    style.opacity = '0.5';
+    style.pointerEvents = 'none';
   }
 
   if (children) {

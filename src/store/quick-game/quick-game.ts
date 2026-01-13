@@ -270,6 +270,8 @@ export const quickGame = (store: StoreonStore) => {
             dispatch(RESET_QG);
             dispatch(SET_MESSAGE, [{ title: "Error", desc: res.message }]);
             return payload.redirectTo(NAV_QG_SELECT_PAGE);
+          }else if(res.type === "game" && res?.message && res?.message === ""){
+            dispatch(SET_MESSAGE, [{ title: "Temp message mony", desc: res.message }]);
           }
           if (res?.error && isKeyPresentInHash(res, 'game_data_creating')) {
             dispatch(SET_MESSAGE_ERROR_CREATE_GAME, res.game_data_creating);
