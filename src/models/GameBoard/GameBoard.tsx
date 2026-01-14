@@ -81,10 +81,10 @@ export const GameBoard: React.FC<IGameBoard> = ({
           }}
         >
           <div ref={innerRef} className={cls["game-board"]}>
-            <div className={cls["game-board__info"]}>
+            <div className={cls["game-board__info"]} style={{gridArea: "info"}}>
               <GameInfoBoardCorners isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length} />
             </div>
-            {!isMobile && <div className={cls["game-board__info"]}>
+            {!isMobile && <div className={cls["game-board__info"]} style={{gridArea: "info"}}>
               {ActionCard && ActionCard}
               {!ActionCard && <Title
                 title={'Жди...'}
@@ -92,116 +92,128 @@ export const GameBoard: React.FC<IGameBoard> = ({
                 center
               />}
             </div>}
-            {isMobile && <div className={cls["game-board__info"]}>
+            {isMobile && 
+            <div className={cls["game-board__info"]}>
               <Empty />
             </div>}
 
-            {cards?.map((card: ICard | ISpecialCard, index: number) => {
-              const playerCurrentMoveOnField: IPlayer = card.players.filter((p: IPlayer) => p.current_move)[0];
-              if (!card) return (<h1>Failed to receive data card</h1>);
-              if (card.card_number === 21) {
-                // {/* **************** Parcking **************** */ }
-                return (
-                  <Parking
-                    isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
-                    key={card.card_number}
-                    image_card={card.image}
-                    name={card.name}
-                    headerBgc={card.bgc_header}
-                    players={card.players}
-                  />
-                );
-              }
-              if (card.card_number === 31) {
-                // {/* **************** police **************** */ }
-                return (
-                  <Police
-                    isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
-                    key={card.card_number}
-                    image_card={card.image}
-                    name={card.name}
-                    headerBgc={card.bgc_header}
-                    players={card.players}
-                  />
-                );
-              }
-              if (card.card_number === 11) {
-                return (
-                  <Jail
-                    isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
-                    key={card.card_number}
-                    image_card={card.image}
-                    name={card.name}
-                    headerBgc={card.bgc_header}
-                    players={card.players}
-                  />
-                );
-              }
-              if (card.card_number === 1) {
-                return (
-                  <Circle
-                    isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
-                    key={card.card_number}
-                    image_card={card.image}
-                    name={card.name}
-                    headerBgc={card.bgc_header}
-                    players={card.players}
-                    cardCost={card.cost}
-                  />
-                );
-              }
+              {cards?.map((card) => {
+                if (!card) return null;
+                const playerCurrentMoveOnField: IPlayer = card.players.filter((p: IPlayer) => p.current_move)[0];
+                if (card.card_number === 11) {
+                  return (
+                    <div key="jail" className={cls['card__container--jail']}>
+                      <Jail
+                        isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
+                        key={card.card_number}
+                        image_card={card.image}
+                        name={card.name}
+                        headerBgc={card.bgc_header}
+                        players={card.players}
+                      />
+                    </div>
+                  );
+                }
+                if (card.card_number === 21) {
+                  return (
+                    <div key="parking" className={cls['card__container--parking']}>
+                      <Parking
+                        isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
+                        key={card.card_number}
+                        image_card={card.image}
+                        name={card.name}
+                        headerBgc={card.bgc_header}
+                        players={card.players}
+                      />
+                    </div>
+                  );
+                }
 
-              return (
-                <GameField
-                  key={card.card_number}
-                  id={card.id}
-                  players={card.players}
-                  className={`${"card-field__container--" + card.card_number}`}
-                  image_card={card.image}
-                  cardCost={card.cost}
-                  type={card.type_card}
-                  handleCard={handleCard}
-                  playerCurrentMove={playerCurrentMove}
-                  playerCurrentMoveOnField={playerCurrentMoveOnField}
+                if (card.card_number === 31) {
+                  return (
+                    <div key="police" className={cls['card__container--police']}>
+                      <Police
+                        isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
+                        key={card.card_number}
+                        image_card={card.image}
+                        name={card.name}
+                        headerBgc={card.bgc_header}
+                        players={card.players}
+                      />
+                    </div>
+                  );
+                }
 
-                  direction={
-                    // 1 Circle
-                    // 11 jail
-                    // 20 parcing
-                    // 30 police
-                    card.card_number >= 2 && card.card_number <= 10
-                      ? "bottom"
-                      : card.card_number >= 12 && card.card_number <= 20
-                        ? "left"
-                        : card.card_number >= 22 && card.card_number <= 30
-                          ? "top"
-                          : "right"
-                  }
-                  headerBgc={card.bgc_header}
-                  name={card.name}
-                  owner={card.owner}
-                  onField={
-                    !!card.players.length &&
-                    card.players.map((p: IPlayer) => p.current_move)[0]
-                  }
-                  isGrayBlur={
-                    (isChanceGetOrRemoveHouse && !!Object.keys(card.owner).length &&
-                      card.owner.player.id !== dataPlayerQG.id) ||
-                    (!!listSelectUserPreview.length && !!Object.keys(card.owner).length &&
-                      !listSelectUserPreview.includes(card.owner.player.id))
-                  }
-                  activeCardForSelect={
-                    (isChanceGetOrRemoveHouse && !!Object.keys(card.owner).length &&
-                      card.owner.player.id !== dataPlayerQG.id) ||
-                    (!!listSelectUserPreview.length && !!Object.keys(card.owner).length &&
-                      listSelectUserPreview.includes(card.owner.player.id))
-                  }
-                // isPawn={card.owner.player.id }
-                />
-              );
-            })}
+                if (card.card_number === 1) {
+                  return (
+                    <div key="circle" className={cls['card__container--circle']}>
+                    <Circle
+                      isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
+                      key={card.card_number}
+                      image_card={card.image}
+                      name={card.name}
+                      headerBgc={card.bgc_header}
+                      players={card.players}
+                      cardCost={card.cost}
+                    />
+                    </div>
+                  );
+                }
+
+                return (
+                  <div
+                    key={card.card_number}
+                    className={cls['card__container']}
+                    data-pos={card.card_number}
+                  >
+                    <GameField
+                      key={card.card_number}
+                      id={card.id}
+                      players={card.players}
+                      className={`${"card-field__container--" + card.card_number}`}
+                      image_card={card.image}
+                      cardCost={card.cost}
+                      type={card.type_card}
+                      handleCard={handleCard}
+                      playerCurrentMove={playerCurrentMove}
+                      playerCurrentMoveOnField={playerCurrentMoveOnField}
+                      direction={
+                        card.card_number >= 2 && card.card_number <= 10
+                          ? "bottom"
+                          : card.card_number >= 12 && card.card_number <= 20
+                            ? "left"
+                            : card.card_number >= 22 && card.card_number <= 30
+                              ? "top"
+                              : "right"
+                      }
+                      headerBgc={card.bgc_header}
+                      name={card.name}
+                      owner={card.owner}
+                      onField={
+                        !!card.players.length &&
+                        card.players.map((p: IPlayer) => p.current_move)[0]
+                      }
+                      isGrayBlur={
+                        (isChanceGetOrRemoveHouse && !!Object.keys(card.owner).length &&
+                          card.owner.player.id !== dataPlayerQG.id) ||
+                        (!!listSelectUserPreview.length && !!Object.keys(card.owner).length &&
+                          !listSelectUserPreview.includes(card.owner.player.id))
+                      }
+                      activeCardForSelect={
+                        (isChanceGetOrRemoveHouse && !!Object.keys(card.owner).length &&
+                          card.owner.player.id !== dataPlayerQG.id) ||
+                        (!!listSelectUserPreview.length && !!Object.keys(card.owner).length &&
+                          listSelectUserPreview.includes(card.owner.player.id))
+                      }
+                    />
+                  </div>
+                );
+
+              })}
+
+
           </div>
-        </div>     
+        </div>
 
 
       </div>

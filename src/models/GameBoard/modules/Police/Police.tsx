@@ -26,7 +26,6 @@ const Police: React.FC<IPoliceProps> = ({
         <div className={
             classNames({
                 [cls['field']]: true,
-                [cls['rightTop']]: true,
             })
         }
         style={{

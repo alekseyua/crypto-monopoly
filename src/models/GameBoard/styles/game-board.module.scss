@@ -1,52 +1,177 @@
 @import '../../../styles/mixin.scss';
 
+// .game-board {
+// 	/* width: 100%;
+// 	max-height: 100%; */
+// 	// height: 100%;
+// 	position: relative;
+// 	aspect-ratio: 1 / 1;
+// 	background: #f8f9ff;
+// 	border-radius: 25px;
+// 	position: relative;
+// 	@media (max-width: 600px) {
+// 			height: auto;
+// 			width: 100%;
+// 	}
+// 	//game-board__info
+// 	&__info{
+//     	width: 58.11%; /// ????????????????????
+// 		// @include adaptiv-value(width,58.11, 50, 3);
+// 		aspect-ratio: 1 / 1;
+// 		// background: #ffffff;
+// 		position: absolute;
+// 		left: 50%;
+// 		top: 50%;
+// 		transform: translate(-50%, -50%);
+// 		overflow: hidden;
+// 		z-index: 1;
+
+// 		//game-board__info--mobile
+// 		&--mobile{
+// 			position: fixed;
+// 			bottom: 100px;
+// 			width: 100%;
+// 			z-index: 998;
+// 			max-width: 100%;
+// 			left: 0;
+// 			width: 100%;
+// 			border: 1px solid #092bb0;
+// 			border-radius: 35px 35px 0 0;
+// 			max-height: 120px;
+// 			overflow: hidden;
+// 		}
+//   	}
+
+// 	// ---------------------------------
+// 	//game-board__field--bottom
+// 	&__field--bottom{
+// 		display: grid;
+// 		grid-auto-flow: column;
+// 		grid-template-columns: 3fr repeat(9, 1fr) 3fr;
+// 		grid-template-areas:
+//     "prisoner b1 b2 b3 b4 b5 b6 b7 b8 b9 circle";
+// 		// height: 20.5%;
+// 	}
+// 	//game-board__field--left
+// 	&__field--left{
+// 		display: grid;
+// 		grid-auto-flow: row;
+// 		grid-template-rows: 3fr repeat(9, 1fr);
+// 		grid-template-areas:
+// 	"parking"
+// 	"b1"
+// 	"b2"
+// 	"b3"
+// 	"b4"
+// 	"b5"
+// 	"b6"
+// 	"b7"
+// 	"b8"
+// 	"b9"
+// 	"prisoner";
+// 		// width: 20.5%;
+// 		// gap: 40px;
+// 	}
+// }
 .game-board {
-	/* width: 100%;
-	max-height: 100%; */
-	// height: 100%;
-	position: relative;
 	aspect-ratio: 1 / 1;
 	background: #f8f9ff;
 	border-radius: 25px;
 	position: relative;
+	display: grid;
+	grid-template-columns: repeat(15, 1fr);
+	grid-template-rows: repeat(15, 1fr);
+	grid-template-areas: 
+	"parking parking parking t1 t2 t3 t4 t5 t6 t7 t8 t9 police police police"
+	"parking parking parking t1 t2 t3 t4 t5 t6 t7 t8 t9 police police police"
+	"parking parking parking t1 t2 t3 t4 t5 t6 t7 t8 t9 police police police"
+	"l9 l9 l9 info info info info info info info info info r1 r1 r1"
+	"l8 l8 l8 info info info info info info info info info r2 r2 r2"
+	"l7 l7 l7 info info info info info info info info info r3 r3 r3"
+	"l6 l6 l6 info info info info info info info info info r4 r4 r4"
+	"l5 l5 l5 info info info info info info info info info r5 r5 r5"
+	"l4 l4 l4 info info info info info info info info info r6 r6 r6"
+	"l3 l3 l3 info info info info info info info info info r7 r7 r7"
+	"l2 l2 l2 info info info info info info info info info r8 r8 r8"
+	"l1 l1 l1 info info info info info info info info info r9 r9 r9"
+	"jail jail jail b9 b8 b7 b6 b5 b4 b3 b2 b1 circle circle circle"
+	"jail jail jail b9 b8 b7 b6 b5 b4 b3 b2 b1 circle circle circle"
+	"jail jail jail b9 b8 b7 b6 b5 b4 b3 b2 b1 circle circle circle";
+
 	@media (max-width: 600px) {
 			height: auto;
 			width: 100%;
 	}
-	//game-board__info
-	&__info{
-    	width: 58.11%; /// ????????????????????
-		// @include adaptiv-value(width,58.11, 50, 3);
-		aspect-ratio: 1 / 1;
-		// background: #ffffff;
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
-		overflow: hidden;
-		z-index: 1;
+}
+.card__container{
+	&[data-pos="2"] { grid-area: b1; }
+	&[data-pos="3"] { grid-area: b2; }
+	&[data-pos="4"] { grid-area: b3; }
+	&[data-pos="5"] { grid-area: b4; }
+	&[data-pos="6"] { grid-area: b5; }
+	&[data-pos="7"] { grid-area: b6; }
+	&[data-pos="8"] { grid-area: b7; }
+	&[data-pos="9"] { grid-area: b8; }
+	&[data-pos="10"] { grid-area: b9; }
 
-		//game-board__info--mobile
-		&--mobile{
-			position: fixed;
-			bottom: 100px;
-			width: 100%;
-			z-index: 998;
-			max-width: 100%;
-			left: 0;
-			width: 100%;
-			border: 1px solid #092bb0;
-			border-radius: 35px 35px 0 0;
-			max-height: 120px;
-			overflow: hidden;
-		}
-  }
+	&[data-pos="12"] { grid-area: l1; }
+	&[data-pos="13"] { grid-area: l2; }
+	&[data-pos="14"] { grid-area: l3; }
+	&[data-pos="15"] { grid-area: l4; }
+	&[data-pos="16"] { grid-area: l5; }
+	&[data-pos="17"] { grid-area: l6; }
+	&[data-pos="18"] { grid-area: l7; }
+	&[data-pos="19"] { grid-area: l8; }
+	&[data-pos="20"] { grid-area: l9; }
+
+	&[data-pos="22"] { grid-area: t1; }
+	&[data-pos="23"] { grid-area: t2; }
+	&[data-pos="24"] { grid-area: t3; }
+	&[data-pos="25"] { grid-area: t4; }
+	&[data-pos="26"] { grid-area: t5; }
+	&[data-pos="27"] { grid-area: t6; }
+	&[data-pos="28"] { grid-area: t7; }
+	&[data-pos="29"] { grid-area: t8; }
+	&[data-pos="30"] { grid-area: t9; }
+
+	&[data-pos="32"] { grid-area: r1; }
+	&[data-pos="33"] { grid-area: r2; }
+	&[data-pos="34"] { grid-area: r3; }
+	&[data-pos="35"] { grid-area: r4; }
+	&[data-pos="36"] { grid-area: r5; }
+	&[data-pos="37"] { grid-area: r6; }
+	&[data-pos="38"] { grid-area: r7; }
+	&[data-pos="39"] { grid-area: r8; }
+	&[data-pos="40"] { grid-area: r9; }
+
+	// border: 1px solid blue;
+	position: relative;
+	// /
+	// card__container--circle
+	&--circle {
+		grid-area: circle; 
+		position: relative;
+	}
+	// card__container--jail
+	&--jail {
+		grid-area: jail; 
+		position: relative;
+	}
+	// card__container--parking
+	&--parking {
+		grid-area: parking; 
+		position: relative;
+	}
+	//card__container--police
+	&--police {
+		grid-area: police; 
+		position: relative;
+	}
+		
 }
 
 .jail-grid {
 	display: grid;
-		// grid-template-columns: repeat(12, 1fr);
-		// grid-template-rows: repeat(12, 1fr);
 		grid-template-areas:
 			'visited visited jail jail jail jail'
 			'visited visited jail jail jail jail'
@@ -128,16 +253,14 @@
 }
 
 .field {
-	width: 20.94%;
-	// @include adaptiv-value(width,20.94, 25, 3);
-
+	// width: 20.94%;
+	width: 100%;
+	height: 100%;
 	aspect-ratio: 1 / 1;
 	background: transparent;
 	position: absolute;
-	// background: white;
 	background-size: 50%;
 	background-repeat: no-repeat;
-	// background-color: #E7EFFD;
 
 	//field__round-container
 	&__round-container {
@@ -148,7 +271,6 @@
 	}
 	//field__circle
 	&__circle{
-		// padding-top: 10%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -169,60 +291,32 @@
 	}
 }
 
-.field.leftTop {
-	top: 0;
-	left: 0;
-	border-top-left-radius: 20%;
-}
-
-.field.rightTop {
-	top: 0;
-	right: 0;
-	border-top-right-radius: 20%;
-}
-
-.field.leftBottom {
-	left: 0;
-	bottom: 0;
-	border-bottom-left-radius: 20%;
-}
-
-.field.rightBottom {
-	bottom: 0;
-	right: 0;
-	border-bottom-right-radius: 20%;
-	// margin-top: -4px;
-}
-
 .corner {
 	width: 13.66%;
 	position: absolute;
 	aspect-ratio: 1 / 1;
-}
+	&.rightTop {
+		left: 0;
+		bottom: 0;
+		border-radius: 0 80% 0 0 ;
+	}
+	&.leftTop {
+		bottom: 0;
+		right: 0;
+		border-radius: 80% 0 0 0 ;
+	}
+	&.rightBottom {
+		left: 0;
+		top: 0;
+		border-radius: 0 0 80% 0;
+	}
+	&.leftBottom {
+		right: 0;
+		top: 0;
+		border-radius: 0 0 0 80%;
+	}
 
-.corner.rightTop {
-	left: 0;
-	bottom: 0;
-	border-radius: 0 80% 0 0 ;
 }
-
-.corner.leftTop {
-	bottom: 0;
-	right: 0;
-	border-radius: 80% 0 0 0 ;
-}
-
-.corner.rightBottom {
-	left: 0;
-	top: 0;
-	border-radius: 0 0 80% 0;
-}
-.corner.leftBottom {
-	right: 0;
-	top: 0;
-	border-radius: 0 0 0 80%;
-}
-
 
 .jailImg {
 	position: absolute;

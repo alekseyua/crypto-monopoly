@@ -22,7 +22,6 @@ const Jail: React.FC<IJailProps> = ({
     <div
       className={classNames({
         [cls["field"]]: true,
-        [cls["leftBottom"]]: true,
       })}
       style={{
         filter: isGrayBlur ? "blur(3px) grayscale(100%)" : "",

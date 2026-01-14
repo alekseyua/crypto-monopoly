@@ -30,7 +30,7 @@ const Circle: React.FC<ICircleProps> = ({
       <div
         className={classNames({
           [cls["field"]]: true,
-          [cls["rightBottom"]]: true,
+          // [cls["rightBottom"]]: true,
           [cls["field__circle"]]: true,
         })}
         style={{

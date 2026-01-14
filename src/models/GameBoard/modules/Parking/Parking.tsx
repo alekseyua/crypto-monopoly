@@ -27,7 +27,6 @@ const Parking: React.FC<IParkingProps> = ({
             className={
                 classNames({
                     [cls['field']]: true,
-                    [cls['leftTop']]: true,
                 })
             } 
             style={{
