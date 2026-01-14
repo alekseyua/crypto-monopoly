@@ -16,7 +16,7 @@ export const SET_QUEUE_MESSAGES_FEED_WS = "set/queue_messages_feed_ws" as const;
 export const HANDLE_WEBSOCKET_MESSAGE = 'set/websocket_message' as const;
 export const HANDLE_WEBSOCKET_MESSAGE_FEED = 'set/websocket_message_feed' as const;
 export const SHOW_FEED_QUEUED_WEBSOCKET_MESSAGES = 'show/feed/queued_websocket_messages' as const;
-
+export const SET_PROCESSING_QUEUE = 'SET_PROCESSING_QUEUE' as const;
 
 //profile
 export const SET_REDIRECT_TO = 'set/redirect_to' as const;

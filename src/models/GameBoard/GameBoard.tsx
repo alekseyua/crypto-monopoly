@@ -84,7 +84,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
             <div className={cls["game-board__info"]} style={{gridArea: "info"}}>
               <GameInfoBoardCorners isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length} />
             </div>
-            {!isMobile && <div className={cls["game-board__info"]} style={{gridArea: "info"}}>
+            {!isMobile && <div className={cls["game-board__info"]} style={{gridArea: "info", zIndex: 2}}>
               {ActionCard && ActionCard}
               {!ActionCard && <Title
                 title={'Жди...'}

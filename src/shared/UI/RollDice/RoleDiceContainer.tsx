@@ -178,7 +178,7 @@ const fallDice = () => {
 
  // 🎲 финальное вращение
   const rotateDice = (r1: number, r2: number) => {
-    dispatch(SET_ANIMATION_ROLL_DICE_STARTED, true);
+    // dispatch(SET_ANIMATION_ROLL_DICE_STARTED, true);
 
     const map: Record<number, [number, number]> = {
       1: [0, 0],
@@ -240,9 +240,8 @@ const fallDice = () => {
 
   // ▶ конец анимации
   useEffect(() => {
-      // setIsShaking(true);
     const handleEnd = async () => {
-      await delay(500);
+      await delay(1500);
       dispatch(SET_ANIMATION_ROLL_DICE_ENDED);
     };
 
@@ -258,7 +257,6 @@ const fallDice = () => {
     // soundRef.current.volume = 0.6;
   }, []);
 
-console.log({ isShaking });
   return (
     <section
         className={styles["container__wrap"]}
@@ -287,80 +285,3 @@ console.log({ isShaking });
 };
 
 export default RollDiceContainer;
-
-//   const cube1 = useRef<HTMLDivElement>(null);
-//   const cube2 = useRef<HTMLDivElement>(null);
-//   const rotation1 = useRef({ x: 0, y: 0 });
-//   const rotation2 = useRef({ x: 0, y: 0 });
-
-//   console.log({ roleDiceStore })
-//   const rotateDice = (r1: number, r2: number) => {
-//     const faceRotationMap: Record<number, [number, number]> = {
-//       1: [0, 0],
-//       2: [0, 180],
-//       3: [0, -90],
-//       4: [0, 90],
-//       5: [-90, 0],
-//       6: [90, 0],
-//     };
-
-//     const spins = 360 * 4;
-
-//     const [x1, y1] = faceRotationMap[r1];
-//     const [x2, y2] = faceRotationMap[r2];
-
-//     rotation1.current.x += spins + x1;
-//     rotation1.current.y += spins + y1;
-
-//     rotation2.current.x += spins + x2;
-//     rotation2.current.y += spins + y2;
-
-//     if (cube1.current) {
-//       cube1.current.style.transition = "transform 2.5s ";
-//       cube1.current.style.transform = `
-//       rotateX(${rotation1.current.x}deg)
-//       rotateY(${rotation1.current.y}deg)
-//     `;
-//     }
-
-//     if (cube2.current) {
-//       cube2.current.style.transition = "transform 2.5s ";
-//       cube2.current.style.transform = `
-//       rotateX(${rotation2.current.x}deg)
-//       rotateY(${rotation2.current.y}deg)
-//     `;
-//     }
-//   };
-
-//   // Запускаем анимацию через 2 секунды после загрузки
-//   useEffect(() => {
-//     if (roleDiceStore.rd1 === 0 || roleDiceStore.rd2 === 0) return;
-//       setIsClick(true);
-//       rotateDice(roleDiceStore.rd1, roleDiceStore.rd2);
-//     return () => {
-//       dispatch(RESET_ROLL_DICE_QG);
-//     };
-//     // eslint-disable-next-linerotateDice
-//   }, [roleDiceStore.rd1, roleDiceStore.rd2, dispatch]);
-
-//   return (
-//     <section
-//       className={styles["container__wrap"]}
-//       style={{
-//         width: "100px",
-//         height: "100px",
-//         pointerEvents: isClick ? "none" : "all",
-//       }}
-//       onClick={() => {
-//         setIsClick(true);
-//         onClick();
-//       }}
-//     >
-//       <RollDice ref={cube1} left={-10} />
-//       {/* <Offset mr={10} /> */}
-//       <RollDice ref={cube2} left={10} />
-//     </section>
-//   );
-// };
-
-// export default RollDiceContainer;

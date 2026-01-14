@@ -53,6 +53,7 @@ export interface IState {
   websocket: any;
   queueMessagesFeeds: any[];
   queueMessagesWs: any[] 
+  isProcessingQueue: boolean;
   // -----------------
   profile: IProfile;
   paymentStore: Payment;

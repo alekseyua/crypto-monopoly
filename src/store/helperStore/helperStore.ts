@@ -9,7 +9,7 @@ import { SET_DATA_PLAYER_QG } from "../quick-game/quick-game";
 import { OPEN_WS_FEED_NEWS_QG } from "../quick-game/quick-game";
 import { SET_QG } from "../quick-game/quick-game";
 import { SET_LIST_CARDS_QG } from "../quick-game/quick-game";
-import { RESET_ROLL_DICE, SET_ROLL_DICE_QG } from "../const";
+import { RESET_ROLL_DICE, SET_ANIMATION_ROLL_DICE_STARTED, SET_ROLL_DICE_QG } from "../const";
 import { SET_INFO_MESSAGE_POPUP } from "../quick-game/quick-game";
 import { SET_DATA_ACTION_CARD } from "../quick-game/quick-game";
 import { SET_EXCHANGE_DATA } from "../quick-game/quick-game";
@@ -30,7 +30,9 @@ export const handleWebSocketMessageFeed = (msg : any, store: IState , dispatch: 
 }
 export const handleWebSocketMessage = (msg : any, store: IState , dispatch: any) => {
      if (!!store?.user?.id) profileID = store?.user?.id;
-
+    //  msg.type === "ping" &&     
+          if(typeof msg.message === "string" && msg.message.includes("Dice roll a")){
+          }
           // ===== Messages handling =====
           if (isKeyPresentInHash(msg, 'message_popup')) console.table(msg.message_popup);
           if (msg?.message === "No game with this id") {
@@ -73,6 +75,7 @@ export const handleWebSocketMessage = (msg : any, store: IState , dispatch: any)
             if (msg.game_data?.cards?.length) dispatch(SET_LIST_CARDS_QG, msg.game_data.cards);
 
             if (currentPlayer[0].show_dice_roll) {
+              dispatch(SET_ANIMATION_ROLL_DICE_STARTED, true);
               dispatch(SET_ROLL_DICE_QG, {
                 rd1: currentPlayer[0].dice_roll_1,
                 rd2: currentPlayer[0].dice_roll_2,

@@ -97,7 +97,8 @@
 	"jail jail jail b9 b8 b7 b6 b5 b4 b3 b2 b1 circle circle circle"
 	"jail jail jail b9 b8 b7 b6 b5 b4 b3 b2 b1 circle circle circle"
 	"jail jail jail b9 b8 b7 b6 b5 b4 b3 b2 b1 circle circle circle";
-
+	border: none;
+	gap: 0;
 	@media (max-width: 600px) {
 			height: auto;
 			width: 100%;
@@ -143,7 +144,7 @@
 	&[data-pos="38"] { grid-area: r7; }
 	&[data-pos="39"] { grid-area: r8; }
 	&[data-pos="40"] { grid-area: r9; }
-
+	border: 0;
 	// border: 1px solid blue;
 	position: relative;
 	// /

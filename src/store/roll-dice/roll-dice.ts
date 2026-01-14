@@ -1,5 +1,5 @@
 import { StoreonStore } from "storeon";
-import { EStoreQG, RESET_ROLL_DICE, SET_ANIMATION_ROLL_DICE_STARTED, SET_ANIMATION_ROLL_DICE_ENDED, SET_QUEUE_MESSAGES_WS, SET_ROLL_DICE_QG } from "../const";
+import { EStoreQG, RESET_ROLL_DICE, SET_ANIMATION_ROLL_DICE_STARTED, SET_ANIMATION_ROLL_DICE_ENDED, SET_QUEUE_MESSAGES_WS, SET_ROLL_DICE_QG, SET_PROCESSING_QUEUE } from "../const";
 import { IRoleDiceStore } from "../quick-game/quick-game.type";
 import { _INIT } from "../auth/auth";
 import { IState } from "..";
@@ -26,24 +26,32 @@ export const diceRoll = (store: StoreonStore<IState>) => {
         isAnimationRollDice: payload,
     }));
 
-    store.on(SET_ANIMATION_ROLL_DICE_ENDED, (state:IState, payload, {dispatch})=>{
+    store.on(SET_ANIMATION_ROLL_DICE_ENDED, (state: IState, payload, {dispatch}) => {
         console.log('ANIMATION ENDED', {state});
-        // process queued websocket messages
-        if(state.queueMessagesWs.length > 0){
-            state.queueMessagesWs.forEach((msg)=>{
-              handleWebSocketMessage(msg, state, dispatch);
-            });
-            // покажем сообщения с очереди ленты
-            state.queueMessagesFeeds.forEach((msg)=>{
-                handleWebSocketMessageFeed(msg, state, dispatch);
+        
+        // Устанавливаем флаг обработки очереди.
+        dispatch(SET_PROCESSING_QUEUE, true);
+
+        // Обработка сообщений из очереди.
+        if (state.queueMessagesWs.length > 0) {
+            state.queueMessagesWs.forEach((msg) => {
+                handleWebSocketMessage(msg, state, dispatch);
             });
         }
         
+        // Обработка сообщений ленты.
+        state.queueMessagesFeeds.forEach((msg) => {
+            handleWebSocketMessageFeed(msg, state, dispatch);
+        });
+
+        // Завершаем обработку очереди.
+        dispatch(SET_PROCESSING_QUEUE, false);
+        
         return {
-            isAnimationRollDice: false, // Завершаем анимацию
-            queueMessagesWs: [], // Очищаем очередь сообщений
+            isAnimationRollDice: false,  // Завершаем анимацию
+            queueMessagesWs: [],         // Очищаем очередь WebSocket сообщений
+            queueMessagesFeeds: [],      // Очищаем очередь сообщений ленты
         };
-        // dispatch(SET_QUEUE_MESSAGES_WS, []);
     });
 
 };

@@ -281,6 +281,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
       infoMassagePopup.show && (dataPlayerQG.current_move ||
         isKeyPresentInHash(actionCardData, "auction_data"))
     ) {
+      console.log("%cSHOW POPUP MESSAGE", "color: green ; font-weight: bold;");
       return setActionCardView(
         <ShowMassagePopup
           handleClick={handleCard}
