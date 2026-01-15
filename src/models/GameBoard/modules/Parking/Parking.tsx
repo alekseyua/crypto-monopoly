@@ -36,7 +36,8 @@ const Parking: React.FC<IParkingProps> = ({
             <div className={`${cls.cornerGradient}`}>
                 <div
                     style={{
-                        background: headerBgc
+                        // background: headerBgc
+                        background: 'linear-gradient(to bottom left, #99BF61 50%, #5B89D6 50%)'
                     }}
                     className={
                         classNames({
