@@ -44,7 +44,7 @@ import { IState } from "..";
 export const RESET_LIST_CARDS_QG = v4();
 export const SET_LIST_CARDS_QG = v4();
 export const CREATE_NEW_QG = 'create/new_qg' as const;
-export const JOIN_QG = v4();
+export const SEND_MSG_SELECT_GAME = v4();
 export const CONNECT_WS_QG = v4();
 export const SET_LIST_QG = v4();
 export const RET_LIST_QG = v4();

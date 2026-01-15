@@ -11,13 +11,15 @@ interface IProps {
 	listGame: IListQGs[];
 	handleClickJoinGame: any;
 	handlerClickCreateGame: any;
+	deleteGameRoom: (id: number) => void;
 }
 
 export const TableSelectQuickGames: React.FC<IProps> = ({
 	user,
 	listGame,
+	deleteGameRoom,
 	handleClickJoinGame,
-	handlerClickCreateGame
+	handlerClickCreateGame,
 }: IProps) => {
 	return (
 		<section className={cls.quickGameSection}>
@@ -74,6 +76,7 @@ export const TableSelectQuickGames: React.FC<IProps> = ({
 								players={game?.players}
 								user={user}
 								handleClickJoinGame={handleClickJoinGame}
+								deleteGameRoom={deleteGameRoom}
 							/>
 						)) :
 						<p>Нет доступных игр</p>

@@ -1,5 +1,6 @@
-import { MIcon } from '../../../../../../assets';
-import { Label, WrapperCard } from '../../../../../../shared/UI';
+import { icons, MIcon } from '../../../../../../assets';
+import { temporaryDisableBtn } from '../../../../../../helpers/helper';
+import { Button, Label, WrapperCard } from '../../../../../../shared/UI';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
 import { IPlayer } from '../../../../../../store/quick-game/quick-game.type';
 import { IUser } from '../../../../../../store/users/user.d';
@@ -16,6 +17,7 @@ interface IProps {
 	gameBalance: number;
 	playersCount: number;
 	handleClickJoinGame: any;
+	deleteGameRoom: (id: number) => void;
 }
 
 export const GameRoom:React.FC<IProps> = ({
@@ -26,9 +28,12 @@ export const GameRoom:React.FC<IProps> = ({
 	gameName,
 	gameBalance,
 	playersCount,
+	deleteGameRoom,
 	handleClickJoinGame,
 }) => {
 	const [listPlayers, setListPlayers] = useState<IPlayer[]>([]);
+	const [isClick, setIsClick] = useState<boolean>(false);
+
 	useEffect(()=>{
 		setListPlayers(players);
 	},[players])
@@ -66,6 +71,20 @@ export const GameRoom:React.FC<IProps> = ({
 						isJoinGame = {players.filter((p: IPlayer)=>+p.user === +user.id).length === 1}
 					/>
 				))}
+			</div>
+			<div className={cls.closeGameRoomBtn}>
+				<Button
+					type="transparent"
+					borderColor='transparent'
+					disabled={isClick}
+					
+					onClick={() => {
+					temporaryDisableBtn(5000, setIsClick);
+					deleteGameRoom(idRoom);
+					}}
+				>
+					<Icon src={icons.crossBlack} width={20} height={20} style={{ position: 'absolute', right: 20 }} />
+				</Button>
 			</div>
 		</WrapperCard>
 	);

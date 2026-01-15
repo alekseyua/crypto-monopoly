@@ -2,7 +2,7 @@ import { useStoreon } from 'storeon/react'
 import { TableSelectQuickGames } from './TableSelectQuickGames';
 import { SET_MODAL } from '../../../../store/modal/modal';
 import FormInputCreateQGContainer from '../../../../models/FormInputCreateQuickGame/FormInputCreateQuickGameContainer';
-import { JOIN_QG } from '../../../../store/quick-game/quick-game';
+import { SEND_MSG_SELECT_GAME } from '../../../../store/quick-game/quick-game';
 import { IListQGs } from '../../../../store/quick-game/quick-game.type';
 import { StoreonDispatch } from 'storeon';
 import { IUser } from '../../../../store/users/user.d';
@@ -31,8 +31,13 @@ const TableSelectQuickGamesContainer = () => {
     
     const handleClickJoinGame = (id: number) => {
         // присоединение к игре        
-        dispatch(JOIN_QG, { action: 'join_game', game_id: id })
+        dispatch(SEND_MSG_SELECT_GAME, { action: 'join_game', game_id: id })
     } 
+
+    const deleteGameRoom = (id: number) => {
+        // удаление комнаты
+        dispatch(SEND_MSG_SELECT_GAME, { action: 'delete_game', game_id: id })
+    }
 
     return (
     <TableSelectQuickGames
@@ -40,6 +45,7 @@ const TableSelectQuickGamesContainer = () => {
         listGame={listQGs}
         handleClickJoinGame={handleClickJoinGame}
         handlerClickCreateGame={handlerClickCreateGame}
+        deleteGameRoom={deleteGameRoom}
     />
   )
 }

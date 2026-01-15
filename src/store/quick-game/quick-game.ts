@@ -30,7 +30,7 @@ import { EStoreQG, HANDLE_WEBSOCKET_MESSAGE, HANDLE_WEBSOCKET_MESSAGE_FEED, RESE
 export const RESET_LIST_CARDS_QG = v4();
 export const SET_LIST_CARDS_QG = v4();
 export const CREATE_NEW_QG = 'create/new_qg' as const;
-export const JOIN_QG = v4();
+export const SEND_MSG_SELECT_GAME = v4();
 export const CONNECT_WS_QG = v4();
 export const SET_LIST_QG = v4();
 export const RET_LIST_QG = v4();
@@ -273,7 +273,7 @@ export const quickGame = (store: StoreonStore) => {
     if (socket.get_games?.readyState === WebSocket.OPEN) socket.get_games.send(JSON.stringify(payload));
   });
 
-  store.on(JOIN_QG, (state: any, payload) => {
+  store.on(SEND_MSG_SELECT_GAME, (state: any, payload) => {
     if (socket.get_games?.readyState === WebSocket.OPEN) socket.get_games.send(JSON.stringify(payload));
   });
 
