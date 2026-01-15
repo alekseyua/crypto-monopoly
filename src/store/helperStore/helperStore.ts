@@ -31,8 +31,18 @@ export const handleWebSocketMessageFeed = (msg : any, store: IState , dispatch: 
 export const handleWebSocketMessage = (msg : any, store: IState , dispatch: any) => {
      if (!!store?.user?.id) profileID = store?.user?.id;
     //  msg.type === "ping" &&     
-          if(typeof msg.message === "string" && msg.message.includes("Dice roll a")){
+          // debugger
+          if (Array.isArray(msg?.dice_roll) && msg?.dice_roll) {
+            dispatch(SET_ANIMATION_ROLL_DICE_STARTED, true);
+            dispatch(SET_ROLL_DICE_QG, {
+              rd1: msg.dice_roll[0],
+              rd2: msg.dice_roll[1],
+            });
+              
+          } else {
+            dispatch(RESET_ROLL_DICE);
           }
+
           // ===== Messages handling =====
           if (isKeyPresentInHash(msg, 'message_popup')) console.table(msg.message_popup);
           if (msg?.message === "No game with this id") {
@@ -62,7 +72,7 @@ export const handleWebSocketMessage = (msg : any, store: IState , dispatch: any)
             const currentPlayer: IPlayer[] =
               msg.game_data?.players.filter((p: any) => +p.user === profileID);
             if (!currentPlayer || !currentPlayer[0]) console.error('Failed to retrieve current player data');
-
+            
             dispatch(SET_DATA_PLAYER_QG, currentPlayer[0]);
             if (!msg.game_data.is_active || !currentPlayer.length) {
               return store.redirectTo(NAV_QG_SELECT_PAGE);
@@ -74,16 +84,7 @@ export const handleWebSocketMessage = (msg : any, store: IState , dispatch: any)
             dispatch(SET_QG, msg.game_data);
             if (msg.game_data?.cards?.length) dispatch(SET_LIST_CARDS_QG, msg.game_data.cards);
 
-            if (currentPlayer[0].show_dice_roll) {
-              dispatch(SET_ANIMATION_ROLL_DICE_STARTED, true);
-              dispatch(SET_ROLL_DICE_QG, {
-                rd1: currentPlayer[0].dice_roll_1,
-                rd2: currentPlayer[0].dice_roll_2,
-              });
-               
-            } else {
-              dispatch(RESET_ROLL_DICE);
-            }
+            
 
             if (isKeyPresentInHash(currentPlayer[0]?.popup_data, "show")) {
               dispatch(SET_INFO_MESSAGE_POPUP, currentPlayer[0].popup_data);
