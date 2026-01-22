@@ -114,7 +114,7 @@ export const AuctionPlaceBet: React.FC<IProps> = ({
             style={{ display: "inline-block" }}
           >
             Ставка должна быть не ниже начальной цены (выше&nbsp;
-            {startPrice}
+            {startPrice.toString()}
             <Icon
               src={icons.qgCurrencySvgWhite}
               width={14}

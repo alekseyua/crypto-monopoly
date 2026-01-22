@@ -84,6 +84,7 @@ const AuctionContainer: React.FC<IAuctionProps> = ({
     return (
       <AuctionSpecialInfoCard // нужно переделать
         endTime={timeEndAuction}
+        startPrice={startPrice}
         cardInfo={cardInfo as ISpecialCardInfo}
         handleChangeScreen={handleChangeScreen}
         resetTimer={resetTimer}
@@ -95,6 +96,7 @@ const AuctionContainer: React.FC<IAuctionProps> = ({
     return (
       <AuctionInfoCard
         endTime={timeEndAuction}
+        startPrice={startPrice}
         cardInfo={cardInfo as ICardInfo}
         handleChangeScreen={handleChangeScreen}
         setTimeEndAuction={setTimeEndAuction}

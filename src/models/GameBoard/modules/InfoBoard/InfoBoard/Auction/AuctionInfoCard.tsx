@@ -22,10 +22,12 @@ interface Iprops {
   handleChangeScreen: ({ path }: { path: string }) => void;
   setTimeEndAuction?: (s: any) => void;
   resetTimer: boolean;
+  startPrice: number;
 }
 export const AuctionInfoCard: React.FC<Iprops> = ({
   endTime,
   cardInfo,
+  startPrice,
   resetTimer,
   handleChangeScreen,
   setTimeEndAuction,
@@ -114,7 +116,7 @@ export const AuctionInfoCard: React.FC<Iprops> = ({
                 </Text>
               </Button>
               <Text
-                text={cardInfo?.start_price + ""}
+                text={startPrice.toString()}
                 iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
               />
             </InnerBtnContextSpaceBetween>

@@ -50,7 +50,7 @@ interface ICard {
   hotels: number;
   houses: number;
   is_pawn: boolean;
-  
+
   owner: IOwnerCard;
   // board: null; // ?????????/
   city: ICardCity | CardCitySpecialCard;
@@ -85,9 +85,9 @@ interface ISpecialCardInfo {
     four_card_tax: number;
     monopoly_tax: number;
     card_type: string;
-    start_price: number;
   }
   info: IInfo;
+  start_price: number;
 
 }
 

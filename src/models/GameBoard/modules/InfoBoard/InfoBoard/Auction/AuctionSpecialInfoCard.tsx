@@ -19,11 +19,13 @@ interface IProps {
   endTime: number;
   resetTimer: boolean;
   cardInfo: ISpecialCardInfo;
+  startPrice: number;
   handleChangeScreen: ({ path }: { path: string }) => void;
 }
 export const AuctionSpecialInfoCard: React.FC<IProps> = ({
 	endTime,
 	cardInfo,
+  startPrice, 
 	resetTimer,
 	handleChangeScreen,
 }: IProps) => {
@@ -106,7 +108,7 @@ export const AuctionSpecialInfoCard: React.FC<IProps> = ({
                 </Text>
               </Button>
               <Text
-                text={cardInfo?.features.start_price + ""}
+                text={startPrice.toString()}
                 iconRight={<Icon src={icons.qgCurrencySvg} width={15} />}
               />
             </InnerBtnContextSpaceBetween>

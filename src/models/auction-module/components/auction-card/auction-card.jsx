@@ -34,7 +34,7 @@ export const AuctionCard = ({
 					</div>
 					<div className={cls.cardLabel}>
 						<p className={cls.labelTitle}>Начальная цена</p>
-						<p className={cls.labelValue}>{startPrice} $</p>
+						<p className={cls.labelValue}>{startPrice.toString()} $</p>
 					</div>
 					<div className={cls.cardLabel}>
 						{closedAuction ? (
