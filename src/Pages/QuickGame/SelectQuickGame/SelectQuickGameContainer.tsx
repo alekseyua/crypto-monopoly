@@ -1,5 +1,5 @@
 
-import React, { useCallback, useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { SelectQG } from './SelectQuickGame'
 import { useStoreon } from 'storeon/react'
 import { GET_REF_LINK } from '../../../store/auth/referal';
@@ -13,7 +13,7 @@ import { SET_LOCATION } from '../../../store/const';
 
 
 const SelectQGContainer = () => {
-  const { dispatch, quickGame } = useStoreon('quickGame');
+  const { dispatch } = useStoreon();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -35,10 +35,12 @@ const SelectQGContainer = () => {
       dispatch(DISCONNECT_LIST_QG, { action: "get_games", redirectTo });
       dispatch(SET_MODAL, { isOpen: false });
     }
+	// eslint-disable-next-line
   }, [dispatch, redirectTo]);
 
   useEffect(() => {
     dispatch(SET_HEADER_NAME_IS_SHOW, HeaderNameEnum.QUICK_GAME);
+	// eslint-disable-next-line
   }, [dispatch])
 
   return (

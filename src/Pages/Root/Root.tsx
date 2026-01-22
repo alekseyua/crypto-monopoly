@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from 'react-router-dom';
-import { use, useEffect } from 'react';
+import { useEffect } from 'react';
 import withRouter from '../../HOC/withRouter';
 import { NAV_ALL_ACHIEVEMENTS, NAV_AUTH_PAGE, NAV_QG_SELECT_PAGE, NAV_REG_PAGE } from '../../routers/config-nav';
 import { getLocaleStore } from '../../helpers/helper';
@@ -16,6 +16,7 @@ const Root = () => {
 	}
 	useEffect(() => {
 		dispatch(SET_REDIRECT_TO, redirectTo);
+	// eslint-disable-next-line
 	}, [dispatch]);
 	// Загружаем пользователя
 	useEffect(() => {

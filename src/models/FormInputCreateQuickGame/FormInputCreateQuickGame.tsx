@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './styles/form-input-create-quick-game.module.scss';
 import { Button, Input } from '../../shared/UI';
 import { ICreateGameData } from './FormInputCreateQuickGameContainer';
-import { payloadErrorCreateGame, errorGameState } from '../../store/quick-game/error-game';
+import { errorGameState } from '../../store/quick-game/error-game';
 
 // name: 'test-create-v2',
 // bet_amount: 51,

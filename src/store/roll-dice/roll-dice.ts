@@ -1,5 +1,5 @@
 import { StoreonStore } from "storeon";
-import { EStoreQG, RESET_ROLL_DICE, SET_ANIMATION_ROLL_DICE_STARTED, SET_ANIMATION_ROLL_DICE_ENDED, SET_QUEUE_MESSAGES_WS, SET_ROLL_DICE_QG, SET_PROCESSING_QUEUE } from "../const";
+import { EStoreQG, RESET_ROLL_DICE, SET_ANIMATION_ROLL_DICE_STARTED, SET_ANIMATION_ROLL_DICE_ENDED, SET_ROLL_DICE_QG, SET_PROCESSING_QUEUE } from "../const";
 import { IRoleDiceStore } from "../quick-game/quick-game.type";
 import { _INIT } from "../auth/auth";
 import { IState } from "..";
