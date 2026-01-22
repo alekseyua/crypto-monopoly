@@ -167,7 +167,8 @@ const InfoCard: React.FC<IProps> = ({
             <Button
               type="transparent"
               p={10}
-              disabled={isClick || !(card?.owner?.can_build && actions?.build)} // Assuming this button is disabled
+              disabled={isClick || !(actions?.build)} // Assuming this button is disabled
+              // disabled={isClick || !(card?.owner?.can_build && actions?.build)} // Assuming this button is disabled
               // disabled={true}
               onClick={() => {
                 temporaryDisableBtn(5000, setIsClick);
@@ -269,7 +270,7 @@ const InfoCard: React.FC<IProps> = ({
               disabled={
                 isClick ||
                 !(
-                  card.owner.can_build &&
+                  // card.owner.can_build &&
                   actions.build &&
                   card.owner.houses === 4
                 )
