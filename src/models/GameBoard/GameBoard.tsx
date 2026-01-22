@@ -97,7 +97,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
               <Empty />
             </div>}
 
-              {cards?.map((card: ICard) => {
+              {cards?.map((card: ICard | ISpecialCard) => {
                 if (!card) return null;
                 const playerCurrentMoveOnField: IPlayer = card.players.filter((p: IPlayer) => p.current_move)[0];
                 if (card.card_number === 11) {
@@ -173,8 +173,9 @@ export const GameBoard: React.FC<IGameBoard> = ({
                       className={`${"card-field__container--" + card.card_number}`}
                       image_card={card.image}
                       cardCost={card.cost}
-                      houses={card.houses}
-                      hotels={card.hotels}
+                      houses={(card as ICard).houses}
+                      hotels={(card as ICard).hotels}
+                      isPawn={(card as ICard).is_pawn}
                       type={card.type_card}
                       handleCard={handleCard}
                       playerCurrentMove={playerCurrentMove}

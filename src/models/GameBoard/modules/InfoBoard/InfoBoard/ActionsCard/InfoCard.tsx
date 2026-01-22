@@ -274,7 +274,7 @@ const InfoCard: React.FC<IProps> = ({
                 !(
                   // card.owner.can_build &&
                   actions.build &&
-                  card.owner.houses === 4
+                  card.houses === 4
                 )
               } // Assuming this button is disabled
               onClick={() => {

@@ -99,7 +99,7 @@ export const GameField: React.FC<IGameField> = React.memo(({
         [styles["card-field__container--" + direction]]: direction,
         [styles[`${className}`]]: className,
         [styles[type]]: type,
-        [styles["card-field__is-pawn"]]: owner?.is_pawn,
+        [styles["card-field__is-pawn"]]: isPawn,
         // chance | city | community | cruise | express | airline
       })}
       data-active={playerCurrentMove.current_move}
@@ -189,7 +189,7 @@ export const GameField: React.FC<IGameField> = React.memo(({
                   [styles["card-field__text-title"]]: true,
                   [styles[`card-field__text-title--${direction}`]]: !!direction,
                   [styles[`card-field__text-title--build`]]:
-                    !!owner?.houses || !!owner?.hotels,
+                    !!houses || !!hotels,
                 })}
               >
                 {/* add income_tax and super_tax */}
