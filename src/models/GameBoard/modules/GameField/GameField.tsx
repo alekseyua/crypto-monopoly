@@ -28,10 +28,14 @@ interface IGameField {
 	activeCardForSelect: boolean;
 	handleCard: (id: number) => void;
 	isPawn?: boolean;
+    houses: number;
+  hotels: number;
 }
 
 export const GameField: React.FC<IGameField> = React.memo(({
 	id,
+    houses,
+  hotels,
 	isPawn,
 	direction,
 	cardCost,
@@ -134,7 +138,7 @@ export const GameField: React.FC<IGameField> = React.memo(({
               [styles[`card-field__text-container--${direction}`]]: !!direction,
             })}
           >
-            {!!owner?.hotels ? (
+            {!!hotels ? (
               <div
                 className={
                   styles[`card-field__text-title--build-hotel-${direction}`]
@@ -142,14 +146,14 @@ export const GameField: React.FC<IGameField> = React.memo(({
               >
                 <Icon src={icons.hotelCard} width={25} height={12} />
               </div>
-            ) : !!owner?.houses ? (
+            ) : !!houses ? (
               <div
                 className={
                   styles[`card-field__text-title--build-house-${direction}`]
                 }
               >
                 {
-                  new Array(owner?.houses)
+                  new Array(houses)
                     // new Array(4)
                     .fill("")
                     .map((h: any, i: number) => {

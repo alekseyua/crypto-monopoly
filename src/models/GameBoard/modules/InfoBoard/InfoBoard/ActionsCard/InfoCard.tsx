@@ -28,11 +28,13 @@ interface IProps {
   cardInfo: ICardInfoChooseData;
   timeEndMove: number;
   amountHouses: number; // Current amount of houses
+
 }
 
 const InfoCard: React.FC<IProps> = ({
   card,
   actions,
+
   cardInfo,
   timeEndMove,
   handleBack,

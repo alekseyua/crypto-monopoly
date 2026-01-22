@@ -33,10 +33,10 @@ export interface IPriceBuilding {
 // =====================================================================================================================
 interface IOwnerCard {
   player: IPlayer;
-  can_build: boolean;
-  is_pawn: boolean;
-  hotels: number;
-  houses: number;
+  // can_build: boolean;
+  // is_pawn: boolean;
+  // hotels: number;
+  // houses: number;
   // card_info: ICardInfo | ISpecialCardInfo;
 }
 
@@ -47,6 +47,10 @@ interface ICard {
   card_number: number;
   type_card: string;
   cost: string;
+  hotels: number;
+  houses: number;
+  is_pawn: boolean;
+  
   owner: IOwnerCard;
   // board: null; // ?????????/
   city: ICardCity | CardCitySpecialCard;
