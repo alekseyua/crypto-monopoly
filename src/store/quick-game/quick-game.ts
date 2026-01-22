@@ -5,7 +5,6 @@ import { StoreonStore } from "storeon";
 import {
   connectWebSocket,
   getUrlWebsocket,
-  isKeyPresentInHash,
 } from "../../helpers/helper";
 import type {
   ICard,
@@ -17,14 +16,9 @@ import type {
   IListQGs,
   IChooseData,
 } from "./quick-game.type";
-import {
-  SET_FEED_NEWS_MESSAGE_QG,
-  SET_MESSAGE,
-} from "../message/message";
 import { GET_USERS } from "../users/users";
 import {payloadErrorCreateGame, errorGameState} from "./error-game.d";
-import { SET_MODAL } from "../modal/modal";
-import { EStoreQG, HANDLE_WEBSOCKET_MESSAGE, HANDLE_WEBSOCKET_MESSAGE_FEED, RESET_ROLL_DICE, SET_QUEUE_MESSAGES_WS, SET_REDIRECT_TO, SET_ROLL_DICE_QG } from "../const";
+import { EStoreQG, HANDLE_WEBSOCKET_MESSAGE, HANDLE_WEBSOCKET_MESSAGE_FEED } from "../const";
 
 // list cards for the game
 export const RESET_LIST_CARDS_QG = v4();

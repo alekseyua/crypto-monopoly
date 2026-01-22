@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, use } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./styles/roll-dice.module.scss";
 import RollDice from "./RollDice";
 import {
@@ -41,8 +41,6 @@ const RollDiceContainer: React.FC<IProps> = ({ onClick, isShake }) => {
   const [isShaking, setIsShaking] = useState(false);
   const cube1 = useRef<HTMLDivElement>(null);
   const cube2 = useRef<HTMLDivElement>(null);
-  const shakeInterval = useRef<number | null>(null);
-  const soundRef = useRef<HTMLAudioElement | null>(null);
 const shakeFrame = useRef<number | null>(null);
 const shakePower = useRef(1); // сила тряски
 const shakeTime = useRef(0);
@@ -51,18 +49,18 @@ const shakeTime = useRef(0);
     // старт тряски
     isShake && startShake();
 
-    const start = async () => {
-      startShake();
-      await delay(2000);
-      stopShake();
-      await delay(16);   // дать браузеру зафиксировать reset тряски
-      throwDice();
-      await delay(600);
-      fallDice();
-      await delay(200);
-      rotateDice(3, 5);
-      await delay(2000);
-  }
+  //   const start = async () => {
+  //     startShake();
+  //     await delay(2000);
+  //     stopShake();
+  //     await delay(16);   // дать браузеру зафиксировать reset тряски
+  //     throwDice();
+  //     await delay(600);
+  //     fallDice();
+  //     await delay(200);
+  //     rotateDice(3, 5);
+  //     await delay(2000);
+  // }
   // isShake && start();
     return () => {
       stopShake();
@@ -136,8 +134,6 @@ useEffect(() => {
 const throwDice = () => {
   [cube1.current, cube2.current].forEach((cube, index) => {
     if (!cube) return;
-
-    const direction = index === 0 ? -1 : 1;
 
     cube.style.transition = "none";
     cube.style.transform = `
@@ -240,14 +236,18 @@ const fallDice = () => {
 
   // ▶ конец анимации
   useEffect(() => {
+    const cube = cube1.current;
+    if (!cube) return;
+
     const handleEnd = async () => {
       await delay(1500);
       dispatch(SET_ANIMATION_ROLL_DICE_ENDED);
     };
 
-    cube1.current?.addEventListener("transitionend", handleEnd);
+    cube.addEventListener("transitionend", handleEnd);
+
     return () => {
-      cube1.current?.removeEventListener("transitionend", handleEnd);
+      cube.removeEventListener("transitionend", handleEnd);
     };
   }, [dispatch]);
 

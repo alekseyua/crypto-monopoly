@@ -11,7 +11,6 @@ import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
 import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
 import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
 import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerInfoHeaderGIB";
-import { temporaryDisableBtn } from "../../../../../../helpers/helper";
 
 interface IInfoChanceOrCommunityProps {
   onMove: (params: any) => void;

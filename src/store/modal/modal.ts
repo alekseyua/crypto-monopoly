@@ -1,6 +1,5 @@
 import { StoreonStore } from "storeon";
 import { _INIT } from "../auth/auth";
-import { v4 } from "uuid";
 
 export const SET_MODAL = 'modal/set_modal' as const;
 

@@ -3,12 +3,11 @@ import { Button, Input, Label, WrapperCard } from '../../../../shared/UI';
 import { useStoreon } from 'storeon/react';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import { delay } from '../../../../helpers/helper';
-import { closeEye, icons, openEye } from '../../../../assets';
+import { closeEye, openEye } from '../../../../assets';
 import cls from './step4.module.scss';
 
 export const Step4 = ({
 	handleNextStep,
-	handlePrevStep,
 	handleSetRegData,
 }) => {
 	const { regStep, regData, errorReg } = useStoreon('regStep', 'regData', 'errorReg');
