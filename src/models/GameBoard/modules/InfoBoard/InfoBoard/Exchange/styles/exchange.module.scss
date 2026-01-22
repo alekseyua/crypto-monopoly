@@ -161,6 +161,13 @@
 
      //gib__info-card-exchange-card-container
      &__info-card-exchange-card-container {
+        //gib__info-card-exchange-card-container--wrap
+        &--wrap{
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+        }
          justify-content: space-between;
          display: flex;
          align-items: center;
@@ -184,8 +191,8 @@
              font-style: Light;
              font-size: 10.63px;
              @include adaptiv-font(10.63, 5);
-             line-height: 100%;
-             letter-spacing: 0%;
+            //  line-height: 100%;
+            //  letter-spacing: 0%;
              vertical-align: middle;
          }
 

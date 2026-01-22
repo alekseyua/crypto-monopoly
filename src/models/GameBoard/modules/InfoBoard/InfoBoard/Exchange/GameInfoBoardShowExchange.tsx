@@ -218,7 +218,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 								{
 									!!exchangeData.propertys_from.length &&
 									exchangeData.propertys_from.map((card: number, index: number) => (
-										<div key={index}>
+										<div key={index} className={styles['gib__info-card-exchange-card-container--wrap']}>
 											{
 												cards.filter((c: ICard | ISpecialCard) => +c.id === +card).map((c: ICard | ISpecialCard) => {
 													// setTotalFrom(s=> s + +c.cost);
@@ -251,7 +251,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 								{
 									!!exchangeData?.propertys_to?.length &&
 									exchangeData.propertys_to.map((card: number, index: number) => (
-										<div key={index}>
+										<div key={index} className={styles['gib__info-card-exchange-card-container--wrap']}>
 											{
 												cards.filter((c: ICard | ISpecialCard) => +c.id === +card).map((c: ICard | ISpecialCard) => {
 													// setTotalTo(s => s + +c.cost);
