@@ -192,10 +192,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
                       headerBgc={card.bgc_header}
                       name={card.name}
                       owner={card.owner}
-                      onField={
-                        !!card.players.length &&
-                        card.players.map((p: IPlayer) => p.current_move)[0]
-                      }
+                      onField={!!playerCurrentMoveOnField}
                       isGrayBlur={
                         (isChanceGetOrRemoveHouse && !!Object.keys(card.owner).length &&
                           card.owner.player.id !== dataPlayerQG.id) ||

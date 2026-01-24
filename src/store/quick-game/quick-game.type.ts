@@ -87,8 +87,6 @@ interface ISpecialCardInfo {
     card_type: string;
   }
   info: IInfo;
-  start_price: number;
-
 }
 
 interface ICardCity {
@@ -174,7 +172,6 @@ export interface ICardInfo {
   features: IFeatures;
   card_type: string;
 
-  start_price?: number; // ???
   highest_bid?: number; // ???
   base_cost?: number; // ???card_info
 
