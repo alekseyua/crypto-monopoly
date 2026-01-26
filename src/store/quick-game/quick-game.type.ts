@@ -47,6 +47,7 @@ interface ICard {
   card_number: number;
   type_card: string;
   cost: string;
+  can_build: boolean;
   hotels: number;
   houses: number;
   is_pawn: boolean;

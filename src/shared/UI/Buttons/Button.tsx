@@ -73,7 +73,7 @@ export const Button: React.FC<IButton & PropsComponent> = ({
 	error,
 	style={},
 	variant,
-	onClick=()=>{},
+	onClick,
 	children,
 	iconLeft,
 	fillColor = '#e9ecff',
@@ -116,11 +116,11 @@ export const Button: React.FC<IButton & PropsComponent> = ({
           variant && styles[variant],
           disabled && styles.disabled,
           error && styles.error,
+          !!!onClick && styles.noClickable,
           className
         )}
         // `${styles.button} ${styles[type]} ${variant && styles[variant]} ${className} ${disabled && styles.disabled}`}
         style={{
-          pointerEvents: error ? "none" : "all",
           ...style,
           ...(error ? { backgroundColor: "var(--bg-color-error)" } : {}),
           ...(disabled ? { cursor: "not-allowed" } : {}),
@@ -146,10 +146,10 @@ export const Button: React.FC<IButton & PropsComponent> = ({
           variant && styles[variant],
           disabled && styles.disabled,
           error && styles.error,
+          !!!onClick && styles.noClickable,
           className
         )}
         style={{
-          pointerEvents: error ? "none" : "all",
           ...style,
           ...(error ? { backgroundColor: "var(--bg-color-error)" } : {}),
           ...(disabled ? { cursor: "not-allowed" } : {}),

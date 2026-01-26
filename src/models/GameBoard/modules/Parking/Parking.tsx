@@ -4,6 +4,7 @@ import { park } from '../../../../assets'
 import cls from '../../styles/game-board.module.scss';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';
 import { IPlayer } from '../../../../store/quick-game/quick-game.type';
+import { Tooltip } from 'react-tooltip';
 
 
 interface IParkingProps {
@@ -11,16 +12,15 @@ interface IParkingProps {
     name?: string;
     headerBgc?: string;
     players: IPlayer[];
+  isActiveCardAction: boolean;
     isGrayBlur?: boolean;
 }
 
 
-const Parking: React.FC<IParkingProps> = ({ 
+const Parking: React.FC<IParkingProps> = ({
     name,
     players,
-    headerBgc,
-    isGrayBlur = false,
-    image_card,
+    isGrayBlur = false,isActiveCardAction
 }: IParkingProps) => {
     return (
         <div
@@ -28,11 +28,25 @@ const Parking: React.FC<IParkingProps> = ({
                 classNames({
                     [cls['field']]: true,
                 })
-            } 
+            }
             style={{
-                filter: isGrayBlur? 'blur(3px) grayscale(100%)' : ''
-            }}	
+                filter: isGrayBlur ? 'blur(3px) grayscale(100%)' : ''
+            }}
+            data-tooltip-id={'noSelectParking'}
+        >
+            {isActiveCardAction && <Tooltip
+                id={"noSelectParking"}
+                place='bottom'
+                style={{
+                    backgroundColor: "#D6DBF5",
+                    color: "#000",
+                    maxWidth: 200,
+                    zIndex: 999999,
+                    borderRadius: 12,
+                }}
             >
+                <div> Не подходящая карта </div>
+            </Tooltip>}
             <div className={`${cls.cornerGradient}`}>
                 <div
                     style={{
@@ -50,17 +64,17 @@ const Parking: React.FC<IParkingProps> = ({
             <div className={cls.park}>
                 <img src={
                     // image_card ??
-                     park} alt='parking' />
+                    park} alt='parking' />
                 <p className={cls['field__btn-round-title']}>{name}</p>
             </div>
-                {
-                    players &&
-                    players?.length > 0 &&
-                    <PlayerSticker
-                        direction='right-sticker'
-                        players={players}
-                    />
-                }
+            {
+                players &&
+                players?.length > 0 &&
+                <PlayerSticker
+                    direction='right-sticker'
+                    players={players}
+                />
+            }
         </div>
     )
 }

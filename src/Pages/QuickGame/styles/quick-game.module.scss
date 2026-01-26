@@ -15,6 +15,7 @@
 		grid-template-areas: 'main main'
 							 'players history';
 	}
+	z-index: 9999999;
 }
 .quickGameCont {
 	display: grid;

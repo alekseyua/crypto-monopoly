@@ -4,6 +4,7 @@ import { jail } from "../../../../assets";
 import cls from "../../styles/game-board.module.scss";
 import { IPlayer } from "../../../../store/quick-game/quick-game.type";
 import PlayerSticker from "../PlayerSticker/PlayerSticker";
+import { Tooltip } from "react-tooltip";
 
 interface IJailProps {
   image_card?: string;
@@ -11,12 +12,14 @@ interface IJailProps {
   headerBgc?: string;
   players: IPlayer[];
   isGrayBlur?: boolean;
+  isActiveCardAction: boolean;
 }
 
 const Jail: React.FC<IJailProps> = ({
   headerBgc,
   players,
   isGrayBlur = false,
+  isActiveCardAction,
 }: IJailProps) => {
   return (
     <div
@@ -26,7 +29,21 @@ const Jail: React.FC<IJailProps> = ({
       style={{
         filter: isGrayBlur ? "blur(3px) grayscale(100%)" : "",
       }}
+      data-tooltip-id={'noSelectJail'}
     >
+      {isActiveCardAction && <Tooltip
+        id={"noSelectJail"}
+        place='top'
+        style={{
+          backgroundColor: "#D6DBF5",
+          color: "#000",
+          maxWidth: 200,
+          zIndex: 999999,
+          borderRadius: 12,
+        }}
+      >
+        <div> Не подходящая карта </div>
+      </Tooltip>}
       <div className={`${cls.cornerGradient}`}>
         <div
           style={{
@@ -52,13 +69,12 @@ const Jail: React.FC<IJailProps> = ({
               players={players.filter((p: IPlayer) => !p.is_concluded)}
             />
           )}
-          
+
         </div>
         <div
-          className={`${cls["jail__player-sticker-concluded-container"]} ${
-            players?.length > 0 &&
+          className={`${cls["jail__player-sticker-concluded-container"]} ${players?.length > 0 &&
             cls["jail__player-sticker-concluded-container--isconcluded"] // пока изменил на постоянное отображение
-          }`}
+            }`}
         >
           <img
             className={cls.jailImg}
@@ -76,7 +92,7 @@ const Jail: React.FC<IJailProps> = ({
               players={players.filter((p: IPlayer) => p.is_concluded)}
             />
           )}
-          
+
         </div>
       </div>
     </div>

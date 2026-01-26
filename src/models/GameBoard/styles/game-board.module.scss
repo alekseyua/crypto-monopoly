@@ -1,78 +1,5 @@
 @import '../../../styles/mixin.scss';
 
-// .game-board {
-// 	/* width: 100%;
-// 	max-height: 100%; */
-// 	// height: 100%;
-// 	position: relative;
-// 	aspect-ratio: 1 / 1;
-// 	background: #f8f9ff;
-// 	border-radius: 25px;
-// 	position: relative;
-// 	@media (max-width: 600px) {
-// 			height: auto;
-// 			width: 100%;
-// 	}
-// 	//game-board__info
-// 	&__info{
-//     	width: 58.11%; /// ????????????????????
-// 		// @include adaptiv-value(width,58.11, 50, 3);
-// 		aspect-ratio: 1 / 1;
-// 		// background: #ffffff;
-// 		position: absolute;
-// 		left: 50%;
-// 		top: 50%;
-// 		transform: translate(-50%, -50%);
-// 		overflow: hidden;
-// 		z-index: 1;
-
-// 		//game-board__info--mobile
-// 		&--mobile{
-// 			position: fixed;
-// 			bottom: 100px;
-// 			width: 100%;
-// 			z-index: 998;
-// 			max-width: 100%;
-// 			left: 0;
-// 			width: 100%;
-// 			border: 1px solid #092bb0;
-// 			border-radius: 35px 35px 0 0;
-// 			max-height: 120px;
-// 			overflow: hidden;
-// 		}
-//   	}
-
-// 	// ---------------------------------
-// 	//game-board__field--bottom
-// 	&__field--bottom{
-// 		display: grid;
-// 		grid-auto-flow: column;
-// 		grid-template-columns: 3fr repeat(9, 1fr) 3fr;
-// 		grid-template-areas:
-//     "prisoner b1 b2 b3 b4 b5 b6 b7 b8 b9 circle";
-// 		// height: 20.5%;
-// 	}
-// 	//game-board__field--left
-// 	&__field--left{
-// 		display: grid;
-// 		grid-auto-flow: row;
-// 		grid-template-rows: 3fr repeat(9, 1fr);
-// 		grid-template-areas:
-// 	"parking"
-// 	"b1"
-// 	"b2"
-// 	"b3"
-// 	"b4"
-// 	"b5"
-// 	"b6"
-// 	"b7"
-// 	"b8"
-// 	"b9"
-// 	"prisoner";
-// 		// width: 20.5%;
-// 		// gap: 40px;
-// 	}
-// }
 .game-board {
 	aspect-ratio: 1 / 1;
 	background: #f8f9ff;
@@ -374,6 +301,7 @@
 		grid-auto-flow: column;
 		grid-template-rows: repeat(3, 1fr);
 		transform: scale(.75);
+		z-index: 999;
 		// height: 100%;
 		@media (max-width: 975px) {
 			grid-template-rows: repeat(2, 1fr);
@@ -441,6 +369,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		pointer-events: all;
+		&:hover{
+			// увеличение иконки стикира игрока
+			// transform: scale(2);
+		}
 		// @media (max-width:1280px) {
 		// 	@include adaptiv-value(width,12, 0, 1);
 		// 	@include adaptiv-value(height,12, 0, 1);

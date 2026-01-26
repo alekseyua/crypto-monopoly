@@ -6,6 +6,7 @@ import PlayerSticker from '../PlayerSticker/PlayerSticker';
 import { IPlayer } from '../../../../store/quick-game/quick-game.type';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import { icons } from '../../../../assets';
+import { Tooltip } from 'react-tooltip';
 
 
 interface ICircleProps {
@@ -14,6 +15,7 @@ interface ICircleProps {
     headerBgc?: string;
     players: IPlayer[];
     cardCost: string;
+  isActiveCardAction: boolean;
     isGrayBlur?: boolean; // This prop is not used in the component
 }
 
@@ -25,6 +27,7 @@ const Circle: React.FC<ICircleProps> = ({
     players,
     cardCost,
     isGrayBlur = false, // This prop is not used in the component
+    isActiveCardAction,
 }: ICircleProps) => {
     return (
       <div
@@ -36,7 +39,20 @@ const Circle: React.FC<ICircleProps> = ({
         style={{
           filter: isGrayBlur ? "blur(3px) grayscale(100%)" : "",
         }}
+        data-tooltip-id={'noSelectCircle'}
       >
+        {isActiveCardAction && <Tooltip
+          id={"noSelectCircle"}
+          style={{
+            backgroundColor: "#D6DBF5",
+            color: "#000",
+            maxWidth: 200,
+            zIndex: 999999,
+            borderRadius: 12,
+          }}
+        >
+         <div> Не подходящая карта </div>
+        </Tooltip>}
         <div className={`${cls.cornerGradient}`}>
           <div
             style={{
@@ -52,7 +68,6 @@ const Circle: React.FC<ICircleProps> = ({
           <Button
             className={cls["field__btn-round"]}
             variant="gradient"
-            onClick={() => {}}
           >
             {name}
           </Button>

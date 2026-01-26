@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { IPlayer, IOwnerCard } from '../../../../store/quick-game/quick-game.type';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';
 import React from 'react';
+import { Tooltip } from 'react-tooltip';
 
 interface IGameField {
 	direction: 'left' | 'right' | 'top' | 'bottom',
@@ -28,13 +29,14 @@ interface IGameField {
 	activeCardForSelect: boolean;
 	handleCard: (id: number) => void;
 	isPawn?: boolean;
-    houses: number;
+  houses: number;
   hotels: number;
+  can_build: boolean;
 }
 
 export const GameField: React.FC<IGameField> = React.memo(({
 	id,
-    houses,
+  houses,
   hotels,
 	isPawn,
 	direction,
@@ -49,6 +51,7 @@ export const GameField: React.FC<IGameField> = React.memo(({
 	name = 'name',
 	players,
 	owner,
+  can_build,
 	isGrayBlur = false,
 	handleCard,
 	playerCurrentMove,
@@ -83,6 +86,7 @@ export const GameField: React.FC<IGameField> = React.memo(({
 		'--bgc-bar': bgBar,
 		// ...styleBayCard,
 	}
+// can_build означает что монополия собрана
 
 	return (
     <div
@@ -108,12 +112,34 @@ export const GameField: React.FC<IGameField> = React.memo(({
         filter: isGrayBlur ? "blur(3px) grayscale(100%)" : "",
       }}
     >
+       {
+        activeCardForSelect && playerCurrentMove.current_move &&
+        <Tooltip
+          id={"activeCardForSelect-" + id}
+          style={{
+            backgroundColor: "#D6DBF5",
+            color: "#000",
+            maxWidth: 200,
+            zIndex: 999999,
+            borderRadius: 12,
+          }}
+        >
+          {
+            !can_build
+              ?<div> Соберите монополию прежде чем строить здания! </div>
+              : playerCurrentMove.id !== owner.player.id 
+                ? <div> Не ваша карта </div>
+                : null
+          }
+        </Tooltip>}
       <div
         className={styles["card-field__container-wrap"]}
+        data-tooltip-id={"activeCardForSelect-" + id}
         style={{
           borderRadius: activeCardForSelect ? 7 : 0,
         }}
       >
+       
         <div
           className={classNames({
             [styles["card-field__container-body"]]: true,
@@ -253,7 +279,7 @@ export const GameField: React.FC<IGameField> = React.memo(({
           ></div>
         )}
       </div>
-{/* нужно вынести в отдельный модуль */}
+        {/* нужно вынести в отдельный модуль */}
       {onField && (
         <div
           className={classNames({

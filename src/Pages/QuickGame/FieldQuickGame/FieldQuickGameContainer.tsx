@@ -200,6 +200,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
     }
     // eslint-disable-next-line
   }, [listSelectUserPreview, stateExchange]);
+      console.log('1--',{idCardForChanceGetOrRemoveHouse})
 
   useEffect(() => {
     if (actionCardView?.key === "InfoChanceOrCommunity") {
@@ -241,7 +242,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
   }, [
     idCardForChanceGetOrRemoveHouse,
     actionCardData,
-    actionCardView?.key,
+    actionCardView.key,
     dataPlayerQG.current_card,
     infoMassagePopup.message, onMove, quickGame.cards
   ]);
@@ -646,6 +647,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
         return (
           <InfoChanceOrCommunity
             onMove={onMove}
+            key={"InfoChanceOrCommunity"}
             typeCard={quickGame.cards.filter(
               (el: ICard | ISpecialCard) => el.id === dataAction.cardId
             )[0].type_card}

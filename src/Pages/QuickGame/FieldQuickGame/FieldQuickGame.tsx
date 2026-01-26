@@ -37,7 +37,7 @@ export const FieldQG: React.FC<IQG> = ({
   isChanceGetOrRemoveHouse,
 }: IQG) => {
   return (
-    <section className={cls.MainGameSection}>
+    <section>
       <BlockWrapper>
         <div className={cls["quick-game__container"]}>
           <FieldListPlayersQGContainer

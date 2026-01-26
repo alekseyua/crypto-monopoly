@@ -56,6 +56,7 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
     if (id === null) return null;
     return cards.find((c: ICard) => c.id === id);
   };
+  console.log(isClick ,' || ' , !cardIdWhereMoveTo)
   return (
     <ContainerGIB name="InfoChanceOrCommunity" style={{ background: "#E9ECFF" }}>
       <Icon

@@ -4,6 +4,7 @@ import { police } from '../../../../assets'
 import cls from '../../styles/game-board.module.scss';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';
 import { IPlayer } from '../../../../store/quick-game/quick-game.type';
+import { Tooltip } from 'react-tooltip';
 
 
 interface IPoliceProps {
@@ -11,16 +12,17 @@ interface IPoliceProps {
     name?: string;
     headerBgc?: string;
     players: IPlayer[];
+  isActiveCardAction: boolean;
     isGrayBlur?: boolean;
 }
 
 
-const Police: React.FC<IPoliceProps> = ({ 
+const Police: React.FC<IPoliceProps> = ({
     name,
     players,
     headerBgc,
     isGrayBlur = false,
-    image_card,
+    isActiveCardAction,
 }: IPoliceProps) => {
     return (
         <div className={
@@ -28,10 +30,24 @@ const Police: React.FC<IPoliceProps> = ({
                 [cls['field']]: true,
             })
         }
-        style={{
-				filter: isGrayBlur? 'blur(3px) grayscale(100%)' : ''
-			}}	
+            data-tooltip-id={'noSelectPolice'}
+            style={{
+                filter: isGrayBlur ? 'blur(3px) grayscale(100%)' : ''
+            }}
         >
+           {isActiveCardAction && <Tooltip
+                id={"noSelectPolice"}
+                place='bottom'
+                style={{
+                    backgroundColor: "#D6DBF5",
+                    color: "#000",
+                    maxWidth: 200,
+                    zIndex: 999999,
+                    borderRadius: 12,
+                }}
+            >
+                <div> Не подходящая карта </div>
+            </Tooltip>}
             <div className={`${cls.cornerGradient}`}>
                 <div
                     style={{
