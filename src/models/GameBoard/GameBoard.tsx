@@ -114,7 +114,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
                           // console.log({isActiveCardAction,listSelectUserPreview}, card.owner?.player?.id)
                 if (card.card_number === 11) {
                   return (
-                    <div key="jail" className={cls['card__container--jail']}>c 
+                    <div key="jail" className={cls['card__container--jail']}>
                       <Jail
                         isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
                         key={card.card_number}

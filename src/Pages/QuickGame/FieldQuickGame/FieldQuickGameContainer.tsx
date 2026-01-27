@@ -796,7 +796,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
   if (params.action === "accept_exchange" || params.action === "deny_exchange") {
     // В обоих этих случаях передаем params как есть
     handleCard(updatedParams);
-  }
+}
 
   // После обработки обновленных параметров вызываем handleCard
 
