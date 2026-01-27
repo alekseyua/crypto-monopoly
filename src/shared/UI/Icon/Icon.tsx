@@ -112,4 +112,4 @@ const Icon: React.FC<IIcon> = ({
     );
 };
 
-export default Icon;
+export default React.memo(Icon);

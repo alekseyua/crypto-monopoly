@@ -116,6 +116,15 @@ export const GameField: React.FC<IGameField> = React.memo(({
         activeCardForSelect && playerCurrentMove.current_move &&
         <Tooltip
           id={"activeCardForSelect-" + id}
+          place={
+              direction === 'top' 
+                ? 'bottom' 
+                : direction === 'left'
+                  ? 'right'
+                  : direction === 'bottom'
+                    ? 'top'
+                    : 'left'
+              }
           style={{
             backgroundColor: "#D6DBF5",
             color: "#000",
@@ -136,7 +145,7 @@ export const GameField: React.FC<IGameField> = React.memo(({
         className={styles["card-field__container-wrap"]}
         data-tooltip-id={"activeCardForSelect-" + id}
         style={{
-          borderRadius: activeCardForSelect ? 7 : 0,
+          borderRadius: !isGrayBlur ? 7 : 0,
         }}
       >
        

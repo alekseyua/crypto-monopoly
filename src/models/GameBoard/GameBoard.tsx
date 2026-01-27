@@ -100,13 +100,21 @@ export const GameBoard: React.FC<IGameBoard> = ({
               {cards?.map((card: ICard | ISpecialCard) => {
                 if (!card) return null;
                 const playerCurrentMoveOnField: IPlayer = card.players.filter((p: IPlayer) => p.current_move)[0];
-                const isActiveCardAction = (isChanceGetOrRemoveHouse && !!Object.keys(card.owner).length &&
-                          card.owner.player.id !== dataPlayerQG.id) ||
-                        (!!listSelectUserPreview.length && !!Object.keys(card.owner).length &&
-                          listSelectUserPreview.includes(card.owner.player.id))
+                const isActiveCardAction = (isChanceGetOrRemoveHouse && !!Object.keys(card.owner).length 
+                // &&
+                //           card.owner.player.id === dataPlayerQG.id
+                )
+                const isHasOwnerCard = !!Object.keys(card.owner).length;
+                const isGrayBlur = !!listSelectUserPreview.length 
+                                      ? (isHasOwnerCard &&
+                                        listSelectUserPreview.includes(card.owner?.player?.id))
+                                      : isChanceGetOrRemoveHouse
+                                          ? isHasOwnerCard && card.owner?.player.id === playerCurrentMove.id
+                                          : false;
+                          // console.log({isActiveCardAction,listSelectUserPreview}, card.owner?.player?.id)
                 if (card.card_number === 11) {
                   return (
-                    <div key="jail" className={cls['card__container--jail']}>
+                    <div key="jail" className={cls['card__container--jail']}>c 
                       <Jail
                         isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
                         key={card.card_number}
@@ -202,7 +210,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
                       name={card.name}
                       owner={card.owner}
                       onField={!!playerCurrentMoveOnField}
-                      isGrayBlur={isActiveCardAction}
+                      isGrayBlur={(isChanceGetOrRemoveHouse || !!listSelectUserPreview.length) && !isGrayBlur}
                       activeCardForSelect={isActiveCardAction}
                       can_build={(card as ICard).can_build}
                     />

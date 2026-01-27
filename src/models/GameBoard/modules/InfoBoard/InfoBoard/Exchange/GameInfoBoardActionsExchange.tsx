@@ -120,7 +120,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
 	}
   console.log(isClick, ' ?? ', !!totalTo, ' || ', !!totalFrom)
 	return (
-    <ContainerGIB name="GameInfoBoardActionsExchange" style={{ background: "#E9ECFF" }}>
+    <ContainerGIB name="GameInfoBoardActionsExchange" style={{ background: "#E9ECFF", overflowY: 'auto' }}>
       {/* header */}
       <ContainerInfoHeaderGIB p={15}>
         <ButtonBack
@@ -187,6 +187,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
           borderTopLeftRadius: 25,
           borderTopRightRadius: 25,
           padding: 15,
+          overflow: 'visible',
         }}
       >
         {!!!listUserExchange.length && (
@@ -318,12 +319,13 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
                     }
                     isSpanWidth={isSetInputPriceFrom}
                     onChange={(e) => {
-                      let numericValue = parseFloat(e.target.value);
+                      let numericValue = Math.abs(Math.round(parseFloat(e.target.value)));
                       if (Number.isNaN(numericValue)) numericValue = 0;
                       handleCard({
                         ...stateExchange,
                         price_from: numericValue,
                       });
+
                     }}
                     type="number"
                     id="input-seller"
@@ -384,7 +386,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
                         }
                         isSpanWidth={isSetInputPriceTo}
                         onChange={(e) => {
-                          let numericValue = parseFloat(e.target.value);
+                          let numericValue = Math.abs(Math.round(parseFloat(e.target.value)));
                           if (Number.isNaN(numericValue)) numericValue = 0;
                           handleCard({
                             ...stateExchange,

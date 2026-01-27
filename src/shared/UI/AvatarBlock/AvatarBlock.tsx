@@ -69,4 +69,4 @@ const AvatarBlock: React.FC<IProps> = ({
   );
 };
 
-export default AvatarBlock;
+export default React.memo(AvatarBlock);

@@ -102,7 +102,7 @@ export const AuctionPlaceBet: React.FC<IProps> = ({
             placeholder="Введите вашу ставку"
             value={currentBet}
             onChange={(e) => {
-              const numericValue = parseFloat(e.target.value);
+              const numericValue = Math.abs(Math.round(parseFloat(e.target.value)));
               setCurrentBet(numericValue);
             }}
             type="number"

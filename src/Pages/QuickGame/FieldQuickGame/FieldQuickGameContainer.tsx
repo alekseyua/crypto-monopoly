@@ -169,6 +169,25 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
     // dispatch(GET_CARD_ACTION_QG);
   };
 
+  // ------------------------------ list preview users
+  const handleClickUserPreview = function (id: number) {
+    if (isChangeCard) {
+      if (!listSelectUserPreview.includes(dataPlayerQG.id)) {
+        setListSelectUserPreview((state) => [...state, dataPlayerQG.id, id]);
+      } else {
+        if (listSelectUserPreview.includes(id) && id !== dataPlayerQG.id) {
+          setStateExchange(initStateExchange);
+          setListSelectUserPreview([]);
+        } else {
+          setListSelectUserPreview((state) => [...state, id]);
+        }
+      }
+    } else if (userIdForExchange) {
+      setUserIdForExchange(null);
+      dataPlayerQG.id !== id &&
+        setListSelectUserPreview((state) => [...state, dataPlayerQG.id, id]);
+    }
+  };
 
   useEffect(() => {
     const height = refGameBoard.current?.offsetWidth;
@@ -200,7 +219,6 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
     }
     // eslint-disable-next-line
   }, [listSelectUserPreview, stateExchange]);
-      console.log('1--',{idCardForChanceGetOrRemoveHouse})
 
   useEffect(() => {
     if (actionCardView?.key === "InfoChanceOrCommunity") {
@@ -279,8 +297,12 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
       };
     };
     if (
-      infoMassagePopup.show && (dataPlayerQG.current_move ||
-        isKeyPresentInHash(actionCardData, "auction_data"))
+      infoMassagePopup.show 
+      // &&
+      //  (
+      //   // dataPlayerQG.current_move ||
+      //   // isKeyPresentInHash(actionCardData, "auction_data") 
+      // )
     ) {
       console.log("%cSHOW POPUP MESSAGE", "color: green ; font-weight: bold;");
       return setActionCardView(
@@ -733,29 +755,57 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
     }
   };
 
-  const handleCardExchange = (params: any): void => {
-    if (params?.action === "exchange") {
-      handleCard({
-        ...params,
-        player_to_id: listSelectUserPreview.filter(
-          (id: number) => dataPlayerQG.id !== id
-        )[0],
-      });
+  // const handleCardExchange = (params: any): void => {
+  //   if (params?.action === "exchange") {
+  //     handleCard({
+  //       ...params,
+  //       player_to_id: listSelectUserPreview.filter(
+  //         (id: number) => dataPlayerQG.id !== id
+  //       )[0],
+  //     });
 
-      return;
-    } else if (params.action === "accept_exchange") {
-      handleCard({
-        ...params,
-      });
-      return;
-    } else if (params.action === "deny_exchange") {
-      handleCard({
-        ...params,
-      });
-      return;
-    }
+  //     return;
+  //   } else if (params.action === "accept_exchange") {
+  //     handleCard({
+  //       ...params,
+  //     });
+  //     return;
+  //   } else if (params.action === "deny_exchange") {
+  //     handleCard({
+  //       ...params,
+  //     });
+  //     return;
+  //   }
+  //   setStateExchange(params);
+  // };
+  const handleCardExchange = (params: any): void => {
+  // В зависимости от действия создаем нужные параметры для handleCard
+  let updatedParams = { ...params };
+
+  // Если действие обмена, то определяем игрока для обмена
+  if (params?.action === "exchange") {
+    updatedParams = {
+      ...updatedParams,
+      player_to_id: listSelectUserPreview.filter(
+        (id: number) => dataPlayerQG.id !== id
+      )[0],
+    };
+  }
+
+  // В остальных случаях можно просто передавать параметры без изменений
+  if (params.action === "accept_exchange" || params.action === "deny_exchange") {
+    // В обоих этих случаях передаем params как есть
+    handleCard(updatedParams);
+  }
+
+  // После обработки обновленных параметров вызываем handleCard
+
+  // Если действие не соответствует известным, обновляем stateExchange
+  if (!["exchange", "accept_exchange", "deny_exchange"].includes(params.action)) {
     setStateExchange(params);
-  };
+  }
+};
+
 
   const handleCardOnFieldAction = async (params: any): Promise<void> => {
     if (params.action === "exchange") {
@@ -797,25 +847,6 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
     dispatch(SEND_ACTION_CARD_QG, params);
   };
 
-  // ------------------------------ list preview users
-  const handleClickUserPreview = function (id: number) {
-    if (isChangeCard) {
-      if (!listSelectUserPreview.includes(dataPlayerQG.id)) {
-        setListSelectUserPreview((state) => [...state, dataPlayerQG.id, id]);
-      } else {
-        if (listSelectUserPreview.includes(id) && id !== dataPlayerQG.id) {
-          setStateExchange(initStateExchange);
-          setListSelectUserPreview([]);
-        } else {
-          setListSelectUserPreview((state) => [...state, id]);
-        }
-      }
-    } else if (userIdForExchange) {
-      setUserIdForExchange(null);
-      dataPlayerQG.id !== id &&
-        setListSelectUserPreview((state) => [...state, dataPlayerQG.id, id]);
-    }
-  };
 
   // setIsChangeCard после заваршения обмена очистить, когда уходим со
   return (
