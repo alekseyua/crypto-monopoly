@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Icon from '../../../../shared/UI/Icon/Icon';
 import { CSSProperties, useEffect } from 'react';
 import classNames from 'classnames';
-import { IPlayer, IOwnerCard } from '../../../../store/quick-game/quick-game.type';
+import { IPlayer, IOwnerCard, IPlayerOwnerCardCanBuild } from '../../../../store/quick-game/quick-game.type';
 import PlayerSticker from '../PlayerSticker/PlayerSticker';
 import React from 'react';
 import { Tooltip } from 'react-tooltip';
@@ -26,12 +26,12 @@ interface IGameField {
 	owner: IOwnerCard;
 	id: number;
 	isGrayBlur: boolean;
-	activeCardForSelect: boolean;
+	isActiveCardActionGetOrRemoveHouse: boolean;
 	handleCard: (id: number) => void;
 	isPawn?: boolean;
   houses: number;
   hotels: number;
-  can_build: boolean;
+  can_build: IPlayerOwnerCardCanBuild | undefined;
 }
 
 export const GameField: React.FC<IGameField> = React.memo(({
@@ -56,7 +56,7 @@ export const GameField: React.FC<IGameField> = React.memo(({
 	handleCard,
 	playerCurrentMove,
   playerCurrentMoveOnField,
-	activeCardForSelect,
+	isActiveCardActionGetOrRemoveHouse,
 }: IGameField) => {
   const [styleBayCard, setStyleBayCard] = React.useState<CSSProperties>({});
   useEffect(() => {
@@ -113,7 +113,7 @@ export const GameField: React.FC<IGameField> = React.memo(({
       }}
     >
        {
-        activeCardForSelect && playerCurrentMove.current_move &&
+        isActiveCardActionGetOrRemoveHouse && playerCurrentMove.current_move &&
         <Tooltip
           id={"activeCardForSelect-" + id}
           place={
@@ -133,13 +133,10 @@ export const GameField: React.FC<IGameField> = React.memo(({
             borderRadius: 12,
           }}
         >
-          {
-            !can_build
-              ?<div> Соберите монополию прежде чем строить здания! </div>
-              : playerCurrentMove.id !== owner.player.id 
-                ? <div> Не ваша карта </div>
-                : null
-          }
+            {
+              can_build && can_build.status &&
+              <div> {can_build.reason} </div>
+            }
         </Tooltip>}
       <div
         className={styles["card-field__container-wrap"]}

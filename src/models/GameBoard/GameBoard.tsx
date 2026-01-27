@@ -100,7 +100,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
               {cards?.map((card: ICard | ISpecialCard) => {
                 if (!card) return null;
                 const playerCurrentMoveOnField: IPlayer = card.players.filter((p: IPlayer) => p.current_move)[0];
-                const isActiveCardAction = (isChanceGetOrRemoveHouse && !!Object.keys(card.owner).length 
+                const isActiveCardActionGetOrRemoveHouse = (isChanceGetOrRemoveHouse && !!Object.keys(card.owner).length 
                 // &&
                 //           card.owner.player.id === dataPlayerQG.id
                 )
@@ -122,7 +122,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
                         name={card.name}
                         headerBgc={card.bgc_header}
                         players={card.players}
-                        isActiveCardAction={isActiveCardAction}
+                        isActiveCardAction={isActiveCardActionGetOrRemoveHouse}
                       />
                     </div>
                   );
@@ -137,7 +137,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
                         name={card.name}
                         headerBgc={card.bgc_header}
                         players={card.players}
-                        isActiveCardAction={isActiveCardAction}
+                        isActiveCardAction={isActiveCardActionGetOrRemoveHouse}
                       />
                     </div>
                   );
@@ -153,7 +153,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
                         name={card.name}
                         headerBgc={card.bgc_header}
                         players={card.players}
-                        isActiveCardAction={isActiveCardAction}
+                        isActiveCardAction={isActiveCardActionGetOrRemoveHouse}
                       />
                     </div>
                   );
@@ -170,7 +170,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
                       headerBgc={card.bgc_header}
                       players={card.players}
                       cardCost={card.cost}
-                      isActiveCardAction={isActiveCardAction}
+                      isActiveCardAction={isActiveCardActionGetOrRemoveHouse}
                     />
                     </div>
                   );
@@ -211,8 +211,8 @@ export const GameBoard: React.FC<IGameBoard> = ({
                       owner={card.owner}
                       onField={!!playerCurrentMoveOnField}
                       isGrayBlur={(isChanceGetOrRemoveHouse || !!listSelectUserPreview.length) && !isGrayBlur}
-                      activeCardForSelect={isActiveCardAction}
-                      can_build={(card as ICard).can_build}
+                      isActiveCardActionGetOrRemoveHouse={isActiveCardActionGetOrRemoveHouse}
+                      can_build={(card as ICard).owner?.player?.can_build}
                     />
                   </div>
                 );

@@ -31,13 +31,21 @@ export interface IPriceBuilding {
 
 
 // =====================================================================================================================
+interface IPlayerOwnerCardCanBuild {
+  status: boolean;
+  reason: string;
+}
+
+interface IPlayerOwnerCard {
+  can_build: IPlayerOwnerCardCanBuild;
+  id: number;
+  username: string;
+  balance: number;
+  color: string;
+  user: string;
+}
 interface IOwnerCard {
-  player: IPlayer;
-  // can_build: boolean;
-  // is_pawn: boolean;
-  // hotels: number;
-  // houses: number;
-  // card_info: ICardInfo | ISpecialCardInfo;
+  player: IPlayerOwnerCard;
 }
 
 interface ICard {
@@ -47,7 +55,6 @@ interface ICard {
   card_number: number;
   type_card: string;
   cost: string;
-  can_build: boolean;
   hotels: number;
   houses: number;
   is_pawn: boolean;
@@ -407,5 +414,6 @@ export type {
   IDataActionsStore,
   IHighestBidderData,
   CardDataDataActionsType,
+  IPlayerOwnerCardCanBuild,
   CardDataDataActionsJailType,
 };
