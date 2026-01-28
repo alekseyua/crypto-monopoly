@@ -28,6 +28,7 @@ interface IGameField {
 	isGrayBlur: boolean;
 	isActiveCardActionGetOrRemoveHouse: boolean;
 	handleCard: (id: number) => void;
+	handleGetOrRemoveHouse: (id: number) => void;
 	isPawn?: boolean;
   houses: number;
   hotels: number;
@@ -55,6 +56,7 @@ export const GameField: React.FC<IGameField> = React.memo(({
 	isGrayBlur = false,
 	handleCard,
 	playerCurrentMove,
+  handleGetOrRemoveHouse,
   playerCurrentMoveOnField,
 	isActiveCardActionGetOrRemoveHouse,
 }: IGameField) => {
@@ -90,14 +92,18 @@ export const GameField: React.FC<IGameField> = React.memo(({
 
 	return (
     <div
-      onClick={() =>
-        !isGrayBlur &&
-        type !== "chance" &&
-        type !== "community" &&
-        type !== "super_tax" &&
-        type !== "income_tax" &&
-        handleCard(id)
-      }
+      onClick={() =>{
+        if(isActiveCardActionGetOrRemoveHouse){
+          handleGetOrRemoveHouse(id)
+        }else{
+          !isGrayBlur &&
+          type !== "chance" &&
+          type !== "community" &&
+          type !== "super_tax" &&
+          type !== "income_tax" &&
+          handleCard(id)
+        }
+      }}
       className={classNames({
         [styles["card-field__container"]]: true,
         [styles["card-field__container--" + direction]]: direction,
@@ -109,7 +115,11 @@ export const GameField: React.FC<IGameField> = React.memo(({
       data-active={playerCurrentMove.current_move}
       style={{
         backgroundColor: type === "chance" ? "#E7EFFD" : "",
-        filter: isGrayBlur ? "blur(3px) grayscale(100%)" : "",
+        filter: isGrayBlur 
+                    ? "blur(3px) grayscale(100%)"
+                    : isActiveCardActionGetOrRemoveHouse && (type === "airline" || type === "express" || type === "cruise")
+                      ? "blur(3px) grayscale(100%)"
+                      : "",
       }}
     >
        {
@@ -134,7 +144,7 @@ export const GameField: React.FC<IGameField> = React.memo(({
           }}
         >
             {
-              can_build && can_build.status &&
+              can_build && !can_build.status &&
               <div> {can_build.reason} </div>
             }
         </Tooltip>}
@@ -142,7 +152,7 @@ export const GameField: React.FC<IGameField> = React.memo(({
         className={styles["card-field__container-wrap"]}
         data-tooltip-id={"activeCardForSelect-" + id}
         style={{
-          borderRadius: !isGrayBlur ? 7 : 0,
+          borderRadius: isGrayBlur ? 7 : 0,
         }}
       >
        
@@ -195,13 +205,6 @@ export const GameField: React.FC<IGameField> = React.memo(({
                           src={icons.home}
                           width={12}
                           height={12}
-                        // rotate={
-                        //   direction === "left"
-                        //     ? 270
-                        //     : direction === "right"
-                        //     ? 270
-                        //     : 0
-                        // }
                         />
                       );
                     })}
@@ -239,6 +242,11 @@ export const GameField: React.FC<IGameField> = React.memo(({
                     // ...players,
                     // ...players,
                     // ...players,
+                    // ...players,
+                    // ...players,
+                    // ...players,
+                    // ...players,
+
                   ]}
                 />
               )}

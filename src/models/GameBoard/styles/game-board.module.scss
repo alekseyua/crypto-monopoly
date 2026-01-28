@@ -325,6 +325,10 @@
 		&--right{
 			right: 3px;
 			justify-content: start;
+			transform: scale(-.75);
+			& > div {
+				transform: scale(-1);
+			}
 		}
 		//players__container--bottom
 		&--bottom{
@@ -333,6 +337,10 @@
 			grid-template-columns: repeat(3, 1fr);
 			direction: rtl;
 			align-content: end;
+			transform: scale(-.75);
+			& > div {
+				transform: scale(-1);
+			}
 			@media (max-width: 975px) {
 				grid-template-columns: repeat(2, 1fr);
 			}

@@ -14,6 +14,7 @@ interface IQG {
   playerCurrentMove: IPlayer;
   ActionCard: React.ReactNode;
   handleCard: (id: number) => void;
+  handleGetOrRemoveHouse: (id: number) => void;
   players: IPlayer[];
   listSelectUserPreview: number[];
   handleClickUserPreview: (id: number) => void;
@@ -34,6 +35,7 @@ export const FieldQG: React.FC<IQG> = ({
   playerCurrentMove,
   listSelectUserPreview,
   handleClickUserPreview,
+  handleGetOrRemoveHouse,
   isChanceGetOrRemoveHouse,
 }: IQG) => {
   return (
@@ -57,6 +59,7 @@ export const FieldQG: React.FC<IQG> = ({
               playerCurrentMove={playerCurrentMove}
               isChanceGetOrRemoveHouse={isChanceGetOrRemoveHouse}
               handleCard={handleCard}
+              handleGetOrRemoveHouse={handleGetOrRemoveHouse}
             />
           </div>
           <EventsHistoryListContainer heightGameBoard={heightGameBoard} />

@@ -20,6 +20,7 @@ interface IGameBoard {
   playerCurrentMove: IPlayer;
   ActionCard: React.ReactNode;
   handleCard: (id: number) => void;
+  handleGetOrRemoveHouse: (id: number) => void;
   listSelectUserPreview: number[];
   innerRef: React.RefObject<HTMLDivElement | null>;
   isChanceGetOrRemoveHouse: boolean;
@@ -31,6 +32,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
   dataPlayerQG,
   playerCurrentMove,
   listSelectUserPreview,
+  handleGetOrRemoveHouse,
   isChanceGetOrRemoveHouse,
 }) => {
   const {
@@ -195,6 +197,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
                       isPawn={(card as ICard).is_pawn}
                       type={card.type_card}
                       handleCard={handleCard}
+                      handleGetOrRemoveHouse={handleGetOrRemoveHouse}
                       playerCurrentMove={playerCurrentMove}
                       playerCurrentMoveOnField={playerCurrentMoveOnField}
                       direction={

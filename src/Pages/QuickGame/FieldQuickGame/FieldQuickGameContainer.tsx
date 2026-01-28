@@ -744,7 +744,6 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
         }
       }
     } else if (isChanceGetOrRemoveHouse) {
-      setIdCardForChanceGetOrRemoveHouse(card_id);
     } else {
       // только если у игрока current_move = True
       dataPlayerQG?.current_move && dispatch(GET_CARD_ACTION_QG, { card_id });
@@ -755,33 +754,13 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
     }
   };
 
-  // const handleCardExchange = (params: any): void => {
-  //   if (params?.action === "exchange") {
-  //     handleCard({
-  //       ...params,
-  //       player_to_id: listSelectUserPreview.filter(
-  //         (id: number) => dataPlayerQG.id !== id
-  //       )[0],
-  //     });
+  const handleGetOrRemoveHouse = (card_id: number) => {
+      setIdCardForChanceGetOrRemoveHouse(card_id);
+  }
 
-  //     return;
-  //   } else if (params.action === "accept_exchange") {
-  //     handleCard({
-  //       ...params,
-  //     });
-  //     return;
-  //   } else if (params.action === "deny_exchange") {
-  //     handleCard({
-  //       ...params,
-  //     });
-  //     return;
-  //   }
-  //   setStateExchange(params);
-  // };
   const handleCardExchange = (params: any): void => {
   // В зависимости от действия создаем нужные параметры для handleCard
   let updatedParams = { ...params };
-
   // Если действие обмена, то определяем игрока для обмена
   if (params?.action === "exchange") {
     updatedParams = {
@@ -790,13 +769,14 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
         (id: number) => dataPlayerQG.id !== id
       )[0],
     };
+    handleCard(updatedParams);
   }
 
   // В остальных случаях можно просто передавать параметры без изменений
   if (params.action === "accept_exchange" || params.action === "deny_exchange") {
     // В обоих этих случаях передаем params как есть
     handleCard(updatedParams);
-}
+  }
 
   // После обработки обновленных параметров вызываем handleCard
 
@@ -862,6 +842,7 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
       listSelectUserPreview={listSelectUserPreview}
       isChanceGetOrRemoveHouse={isChanceGetOrRemoveHouse}
       handleCard={handleCardOnField}
+      handleGetOrRemoveHouse={handleGetOrRemoveHouse}
       handleClickUserPreview={handleClickUserPreview}
     />
   );
