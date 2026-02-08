@@ -11,11 +11,11 @@ interface IFieldListPlayersQGProps {
   listSelectUserPreview: number[];
   handleClickUserPreview: (id: number) => void;
   handleSettingCard: (status: string) => void;
-  handleSorting: () => void;
+  handleSorting: (sortValue: 'rate' | 'capital') => void;
   isOpenListPlayers: boolean;
   handleClickOpen: () => void;
   isOpenModal: string;
-  sortingListPlayers: string;
+  sortingListPlayers: 'rate' | 'capital';
   heightGameBoard: number;
   isMobile?: boolean;
   setShowFeetHistory: (b: boolean)=>void;
@@ -61,7 +61,7 @@ const FieldListPlayersQG: React.FC<IFieldListPlayersQGProps> = ({
           fillColor={sortingListPlayers === 'rate' ? '#E9ECFF' : '#D6DBF5'}
           textColor='#000'
           p={12}
-          onClick={handleSorting}
+          onClick={() => handleSorting(sortingListPlayers)}
         // disabled={!actions.auction && isActionCard}
         // onClick={handleAuction} type='outline'>Отказ {<AutoCounter disabled={isActionCard} counter={30} callback={handleAuction} 
         >

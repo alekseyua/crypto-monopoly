@@ -35,6 +35,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
   handleGetOrRemoveHouse,
   isChanceGetOrRemoveHouse,
 }) => {
+  // isChanceGetOrRemoveHouse = true
   const {
     quickGame,
   }: {
@@ -101,77 +102,78 @@ export const GameBoard: React.FC<IGameBoard> = ({
 
               {cards?.map((card: ICard | ISpecialCard) => {
                 if (!card) return null;
-                const playerCurrentMoveOnField: IPlayer = card.players.filter((p: IPlayer) => p.current_move)[0];
-                const isActiveCardActionGetOrRemoveHouse = (isChanceGetOrRemoveHouse && !!Object.keys(card.owner).length 
+                const canBuildHouse = (card as ICard).owner?.player?.can_build;
+                const playerCurrentMoveOnField: IPlayer = (card as ICard).players.filter((p: IPlayer) => p.current_move)[0];
+                const isActiveCardActionGetOrRemoveHouse = (isChanceGetOrRemoveHouse && canBuildHouse.status && !!Object.keys((card as ICard).owner).length 
                 // &&
-                //           card.owner.player.id === dataPlayerQG.id
+                //           (card as ICard).owner.player.id === dataPlayerQG.id
                 )
-                const isHasOwnerCard = !!Object.keys(card.owner).length;
+                const isHasOwnerCard = !!Object.keys((card as ICard).owner).length;
                 const isGrayBlur = !!listSelectUserPreview.length 
                                       ? (isHasOwnerCard &&
-                                        listSelectUserPreview.includes(card.owner?.player?.id))
-                                      : isChanceGetOrRemoveHouse
-                                          ? isHasOwnerCard && card.owner?.player.id === playerCurrentMove.id
+                                        listSelectUserPreview.includes((card as ICard).owner?.player?.id))
+                                      : isChanceGetOrRemoveHouse && canBuildHouse.status
+                                          ? isHasOwnerCard && (card as ICard).owner?.player.id === playerCurrentMove.id
                                           : false;
-                          // console.log({isActiveCardAction,listSelectUserPreview}, card.owner?.player?.id)
-                if (card.card_number === 11) {
+                          // console.log({isActiveCardAction,listSelectUserPreview}, (card as ICard).owner?.player?.id)
+                if ((card as ICard).card_number === 11) {
                   return (
                     <div key="jail" className={cls['card__container--jail']}>
                       <Jail
                         isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
-                        key={card.card_number}
-                        image_card={card.image}
-                        name={card.name}
-                        headerBgc={card.bgc_header}
-                        players={card.players}
+                        key={(card as ICard).card_number}
+                        image_card={(card as ICard).image}
+                        name={(card as ICard).name}
+                        headerBgc={(card as ICard).bgc_header}
+                        players={(card as ICard).players}
                         isActiveCardAction={isActiveCardActionGetOrRemoveHouse}
                       />
                     </div>
                   );
                 }
-                if (card.card_number === 21) {
+                if ((card as ICard).card_number === 21) {
                   return (
                     <div key="parking" className={cls['card__container--parking']}>
                       <Parking
                         isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
-                        key={card.card_number}
-                        image_card={card.image}
-                        name={card.name}
-                        headerBgc={card.bgc_header}
-                        players={card.players}
+                        key={(card as ICard).card_number}
+                        image_card={(card as ICard).image}
+                        name={(card as ICard).name}
+                        headerBgc={(card as ICard).bgc_header}
+                        players={(card as ICard).players}
                         isActiveCardAction={isActiveCardActionGetOrRemoveHouse}
                       />
                     </div>
                   );
                 }
 
-                if (card.card_number === 31) {
+                if ((card as ICard).card_number === 31) {
                   return (
                     <div key="police" className={cls['card__container--police']}>
                       <Police
                         isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
-                        key={card.card_number}
-                        image_card={card.image}
-                        name={card.name}
-                        headerBgc={card.bgc_header}
-                        players={card.players}
+                        key={(card as ICard).card_number}
+                        image_card={(card as ICard).image}
+                        name={(card as ICard).name}
+                        headerBgc={(card as ICard).bgc_header}
+                        players={(card as ICard).players}
                         isActiveCardAction={isActiveCardActionGetOrRemoveHouse}
                       />
                     </div>
                   );
                 }
 
-                if (card.card_number === 1) {
+                if ((card as ICard).card_number === 1) {
                   return (
                     <div key="circle" className={cls['card__container--circle']}>
                     <Circle
                       isGrayBlur={isChanceGetOrRemoveHouse || !!listSelectUserPreview.length}
-                      key={card.card_number}
-                      image_card={card.image}
-                      name={card.name}
-                      headerBgc={card.bgc_header}
-                      players={card.players}
-                      cardCost={card.cost}
+                      key={(card as ICard).card_number}
+                      image_card={(card as ICard).image}
+                      name={(card as ICard).name}
+                      headerBgc={(card as ICard).bgc_header}
+                      players={(card as ICard).players}
+                      cardCost={(card as ICard).cost}
                       isActiveCardAction={isActiveCardActionGetOrRemoveHouse}
                     />
                     </div>
@@ -181,41 +183,41 @@ export const GameBoard: React.FC<IGameBoard> = ({
 
                 return (
                   <div
-                    key={card.card_number}
+                    key={(card as ICard).card_number}
                     className={cls['card__container']}
-                    data-pos={card.card_number}
+                    data-pos={(card as ICard).card_number}
                   >
                     <GameField
-                      key={card.card_number}
-                      id={card.id}
-                      players={card.players}
-                      className={`${"card-field__container--" + card.card_number}`}
-                      image_card={card.image}
-                      cardCost={card.cost}
+                      key={(card as ICard).card_number}
+                      id={(card as ICard).id}
+                      players={(card as ICard).players}
+                      className={`${"card-field__container--" + (card as ICard).card_number}`}
+                      image_card={(card as ICard).image}
+                      cardCost={(card as ICard).cost}
                       houses={(card as ICard).houses}
                       hotels={(card as ICard).hotels}
                       isPawn={(card as ICard).is_pawn}
-                      type={card.type_card}
+                      type={(card as ICard).type_card}
                       handleCard={handleCard}
                       handleGetOrRemoveHouse={handleGetOrRemoveHouse}
                       playerCurrentMove={playerCurrentMove}
                       playerCurrentMoveOnField={playerCurrentMoveOnField}
                       direction={
-                        card.card_number >= 2 && card.card_number <= 10
+                        (card as ICard).card_number >= 2 && (card as ICard).card_number <= 10
                           ? "bottom"
-                          : card.card_number >= 12 && card.card_number <= 20
+                          : (card as ICard).card_number >= 12 && (card as ICard).card_number <= 20
                             ? "left"
-                            : card.card_number >= 22 && card.card_number <= 30
+                            : (card as ICard).card_number >= 22 && (card as ICard).card_number <= 30
                               ? "top"
                               : "right"
                       }
-                      headerBgc={card.bgc_header}
-                      name={card.name}
-                      owner={card.owner}
+                      headerBgc={(card as ICard).bgc_header}
+                      name={(card as ICard).name}
+                      owner={(card as ICard).owner}
                       onField={!!playerCurrentMoveOnField}
                       isGrayBlur={(isChanceGetOrRemoveHouse || !!listSelectUserPreview.length) && !isGrayBlur}
                       isActiveCardActionGetOrRemoveHouse={isActiveCardActionGetOrRemoveHouse}
-                      can_build={(card as ICard).owner?.player?.can_build}
+                      can_build={canBuildHouse}
                     />
                   </div>
                 );

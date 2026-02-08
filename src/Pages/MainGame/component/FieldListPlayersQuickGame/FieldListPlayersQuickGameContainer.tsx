@@ -27,8 +27,8 @@ const FieldListPlayersQGContainer: React.FC<IFieldListPlayersQGProps> = ({
   const [showFeetHistory, setShowFeetHistory] = useState<boolean>(isMobile);
   const {showRate, dispatch} = useStoreon('showRate',);
   const [isOpenListPlayers, setIsOpenListPlayers ] = useState<boolean>(true);
-  const [listPlayers, setListPlayers ] = useState<IPlayer[]>([...players]);
-  const [sortingListPlayers, setSortingListPlayers ] = useState<'rate'| 'capital'>('rate');
+  const [listPlayers, setListPlayers ] = useState<IPlayer[]>([...players].sort((a : IPlayer,b : IPlayer): any => b.bill_data.capital - a.bill_data.capital));
+  const [sortingListPlayers, setSortingListPlayers ] = useState<'rate'| 'capital'>('capital');
   const [isOpenModal, setIsOpenModal ] = useState<string>('');
   const handleClickOpen = function (){
     setIsOpenListPlayers(s=>!s)
@@ -45,7 +45,7 @@ const FieldListPlayersQGContainer: React.FC<IFieldListPlayersQGProps> = ({
   useEffect(()=>{
     // при клике в футоре инфо окна  разворачивать список игроков отсортированных по капиталу
     setIsOpenListPlayers(true);
-    setSortingListPlayers('capital');
+    // setSortingListPlayers('capital');
   },[showRate])
 
   useEffect(()=>{
@@ -56,13 +56,17 @@ const FieldListPlayersQGContainer: React.FC<IFieldListPlayersQGProps> = ({
       const sort = players.sort((a : IPlayer,b : IPlayer): any => b.move_number - a.move_number);
       setListPlayers(sort)
     }
-  },[sortingListPlayers,dataPlayerQG , players])
+  },[sortingListPlayers , players])
 
-  const handleSorting = function(){
-    if(sortingListPlayers === 'rate'){
-      setSortingListPlayers('capital')
-    } else if( sortingListPlayers === 'capital'){
-      setSortingListPlayers('rate')
+  const handleSorting = function(sortValue: 'rate' | 'capital'){
+    const whatSort =sortValue === 'capital'? 'rate' : 'capital';
+    setSortingListPlayers(whatSort);
+    if(whatSort === 'capital'){
+      const sort = players.sort((a : IPlayer,b : IPlayer): any => b.bill_data.capital - a.bill_data.capital);
+      setListPlayers(sort)
+    }else{
+      const sort = players.sort((a : IPlayer,b : IPlayer): any => b.move_number - a.move_number);
+      setListPlayers(sort)
     }
   }
   if (isMobile && showFeetHistory) {
