@@ -104,7 +104,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
                 if (!card) return null;
                 const canBuildHouse = (card as ICard).owner?.player?.can_build;
                 const playerCurrentMoveOnField: IPlayer = (card as ICard).players.filter((p: IPlayer) => p.current_move)[0];
-                const isActiveCardActionGetOrRemoveHouse = (isChanceGetOrRemoveHouse && canBuildHouse.status && !!Object.keys((card as ICard).owner).length 
+                const isActiveCardActionGetOrRemoveHouse = (isChanceGetOrRemoveHouse && canBuildHouse?.status && !!Object.keys((card as ICard).owner).length 
                 // &&
                 //           (card as ICard).owner.player.id === dataPlayerQG.id
                 )
@@ -112,7 +112,7 @@ export const GameBoard: React.FC<IGameBoard> = ({
                 const isGrayBlur = !!listSelectUserPreview.length 
                                       ? (isHasOwnerCard &&
                                         listSelectUserPreview.includes((card as ICard).owner?.player?.id))
-                                      : isChanceGetOrRemoveHouse && canBuildHouse.status
+                                      : isChanceGetOrRemoveHouse && canBuildHouse?.status
                                           ? isHasOwnerCard && (card as ICard).owner?.player.id === playerCurrentMove.id
                                           : false;
                           // console.log({isActiveCardAction,listSelectUserPreview}, (card as ICard).owner?.player?.id)

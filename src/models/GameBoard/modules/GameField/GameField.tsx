@@ -144,8 +144,8 @@ export const GameField: React.FC<IGameField> = React.memo(({
           }}
         >
             {
-              can_build && !can_build.status &&
-              <div> {can_build.reason} </div>
+              can_build && !can_build?.status &&
+              <div> {can_build?.reason} </div>
             }
         </Tooltip>}
       <div
