@@ -32,7 +32,7 @@ const FooterInfoBoard:React.FC<IProps> = ({
         ...style,
       }}
     >
-      <div
+      {/* <div
         className={styles["gib-footer__desc-container"]}
         data-tooltip-id="footer-balance-capital"
         // data-tooltip-content={` Баланс: ${balance}  Капитал: ${capital}`}
@@ -63,7 +63,8 @@ const FooterInfoBoard:React.FC<IProps> = ({
             <Icon src={icons.qgCurrencySvg} width={12} height={12} />
           </div>
         </Tooltip>
-      </div>
+      </div> */}
+      <div></div>
       <div className={styles["gib-footer__btns-container"]}>
         <Button
           className={styles["gib-footer__btns-btn--position"]}
