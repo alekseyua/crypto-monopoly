@@ -3,7 +3,6 @@ import styles from './styles/gib-footer.module.scss';
 import Icon from '../../../../../shared/UI/Icon/Icon';
 import { Button } from '../../../../../shared/UI';
 import { icons } from '../../../../../assets';
-import { Tooltip } from "react-tooltip";
 
 
 interface IProps{
