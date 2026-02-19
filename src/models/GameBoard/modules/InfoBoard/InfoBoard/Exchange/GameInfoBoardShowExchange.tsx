@@ -9,7 +9,6 @@ import Title from '../../../../../../shared/UI/Title/Title';
 import Line from '../../../../../../shared/UI/Line/Line';
 import CurrencyQG from '../../../../../../shared/UI/CurrencyQG/CurrencyQG';
 import { temporaryDisableBtn } from '../../../../../../helpers/helper';
-import FooterInfoBoardContainer from '../../FooterInfoBoard/FooterInfoBoardContainer';
 import styles from './styles/exchange.module.scss';
 import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
 import ContainerExchange from '../../components/UI/ContainerGIB/ContainerExchange';
@@ -311,7 +310,7 @@ export const GameInfoBoardShowExchange: React.FC<IGameInfoBoardShowExchangeProps
 				<Offset mb={10} />
 
 				{/* footer */}
-				<FooterInfoBoardContainer />
+				{/* <FooterInfoBoardContainer /> */}
 
 			</ContainerExchange>
 

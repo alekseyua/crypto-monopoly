@@ -5,7 +5,6 @@ import { Button, Offset } from "../../../../../../shared/UI";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
 import Title from "../../../../../../shared/UI/Title/Title";
 // import styles from "./styles/gib.module.scss";
-import FooterInfoBoardContainer from "../../FooterInfoBoard/FooterInfoBoardContainer";
 import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerInfoHeaderGIB";
 import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
 import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
@@ -56,7 +55,7 @@ export const MoveTo: React.FC<IGameInfoBoardMoveToProps> = ({
         style={{ background: "#E9ECFF" }}
       ></ContainerInfoBodyGIB>
       <Offset mt={10} />
-      <FooterInfoBoardContainer />
+      {/* <FooterInfoBoardContainer /> */}
     </ContainerGIB>
   );
 };

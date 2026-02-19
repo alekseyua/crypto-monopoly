@@ -14,7 +14,7 @@ import {
 import { delay } from "../../../helpers/helper";
 
 interface IProps {
-  onClick: () => void;
+  onClick?: () => void;
   isShake?: boolean;
 }
 
@@ -210,6 +210,7 @@ const fallDice = () => {
       `;
     }
   });
+    dispatch(SET_ANIMATION_ROLL_DICE_STARTED, false);
   };
 
   // ▶ старт: тряска → вращение
@@ -232,6 +233,7 @@ const fallDice = () => {
     return () => {
       dispatch(RESET_ROLL_DICE);
     };
+    // eslint-disable-next-line
   }, [roleDiceStore.rd1, roleDiceStore.rd2, dispatch]);
 
   // ▶ конец анимации
@@ -267,7 +269,7 @@ const fallDice = () => {
         }}
       onClick={() => {
         setIsClick(true);
-        onClick();
+        onClick && onClick();
       }}
     >
       <RollDice

@@ -7,7 +7,6 @@ import ContainerTwoBtn from "../../components/UI/ControllerGIB/ContainerTwoBtn";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
 import { icons } from "../../../../../../assets";
 import AutoCounter from "../../../../../../Component/AutoCounter/AutoCounter";
-import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
 import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
 import ContainerInfoGIB from "../../components/UI/ContainerGIB/ContainerInfoGIB";
 import {
@@ -17,7 +16,6 @@ import {
 import ContainerInfoTwoColumnGIB from "../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB";
 import InnerBtnContextSpaceBetween from "../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween";
 import Text from "../../../../../../shared/UI/Text/Text";
-import FooterInfoBoardContainer from "../../FooterInfoBoard/FooterInfoBoardContainer";
 import { temporaryDisableBtn } from "../../../../../../helpers/helper";
 import ContainerOneBtn from "../../components/UI/ControllerGIB/ContainerOneBtn";
 
@@ -242,9 +240,9 @@ export const ExpressAirlineCruise: React.FC<IExpressAirlineCruiseProps> = ({
       <Offset mt={10} />
 
       {/* ---------footer----------- */}
-      <ContainerInfoFooterGIB>
+      {/* <ContainerInfoFooterGIB>
         <FooterInfoBoardContainer bgc={"#CFD3ED4D"} />
-      </ContainerInfoFooterGIB>
+      </ContainerInfoFooterGIB> */}
     </ContainerGIB>
   );
 };

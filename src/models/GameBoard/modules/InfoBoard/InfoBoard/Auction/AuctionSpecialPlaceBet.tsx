@@ -12,8 +12,6 @@ import ButtonBack from "../../../../../../shared/UI/Buttons/ButtonBack/ButtonBac
 import ContainerInfoTwoColumnGIB from "../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB";
 import { ISpecialCardInfo } from "../../../../../../store/quick-game/quick-game.type";
 import InnerBtnContextSpaceBetween from "../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween";
-import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
-import FooterInfoBoardContainer from "../../FooterInfoBoard/FooterInfoBoardContainer";
 import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
 
 interface IProps {
@@ -174,7 +172,7 @@ export const AuctionSpecialPlaceBet: React.FC<IProps> = ({
       </ContainerInfoBodyGIB>
       {/* ---------footer----------- */}
 
-      <ContainerInfoFooterGIB>
+      {/* <ContainerInfoFooterGIB>
         <FooterInfoBoardContainer
           bgc={"#FADDAA"}
           bgcBtn={"#F5CC82"}
@@ -182,7 +180,7 @@ export const AuctionSpecialPlaceBet: React.FC<IProps> = ({
             width: "100%",
           }}
         />
-      </ContainerInfoFooterGIB>
+      </ContainerInfoFooterGIB> */}
     </ContainerGIB>
   );
 };

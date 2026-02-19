@@ -13,13 +13,11 @@ import Line from '../../../../../../shared/UI/Line/Line';
 import CurrencyQG from '../../../../../../shared/UI/CurrencyQG/CurrencyQG';
 import CardPlayersPreview from '../../../../../../Component/Cards/CardPlayersPreview/CardPlayersPreview';
 import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
-import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
 import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
 import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
 import ContainerInfoBodyGIB from '../../components/UI/ContainerGIB/ContainerInfoBodyGIB';
 import styles from './styles/exchange.module.scss';
 import { temporaryDisableBtn } from '../../../../../../helpers/helper';
-import FooterInfoBoardContainer from '../../FooterInfoBoard/FooterInfoBoardContainer';
 
 interface IGameInfoBoardActionsExchangeProps {
   handleCard: (params: any) => void;
@@ -546,7 +544,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
       {/* <Offset mb={10} /> */}
 
       {/* footer */}
-      <ContainerInfoFooterGIB
+      {/* <ContainerInfoFooterGIB
         style={{
           backgroundColor: "rgb(229 228 255)",
         }}
@@ -555,7 +553,7 @@ export const GameInfoBoardActionsExchange: React.FC<IGameInfoBoardActionsExchang
           bgc={"transparent"}
           bgcBtn={"rgb(215 217 244)"}
         />
-      </ContainerInfoFooterGIB>
+      </ContainerInfoFooterGIB> */}
     </ContainerGIB>
   );
 };

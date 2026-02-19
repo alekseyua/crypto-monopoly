@@ -15,8 +15,6 @@ import Text from "../../../../../../shared/UI/Text/Text";
 import ButtonBack from "../../../../../../shared/UI/Buttons/ButtonBack/ButtonBack";
 import ContainerInfoTwoColumnGIB from "../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB";
 import InnerBtnContextSpaceBetween from "../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween";
-import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
-import FooterInfoBoardContainer from "../../FooterInfoBoard/FooterInfoBoardContainer";
 
 interface IProps {
   cardInfo: ICardInfo;
@@ -183,7 +181,7 @@ export const AuctionPlaceBet: React.FC<IProps> = ({
       </ContainerInfoBodyGIB>
       {/* ---------footer----------- */}
 
-      <ContainerInfoFooterGIB>
+      {/* <ContainerInfoFooterGIB>
         <FooterInfoBoardContainer
           bgc={"#FADDAA"}
           bgcBtn={"#F5CC82"}
@@ -191,7 +189,7 @@ export const AuctionPlaceBet: React.FC<IProps> = ({
             width: "100%",
           }}
         />
-      </ContainerInfoFooterGIB>
+      </ContainerInfoFooterGIB> */}
     </ContainerGIB>
   );
 };

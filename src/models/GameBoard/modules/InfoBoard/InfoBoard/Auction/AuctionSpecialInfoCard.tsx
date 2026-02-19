@@ -10,10 +10,8 @@ import Title from '../../../../../../shared/UI/Title/Title';
 import Text from '../../../../../../shared/UI/Text/Text';
 import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
 import InnerBtnContextSpaceBetween from '../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween';
-import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
 import { ISpecialCardInfo } from '../../../../../../store/quick-game/quick-game.type';
 import ContainerOneBtn from '../../components/UI/ControllerGIB/ContainerOneBtn';
-import FooterInfoBoardContainer from '../../FooterInfoBoard/FooterInfoBoardContainer';
 
 interface IProps {
   endTime: number;
@@ -149,7 +147,7 @@ export const AuctionSpecialInfoCard: React.FC<IProps> = ({
 
       {/* ---------footer----------- */}
 
-      <ContainerInfoFooterGIB style={{ padding: 0 }}>
+      {/* <ContainerInfoFooterGIB style={{ padding: 0 }}>
         <FooterInfoBoardContainer
           bgc={"#FADDAA"}
           bgcBtn={"#F5CC82"}
@@ -157,7 +155,7 @@ export const AuctionSpecialInfoCard: React.FC<IProps> = ({
             width: "100%",
           }}
         />
-      </ContainerInfoFooterGIB>
+      </ContainerInfoFooterGIB> */}
     </ContainerGIB>
   );
 };

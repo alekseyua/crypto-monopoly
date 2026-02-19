@@ -6,11 +6,10 @@ import Title from "../../../../../../shared/UI/Title/Title";
 import { ICard } from "../../../../../../store/quick-game/quick-game.type";
 import ContainerOneBtn from "../../components/UI/ControllerGIB/ContainerOneBtn";
 import ContainerTwoBtn from "../../components/UI/ControllerGIB/ContainerTwoBtn";
-import FooterInfoBoardContainer from "../../FooterInfoBoard/FooterInfoBoardContainer";
 import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
 import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
-import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
 import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerInfoHeaderGIB";
+import RollDiceContainer from "../../../../../../shared/UI/RollDice/RoleDiceContainer";
 
 interface IInfoChanceOrCommunityProps {
   onMove: (params: any) => void;
@@ -34,6 +33,7 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
   cardIdWhereMoveTo,
 }: IInfoChanceOrCommunityProps) => {
   const [isClick, setIsClick] = React.useState(false);
+  const [isShowRollDice, setShowRollDice] = React.useState(false);
   const getNameBtn = useCallback(function (name: string) {
     if (name === undefined) return "";
     switch (name) {
@@ -87,77 +87,84 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
       <ContainerInfoBodyGIB center>
         <Title tag="h2" title={content} center />
         <Offset mt={30} />
-        <ContainerTwoBtn
-          style={{
-            gridTemplateColumns: actions?.length === 2 ? "1fr 1fr" : "1fr",
-          }}
-        >
-          {actions?.length &&
-            actions.map((a: string, i: number) => {
-              const isActionHouses = a === "return_house" || a === "get_house";
-              const card = isActionHouses && getInfoCard(cardIdWhereMoveTo);
-              return (
-                <div key={i} style={{ zIndex: 2 }}>
-                  {!!!cardIdWhereMoveTo && isActionHouses ? (
-                    <>
-                      <Title
-                        tag="h3"
-                        title={"Выберите карту что бы " + getNameBtn(a)}
-                        center
-                      />
-                      <Offset mt={20} />
-                    </>
-                  ) : null}
-                  {isActionHouses && card ? (
-                    <>
-                      <Title
-                        tag="h3"
-                        title={getNameBtn(a) + " с " + card.name}
-                        center
-                      />
-                      <Offset mt={20} />
-                    </>
-                  ) : null}
-                  <Button
-                    key={i}
-                    variant="fill"
-                    fillColor={"#726CED"}
-                    disabled={isClick || (isActionHouses && !cardIdWhereMoveTo)}
-                    p={15}
-                    onClick={() => {
-                      // temporaryDisableBtn(5000, setIsClick);
-                      setIsClick(true);
-                      let params: any = {
-                        action: a,
-                        card_id: cardIdWhereMoveTo,
-                      };
-                      if (a === "add_card") {
-                        params = {
-                          action: 'get_card_action',
-                          // card_id: cardIdWhereMoveTo,
-                          chance: true,
-                        };
-                      }
-                      if (a === "pay") {
-                        params = {
+        {isShowRollDice ?
+          <RollDiceContainer />
+          : <ContainerTwoBtn
+            style={{
+              gridTemplateColumns: actions?.length === 2 ? "1fr 1fr" : "1fr",
+            }}
+          >
+            {actions?.length &&
+              actions.map((a: string, i: number) => {
+                const isActionHouses = a === "return_house" || a === "get_house";
+                const card = isActionHouses && getInfoCard(cardIdWhereMoveTo);
+                return (
+                  <div key={i} style={{ zIndex: 2 }}>
+                    {!!!cardIdWhereMoveTo && isActionHouses ? (
+                      <>
+                        <Title
+                          tag="h3"
+                          title={"Выберите карту что бы " + getNameBtn(a)}
+                          center
+                        />
+                        <Offset mt={20} />
+                      </>
+                    ) : null}
+                    {isActionHouses && card ? (
+                      <>
+                        <Title
+                          tag="h3"
+                          title={getNameBtn(a) + " с " + card.name}
+                          center
+                        />
+                        <Offset mt={20} />
+                      </>
+                    ) : null}
+                    <Button
+                      key={i}
+                      variant="fill"
+                      fillColor={"#726CED"}
+                      disabled={isClick || (isActionHouses && !cardIdWhereMoveTo)}
+                      p={15}
+                      onClick={() => {
+                        // temporaryDisableBtn(5000, setIsClick);
+                        setIsClick(true);
+                        const cardId = cardIdWhereMoveTo ? { card_id: cardIdWhereMoveTo } : {};
+                        let params: any = {
                           action: a,
-                          card_id: cardIdWhereMoveTo,
+                          ...cardId,
                         };
-                      }
-                      onMove(params);
-                    }}
-                  >
-                    {getNameBtn(a)}
-                  </Button>
-                </div>
-              );
-            })}
-        </ContainerTwoBtn>
+                        if (a === "add_card") {
+                          params = {
+                            action: 'get_card_action',
+                            // card_id: cardIdWhereMoveTo,
+                            chance: true,
+                          };
+                        }
+                        if (a === "pay") {
+                          params = {
+                            action: a,
+                            ...cardId,
+                          };
+                        }
+                        if (a === "move") {
+                          setShowRollDice(true);
+                        }
+                        onMove(params);
+                      }}
+                    >
+                      {getNameBtn(a)}
+                    </Button>
+                  </div>
+                );
+              })}
+          </ContainerTwoBtn>
+        }
       </ContainerInfoBodyGIB>
 
-      <ContainerInfoFooterGIB>
+      {/* <ContainerInfoFooterGIB>
         <FooterInfoBoardContainer bgc={"#CFD3ED4D"} />
-      </ContainerInfoFooterGIB>
+      </ContainerInfoFooterGIB> */}
     </ContainerGIB>
   );
 };

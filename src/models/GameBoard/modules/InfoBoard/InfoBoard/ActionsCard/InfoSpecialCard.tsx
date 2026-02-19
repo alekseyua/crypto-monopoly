@@ -2,7 +2,6 @@ import React from "react";
 import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
 import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerInfoHeaderGIB";
 import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
-import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
 import ContainerInfoGIB from "../../components/UI/ContainerGIB/ContainerInfoGIB";
 import { IFeaturesSpecial, ISpecialCard } from "../../../../../../store/quick-game/quick-game.type";
 import { Button, Offset } from "../../../../../../shared/UI";
@@ -15,7 +14,6 @@ import InnerBtnContextSpaceBetween from "../../components/UI/ControllerGIB/Inner
 import Text from "../../../../../../shared/UI/Text/Text";
 import { icons } from "../../../../../../assets";
 import Icon from "../../../../../../shared/UI/Icon/Icon";
-import FooterInfoBoardContainer from "../../FooterInfoBoard/FooterInfoBoardContainer";
 import { IActionsChooseData, ICardInfoChooseData } from "../../../../../../store/quick-game/chooseData.type";
 
 interface IProps {
@@ -243,7 +241,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
           </ContainerInfoTwoColumnGIB> */}
         </ContainerInfoBodyGIB>
 
-        <ContainerInfoFooterGIB
+        {/* <ContainerInfoFooterGIB
           p={"0 15px"}
           style={{
             backgroundColor: "rgb(229 228 255)",
@@ -253,7 +251,7 @@ const InfoSpecialCard: React.FC<IProps> = ({
             bgc={"transparent"}
             bgcBtn={"rgb(215 217 244)"}
           />
-        </ContainerInfoFooterGIB>
+        </ContainerInfoFooterGIB> */}
       </ContainerInfoGIB>
     </ContainerGIB>
   );

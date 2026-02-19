@@ -12,9 +12,7 @@ import Text from '../../../../../../shared/UI/Text/Text';
 import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
 import InnerBtnContextSpaceBetween from '../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween';
 import { getPriceTaxesFromHouses } from '../../../../../../helpers/helper';
-import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
 import { ICardInfo } from '../../../../../../store/quick-game/quick-game.type';
-import FooterInfoBoardContainer from '../../FooterInfoBoard/FooterInfoBoardContainer';
 
 interface Iprops {
   endTime: number;
@@ -232,7 +230,7 @@ export const AuctionInfoCard: React.FC<Iprops> = ({
 
       {/* ---------footer----------- */}
 
-      <ContainerInfoFooterGIB style={{ padding: 0 }}>
+      {/* <ContainerInfoFooterGIB style={{ padding: 0 }}>
         <FooterInfoBoardContainer
           bgc={"#FADDAA"}
           bgcBtn={"#F5CC82"}
@@ -240,7 +238,7 @@ export const AuctionInfoCard: React.FC<Iprops> = ({
             width: "100%",
           }}
         />
-      </ContainerInfoFooterGIB>
+      </ContainerInfoFooterGIB> */}
     </ContainerGIB>
   );
 };

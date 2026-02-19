@@ -31,7 +31,7 @@ export const handleWebSocketMessageFeed = (msg : any, store: IState , dispatch: 
 export const handleWebSocketMessage = (msg : any, store: IState , dispatch: any) => {
      if (!!store?.user?.id) profileID = store?.user?.id;
     //  msg.type === "ping" &&     
-          // debugger
+          debugger
           if (Array.isArray(msg?.dice_roll) && msg?.dice_roll) {
             dispatch(SET_ANIMATION_ROLL_DICE_STARTED, true);
             dispatch(SET_ROLL_DICE_QG, {

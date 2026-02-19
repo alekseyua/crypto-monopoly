@@ -2,10 +2,8 @@ import React from "react";
 import { Button, Offset } from "../../../../../../shared/UI";
 import Title from "../../../../../../shared/UI/Title/Title";
 import ContainerOneBtn from "../../components/UI/ControllerGIB/ContainerOneBtn";
-import FooterInfoBoardContainer from "../../FooterInfoBoard/FooterInfoBoardContainer";
 import ContainerGIB from "../../components/UI/ContainerGIB/ContainerGIB";
 import ContainerInfoBodyGIB from "../../components/UI/ContainerGIB/ContainerInfoBodyGIB";
-import ContainerInfoFooterGIB from "../../components/UI/ContainerGIB/ContainerInfoFooterGIB";
 import ContainerInfoHeaderGIB from "../../components/UI/ContainerGIB/ContainerInfoHeaderGIB";
 import { temporaryDisableBtn } from "../../../../../../helpers/helper";
 
@@ -47,9 +45,9 @@ export const ShowMassagePopup: React.FC<IProps> = ({
         </ContainerOneBtn>
       </ContainerInfoBodyGIB>
 
-      <ContainerInfoFooterGIB>
+      {/* <ContainerInfoFooterGIB>
         <FooterInfoBoardContainer bgc={"#CFD3ED4D"} />
-      </ContainerInfoFooterGIB>
+      </ContainerInfoFooterGIB> */}
     </ContainerGIB>
   );
 };

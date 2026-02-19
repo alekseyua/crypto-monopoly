@@ -2,7 +2,6 @@ import React from 'react';
 import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
 import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
 import ContainerInfoBodyGIB from '../../components/UI/ContainerGIB/ContainerInfoBodyGIB';
-import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
 import { Offset } from '../../../../../../shared/UI';
 import Title from '../../../../../../shared/UI/Title/Title';
 import { icons } from '../../../../../../assets';
@@ -35,9 +34,9 @@ const Empty: React.FC<IProps> = () => {
 
       </ContainerInfoBodyGIB>
 
-      <ContainerInfoFooterGIB>
+      {/* <ContainerInfoFooterGIB>
 
-      </ContainerInfoFooterGIB>
+      </ContainerInfoFooterGIB> */}
 
     </ContainerGIB>
   )

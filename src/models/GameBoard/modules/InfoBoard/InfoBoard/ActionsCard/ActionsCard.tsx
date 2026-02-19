@@ -10,8 +10,6 @@ import { temporaryDisableBtn } from '../../../../../../helpers/helper';
 import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
 import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
 import ContainerInfoBodyGIB from '../../components/UI/ContainerGIB/ContainerInfoBodyGIB';
-import ContainerInfoFooterGIB from '../../components/UI/ContainerGIB/ContainerInfoFooterGIB';
-import FooterInfoBoardContainer from '../../FooterInfoBoard/FooterInfoBoardContainer';
 import ButtonBack from '../../../../../../shared/UI/Buttons/ButtonBack/ButtonBack';
 import InnerBtnContextSpaceBetween from '../../components/UI/ControllerGIB/InnerBtnContextSpaceBetween';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
@@ -389,7 +387,7 @@ const ActionsCard: React.FC<IProps> = ({
           <Offset mt={10} />
         </ContainerInfoBodyGIB>
 
-        <ContainerInfoFooterGIB
+        {/* <ContainerInfoFooterGIB
           p={"0 15px"}
           style={{
             backgroundColor: "rgb(229 228 255)",
@@ -399,7 +397,7 @@ const ActionsCard: React.FC<IProps> = ({
             bgc={"transparent"}
             bgcBtn={"rgb(215 217 244)"}
           />
-        </ContainerInfoFooterGIB>
+        </ContainerInfoFooterGIB> */}
       </ContainerInfoGIB>
     </ContainerGIB>
   );

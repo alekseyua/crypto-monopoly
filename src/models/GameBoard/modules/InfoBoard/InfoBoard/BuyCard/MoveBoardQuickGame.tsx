@@ -3,7 +3,6 @@ import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import Icon from '../../../../../../shared/UI/Icon/Icon';
 import RollDiceContainer from '../../../../../../shared/UI/RollDice/RoleDiceContainer';
 import Title from '../../../../../../shared/UI/Title/Title';
-import FooterInfoBoardContainer from '../../FooterInfoBoard/FooterInfoBoardContainer';
 import ContainerInfoTwoColumnGIB from '../../components/UI/ContainerGIB/ContainerInfoTwoColumnGIB';
 import styles from '../../styles/gib.module.scss';
 import React, { useCallback, useEffect } from 'react';
@@ -136,8 +135,8 @@ export const MoveBoardQG: React.FC<IMoveBoardQGProps> = ({
       </ContainerInfoBodyGIB>
       <Offset mt={10} />
       {/* footer */}
-      <FooterInfoBoardContainer
-      />
+      {/* <FooterInfoBoardContainer
+      /> */}
 
       <Offset mt={10} />
     </ContainerGIB>

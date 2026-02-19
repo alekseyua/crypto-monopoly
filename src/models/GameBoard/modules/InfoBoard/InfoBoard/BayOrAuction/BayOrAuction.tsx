@@ -6,7 +6,6 @@ import AutoCounter from '../../../../../../Component/AutoCounter/AutoCounter';
 import { getPriceTaxesFromHouses, temporaryDisableBtn } from '../../../../../../helpers/helper';
 import Title from '../../../../../../shared/UI/Title/Title';
 import { CardDataDataActionsType } from '../../../../../../store/quick-game/quick-game.type';
-import FooterInfoBoardContainer from '../../FooterInfoBoard/FooterInfoBoardContainer';
 import ContainerGIB from '../../components/UI/ContainerGIB/ContainerGIB';
 import ContainerInfoHeaderGIB from '../../components/UI/ContainerGIB/ContainerInfoHeaderGIB';
 import ContainerTwoBtn from '../../components/UI/ControllerGIB/ContainerTwoBtn';
@@ -290,11 +289,11 @@ export const BayOrAuction: React.FC<IBayOrAuctionProps> = ({
         </ContainerInfoGIB>
       </ContainerInfoBodyGIB>
       {/* footer */}
-      <FooterInfoBoardContainer
+      {/* <FooterInfoBoardContainer
         style={{
           borderRadius: "0 0 10px 10px",
         }}
-      />
+      /> */}
     </ContainerGIB>
   );
 };
