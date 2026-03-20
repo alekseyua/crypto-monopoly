@@ -10,6 +10,7 @@ import {
   RESET_ROLL_DICE,
   SET_ANIMATION_ROLL_DICE_STARTED,
   SET_ANIMATION_ROLL_DICE_ENDED,
+  SET_PROCESSING_QUEUE,
 } from "../../../store/const";
 import { delay } from "../../../helpers/helper";
 
@@ -27,6 +28,7 @@ type EventStore = {
   [RESET_ROLL_DICE]: void;
   [SET_ANIMATION_ROLL_DICE_STARTED]: boolean;
   [SET_ANIMATION_ROLL_DICE_ENDED]: void;
+  [SET_PROCESSING_QUEUE]: boolean;
 };
 
 const RollDiceContainer: React.FC<IProps> = ({ onClick, isShake }) => {
@@ -218,6 +220,8 @@ const fallDice = () => {
     if (roleDiceStore.rd1 === 0 || roleDiceStore.rd2 === 0) return;
 
     const startAnimation = async () => {
+      dispatch(SET_PROCESSING_QUEUE, true);
+      
       setIsClick(true);
       stopShake();
       await delay(16);   // дать браузеру зафиксировать reset тряски

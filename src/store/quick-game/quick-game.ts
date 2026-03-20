@@ -240,7 +240,6 @@ export const quickGame = (store: StoreonStore) => {
         (err: any) => console.error('WebSocket error:', err),
         async (res: any) => {
           dispatch(HANDLE_WEBSOCKET_MESSAGE, res);
-         
         }
         // ended WebSocket onmessage
       );

@@ -130,6 +130,7 @@ export const InfoChanceOrCommunity: React.FC<IInfoChanceOrCommunityProps> = ({
                         // temporaryDisableBtn(5000, setIsClick);
                         setIsClick(true);
                         const cardId = cardIdWhereMoveTo ? { card_id: cardIdWhereMoveTo } : {};
+                        console.log('============================== ',a, cardIdWhereMoveTo, ' || ', cardId)
                         let params: any = {
                           action: a,
                           ...cardId,

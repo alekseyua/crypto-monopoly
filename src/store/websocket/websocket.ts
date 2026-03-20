@@ -31,6 +31,8 @@ export const websocket = (store: StoreonStore<IState>) => {
     })); 
 
     store.on(HANDLE_WEBSOCKET_MESSAGE, (state: IState, payload: any, {dispatch}) => {
+        console.log('HANDLE_WEBSOCKET_MESSAGE state.isAnimationRollDice ', state.isAnimationRollDice);  
+        console.log('HANDLE_WEBSOCKET_MESSAGE state.isProcessingQueue ', state.isProcessingQueue);
         if (state.isAnimationRollDice || state.isProcessingQueue) {
             // Если анимация в процессе или очередь сообщений обрабатывается, добавляем новое сообщение в очередь
             dispatch(SET_QUEUE_MESSAGES_WS, [...state.queueMessagesWs, payload]);

@@ -27,7 +27,7 @@ export const diceRoll = (store: StoreonStore<IState>) => {
     }));
 
     store.on(SET_ANIMATION_ROLL_DICE_ENDED, (state: IState, payload, {dispatch}) => {
-        console.log('ANIMATION ENDED', {state});
+        console.log('ANIMATION ENDED', { state }, state.queueMessagesWs);
         
         // Устанавливаем флаг обработки очереди.
         dispatch(SET_PROCESSING_QUEUE, true);
@@ -44,10 +44,11 @@ export const diceRoll = (store: StoreonStore<IState>) => {
             handleWebSocketMessageFeed(msg, state, dispatch);
         });
 
-        // Завершаем обработку очереди.
-        dispatch(SET_PROCESSING_QUEUE, false);
+        // // Завершаем обработку очереди.
+        // dispatch(SET_PROCESSING_QUEUE, false);
         
         return {
+            isProcessingQueue: false,           // Сбрасываем флаг обработки очереди
             isAnimationRollDice: false,  // Завершаем анимацию
             queueMessagesWs: [],         // Очищаем очередь WebSocket сообщений
             queueMessagesFeeds: [],      // Очищаем очередь сообщений ленты

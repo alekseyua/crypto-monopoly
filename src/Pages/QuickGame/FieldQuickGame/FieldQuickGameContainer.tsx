@@ -317,6 +317,10 @@ export const FieldQGContainer: React.FC<IFildQG> = () => {
       player: IPlayer,
       data: IDataContainer
     ): keyPreview {
+      console.log({
+        player,
+        data,
+      })
       if (isChanceGetOrRemoveHouse) setIsChanceGetOrRemoveHouse(false);
       const isActions: boolean = isKeyPresentInHash(data, "data_actions");
       const isAuctions: boolean = isKeyPresentInHash(data, "auction_data");
